@@ -1,0 +1,43 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #fbf1c7;
+    --color-fg: #3c3836;
+  }
+
+  html {
+    @apply h-full bg-bg bg-paper text-fg;
+
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply relative h-full w-full;
+  }
+
+  svg {
+    fill: currentColor;
+  }
+
+  *:disabled {
+    cursor: not-allowed;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--color-bg) inset !important;
+    -webkit-text-fill-color: var(--color-text) !important;
+  }
+}
+
+@layer utilities {
+  .text-ellipsis {
+    @apply overflow-hidden overflow-ellipsis whitespace-nowrap;
+  }
+}
