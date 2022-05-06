@@ -8,3 +8,6 @@ declare namespace App {
   // interface Session {}
   // interface Stuff {}
 }
+
+declare module '*.svelte';
+declare module '@icons-pack/svelte-simple-icons';

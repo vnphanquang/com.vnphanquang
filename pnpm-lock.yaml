@@ -1,29 +1,40 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@icons-pack/svelte-simple-icons': ^2.3.0
   '@sveltejs/adapter-auto': next
   '@sveltejs/kit': next
+  '@tailwindcss/typography': ^0.5.2
   '@typescript-eslint/eslint-plugin': ^5.10.1
   '@typescript-eslint/parser': ^5.10.1
   autoprefixer: ^10.4.4
+  classnames: ^2.3.1
   eslint: ^7.32.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-import: ^2.26.0
   eslint-plugin-svelte3: ^3.2.1
   postcss: ^8.4.12
+  postcss-import: ^14.1.0
   postcss-load-config: ^3.1.4
+  postcss-nesting: ^10.1.4
   prettier: ^2.5.1
   prettier-plugin-tailwindcss: ^0.1.10
   svelte: ^3.44.0
+  svelte-awesome: ^3.0.0
   svelte-check: ^2.2.6
   svelte-preprocess: ^4.10.5
   tailwindcss: ^3.0.23
   tslib: ^2.3.1
   typescript: ~4.6.2
 
+dependencies:
+  classnames: 2.3.1
+
 devDependencies:
+  '@icons-pack/svelte-simple-icons': 2.3.0
   '@sveltejs/adapter-auto': 1.0.0-next.40
   '@sveltejs/kit': 1.0.0-next.326_svelte@3.48.0
+  '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
   '@typescript-eslint/eslint-plugin': 5.22.0_e7x4dwqa46aij5nkdae76zedue
   '@typescript-eslint/parser': 5.22.0_e4zyhrvfnqudwdx5bevnvkluy4
   autoprefixer: 10.4.7_postcss@8.4.13
@@ -32,10 +43,13 @@ devDependencies:
   eslint-plugin-import: 2.26.0_eslint@7.32.0
   eslint-plugin-svelte3: 3.4.1_6wevxxng4y4ff26nzlndg2wnpa
   postcss: 8.4.13
+  postcss-import: 14.1.0_postcss@8.4.13
   postcss-load-config: 3.1.4_postcss@8.4.13
+  postcss-nesting: 10.1.4_postcss@8.4.13
   prettier: 2.6.2
   prettier-plugin-tailwindcss: 0.1.10_prettier@2.6.2
   svelte: 3.48.0
+  svelte-awesome: 3.0.0_svelte@3.48.0
   svelte-check: 2.7.0_lhgjd277matnne4wn224wtgbie
   svelte-preprocess: 4.10.6_j5vltbetf5b3hvn3gkit4y4tee
   tailwindcss: 3.0.24
@@ -118,6 +132,15 @@ packages:
       {
         integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==,
       }
+    dev: true
+
+  /@icons-pack/svelte-simple-icons/2.3.0:
+    resolution:
+      {
+        integrity: sha512-KVVRmQYJi2wqpSKg0XfqCPTuS/BZJ562hBWsszBxhlkrAN7hNBvKa7aR26X71sTZe2kMUuhDQpjN/KV/x1WV1A==,
+      }
+    dependencies:
+      svelte: 3.48.0
     dev: true
 
   /@nodelib/fs.scandir/2.1.5:
@@ -248,6 +271,20 @@ packages:
       vite: 2.9.8
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@tailwindcss/typography/0.5.2_tailwindcss@3.0.24:
+    resolution:
+      {
+        integrity: sha512-coq8DBABRPFcVhVIk6IbKyyHUt7YTEC/C992tatFB+yEx5WGBQrCgsSFjxHUr8AWXphWckadVJbominEduYBqw==,
+      }
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1 || insiders'
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      tailwindcss: 3.0.24
     dev: true
 
   /@types/json-schema/7.0.11:
@@ -749,6 +786,13 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /classnames/2.3.1:
+    resolution:
+      {
+        integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==,
+      }
+    dev: false
 
   /color-convert/1.9.3:
     resolution:
@@ -2125,6 +2169,14 @@ packages:
       path-exists: 3.0.0
     dev: true
 
+  /lodash.castarray/4.4.0:
+    resolution: { integrity: sha1-wCUTUV4wna3dTCTGDP3c9ZdtkRU= }
+    dev: true
+
+  /lodash.isplainobject/4.0.6:
+    resolution: { integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs= }
+    dev: true
+
   /lodash.merge/4.6.2:
     resolution:
       {
@@ -2427,6 +2479,26 @@ packages:
     engines: { node: '>=8.6' }
     dev: true
 
+  /pify/2.3.0:
+    resolution: { integrity: sha1-7RQaasBDqEnqWISY59yosVMw6Qw= }
+    engines: { node: '>=0.10.0' }
+    dev: true
+
+  /postcss-import/14.1.0_postcss@8.4.13:
+    resolution:
+      {
+        integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==,
+      }
+    engines: { node: '>=10.0.0' }
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.13
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.0
+    dev: true
+
   /postcss-js/4.0.0_postcss@8.4.13:
     resolution:
       {
@@ -2468,6 +2540,19 @@ packages:
     engines: { node: '>=12.0' }
     peerDependencies:
       postcss: ^8.2.14
+    dependencies:
+      postcss: 8.4.13
+      postcss-selector-parser: 6.0.10
+    dev: true
+
+  /postcss-nesting/10.1.4_postcss@8.4.13:
+    resolution:
+      {
+        integrity: sha512-2ixdQ59ik/Gt1+oPHiI1kHdwEI8lLKEmui9B1nl6163ANLC+GewQn7fXMxJF2JSb4i2MKL96GU8fIiQztK4TTA==,
+      }
+    engines: { node: ^12 || ^14 || >=16 }
+    peerDependencies:
+      postcss: ^8.4
     dependencies:
       postcss: 8.4.13
       postcss-selector-parser: 6.0.10
@@ -2561,6 +2646,12 @@ packages:
         integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==,
       }
     engines: { node: '>=10' }
+    dev: true
+
+  /read-cache/1.0.0:
+    resolution: { integrity: sha1-5mTvMRYRZsl1HNvo28+GtftY93Q= }
+    dependencies:
+      pify: 2.3.0
     dev: true
 
   /readdirp/3.6.0:
@@ -2874,6 +2965,17 @@ packages:
         integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==,
       }
     engines: { node: '>= 0.4' }
+    dev: true
+
+  /svelte-awesome/3.0.0_svelte@3.48.0:
+    resolution:
+      {
+        integrity: sha512-jfK+vc7f2kTFbBCk3dR1C3JA72cugh5bZHILc0gHbaSC3f1PkwPpA4OwpCRCT1Zf0hv6oaSZKxR8V2m1SKHj3Q==,
+      }
+    peerDependencies:
+      svelte: ^3.43.1
+    dependencies:
+      svelte: 3.48.0
     dev: true
 
   /svelte-check/2.7.0_lhgjd277matnne4wn224wtgbie:

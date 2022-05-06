@@ -1,15 +1,12 @@
 <script lang="ts">
   import naq from '$lib/data/naq.json';
   import testimonials from '$lib/data/testimonials.json';
+  import { Naq } from '$lib/ui/components';
 </script>
 
-<navbar id="navbar" />
+<title>Home | vnphanquang</title>
 
-<h1>
-  certified crappy website
-  <!-- make this typewritter animation -->
-  by nobody
-</h1>
+<h1>certified crappy website by nobody</h1>
 
 <section id="testimonials">
   <h2>Testimonials</h2>
@@ -25,23 +22,4 @@
   {/each}
 </section>
 
-<section id="naq">
-  <div class="text-center">
-    <h2 class="text-bold mt-20 text-2xl">Never Asked Questions</h2>
-    <p class="mt-2 italic">You might even find some answers</p>
-  </div>
-
-  {#each naq as { question, answer }}
-    <div>
-      <h3>{question}</h3>
-      <p>{answer}</p>
-    </div>
-  {/each}
-</section>
-
-<footer id="footer">
-  <p>Made with calories 🦠</p>
-  <p>
-    Quang Phan - {new Date().getFullYear()}
-  </p>
-</footer>
+<Naq data={naq} />
