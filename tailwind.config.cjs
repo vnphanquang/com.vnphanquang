@@ -6,6 +6,7 @@ const colorPallet = {
   },
   border: '#d5c4a1',
   primary: '#d65d03',
+  secondary: '#98971a',
 };
 
 /** @type {import("tailwindcss/tailwind-config").TailwindConfig } */
