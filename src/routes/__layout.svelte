@@ -6,9 +6,7 @@
 <div class="flex h-full flex-col">
   <navbar id="navbar" />
 
-  <main class="flex-1 px-6 sm:px-10 md:px-32">
-    <slot />
-  </main>
+  <slot />
 
   <Footer class="px-6 sm:px-10" />
 </div>

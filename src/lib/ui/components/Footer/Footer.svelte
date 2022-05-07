@@ -55,7 +55,7 @@
     {#each socials as { href, icon, id } (id)}
       <li id="social-{id}" class="">
         <a {href}>
-          <Icon data={icon} scale={2} class="hover:text-primary" />
+          <Icon data={icon} scale={2} class="c-btn-icon" />
         </a>
       </li>
     {/each}

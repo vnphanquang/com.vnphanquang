@@ -15,23 +15,36 @@
 
   let naqOnlyExpandOne = false;
   let expandedId: number | undefined;
+  let expansionHistory: number[] = []; // saving index of naq
+
   function onChangeExpansionRule(event: any) {
     if (event.target.checked) {
-      for (const n of naq) {
-        if (n.checked) {
-          expandedId = n.id;
+      let lastOpenedIndex = 0;
+      for (const index of expansionHistory.reverse()) {
+        if (naq[index].checked) {
+          lastOpenedIndex = index;
           break;
         }
       }
+      expandedId = naq[lastOpenedIndex].id;
     } else {
       for (const n of naq) {
         n.checked = expandedId === n.id;
       }
     }
   }
+
+  function onClickExpansion(index: number) {
+    if (expansionHistory[expansionHistory.length - 1] !== index) {
+      expansionHistory.push(index);
+    }
+    if (expansionHistory.length > 10) {
+      expansionHistory.shift();
+    }
+  }
 </script>
 
-<section id="naq" class="my-20">
+<section id="naq" class={$$props.class}>
   <div class="text-center">
     <h2 class="text-3xl font-bold">Never Asked Questions</h2>
     <p class="mt-4 italic">You might even find some answers</p>
@@ -51,24 +64,26 @@
   </div>
 
   <div class="grid grid-cols-1 gap-y-2 border-t border-border">
-    {#each naq as { id, question, answer, checked } (id)}
+    {#each naq as { id, question, answer, checked }, index (id)}
       {@const shouldExpand = naqOnlyExpandOne ? expandedId === id : checked}
+      {@const htmlId = `naq-expansion-${id}`}
       <article class="hover:text-primary">
         <label
-          for="naq-expansion-{id}"
+          for={htmlId}
           class="block border-b border-border px-4 py-6 hover:cursor-pointer"
+          on:click={() => onClickExpansion(index)}
         >
           {#if naqOnlyExpandOne}
             <input
               type="radio"
-              id="naq-expansion-{id}"
+              id={htmlId}
               name="naq-expansion"
               bind:group={expandedId}
               value={id}
               hidden
             />
           {:else}
-            <input type="checkbox" id="naq-expansion-{id}" bind:checked hidden />
+            <input type="checkbox" id={htmlId} bind:checked hidden />
           {/if}
           <div class="flex items-center justify-between">
             <h3 class="font-bold" id="naq-{id}">{question}</h3>
@@ -79,7 +94,9 @@
             />
           </div>
           {#if shouldExpand}
-            <p class="mx-6 mt-4 border-l border-border px-4 py-2 text-fg" transition:slide>{answer}</p>
+            <p class="mx-6 mt-4 border-l border-border px-4 py-2 text-fg" transition:slide>
+              {answer}
+            </p>
           {/if}
         </label>
       </article>

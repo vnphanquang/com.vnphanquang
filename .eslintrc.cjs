@@ -41,11 +41,9 @@ module.exports = {
       {
         multiline: {
           delimiter: 'semi',
-          requireLast: true,
         },
         singleline: {
           delimiter: 'semi',
-          requireLast: true,
         },
       },
     ],
@@ -54,25 +52,27 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
 
     // https://eslint.org/docs/rules/object-curly-newline
-    'object-curly-newline': [
-      'error',
-      {
-        ObjectExpression: {
-          minProperties: 3,
-          consistent: true,
-        },
-        ObjectPattern: {
-          minProperties: 3,
-          consistent: true,
-        },
-        ImportDeclaration: {
-          minProperties: 3,
-        },
-        ExportDeclaration: {
-          minProperties: 3,
-        },
-      },
-    ],
+    'object-curly-newline': 'off',
+    // disable here due to conflict with prettier
+    // 'object-curly-newline': [
+    //   'error',
+    //   {
+    //     ObjectExpression: {
+    //       minProperties: 3,
+    //       consistent: true,
+    //     },
+    //     ObjectPattern: {
+    //       minProperties: 3,
+    //       consistent: true,
+    //     },
+    //     ImportDeclaration: {
+    //       minProperties: 3,
+    //     },
+    //     ExportDeclaration: {
+    //       minProperties: 3,
+    //     },
+    //   },
+    // ],
 
     // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md
     'import/prefer-default-export': 'off',
