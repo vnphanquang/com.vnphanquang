@@ -1,10 +1,10 @@
 <script lang="ts">
   import arrows from 'svelte-awesome/icons/arrows';
   import Icon from 'svelte-awesome/components/Icon.svelte';
+  import { movable } from 'svelte-movable';
   import { fade } from 'svelte/transition';
 
   import { clickoutside } from '$lib/ui/actions/clickoutside';
-  import { movable } from '$lib/ui/actions/movable';
 
   import TestimonialCard from './TestimonialCard.svelte';
   import type { Testimonial } from './Testimonials.type';
@@ -71,6 +71,7 @@
         <button
           bind:this={testimonialCardMovableTrigger}
           class="c-btn-icon absolute top-2 right-10 hover:cursor-move"
+          type="button"
         >
           <Icon data={arrows} />
         </button>
