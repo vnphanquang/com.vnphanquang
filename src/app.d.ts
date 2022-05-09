@@ -30,9 +30,9 @@ declare namespace svelte.JSX {
     // on:clickoutside
     onclickoutside?: (event: CustomEvent<HTMLElement>) => void;
     // on:movablestart
-    onmovablestart?: (event: CustomEvent<HTMLElement>) => void;
+    onmovablestart?: (event: CustomEvent<import('svelte-movable').MovableEventDetails>) => void;
     // on:movableend
-    onmovableend?: (event: CustomEvent<HTMLElement>) => void;
+    onmovableend?: (event: CustomEvent<import('svelte-movable').MovableEventDetails>) => void;
   }
 }
 

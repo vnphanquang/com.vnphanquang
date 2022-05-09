@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import arrows from 'svelte-awesome/icons/arrows';
   import Icon from 'svelte-awesome/components/Icon.svelte';
-  import { movable } from 'svelte-movable';
+  import { movable, type MovableEventDetails } from 'svelte-movable';
   import { fade } from 'svelte/transition';
 
   import { clickoutside } from '$lib/ui/actions/clickoutside';
@@ -12,16 +13,46 @@
   export let data: Testimonial[];
 
   let activeIndex: number | undefined;
-  let containerNode: HTMLElement;
   let enableClickoutside = true;
+
+  let containerNode: HTMLElement;
   let testimonialCardMovableTrigger: HTMLElement;
+  const TESTIMONIAL_CARD_POSITION_CACHE_ID = 'testimonial-card-position-cache';
+  let testimonialCardPositionCache: MovableEventDetails['position'] = {
+    left: 0,
+    top: 0,
+  };
 
   function onDismiss() {
     activeIndex = undefined;
   }
+
   function getHtmlId(id: number) {
     return `testimonial-${id}`;
   }
+
+  function updateTestimonialCardPositionCache(position: typeof testimonialCardPositionCache) {
+    testimonialCardPositionCache = position;
+    sessionStorage.setItem(
+      TESTIMONIAL_CARD_POSITION_CACHE_ID,
+      JSON.stringify(testimonialCardPositionCache),
+    );
+  }
+
+  function onMovableStart() {
+    enableClickoutside = false;
+  }
+  function onMovableEnd(event: CustomEvent<MovableEventDetails>) {
+    enableClickoutside = true;
+    updateTestimonialCardPositionCache(event.detail.position);
+  }
+
+  onMount(() => {
+    const cache = sessionStorage.getItem(TESTIMONIAL_CARD_POSITION_CACHE_ID);
+    if (cache) {
+      testimonialCardPositionCache = JSON.parse(cache);
+    }
+  });
 </script>
 
 <section id="testimonials" class={$$props.class} bind:this={containerNode}>
@@ -55,6 +86,12 @@
     {#if activeIndex !== undefined}
       <div
         class="absolute-center z-10 w-full max-w-sm"
+        style:top={testimonialCardPositionCache.top
+          ? `${testimonialCardPositionCache.top}px`
+          : '50%'}
+        style:left={testimonialCardPositionCache.left
+          ? `${testimonialCardPositionCache.left}px`
+          : '50%'}
         transition:fade={{ duration: 200 }}
         use:clickoutside={{ enabled: enableClickoutside, inside: containerNode }}
         on:clickoutside={onDismiss}
@@ -65,8 +102,8 @@
           },
           trigger: testimonialCardMovableTrigger,
         }}
-        on:movablestart={() => (enableClickoutside = false)}
-        on:movableend={() => (enableClickoutside = true)}
+        on:movablestart={onMovableStart}
+        on:movableend={onMovableEnd}
       >
         <button
           bind:this={testimonialCardMovableTrigger}
