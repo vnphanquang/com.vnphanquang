@@ -2,7 +2,7 @@ const colorPallet = {
   fg: '#3c3836',
   bg: {
     DEFAULT: '#fbf1c7',
-    accent: '#f9f5d7',
+    accent: '#ebdbb2',
   },
   border: '#d5c4a1',
   primary: '#d65d03',

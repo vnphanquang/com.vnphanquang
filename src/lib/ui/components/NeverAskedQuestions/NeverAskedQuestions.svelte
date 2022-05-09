@@ -44,7 +44,7 @@
   }
 </script>
 
-<section id="naq" class={$$props.class}>
+<div id="naq" class={$$props.class}>
   <div class="text-center">
     <h2 class="text-3xl font-bold">Never Asked Questions</h2>
     <p class="mt-4 italic">You might even find some answers</p>
@@ -102,4 +102,4 @@
       </article>
     {/each}
   </div>
-</section>
+</div>

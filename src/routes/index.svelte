@@ -8,7 +8,11 @@
 
 <h1>certified crappy website by nobody</h1>
 
-<main class="mb-20 grid flex-1 place-items-center gap-y-20 px-6 sm:px-10 md:px-32">
-  <Testimonials data={testimonials} class="w-full max-w-4xl" />
-  <NeverAskedQuestions data={neverAskedQuestions} class="w-full max-w-4xl" />
+<main class="mb-8 flex flex-1 flex-col">
+  <section class="grid w-full place-items-center bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32">
+    <Testimonials data={testimonials} class="w-full max-w-5xl" />
+  </section>
+  <section class="grid w-full place-items-center py-14 px-6 sm:px-10 md:px-32">
+    <NeverAskedQuestions data={neverAskedQuestions} class="w-full max-w-5xl" />
+  </section>
 </main>
