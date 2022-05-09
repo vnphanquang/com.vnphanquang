@@ -17,6 +17,7 @@
     "@sveltejs/adapter-static": "1.0.0-next.29",
     "@sveltejs/kit": "1.0.0-next.326",
     "@tailwindcss/typography": "^0.5.2",
+    "@types/lodash.debounce": "^4.0.7",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "autoprefixer": "^10.4.4",
@@ -33,7 +34,7 @@
     "svelte": "^3.44.0",
     "svelte-awesome": "^3.0.0",
     "svelte-check": "^2.2.6",
-    "svelte-movable": "^1.0.4",
+    "svelte-movable": "^1.1.0",
     "svelte-preprocess": "^4.10.5",
     "tailwindcss": "^3.0.23",
     "tslib": "^2.3.1",
@@ -41,6 +42,7 @@
   },
   "type": "module",
   "dependencies": {
-    "classnames": "^2.3.1"
+    "classnames": "^2.3.1",
+    "lodash.debounce": "^4.0.8"
   }
 }
