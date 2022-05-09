@@ -55,7 +55,7 @@
   });
 </script>
 
-<section id="testimonials" class={$$props.class} bind:this={containerNode}>
+<div id="testimonials" class={$$props.class} bind:this={containerNode}>
   <div class="text-center">
     <h2 class="text-3xl font-bold">Things People Say</h2>
     <p class="mt-4 italic">Nobody was harmed in the making of this</p>
@@ -116,8 +116,8 @@
       </div>
     {/if}
   </ul>
-  <p class="mt-6 text-center italic opacity-50">Click on a face to see what they say</p>
-</section>
+  <p class="mt-2 text-center italic opacity-50">Click on a face to see what they say</p>
+</div>
 
 <style>
   .avatar-trigger {

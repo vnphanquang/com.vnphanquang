@@ -49,7 +49,7 @@
 
 <footer
   id="footer"
-  class="flex flex-col items-center bg-[#ebdbb2] py-8 shadow-xl md:px-32 {$$props.class}"
+  class="flex flex-col items-center bg-bg-accent py-8 shadow-xl md:px-32 {$$props.class}"
 >
   <ul class="grid grid-cols-7 place-items-center gap-x-6">
     {#each socials as { href, icon, id } (id)}
@@ -60,11 +60,12 @@
       </li>
     {/each}
   </ul>
-  <div class="mt-6 grid grid-cols-1 place-items-center gap-y-6 gap-x-8 md:grid-cols-2">
-    <p class="md:justify-self-start">
-      vnphanquang © {new Date().getFullYear()}
-    </p>
-    <p class="md:justify-self-center">Made with calories 🦠</p>
+  <div
+    class="mt-6 grid grid-cols-1 place-items-center gap-y-2 gap-x-5 md:grid-cols-[auto,auto,auto]"
+  >
+    <p>Made with calories</p>
+    <p>🦠</p>
+    <p>vnphanquang © {new Date().getFullYear()}</p>
   </div>
 </footer>
 
