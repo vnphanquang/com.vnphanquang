@@ -85,7 +85,7 @@
     {/each}
     {#if activeIndex !== undefined}
       <div
-        class="absolute-center z-10 w-full max-w-sm"
+        class="inset-center absolute z-10 w-full max-w-sm"
         style:top={testimonialCardPositionCache.top
           ? `${testimonialCardPositionCache.top}px`
           : '50%'}

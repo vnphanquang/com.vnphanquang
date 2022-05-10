@@ -1,6 +1,11 @@
 <script lang="ts">
+  import Icon from 'svelte-awesome/components/Icon.svelte';
+  import close from 'svelte-awesome/icons/close';
+  import { fly, fade } from 'svelte/transition';
+
   import neverAskedQuestions from '$lib/data/neverAskedQuestions.json';
   import testimonials from '$lib/data/testimonials.json';
+  import { clickoutside } from '$lib/ui/actions/clickoutside';
   import {
     AnimatedMail,
     NeverAskedQuestions,
@@ -10,23 +15,33 @@
     RubberStamp,
     TestTube,
   } from '$lib/ui/components';
+
+  let letter = false;
+  let heroNode: HTMLElement;
+
+  function scrollDownFromHero() {
+    window.scrollTo({
+      top: heroNode.offsetTop + heroNode.clientHeight,
+      behavior: 'smooth',
+    });
+  }
 </script>
 
 <title>Home | vnphanquang</title>
 
 <main class="flex flex-1 flex-col">
-  <section class="relative flex h-screen w-full flex-col items-center bg-bg p-6 sm:p-10">
+  <section class="relative flex h-screen w-full flex-col items-center bg-bg p-6 sm:p-10" bind:this={heroNode}>
     <div
       class="hero relative grid w-full flex-1 place-content-center place-items-center gap-y-0 bg-bg-accent p-5 md:gap-y-10"
     >
       <CornerRibbon class="text-[1.5em] text-bg">NO AWARD</CornerRibbon>
 
-      <div class="text-center font-[PhanQuangCalligraphr]">
-        <h1 class="mx-10 text-6xl font-bold md:text-8xl">A Personal Digital Laboratory</h1>
-        <p class="mt-2 text-2xl italic sm:mt-12 md:text-4xl">"It's not a lavatory!" - Quang Phan</p>
+      <div class="mx-10 text-center font-[PhanQuangCalligraphr]">
+        <h1 class="text-4xl font-bold md:text-7xl">A Personal Digital Laboratory</h1>
+        <p class="mt-5 text-xl italic sm:mt-12 md:text-3xl">"It's not a lavatory!" - Quang Phan</p>
       </div>
 
-      <TestTube class="scale-75 text-[#a89984] shadow-lg" />
+      <TestTube class="scale-75 text-[#a89984] shadow-lg" percentage={70} />
 
       <div class="stamp-in absolute bottom-12 right-5">
         <RubberStamp class="whitespace-nowrap bg-fg/10">
@@ -35,10 +50,12 @@
         </RubberStamp>
       </div>
     </div>
-    <ScrollDownMouse class="mt-6 sm:mt-10" />
+    <ScrollDownMouse class="mt-6 sm:mt-10" variant="button" on:click={scrollDownFromHero} />
   </section>
 
-  <section class="grid h-[400px] w-full place-items-center py-14 px-6 sm:px-10 md:px-32" />
+  <section
+    class="grid h-[400px] w-full place-items-center bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32"
+  />
 
   <section class="grid w-full place-items-center bg-bg/50 py-14 px-6 sm:px-10 md:px-32">
     <Testimonials data={testimonials} class="w-full max-w-5xl" />
@@ -47,9 +64,58 @@
     <NeverAskedQuestions data={neverAskedQuestions} class="w-full max-w-5xl" />
   </section>
 
-  <section class="grid h-[400px] w-full place-items-center py-14 px-6 sm:px-10 md:px-32">
-    <AnimatedMail />
+  <section class="grid w-full place-items-center py-14 px-6 sm:px-10 md:px-32">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold">A Message From Quang</h2>
+      <p class="mt-4 italic">Tip: real people open suspicious red envelopes</p>
+    </div>
+    <div class="relative mt-10 h-[200px]">
+      <AnimatedMail on:click={() => (letter = true)} />
+    </div>
   </section>
+
+  {#if letter}
+    <div class="fixed inset-0 z-10 grid place-items-center bg-bg-accent/75" out:fade>
+      <div
+        class="border-letter relative max-h-[80vh] w-10/12 max-w-3xl overflow-auto bg-bg p-6 shadow-2xl md:w-8/12 md:p-20"
+        transition:fly={{ y: 80 }}
+        use:clickoutside
+        on:clickoutside={() => (letter = false)}
+      >
+        <button
+          type="button"
+          on:click={() => (letter = false)}
+          class="c-btn-icon absolute top-4 right-4"
+        >
+          <Icon data={close} scale={1.5} />
+        </button>
+        <div class="prose">
+          <p class="italic">Vietnam</p>
+          <p class="italic">
+            {new Intl.DateTimeFormat('en-GB', { dateStyle: 'full' }).format(new Date())}
+          </p>
+          <p>Dear visitor,</p>
+          <p
+            class="first-letter:float-left first-letter:text-7xl first-letter:font-bold first-letter:text-primary"
+          >
+            Thank you for taking the time to stop by my personal website & digital playground.
+          </p>
+          <p>
+            My name is Quang Phan. In one sentence, i am currently a learner, a developer, a bicycle
+            commuter, and an enthusiast for music theory and many other things. For more details,
+            visit
+            <a href="/about" class="hover:text-primary">the about page</a>.
+          </p>
+          <p>
+            You can also find me at <span class="text-primary">@vnphanquang</span> on most social platforms
+            (also listed at this site footer). See you soon!
+          </p>
+          <p>Cheers,</p>
+          <img src="/images/signature.svg" alt="Signature of Quang Phan" width="200" />
+        </div>
+      </div>
+    </div>
+  {/if}
 
   <section class="mt-8">
     <ul
@@ -58,7 +124,12 @@
       {#each ['𝄞', '♭', '♪', '♫', '♮', '♬', '♩', '♯'] as note, index}
         <li
           style:animation-delay="{index}00ms"
-          class="animate-dance [text-shadow:0_4px_4px_rgba(1,2,0,0.2)]"
+          class="animate-dance [text-shadow:0_4px_4px_rgba(1,2,0,0.2)] {[
+            'text-primary',
+            'text-fg',
+            'text-secondary',
+            'text-border',
+          ][index % 4]}"
         >
           {note}
         </li>
