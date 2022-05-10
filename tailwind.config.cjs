@@ -76,6 +76,10 @@ const config = {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' },
         },
+        dance: {
+          '0%, 100%': { transform: 'translate3d(0, -10px, 0)' },
+          '50%': { transform: 'translate3d(0, 0, 0)' },
+        },
       },
       animation: {
         'fade-in-down': 'fade-in-down 250ms ease-out',
@@ -83,6 +87,7 @@ const config = {
         'fade-in-up': 'fade-in-up 250ms ease-out',
         'fade-out-up': 'fade-out-up 250ms ease-out',
         wiggle: 'wiggle 1s ease-in-out infinite',
+        dance: 'dance 1s ease-in-out both infinite',
       },
     },
   },

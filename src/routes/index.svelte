@@ -2,29 +2,36 @@
   import neverAskedQuestions from '$lib/data/neverAskedQuestions.json';
   import testimonials from '$lib/data/testimonials.json';
   import {
+    AnimatedMail,
     NeverAskedQuestions,
     Testimonials,
     ScrollDownMouse,
     CornerRibbon,
     RubberStamp,
+    TestTube,
   } from '$lib/ui/components';
 </script>
 
 <title>Home | vnphanquang</title>
 
-<main class="mb-8 flex flex-1 flex-col">
-  <section class="relative flex h-screen w-full flex-col items-center bg-bg-accent p-6 sm:p-10">
-    <div class="hero relative grid w-full flex-1 place-items-center bg-bg-accent p-5">
+<main class="flex flex-1 flex-col">
+  <section class="relative flex h-screen w-full flex-col items-center bg-bg p-6 sm:p-10">
+    <div
+      class="hero relative grid w-full flex-1 place-content-center place-items-center gap-y-0 bg-bg-accent p-5 md:gap-y-10"
+    >
       <CornerRibbon class="text-[1.5em] text-bg">NO AWARD</CornerRibbon>
-      <!-- <p>certified crappy website, by nobody</p> -->
-      <div class="mb-20 text-center font-[PhanQuangCalligraphr]">
-        <h1 class="text-6xl font-bold md:text-8xl">A Digital Laboratory</h1>
-        <p class="mt-10 text-2xl italic md:text-4xl">"It's not a lavatory!" - Quang Phan</p>
+
+      <div class="text-center font-[PhanQuangCalligraphr]">
+        <h1 class="mx-10 text-6xl font-bold md:text-8xl">A Personal Digital Laboratory</h1>
+        <p class="mt-2 text-2xl italic sm:mt-12 md:text-4xl">"It's not a lavatory!" - Quang Phan</p>
       </div>
+
+      <TestTube class="scale-75 text-[#a89984] shadow-lg" />
+
       <div class="stamp-in absolute bottom-12 right-5">
         <RubberStamp class="whitespace-nowrap bg-fg/10">
           <p class="text-center text-base">CERTIFIED CRAPPY WEBSITE</p>
-          <p class="mr-20 text-right text-xs italic opacity-50">by noone</p>
+          <p class="mr-5 text-right text-xs italic opacity-50">by absolutely noone</p>
         </RubberStamp>
       </div>
     </div>
@@ -33,11 +40,30 @@
 
   <section class="grid h-[400px] w-full place-items-center py-14 px-6 sm:px-10 md:px-32" />
 
-  <section class="grid w-full place-items-center bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32">
+  <section class="grid w-full place-items-center bg-bg/50 py-14 px-6 sm:px-10 md:px-32">
     <Testimonials data={testimonials} class="w-full max-w-5xl" />
   </section>
-  <section class="grid w-full place-items-center py-14 px-6 sm:px-10 md:px-32">
+  <section class="grid w-full place-items-center bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32">
     <NeverAskedQuestions data={neverAskedQuestions} class="w-full max-w-5xl" />
+  </section>
+
+  <section class="grid h-[400px] w-full place-items-center py-14 px-6 sm:px-10 md:px-32">
+    <AnimatedMail />
+  </section>
+
+  <section class="mt-8">
+    <ul
+      class="mx-auto grid max-w-[200px] grid-cols-8 place-content-center place-items-center gap-x-1 text-xl"
+    >
+      {#each ['𝄞', '♭', '♪', '♫', '♮', '♬', '♩', '♯'] as note, index}
+        <li
+          style:animation-delay="{index}00ms"
+          class="animate-dance [text-shadow:0_4px_4px_rgba(1,2,0,0.2)]"
+        >
+          {note}
+        </li>
+      {/each}
+    </ul>
   </section>
 </main>
 
@@ -157,8 +183,8 @@
   }
   .stamp-in {
     animation-name: stamp;
-    animation-delay: 1s;
-    animation-duration: 300ms;
+    animation-delay: 1.5s;
+    animation-duration: 500ms;
     opacity: 0;
     animation-fill-mode: forwards;
   }
