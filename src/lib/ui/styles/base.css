@@ -4,6 +4,11 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: 'PhanQuangCalligraphr';
+    src: url(/fonts/PhanQuangCalligraphr-Regular.ttf) format("truetype");
+  }
+
   :root {
     --color-toggle-bg: theme('colors.toggle.bg.DEFAULT');
   }
