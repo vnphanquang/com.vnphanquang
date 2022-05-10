@@ -4,7 +4,9 @@
 </script>
 
 <div class="flex h-full flex-col">
-  <navbar id="navbar" />
+  <!-- <navbar id="navbar" class="h-[80px] bg-primary">
+    Navigation Bar
+  </navbar> -->
 
   <slot />
 
