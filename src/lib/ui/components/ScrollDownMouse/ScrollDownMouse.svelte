@@ -1,12 +1,12 @@
 <script lang="ts">
   export let id: string | undefined = undefined;
-  export let role: 'static' | 'button' = 'static';
+  export let variant: 'static' | 'button' = 'static';
 
   const containerClass = `w-8 h-12 rounded-3xl border-2 flex justify-center border-current pt-2 text-fg ${$$props.class}`;
   const scrollerClass = 'scroller bg-current';
 </script>
 
-{#if role === 'button'}
+{#if variant === 'button'}
   <button class={containerClass} type="button" on:click {id}>
     <span class={scrollerClass} />
   </button>
