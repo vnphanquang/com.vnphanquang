@@ -30,9 +30,9 @@
 <title>Home | vnphanquang</title>
 
 <main class="flex flex-1 flex-col">
-  <section class="relative flex h-screen w-full flex-col items-center bg-bg p-6 sm:p-10" bind:this={heroNode}>
+  <section class="relative flex h-screen w-full flex-col items-center bg-bg p-6 pt-10" bind:this={heroNode}>
     <div
-      class="hero relative grid w-full flex-1 place-content-center place-items-center gap-y-0 bg-bg-accent p-5 md:gap-y-10"
+      class="hero relative grid w-full flex-1 place-content-center place-items-center gap-y-0 bg-bg-accent p-5 md:gap-y-10 max-w-5xl"
     >
       <CornerRibbon class="text-[1.5em] text-bg">NO AWARD</CornerRibbon>
 
@@ -50,7 +50,7 @@
         </RubberStamp>
       </div>
     </div>
-    <ScrollDownMouse class="mt-6 sm:mt-10" variant="button" on:click={scrollDownFromHero} />
+    <ScrollDownMouse class="mt-6" variant="button" on:click={scrollDownFromHero} />
   </section>
 
   <section
