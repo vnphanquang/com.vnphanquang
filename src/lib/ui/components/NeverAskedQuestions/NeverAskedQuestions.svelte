@@ -6,7 +6,7 @@
   export let data: {
     id: number;
     question: string;
-    answer: string;
+    answer: string[];
   }[];
 
   const naq = data.map((n) => ({ ...n, checked: false }));
@@ -86,17 +86,21 @@
             <input type="checkbox" id={htmlId} bind:checked hidden />
           {/if}
           <div class="flex items-center justify-between">
-            <h3 class="font-bold" id="naq-{id}">{question}</h3>
-            <Icon
-              data={chevronRight}
-              scale={1.25}
-              class="{shouldExpand ? '-rotate-90' : 'rotate-90'} transition-transform"
-            />
+            <h3 class="font-bold pr-4 sm:pr-10" id="naq-{id}">{question}</h3>
+            <div>
+              <Icon
+                data={chevronRight}
+                scale={1.25}
+                class="{shouldExpand ? '-rotate-90' : 'rotate-90'} transition-transform"
+              />
+            </div>
           </div>
           {#if shouldExpand}
-            <p class="mx-6 mt-4 border-l border-border px-4 py-2 text-fg" transition:slide>
-              {answer}
-            </p>
+            <div class="prose mx-6 mt-4 border-l border-border px-4 py-2 text-fg" transition:slide>
+              {#each answer as paragraph}
+                <p>{paragraph}</p>
+              {/each}
+            </div>
           {/if}
         </label>
       </article>

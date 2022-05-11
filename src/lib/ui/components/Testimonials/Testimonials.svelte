@@ -57,7 +57,7 @@
 
 <div id="testimonials" class={$$props.class} bind:this={containerNode}>
   <div class="text-center">
-    <h2 class="text-3xl font-bold">Things People Say</h2>
+    <h2 class="text-3xl font-bold">Things Real People Say</h2>
     <p class="mt-4 italic">Nobody was harmed in the making of this</p>
   </div>
   <ul class="relative grid h-80 w-full gap-10">
