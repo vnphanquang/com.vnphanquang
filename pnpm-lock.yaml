@@ -24,7 +24,7 @@ specifiers:
   svelte: ^3.44.0
   svelte-awesome: ^3.0.0
   svelte-check: ^2.2.6
-  svelte-movable: ^1.1.0
+  svelte-movable: ^1.1.2
   svelte-preprocess: ^4.10.5
   tailwindcss: ^3.0.23
   tslib: ^2.3.1
@@ -56,7 +56,7 @@ devDependencies:
   svelte: 3.48.0
   svelte-awesome: 3.0.0_svelte@3.48.0
   svelte-check: 2.7.0_lhgjd277matnne4wn224wtgbie
-  svelte-movable: 1.1.0
+  svelte-movable: 1.1.2
   svelte-preprocess: 4.10.6_j5vltbetf5b3hvn3gkit4y4tee
   tailwindcss: 3.0.24
   tslib: 2.4.0
@@ -2222,8 +2222,8 @@ packages:
       svelte: 3.48.0
     dev: true
 
-  /svelte-movable/1.1.0:
-    resolution: {integrity: sha512-lDBIDosmbCjo9BusnuzaYUB453PD5qMjJ5RaVK8HEyIO83SdNyobbqwDdusnbeoBbZj5k9z4dIfuLgBppXou1Q==}
+  /svelte-movable/1.1.2:
+    resolution: {integrity: sha512-d0cuh0v50AoRgKu16xGDxc5DTx1k9zC/dU/Rog4NO5bTIybxNBb8+hMckZ3d6mNzMVjuXBkcRjWtbzTGJSlwBA==}
     dev: true
 
   /svelte-preprocess/4.10.6_j5vltbetf5b3hvn3gkit4y4tee:
