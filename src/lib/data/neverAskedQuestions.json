@@ -2,26 +2,45 @@
   {
     "id": 0,
     "question": "What the hell 🤯?",
-    "answer": "You are welcome."
+    "answer": [
+      "Yes"
+    ]
   },
   {
     "id": 1,
     "question": "Is Vim worth it?",
-    "answer": "Right tool 🪛 for the right job 🔩!"
+    "answer": [
+      "Right tool 🪛 for the right job 🔩!"
+    ]
   },
   {
     "id": 2,
     "question": "Is Mixolydian 🎶 your favorite mode?",
-    "answer": "MIX sOme LYDIAN, invert and relax, pop 🍿 and rock 🪨!"
+    "answer": [
+      "MIX sOme LYDIAN, invert and relax, pop 🍿 and rock 🪨!"
+    ]
   },
   {
     "id": 3,
     "question": "Why did you attack my cuccos 🐔?",
-    "answer": "Bottle yourself up and give me your rupee 💎, now!"
+    "answer": [
+      "Bottle yourself up and give me your rupee 💎, now!"
+    ]
   },
   {
     "id": 4,
     "question": "What is your current configuration 🚲?",
-    "answer": "Giant Escape, Schwalbe Marathon, full mud guards, rear rack, and a bunch of Sahoo bags."
+    "answer": [
+      "Giant Escape, Schwalbe Marathon, full mud guards, rear rack, and a bunch of Sahoo bags."
+    ]
+  },
+  {
+    "id": 5,
+    "question": "The climate has been changing for countless centuries. Why bother now with this buzzing \"climate change\"?",
+    "answer": [
+      "The crux of the climate change argument is not the fact that it is changing but the rate at which it is. CO2 is just part of the picture; ocean acidification is the evil twin of global warming. Species are going extinct at a rate much greater than the background extinction rate.",
+      "This rate of change is comparable to previous mass extinctions in the earth history. If that doesn't make you 💩 your pants, then hold your bladder and read Elizabeth Kolbert's \"The Sixth Extinction\".",
+      "We're doomed but not hopeless. Do something!"
+    ]
   }
 ]
