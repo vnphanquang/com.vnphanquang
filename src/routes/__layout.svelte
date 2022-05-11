@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Footer } from '$lib/ui/components';
-  import '$lib/ui/styles/base.css';
+  import '$lib/ui/styles/app.css';
 </script>
 
 <div class="flex h-full flex-col">
