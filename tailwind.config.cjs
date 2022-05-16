@@ -7,6 +7,7 @@ const colorPallet = {
   border: '#d5c4a1',
   primary: '#d65d03',
   secondary: '#98971a',
+  yellow: '#fabd2f',
 };
 
 /** @type {import("tailwindcss/tailwind-config").TailwindConfig } */
@@ -35,7 +36,7 @@ const config = {
         'fade-in-down': {
           '0%': {
             opacity: '0',
-            transform: 'translateY(-10px)',
+            transform: 'translateY(-100px)',
           },
           '100%': {
             opacity: '1',
@@ -49,13 +50,13 @@ const config = {
           },
           to: {
             opacity: '0',
-            transform: 'translateY(10px)',
+            transform: 'translateY(100px)',
           },
         },
         'fade-in-up': {
           '0%': {
             opacity: '0',
-            transform: 'translateY(10px)',
+            transform: 'translateY(100px)',
           },
           '100%': {
             opacity: '1',
@@ -69,7 +70,7 @@ const config = {
           },
           to: {
             opacity: '0',
-            transform: 'translateY(10px)',
+            transform: 'translateY(100px)',
           },
         },
         wiggle: {
@@ -82,10 +83,10 @@ const config = {
         },
       },
       animation: {
-        'fade-in-down': 'fade-in-down 250ms ease-out',
-        'fade-out-down': 'fade-out-down 250ms ease-out',
-        'fade-in-up': 'fade-in-up 250ms ease-out',
-        'fade-out-up': 'fade-out-up 250ms ease-out',
+        'fade-in-down': 'fade-in-down 500ms ease-out',
+        'fade-out-down': 'fade-out-down 500ms ease-out',
+        'fade-in-up': 'fade-in-up 500ms ease-out',
+        'fade-out-up': 'fade-out-up 500ms ease-out',
         wiggle: 'wiggle 1s ease-in-out infinite',
         dance: 'dance 1s ease-in-out both infinite',
       },

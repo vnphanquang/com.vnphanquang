@@ -21,6 +21,7 @@ declare namespace svelte.JSX {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   type CustomEventHandler<T, D = any> = EventHandler<CustomEvent<D>, T>;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type HTMLAttrs<T> = {
     [key in keyof EventList as `on${key}`]?: CustomEventHandler<T, EventList[key]>;
   };
@@ -28,11 +29,16 @@ declare namespace svelte.JSX {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars
   interface HTMLAttributes<T> {
     // on:clickoutside
-    onclickoutside?: (event: CustomEvent<HTMLElement>) => void;
+    onclickoutside?: (event: CustomEvent<MouseEvent>) => void;
     // on:movablestart
-    onmovablestart?: (event: CustomEvent<import('svelte-movable').MovableEventDetails>) => void;
+    onmovablestart?: (
+      event: CustomEvent<import('@svelte-put/movable').MovableEventDetails>,
+    ) => void;
     // on:movableend
-    onmovableend?: (event: CustomEvent<import('svelte-movable').MovableEventDetails>) => void;
+    onmovableend?: (event: CustomEvent<import('@svelte-put/movable').MovableEventDetails>) => void;
+    // on:intersect
+    onintersect?: (event: CustomEvent<import('@svelte-put/intersect').IntersectDetail>) => void;
+    onintersectonce?: (event: CustomEvent<import('@svelte-put/intersect').IntersectDetail>) => void;
   }
 }
 
