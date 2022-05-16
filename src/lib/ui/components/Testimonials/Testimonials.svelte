@@ -2,10 +2,9 @@
   import { onMount } from 'svelte';
   import arrows from 'svelte-awesome/icons/arrows';
   import Icon from 'svelte-awesome/components/Icon.svelte';
-  import { movable, type MovableEventDetails } from 'svelte-movable';
+  import { clickoutside } from '@svelte-put/clickoutside';
+  import { movable, type MovableEventDetails } from '@svelte-put/movable';
   import { fade } from 'svelte/transition';
-
-  import { clickoutside } from '$lib/ui/actions/clickoutside';
 
   import TestimonialCard from './TestimonialCard.svelte';
   import type { Testimonial } from './Testimonials.type';
@@ -55,7 +54,7 @@
   });
 </script>
 
-<div id="testimonials" class={$$props.class} bind:this={containerNode}>
+<div class={$$props.class} bind:this={containerNode}>
   <div class="text-center">
     <h2 class="text-3xl font-bold">Things Real People Say</h2>
     <p class="mt-4 italic">Nobody was harmed in the making of this</p>
@@ -93,7 +92,7 @@
           ? `${testimonialCardPositionCache.left}px`
           : '50%'}
         transition:fade={{ duration: 200 }}
-        use:clickoutside={{ enabled: enableClickoutside, inside: containerNode }}
+        use:clickoutside={{ enabled: enableClickoutside, limit: { parent: containerNode }}}
         on:clickoutside={onDismiss}
         use:movable={{
           limit: {

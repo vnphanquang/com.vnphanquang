@@ -2,6 +2,9 @@ lockfileVersion: 5.4
 
 specifiers:
   '@icons-pack/svelte-simple-icons': ^2.3.0
+  '@svelte-put/clickoutside': ^1.0.0
+  '@svelte-put/intersect': ^1.0.2
+  '@svelte-put/movable': ^1.1.6
   '@sveltejs/adapter-static': 1.0.0-next.29
   '@sveltejs/kit': 1.0.0-next.326
   '@tailwindcss/typography': ^0.5.2
@@ -24,7 +27,6 @@ specifiers:
   svelte: ^3.44.0
   svelte-awesome: ^3.0.0
   svelte-check: ^2.2.6
-  svelte-movable: ^1.1.2
   svelte-preprocess: ^4.10.5
   tailwindcss: ^3.0.23
   tslib: ^2.3.1
@@ -36,6 +38,9 @@ dependencies:
 
 devDependencies:
   '@icons-pack/svelte-simple-icons': 2.3.0
+  '@svelte-put/clickoutside': 1.0.0
+  '@svelte-put/intersect': 1.0.2
+  '@svelte-put/movable': 1.1.6
   '@sveltejs/adapter-static': 1.0.0-next.29
   '@sveltejs/kit': 1.0.0-next.326_svelte@3.48.0
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
@@ -56,7 +61,6 @@ devDependencies:
   svelte: 3.48.0
   svelte-awesome: 3.0.0_svelte@3.48.0
   svelte-check: 2.7.0_lhgjd277matnne4wn224wtgbie
-  svelte-movable: 1.1.2
   svelte-preprocess: 4.10.6_j5vltbetf5b3hvn3gkit4y4tee
   tailwindcss: 3.0.24
   tslib: 2.4.0
@@ -149,6 +153,18 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: true
+
+  /@svelte-put/clickoutside/1.0.0:
+    resolution: {integrity: sha512-FlTauywaRdWAyM1b/FP87jBTynm6dWV1D0cWgwSqHjO8ex+D967J8iAswrURz2tApxHVore6HUdAav3Rewh/tA==}
+    dev: true
+
+  /@svelte-put/intersect/1.0.2:
+    resolution: {integrity: sha512-Vkbv7KEI0vbJfrTgPjkQIQ79F1UDvjQd0ogASFbf9juwiNYpn+vUYCIEPyYbxDifJJtKOVfmNEvsCBTeWQZRgw==}
+    dev: true
+
+  /@svelte-put/movable/1.1.6:
+    resolution: {integrity: sha512-tRLRIQt3+hm1oqOe8n4xGmdhe4TIyB1FVVOqBWfe0jKilT5mHqXpEZbAPIfPm9EeYxramFh6TFpnLY2EGdGLMg==}
     dev: true
 
   /@sveltejs/adapter-static/1.0.0-next.29:
@@ -2220,10 +2236,6 @@ packages:
       svelte: '>=3.19.0'
     dependencies:
       svelte: 3.48.0
-    dev: true
-
-  /svelte-movable/1.1.2:
-    resolution: {integrity: sha512-d0cuh0v50AoRgKu16xGDxc5DTx1k9zC/dU/Rog4NO5bTIybxNBb8+hMckZ3d6mNzMVjuXBkcRjWtbzTGJSlwBA==}
     dev: true
 
   /svelte-preprocess/4.10.6_j5vltbetf5b3hvn3gkit4y4tee:

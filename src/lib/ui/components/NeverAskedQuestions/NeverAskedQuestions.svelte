@@ -17,7 +17,7 @@
   let expandedId: number | undefined;
   let expansionHistory: number[] = []; // saving index of naq
 
-  function onChangeExpansionRule(event: any) {
+  function onChangeExpansionRule(event: { target: { checked: boolean } }) {
     if (event.target.checked) {
       let lastOpenedIndex = 0;
       for (const index of expansionHistory.reverse()) {
@@ -44,7 +44,7 @@
   }
 </script>
 
-<div id="naq" class={$$props.class}>
+<div class={$$props.class}>
   <div class="text-center">
     <h2 class="text-3xl font-bold">Never Asked Questions</h2>
     <p class="mt-4 italic">You might even find some answers</p>
@@ -86,7 +86,7 @@
             <input type="checkbox" id={htmlId} bind:checked hidden />
           {/if}
           <div class="flex items-center justify-between">
-            <h3 class="font-bold pr-4 sm:pr-10" id="naq-{id}">{question}</h3>
+            <h3 class="pr-4 font-bold sm:pr-10" id="naq-{id}">{question}</h3>
             <div>
               <Icon
                 data={chevronRight}
@@ -96,7 +96,7 @@
             </div>
           </div>
           {#if shouldExpand}
-            <div class="prose mx-6 mt-4 border-l border-border px-4 py-2 text-fg" transition:slide>
+            <div class="prose max-w-none mx-6 mt-4 border-l border-border px-4 py-2 text-fg" transition:slide>
               {#each answer as paragraph}
                 <p>{paragraph}</p>
               {/each}

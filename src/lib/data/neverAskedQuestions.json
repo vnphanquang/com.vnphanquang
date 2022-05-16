@@ -2,30 +2,22 @@
   {
     "id": 0,
     "question": "What the hell 🤯?",
-    "answer": [
-      "Yes"
-    ]
+    "answer": ["Yes"]
   },
   {
     "id": 1,
     "question": "Is Vim worth it?",
-    "answer": [
-      "Right tool 🪛 for the right job 🔩!"
-    ]
+    "answer": ["Right tool 🪛 for the right job 🔩!"]
   },
   {
     "id": 2,
     "question": "Is Mixolydian 🎶 your favorite mode?",
-    "answer": [
-      "MIX sOme LYDIAN, invert and relax, pop 🍿 and rock 🪨!"
-    ]
+    "answer": ["MIX sOme LYDIAN, invert and relax, pop 🍿 and rock 🪨!"]
   },
   {
     "id": 3,
     "question": "Why did you attack my cuccos 🐔?",
-    "answer": [
-      "Bottle yourself up and give me your rupee 💎, now!"
-    ]
+    "answer": ["Bottle yourself up and give me your rupee 💎, now!"]
   },
   {
     "id": 4,

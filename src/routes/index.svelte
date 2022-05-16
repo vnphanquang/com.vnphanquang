@@ -1,11 +1,12 @@
 <script lang="ts">
+  import { clickoutside } from '@svelte-put/clickoutside';
+  import { intersect } from '@svelte-put/intersect';
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import close from 'svelte-awesome/icons/close';
   import { fly, fade } from 'svelte/transition';
 
   import neverAskedQuestions from '$lib/data/neverAskedQuestions.json';
   import testimonials from '$lib/data/testimonials.json';
-  import { clickoutside } from '$lib/ui/actions/clickoutside';
   import {
     AnimatedMail,
     NeverAskedQuestions,
@@ -14,10 +15,18 @@
     CornerRibbon,
     RubberStamp,
     TestTube,
+    SkewedFlipCard,
   } from '$lib/ui/components';
 
   let letter = false;
   let heroNode: HTMLElement;
+  let fadeIns = {
+    hero: false,
+    sectors: false,
+    testimonials: false,
+    neverAskedQuestions: false,
+    mail: false,
+  };
 
   function scrollDownFromHero() {
     window.scrollTo({
@@ -30,9 +39,13 @@
 <title>Home | vnphanquang</title>
 
 <main class="flex flex-1 flex-col">
-  <section class="relative flex h-screen w-full flex-col items-center bg-bg p-6 pt-10" bind:this={heroNode}>
+  <section
+    id="hero"
+    class="relative flex h-screen w-full flex-col items-center bg-bg p-6 pt-10"
+    bind:this={heroNode}
+  >
     <div
-      class="hero relative grid w-full flex-1 place-content-center place-items-center gap-y-0 bg-bg-accent p-5 md:gap-y-10 max-w-5xl"
+      class="hero relative grid w-full max-w-5xl flex-1 place-content-center place-items-center gap-y-0 bg-bg-accent p-5 md:gap-y-10"
     >
       <CornerRibbon class="text-[1.5em] text-bg">NO AWARD</CornerRibbon>
 
@@ -43,7 +56,7 @@
 
       <TestTube class="scale-75 text-[#a89984] shadow-lg" percentage={70} />
 
-      <div class="stamp-in absolute bottom-12 md:bottom-28 right-5 md:right-20">
+      <div class="stamp-in absolute bottom-12 right-5 md:bottom-28 md:right-20">
         <RubberStamp class="whitespace-nowrap bg-fg/10">
           <p class="text-center text-base">CERTIFIED CRAPPY WEBSITE</p>
           <p class="mr-5 text-right text-xs italic opacity-50">by absolutely noone</p>
@@ -54,27 +67,122 @@
   </section>
 
   <section
-    class="grid h-[400px] w-full place-items-center bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32"
+    id="sectors"
+    class="
+      grid w-full place-items-center bg-bg-accent/30 pt-14 pb-28 px-6 sm:px-10 md:px-32
+      {fadeIns.sectors ? 'animate-fade-in-up' : 'opacity-0'}
+    "
+    use:intersect={{ threshold: 0.4, enabled: !fadeIns.sectors }}
+    on:intersectonce={() => (fadeIns.sectors = true)}
   >
     <div class="w-full max-w-5xl">
       <div class="text-center">
         <h2 class="text-3xl font-bold">Experimentation Sectors</h2>
         <p class="mt-4 italic">Projects go boom 💥</p>
       </div>
-      <div class="mt-10">
-
+      <div class="mt-20 grid place-items-center grid-cols-1 md:grid-cols-2 gap-28">
+        <article>
+          <SkewedFlipCard class="w-80 h-64" id="open-source" skew="right">
+            <h3 slot="front" class="text-3xl">
+              <span class="enclosed">open</span>source
+            </h3>
+            <div slot="back" class="text-sm p-8 prose">
+              <p class="text-lg">
+                Broken applications, unfinished features, failed tests, ...
+              </p>
+              <p class="">
+                This is where my code never see the light of day.
+              </p>
+              <p class="">
+                Visit <a href="https://github.com/vnphanquang" class="underline hover:text-secondary">github</a> for "free" softwares.
+              </p>
+            </div>
+          </SkewedFlipCard>
+        </article>
+        <article>
+          <SkewedFlipCard class="w-80 h-64" id="something" skew="left">
+            <h3 slot="front" class="text-3xl">
+              <span class="enclosed">blog</span>posts
+            </h3>
+            <div slot="back" class="text-sm p-8 prose">
+              <p class="text-lg">
+                Cringeworthy writing, irrational logics, irrelevant topics, ...
+              </p>
+              <p class="">
+                This is what I'll definitely regret two years from now.
+              </p>
+              <p class="">
+                See <a href="/blogs" class="underline hover:text-secondary">blog page</a> for more confusion.
+              </p>
+            </div>
+          </SkewedFlipCard>
+        </article>
+        <article>
+          <SkewedFlipCard class="w-80 h-64 p-4" id="gallery" skew="right">
+            <h3 slot="front" class="text-3xl">
+              <span class="enclosed">captured</span>photos
+            </h3>
+            <div slot="back" class="text-sm p-8 prose">
+              <p class="text-lg">
+                Underexposed photos, unbalanced composition, out-of-focus subjects,...
+              </p>
+              <p class="">
+                Maybe one of these photo is worth one banh mi?
+              </p>
+              <p class="">
+                See <a href="/gallery" class="underline hover:text-secondary">gallery</a> for (perhaps) joy?
+              </p>
+            </div>
+          </SkewedFlipCard>
+        </article>
+        <article>
+          <SkewedFlipCard class="w-80 h-64" id="blog" skew="left">
+            <h3 slot="front" class="text-3xl">
+              <span class="enclosed">more</span>things
+            </h3>
+            <div slot="back" class="text-sm p-8 prose">
+              <p class="text-base">
+                Absolutely nothing here. Maybe the possibilities are infinite? Perhaps it reflects my empty soul. But really it's just here to balance this UI grid 🤷.
+              </p>
+          </SkewedFlipCard>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="grid w-full place-items-center bg-bg/50 py-14 px-6 sm:px-10 md:px-32">
+  <section
+    id="testimonials"
+    class="
+      grid w-full place-items-center bg-bg/50 py-14 px-6 sm:px-10 md:px-32
+      {fadeIns.testimonials ? 'animate-fade-in-up' : 'opacity-0'}
+    "
+    use:intersect={{ threshold: 0.4, enabled: !fadeIns.testimonials }}
+    on:intersectonce={() => (fadeIns.testimonials = true)}
+  >
     <Testimonials data={testimonials} class="w-full max-w-5xl" />
   </section>
-  <section class="grid w-full place-items-center bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32">
+
+  <section
+    id="never-asked-questions"
+    class="
+      grid w-full place-items-center bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32
+      {fadeIns.neverAskedQuestions ? 'animate-fade-in-up' : 'opacity-0'}
+    "
+    use:intersect={{ threshold: 0.4, enabled: !fadeIns.neverAskedQuestions }}
+    on:intersectonce={() => (fadeIns.neverAskedQuestions = true)}
+  >
     <NeverAskedQuestions data={neverAskedQuestions} class="w-full max-w-5xl" />
   </section>
 
-  <section class="grid w-full place-items-center py-14 px-6 sm:px-10 md:px-32">
+  <section
+    id="mail"
+    class="
+      grid w-full place-items-center py-14 px-6 sm:px-10 md:px-32
+      {fadeIns.mail ? 'animate-fade-in-up' : 'opacity-0'}
+    "
+    use:intersect={{ threshold: 0.4, enabled: !fadeIns.mail }}
+    on:intersectonce={() => (fadeIns.mail = true)}
+  >
     <div class="text-center">
       <h2 class="text-3xl font-bold">A Message From Quang</h2>
       <p class="mt-4 italic">Tip: real people open suspicious red envelopes</p>
@@ -110,14 +218,14 @@
               Thank you for taking the time to stop by my personal website & digital playground.
             </p>
             <p>
-              My name is Quang Phan. In one sentence, i am currently a learner, a developer, a bicycle
-              commuter, and an enthusiast for music theory and many other things. For more details,
-              visit
+              My name is Quang Phan. In one sentence, i am currently a learner, a developer, a
+              bicycle commuter, and an enthusiast for music theory and many other things. For more
+              details, visit
               <a href="/about" class="hover:text-primary">the about page</a>.
             </p>
             <p>
               You can also find me at <span class="text-primary">@vnphanquang</span> on most social platforms
-              (also listed at this site footer). See you soon!
+              (also listed at the footer of this site). See you out there!
             </p>
             <p>Cheers,</p>
             <img src="/images/signature.svg" alt="Signature of Quang Phan" width="200" />
@@ -126,8 +234,6 @@
       </div>
     {/if}
   </section>
-
-
 
   <section class="mt-8">
     <ul
@@ -266,7 +372,7 @@
   }
   .stamp-in {
     animation-name: stamp;
-    animation-delay: 1.5s;
+    animation-delay: 1s;
     animation-duration: 500ms;
     opacity: 0;
     animation-fill-mode: forwards;
@@ -286,4 +392,13 @@
       transform: rotate(12deg) scale(1);
     }
   }
+
+.enclosed {
+  @apply text-yellow;
+  background: theme('colors.fg');
+  padding: 0 5px;
+  display: inline-block;
+  transform: scale(0.75);
+  transform-origin: right center;
+}
 </style>
