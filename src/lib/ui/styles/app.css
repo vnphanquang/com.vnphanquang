@@ -104,4 +104,7 @@
   .c-btn-icon {
     @apply cursor-pointer transition-transform hover:text-primary active:scale-95;
   }
+  .c-btn-link {
+    @apply cursor-pointer hover:bg-primary p-2 rounded hover:text-bg grid place-items-center;
+  }
 }
