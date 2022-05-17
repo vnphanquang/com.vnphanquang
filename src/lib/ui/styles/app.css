@@ -11,6 +11,8 @@
 
   :root {
     --color-toggle-bg: theme('colors.toggle.bg.DEFAULT');
+    --cursorX: 50vw;
+    --cursorY: 50vh;
   }
 
   html {
