@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { Footer } from '$lib/ui/components';
+  import { Navbar, Footer } from '$lib/ui/components';
   import '$lib/ui/styles/app.css';
 </script>
 
 <div class="flex h-full flex-col">
+  <Navbar />
   <!-- <navbar id="navbar" class="h-[80px] bg-primary">
     Navigation Bar
   </navbar> -->

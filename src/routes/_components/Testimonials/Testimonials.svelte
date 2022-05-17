@@ -92,7 +92,7 @@
           ? `${testimonialCardPositionCache.left}px`
           : '50%'}
         transition:fade={{ duration: 200 }}
-        use:clickoutside={{ enabled: enableClickoutside, limit: { parent: containerNode }}}
+        use:clickoutside={{ enabled: enableClickoutside, limit: { parent: containerNode } }}
         on:clickoutside={onDismiss}
         use:movable={{
           limit: {

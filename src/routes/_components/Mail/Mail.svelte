@@ -9,7 +9,7 @@
   let letter = false;
 </script>
 
-<div class="{$$props.class}">
+<div class={$$props.class}>
   <div class="text-center">
     <h2 class="text-3xl font-bold">A Message From Quang</h2>
     <p class="mt-4 italic">Tip: real people open suspicious red envelopes</p>
@@ -45,9 +45,9 @@
             Thank you for taking the time to stop by my personal website & digital playground.
           </p>
           <p>
-            My name is Quang Phan. In one sentence, i am currently a learner, a developer, a
-            bicycle commuter, and an enthusiast for music theory & many other things. For more
-            details, visit
+            My name is Quang Phan. In one sentence, i am currently a learner, a developer, a bicycle
+            commuter, and an enthusiast for music theory & many other things. For more details,
+            visit
             <a href="/about" class="hover:text-primary">the about page</a>.
           </p>
           <p>
