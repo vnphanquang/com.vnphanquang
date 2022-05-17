@@ -35,7 +35,7 @@
           <p class="text-lg">Cringeworthy writing, irrational logics, irrelevant topics, ...</p>
           <p class="">This is what I'll definitely regret two years from now.</p>
           <p class="">
-            See <a href="/blogs" class="underline hover:text-secondary">blog page</a> for more.
+            See <a href="/blog" class="underline hover:text-secondary">blog page</a> for more.
           </p>
         </div>
       </SkewedFlipCard>

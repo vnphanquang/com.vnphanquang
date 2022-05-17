@@ -10,9 +10,9 @@
 
   let navbarMenuOpen = false;
   const navlinks = {
-    blogs: {
-      href: '/blogs',
-      text: 'blogs',
+    blog: {
+      href: '/blog',
+      text: 'blog',
     },
     gallery: {
       href: '/gallery',
