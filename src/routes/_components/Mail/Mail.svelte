@@ -55,6 +55,7 @@
             (also listed at the footer of this site). See you out there!
           </p>
           <p>Cheers,</p>
+          <!-- TODO: make this signature inline svg and add stroke offset animation -->
           <img src="/images/signature.svg" alt="Signature of Quang Phan" width="200" />
         </div>
       </div>
