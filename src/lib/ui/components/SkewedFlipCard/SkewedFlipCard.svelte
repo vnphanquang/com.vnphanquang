@@ -1,30 +1,27 @@
 <script lang="ts">
   export let id: string;
   export let skew: 'left' | 'right' | 'none' = 'left';
-
 </script>
 
-<input type="checkbox" id="{id}-toggler" hidden class="toggler">
+<input type="checkbox" id="{id}-toggler" hidden class="toggler" />
 <label {id} class="{skew} cursor-pointer" for="{id}-toggler">
   <div class="card {$$props.class}">
-
-    <slot name="front"/>
+    <slot name="front" />
 
     <div class="back">
-      <slot name="back"/>
+      <slot name="back" />
     </div>
-
   </div>
 </label>
 
 <style>
   label {
-    @apply grid relative;
+    @apply relative grid;
     perspective: 40em;
     transform-style: preserve-3d;
   }
   label::before {
-    @apply bg-transparent w-full h-full shadow-lg;
+    @apply h-full w-full bg-transparent shadow-lg;
     grid-area: 1 / 1;
     content: '';
     backface-visibility: hidden;
@@ -48,7 +45,7 @@
   label > .card,
   label::before {
     will-change: transform;
-    transition: .3s transform cubic-bezier(.25,.46,.45,1);
+    transition: 0.3s transform cubic-bezier(0.25, 0.46, 0.45, 1);
   }
 
   label.left::before {
@@ -65,14 +62,14 @@
   }
 
   .card {
-    @apply relative bg-yellow/80 grid place-items-center;
+    @apply relative grid place-items-center bg-yellow/80;
     grid-area: 1/1;
     transform-style: preserve-3d;
     backface-visibility: hidden;
   }
 
   .back {
-    @apply bg-yellow/80 absolute inset-0 w-full h-full grid place-items-center;
+    @apply absolute inset-0 grid h-full w-full place-items-center bg-yellow/80;
     backface-visibility: hidden;
     transform: rotateY(180deg);
   }

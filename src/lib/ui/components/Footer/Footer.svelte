@@ -69,7 +69,7 @@
   </div>
 
   <ul
-    class="mx-auto grid max-w-[200px] grid-cols-8 place-content-center place-items-center gap-x-1 text-xl absolute bottom-full left-1/2 -translate-x-1/2"
+    class="absolute bottom-full left-1/2 mx-auto grid max-w-[200px] -translate-x-1/2 grid-cols-8 place-content-center place-items-center gap-x-1 text-xl"
   >
     {#each ['𝄞', '♭', '♪', '♫', '♮', '♬', '♩', '♯'] as note, index}
       <li

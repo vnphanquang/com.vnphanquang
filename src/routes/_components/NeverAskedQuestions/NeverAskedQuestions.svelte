@@ -96,7 +96,10 @@
             </div>
           </div>
           {#if shouldExpand}
-            <div class="prose max-w-none mx-6 mt-4 border-l border-border px-4 py-2 text-fg" transition:slide>
+            <div
+              class="prose mx-6 mt-4 max-w-none border-l border-border px-4 py-2 text-fg"
+              transition:slide
+            >
               {#each answer as paragraph}
                 <p>{paragraph}</p>
               {/each}

@@ -46,7 +46,7 @@
   <section
     id="sectors"
     class="
-      grid w-full place-items-center bg-bg-accent/30 pt-14 pb-28 px-6 sm:px-10 md:px-32
+      grid w-full place-items-center bg-bg-accent/30 px-6 pt-14 pb-28 sm:px-10 md:px-32
       {fadeIns.sectors ? 'animate-fade-in-up' : 'opacity-0'}
     "
     use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.sectors }}
@@ -90,5 +90,4 @@
   >
     <Mail />
   </section>
-
 </main>

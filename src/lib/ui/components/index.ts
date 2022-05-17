@@ -5,3 +5,4 @@ export * from './RubberStamp';
 export * from './AnimatedMail';
 export * from './TestTube';
 export * from './SkewedFlipCard';
+export * from './Navbar';
