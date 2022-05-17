@@ -49,7 +49,7 @@
 
 <footer
   id="footer"
-  class="flex flex-col items-center bg-bg-accent py-8 shadow-xl md:px-32 {$$props.class}"
+  class="flex flex-col items-center bg-bg-accent py-8 shadow-xl md:px-32 {$$props.class} relative mt-16"
 >
   <ul class="grid grid-cols-7 place-items-center gap-x-6">
     {#each socials as { href, icon, id } (id)}
@@ -63,10 +63,28 @@
   <div
     class="mt-6 grid grid-cols-1 place-items-center gap-y-2 gap-x-5 md:grid-cols-[auto,auto,auto]"
   >
-    <p>Made with calories</p>
+    <p>Burnt with calories</p>
     <p>🦠</p>
     <p>vnphanquang © {new Date().getFullYear()}</p>
   </div>
+
+  <ul
+    class="mx-auto grid max-w-[200px] grid-cols-8 place-content-center place-items-center gap-x-1 text-xl absolute bottom-full left-1/2 -translate-x-1/2"
+  >
+    {#each ['𝄞', '♭', '♪', '♫', '♮', '♬', '♩', '♯'] as note, index}
+      <li
+        style:animation-delay="{index}00ms"
+        class="animate-dance [text-shadow:0_4px_4px_rgba(1,2,0,0.2)] {[
+          'text-primary',
+          'text-fg',
+          'text-secondary',
+          'text-border',
+        ][index % 4]}"
+      >
+        {note}
+      </li>
+    {/each}
+  </ul>
 </footer>
 
 <style>
