@@ -55,13 +55,13 @@
     transform: translateX(-40px) rotateY(-30deg) rotateX(15deg) scale(1.03);
   }
   label.left > .card {
-    transform: rotateY(25deg) rotateX(10deg);
+    transform: rotateY(20deg) rotateX(10deg);
   }
   label.right:before {
     transform: translateX(40px) rotateY(30deg) rotateX(15deg) scale(1.03);
   }
   label.right > .card {
-    transform: rotateY(-25deg) rotateX(10deg);
+    transform: rotateY(-20deg) rotateX(10deg);
   }
 
   .card {
