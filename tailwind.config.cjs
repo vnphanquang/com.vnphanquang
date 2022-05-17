@@ -33,6 +33,22 @@ const config = {
         },
       },
       keyframes: {
+        'fade-in': {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+        'fade-out': {
+          '0%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },
         'fade-in-down': {
           '0%': {
             opacity: '0',
@@ -83,6 +99,8 @@ const config = {
         },
       },
       animation: {
+        'fade-in': 'fade-in 500ms ease-out',
+        'fade-out': 'fade-out 500ms ease-out',
         'fade-in-down': 'fade-in-down 500ms ease-out',
         'fade-out-down': 'fade-out-down 500ms ease-out',
         'fade-in-up': 'fade-in-up 500ms ease-out',

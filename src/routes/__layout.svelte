@@ -3,11 +3,10 @@
   import '$lib/ui/styles/app.css';
 </script>
 
-<div class="flex h-full flex-col">
-  <Navbar />
-  <!-- <navbar id="navbar" class="h-[80px] bg-primary">
-    Navigation Bar
-  </navbar> -->
+<div class="flex h-full flex-col overflow-y-auto">
+  <Navbar
+    class="sticky top-0 z-50 bg-bg-accent/80 px-6 shadow-lg hover:bg-bg-accent/95 hover:shadow-xl"
+  />
 
   <slot />
 

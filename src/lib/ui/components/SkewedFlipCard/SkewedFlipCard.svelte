@@ -1,16 +1,22 @@
 <script lang="ts">
+  import classnames from 'classnames';
+
   export let id: string;
   export let skew: 'left' | 'right' | 'none' = 'left';
+
+  $: hasBack = $$slots.back;
 </script>
 
 <input type="checkbox" id="{id}-toggler" hidden class="toggler" />
 <label {id} class="{skew} cursor-pointer" for="{id}-toggler">
-  <div class="card {$$props.class}">
+  <div class="card {classnames($$props.class, hasBack && 'hasBack')}">
     <slot name="front" />
 
-    <div class="back">
-      <slot name="back" />
-    </div>
+    {#if hasBack}
+      <div class="back">
+        <slot name="back" />
+      </div>
+    {/if}
   </div>
 </label>
 
@@ -34,9 +40,13 @@
   label:hover {
     @apply shadow-2xl;
   }
-  .toggler:checked ~ label > .card,
-  .toggler:hover ~ label > .card {
+  .toggler:checked ~ label > .card.hasBack,
+  .toggler:hover ~ label > .card.hasBack {
     transform: rotateY(180deg);
+  }
+  .toggler:checked ~ label > .card:not(.hasBack),
+  .toggler:hover ~ label > .card:not(.hasBack) {
+    transform: rotateY(0);
   }
   .toggler:checked ~ label::before,
   .toggler:hover ~ label::before {
@@ -64,8 +74,10 @@
   .card {
     @apply relative grid place-items-center bg-yellow/80;
     grid-area: 1/1;
-    transform-style: preserve-3d;
     backface-visibility: hidden;
+  }
+  .card.hasBack {
+    transform-style: preserve-3d;
   }
 
   .back {

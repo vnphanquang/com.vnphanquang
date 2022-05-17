@@ -36,7 +36,7 @@
 <main class="flex flex-1 flex-col">
   <section
     id="hero"
-    class="relative flex h-screen w-full flex-col items-center bg-bg p-6 pt-10"
+    class="relative flex h-[calc(100vh-theme('spacing.20'))] w-full flex-col items-center bg-bg p-6"
     bind:this={heroNode}
   >
     <Hero />
