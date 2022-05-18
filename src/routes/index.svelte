@@ -33,7 +33,7 @@
 
 <title>Home | vnphanquang</title>
 
-<main class="flex flex-1 flex-col">
+<main class="flex flex-col">
   <section
     id="hero"
     class="relative flex h-[calc(100vh-theme('spacing.20'))] w-full flex-col items-center bg-bg p-6"
