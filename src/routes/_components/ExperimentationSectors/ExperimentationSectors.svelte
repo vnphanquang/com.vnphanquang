@@ -10,7 +10,7 @@
   <div class="mt-20 grid grid-cols-1 place-items-center gap-28 md:grid-cols-2">
     <article>
       <SkewedFlipCard class="h-64 w-80" id="open-source" skew="right">
-        <h3 slot="front" class="font-[PhanQuangCalligraphr] text-4xl">
+        <h3 slot="front" class="font-quang text-4xl">
           <span class="enclosed">open</span>source
         </h3>
         <div slot="back" class="prose p-8 text-sm">
@@ -28,7 +28,7 @@
     </article>
     <article>
       <SkewedFlipCard class="h-64 w-80" id="something" skew="left">
-        <h3 slot="front" class="font-[PhanQuangCalligraphr] text-4xl">
+        <h3 slot="front" class="font-quang text-4xl">
           <span class="enclosed">blog</span>posts
         </h3>
         <div slot="back" class="prose p-8 text-sm">
@@ -42,7 +42,7 @@
     </article>
     <article>
       <SkewedFlipCard class="h-64 w-80 p-4" id="gallery" skew="right">
-        <h3 slot="front" class="font-[PhanQuangCalligraphr] text-4xl">
+        <h3 slot="front" class="font-quang text-4xl">
           <span class="enclosed">captured</span>photos
         </h3>
         <div slot="back" class="prose p-8 text-sm">
@@ -58,7 +58,7 @@
     </article>
     <article>
       <SkewedFlipCard class="h-64 w-80" id="blog" skew="left">
-        <h3 slot="front" class="font-[PhanQuangCalligraphr] text-4xl">
+        <h3 slot="front" class="font-quang text-4xl">
           <span class="enclosed">more</span>things
         </h3>
         <div slot="back" class="prose p-8 text-sm">

@@ -57,7 +57,7 @@
     {/each}
   </ul>
   <div
-    class="mt-6 grid grid-cols-1 place-items-center gap-y-2 gap-x-5 font-[PhanQuangCalligraphr] font-bold md:grid-cols-[auto,auto,auto]"
+    class="mt-6 grid grid-cols-1 place-items-center gap-y-2 gap-x-5 font-quang font-bold md:grid-cols-[auto,auto,auto]"
   >
     <p>Burnt with calories</p>
     <p>🦠</p>
