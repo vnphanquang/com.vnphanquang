@@ -209,7 +209,7 @@
   }
 </script>
 
-<main class="grid flex-1 place-items-center gap-y-14 py-10">
+<main class="grid place-items-center gap-y-14 py-10">
   <section
     class="
         grid place-items-center gap-y-6 text-center
