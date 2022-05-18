@@ -212,16 +212,16 @@
 <main class="grid flex-1 place-items-center gap-y-14 py-10">
   <section
     class="
-        grid place-items-center gap-y-6
+        grid place-items-center gap-y-6 text-center
         {intersectedMap.header ? 'animate-fade-in-up' : 'opacity-0'}
       "
       use:intersect={{ threshold: 0.3, enabled: !intersectedMap.header }}
       on:intersectonce={() => intersectedMap.header = true}
     >
-    <h1 class="text-center font-quang text-5xl font-bold">
+    <h1 class="font-quang text-5xl font-bold">
       Quang Phan
     </h1>
-    <h2 class="text-center font-quang text-2xl italic">
+    <h2 class="font-quang text-2xl italic">
       Learner, Developer, Jack of Zero Trade
     </h2>
     <img
