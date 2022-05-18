@@ -21,7 +21,7 @@
       headline: 'Cringeworthy writing, irrational logics, irrelevant topics, ...',
       paragraphs: [
         'This is what I\'ll definitely regret two years from now.',
-        `See <a href="/blog" class="c-link">blog page</a> for more.`,
+        `See <a href="/blog" class="c-link" sveltekit:prefetch>blog page</a> for more.`,
       ],
     },
     {
@@ -30,7 +30,7 @@
       headline: 'Underexposed photos, unbalanced composition, out-of-focus subjects,...',
       paragraphs: [
         'Maybe one of these photo is worth a banh mi?',
-        `See <a href="/gallery" class="c-link">gallery</a> for (perhaps) joy?`,
+        `See <a href="/gallery" class="c-link" sveltekit:prefetch>gallery</a> for (perhaps) joy?`,
       ],
     },
     {

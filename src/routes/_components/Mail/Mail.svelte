@@ -48,7 +48,7 @@
             My name is Quang Phan. In one sentence, i am currently a learner, a developer, a bicycle
             commuter, and an enthusiast for music theory & many other things. For more details,
             visit
-            <a href="/about" class="hover:text-primary">the about page</a>.
+            <a href="/about" class="hover:text-primary sveltekit:prefetch">the about page</a>.
           </p>
           <p>
             You can also find me at <span class="text-primary">@vnphanquang</span> on most social platforms
