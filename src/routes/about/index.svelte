@@ -209,7 +209,7 @@
   }
 </script>
 
-<main class="grid flex-1 grid-rows-[repeat(3,auto)] place-items-center gap-y-14 py-10">
+<main class="grid flex-1 place-items-center gap-y-14 py-10">
   <section
     class="
         grid place-items-center gap-y-6
@@ -239,6 +239,7 @@
       </a>
     </button>
   </section>
+  <p class="text-primary">~ • ~</p>
   <section class="w-full max-w-6xl px-4 md:px-10 xl:px-0">
     <h2
       class="
