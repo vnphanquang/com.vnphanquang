@@ -232,14 +232,14 @@
     <button
       id="resume-download"
       type="button"
-      class="c-btn py-1 px-2 text-sm uppercase"
+      class="c-btn py-1 px-2 text-xs uppercase"
     >
-      <a href="/QuangPhan_Resume.pdf" target="_blank" >
+      <a href="/QuangPhan_Resume.pdf" target="_blank">
         Download PDF resume
       </a>
     </button>
+    <p class="text-primary">~ • ~</p>
   </section>
-  <p class="text-primary">~ • ~</p>
   <section class="w-full max-w-6xl px-4 md:px-10 xl:px-0">
     <h2
       class="
@@ -338,12 +338,16 @@
       </li>
     </ul>
   </section>
-  <img
-    src="/images/signature.svg"
-    alt="signature"
-    width="200"
-    class="{intersectedMap.signature ? 'animate-fade-in-up' : 'opacity-0'}"
+  <section
+    class=" text-center {intersectedMap.signature ? 'animate-fade-in-up' : 'opacity-0'}"
     use:intersect={{ threshold: 0.3, enabled: !intersectedMap.signature }}
     on:intersectonce={() => intersectedMap.signature = true}
-  />
+  >
+    <p class="text-primary mb-8">~ • ~</p>
+    <img
+      src="/images/signature.svg"
+      alt="signature"
+      width="200"
+    />
+  </section>
 </main>
