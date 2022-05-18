@@ -38,7 +38,7 @@
     {
       id: 'strava',
       href: 'https://www.strava.com/athletes/49111844',
-      icon: '/images/socials/strava.svg'
+      icon: '/images/socials/strava.svg',
     },
   ];
 </script>
@@ -51,7 +51,7 @@
     {#each socials as { href, icon, id } (id)}
       <li id="social-{id}" class="">
         <a {href}>
-          <img src={icon} alt={id} width="30">
+          <img src={icon} alt={id} width="30" />
         </a>
       </li>
     {/each}

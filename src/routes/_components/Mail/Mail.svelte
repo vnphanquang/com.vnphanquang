@@ -11,7 +11,7 @@
 
 <div class={$$props.class}>
   <div class="text-center">
-    <h2 class="text-3xl font-bold">A Message From Quang</h2>
+    <h2 class="text-2xl font-bold md:text-3xl">A Message From Quang</h2>
     <p class="mt-4 italic">Tip: real people open suspicious red envelopes</p>
   </div>
   <div class="relative mt-10 h-[200px]">
@@ -48,7 +48,7 @@
             My name is Quang Phan. In one sentence, i am currently a learner, a developer, a bicycle
             commuter, and an enthusiast for music theory & many other things. For more details,
             visit
-            <a href="/about" class="hover:text-primary sveltekit:prefetch">the about page</a>.
+            <a href="/about" class="sveltekit:prefetch hover:text-primary">the about page</a>.
           </p>
           <p>
             You can also find me at <span class="text-primary">@vnphanquang</span> on most social platforms

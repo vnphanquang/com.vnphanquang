@@ -46,7 +46,7 @@
 
 <div class={$$props.class}>
   <div class="text-center">
-    <h2 class="text-3xl font-bold">Never Asked Questions</h2>
+    <h2 class="text-2xl font-bold md:text-3xl">Never Asked Questions</h2>
     <p class="mt-4 italic">You might even find some answers</p>
   </div>
 

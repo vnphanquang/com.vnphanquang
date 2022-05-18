@@ -1,8 +1,7 @@
 <main class="grid h-full place-items-center gap-y-14 py-10">
-  <section class="font-quang text-center">
+  <section class="text-center font-quang">
     <h1 class="text-5xl font-bold">Digital Memory Rectangles</h1>
-    <h2 class="text-2xl italic mt-6">Crappy photos I took and the story behind them</h2>
-    <h2 class="text-2xl italic mt-6">Coming soon...</h2>
+    <h2 class="mt-6 text-2xl italic">Crappy photos I took and the story behind them</h2>
+    <h2 class="mt-6 text-2xl italic">Coming soon...</h2>
   </section>
 </main>
-
