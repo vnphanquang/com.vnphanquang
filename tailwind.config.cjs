@@ -5,7 +5,10 @@ const colorPallet = {
     accent: '#ebdbb2',
   },
   border: '#d5c4a1',
-  primary: '#d65d03',
+  primary: {
+    DEFAULT: '#d65d03',
+    active: '#af3a03',
+  },
   secondary: '#98971a',
   yellow: '#fabd2f',
 };
