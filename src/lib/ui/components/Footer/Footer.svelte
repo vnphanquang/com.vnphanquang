@@ -1,48 +1,44 @@
 <script lang="ts">
-  import Icon from 'svelte-awesome/components/Icon.svelte';
-  import codepen from 'svelte-awesome/icons/codepen';
-  import github from 'svelte-awesome/icons/github';
-  import instagram from 'svelte-awesome/icons/instagram';
-  import jsfiddle from 'svelte-awesome/icons/jsfiddle';
-  import linkedin from 'svelte-awesome/icons/linkedin';
-  import stackOverflow from 'svelte-awesome/icons/stackOverflow';
-  import twitter from 'svelte-awesome/icons/twitter';
-
   const socials = [
     {
       id: 'github',
       href: 'https://github.com/vnphanquang',
-      icon: github,
+      icon: '/images/socials/github.svg',
     },
     {
       id: 'twitter',
       href: 'https://twitter.com/vnphanquang',
-      icon: twitter,
+      icon: '/images/socials/twitter.svg',
     },
     {
       id: 'instagram',
       href: 'https://instagram.com/vnphanquang',
-      icon: instagram,
+      icon: '/images/socials/instagram.svg',
     },
     {
       id: 'linkedin',
       href: 'https://linkedin.com/in/vnphanquang',
-      icon: linkedin,
+      icon: '/images/socials/linkedin.svg',
     },
-    {
-      id: 'codepen',
-      href: 'https://codepen.io/vnphanquang',
-      icon: codepen,
-    },
+    // {
+    //   id: 'codepen',
+    //   href: 'https://codepen.io/vnphanquang',
+    //   icon: codepen,
+    // },
     {
       id: 'jsfiddle',
       href: 'https://jsfiddle.net/user/vnphanquang',
-      icon: jsfiddle,
+      icon: '/images/socials/jsfiddle.svg',
     },
     {
       id: 'stack-overflow',
       href: 'https://stackoverflow.com/users/9943094/vnphanquang',
-      icon: stackOverflow,
+      icon: '/images/socials/stackoverflow.svg',
+    },
+    {
+      id: 'strava',
+      href: 'https://www.strava.com/athletes/49111844',
+      icon: '/images/socials/strava.svg'
     },
   ];
 </script>
@@ -55,7 +51,7 @@
     {#each socials as { href, icon, id } (id)}
       <li id="social-{id}" class="">
         <a {href}>
-          <Icon data={icon} scale={2} class="c-btn-icon" />
+          <img src={icon} alt={id} width="30">
         </a>
       </li>
     {/each}
