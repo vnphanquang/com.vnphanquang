@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "vnphanquang",
+  "shortname": "vnphanquang",
+  "start_url": ".",
+  "display": "browser",
+  "background_color": "#fbf1c7",
+  "theme_color": "#3c3836",
+  "description": "A personal website of Quang Phan",
+  "lang": "en-US",
+  "icons": [
+    {
+        "src": "/images/favicon/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "/images/favicon/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Homepage of vnphanquang"
+    }
+  ]
+}
