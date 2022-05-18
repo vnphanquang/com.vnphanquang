@@ -10,7 +10,9 @@
 <input type="checkbox" id="{id}-toggler" hidden class="toggler" />
 <label {id} class="{skew} cursor-pointer" for="{id}-toggler">
   <div class="card {classnames($$props.class, hasBack && 'hasBack')}">
-    <slot name="front" />
+    <div class="front">
+      <slot name="front" />
+    </div>
 
     {#if hasBack}
       <div class="back">
@@ -27,10 +29,9 @@
     transform-style: preserve-3d;
   }
   label::before {
-    @apply h-full w-full bg-transparent shadow-lg;
+    @apply h-full w-full bg-transparent drop-shadow-lg;
     grid-area: 1 / 1;
     content: '';
-    backface-visibility: hidden;
     margin-top: calc(-1 * 0.5rem);
     margin-left: calc(-1 * 0.5rem);
     pointer-events: none;
@@ -38,7 +39,7 @@
     box-sizing: content-box;
   }
   label:hover {
-    @apply shadow-2xl;
+    @apply drop-shadow-2xl;
   }
   .toggler:checked ~ label > .card.hasBack,
   .toggler:hover ~ label > .card.hasBack {
@@ -54,7 +55,6 @@
   }
   label > .card,
   label::before {
-    will-change: transform;
     transition: 0.3s transform cubic-bezier(0.25, 0.46, 0.45, 1);
   }
 
@@ -74,14 +74,19 @@
   .card {
     @apply relative grid place-items-center bg-yellow/80;
     grid-area: 1/1;
-    backface-visibility: hidden;
   }
   .card.hasBack {
     transform-style: preserve-3d;
   }
 
+  .front {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
   .back {
     @apply absolute inset-0 grid h-full w-full place-items-center bg-yellow/80;
+    transform-style: preserve-3d;
     backface-visibility: hidden;
     transform: rotateY(180deg);
   }
