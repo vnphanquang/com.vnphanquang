@@ -66,7 +66,7 @@
       >
         {#each Object.values(navlinks) as { href, text }}
           <li class="navlink relative px-3 hover:text-primary">
-            <a {href} on:click={() => (navbarMenuOpen = false)}>{text}</a>
+            <a {href} on:click={() => (navbarMenuOpen = false)} sveltekit:prefetch>{text}</a>
           </li>
         {/each}
       </ul>
