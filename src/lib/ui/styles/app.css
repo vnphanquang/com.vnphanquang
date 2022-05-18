@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "firacode.css";
 
 @layer base {
   @font-face {
@@ -16,7 +17,7 @@
   }
 
   html {
-    @apply h-full bg-bg bg-paper text-fg;
+    @apply h-full bg-bg bg-paper text-fg font-fira;
 
     scroll-behavior: smooth;
   }

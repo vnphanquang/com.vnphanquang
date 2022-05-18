@@ -20,7 +20,7 @@
       title: ['blog', 'posts'],
       headline: 'Cringeworthy writing, irrational logics, irrelevant topics, ...',
       paragraphs: [
-        'This is what I\'ll definitely regret two years from now.',
+        "This is what I'll definitely regret two years from now.",
         `See <a href="/blog" class="c-link" sveltekit:prefetch>blog page</a> for more.`,
       ],
     },
@@ -47,17 +47,17 @@
 
 <div class="w-full max-w-5xl {$$props.class}">
   <div class="text-center">
-    <h2 class="text-3xl font-bold">Experimentation Sectors</h2>
+    <h2 class="text-2xl font-bold md:text-3xl">Experimentation Sectors</h2>
     <p class="mt-4 italic">Projects go boom 💥</p>
   </div>
   <div class="mt-20 grid grid-cols-1 place-items-center gap-28 md:grid-cols-2">
     {#each sectors as { id, title, headline, paragraphs }, index}
       <article>
-        <SkewedFlipCard class="w-72 h-64 md:w-80" {id} skew={index % 2 === 0 ? 'right' : 'left'}>
+        <SkewedFlipCard class="h-72 w-72 md:w-80" {id} skew={index % 2 === 0 ? 'right' : 'left'}>
           <h3 slot="front" class="font-quang text-4xl">
             <span class="enclosed">{title[0]}</span>{title[1]}
           </h3>
-          <div slot="back" class="prose p-4 md:p-8 text-sm">
+          <div slot="back" class="prose p-4 text-sm md:p-8">
             <p class="text-lg">{headline}</p>
             {#each paragraphs as paragraph}
               <p>{@html paragraph}</p>
