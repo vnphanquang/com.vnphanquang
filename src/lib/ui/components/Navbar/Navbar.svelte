@@ -41,12 +41,12 @@
       variant="random"
       bind:open={navbarMenuOpen}
     />
-    <p class="font-[PhanQuangCalligraphr] text-xl font-bold text-primary hover:text-secondary">
+    <p class="font-quang text-xl font-bold text-primary hover:text-secondary">
       <a href="/" on:click={() => (navbarMenuOpen = false)}>vnphanquang</a>
     </p>
 
     <ul
-      class="hidden grid-cols-[repeat(3,auto)] gap-x-4 font-[PhanQuangCalligraphr] text-lg font-bold md:grid"
+      class="hidden grid-cols-[repeat(3,auto)] gap-x-4 font-quang text-lg font-bold md:grid"
     >
       {#each Object.values(navlinks) as { href, text }}
         <li class="navlink relative px-2 hover:text-primary">
@@ -60,7 +60,7 @@
           fixed
           top-20 bottom-0 left-0 right-0 grid
           grid-cols-1 grid-rows-[repeat(3,auto)] place-content-center place-items-center gap-y-20 bg-bg-accent
-          font-[PhanQuangCalligraphr] text-3xl font-bold uppercase md:hidden
+          font-quang text-3xl font-bold uppercase md:hidden
         "
         transition:fade={{ duration: 200 }}
       >

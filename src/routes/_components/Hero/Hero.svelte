@@ -7,7 +7,7 @@
 >
   <CornerRibbon class="text-[1.5em] text-bg">NO AWARD</CornerRibbon>
 
-  <div class="mx-10 text-center font-[PhanQuangCalligraphr]">
+  <div class="mx-10 text-center font-quang">
     <h1 class="text-4xl font-bold md:text-7xl">A Personal Digital Laboratory</h1>
     <p class="mt-5 text-xl italic sm:mt-12 md:text-3xl">"It's not a lavatory!" - Quang Phan</p>
   </div>
