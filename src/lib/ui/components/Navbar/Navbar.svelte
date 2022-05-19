@@ -230,7 +230,7 @@
     background: radial-gradient(
       circle farthest-corner at 50vw 20vh,
       rgba(0, 0, 0, 0.5) 0%,
-      rgba(0, 0, 0, 1) 85%
+      rgba(0, 0, 0, 1) 100%
     );
   }
 </style>
