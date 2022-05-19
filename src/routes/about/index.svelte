@@ -157,7 +157,10 @@
       title: 'First version',
       paragraphs: [
         `At the time it was just plain HTML, CSS, Javascript, served by a node server,
-        using the EJS template system, and hosted from a DigitalOcean droplet.`,
+        using the EJS template system, and hosted initially with Heroku and then migrated
+        to a DigitalOcean droplet.`,
+        `Suprisingly, the Heroku demo version can still be
+        <a class="c-link" href="https://phanvn-quang.herokuapp.com/" target="_blank">accessed here</a>.`,
         `There was also a
         <a class="c-link" href="https://jsfiddle.net/vnphanquang/0hacv51p/" target="_blank">typing animation</a>
         built from <a class="c-link" href="https://github.com/vnphanquang/pq-typewriterjs" target="_blank">scratch</a> with a
