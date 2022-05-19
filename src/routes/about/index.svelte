@@ -213,7 +213,7 @@
 <main class="grid place-items-center gap-y-14 py-10">
   <section
     class="
-        grid place-items-center gap-y-6 text-center
+        grid place-items-center gap-y-6 text-center px-4
         {intersectedMap.header ? 'animate-fade-in-up' : 'opacity-0'}
       "
     use:intersect={{ threshold: 0.3, enabled: !intersectedMap.header }}
