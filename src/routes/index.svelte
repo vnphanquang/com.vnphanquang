@@ -35,7 +35,7 @@
   <title>Home | vnphanquang</title>
   <meta property="og:title" content="vnphanquang">
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="%svelte.assets%/images/screenshot.png">
+  <meta property="og:image" content="https:/vnphanquang.com/images/screenshot.png">
   <meta property="og:url" content="https://vnphanquang.com">
   <meta name="twitter:card" content="summary_large_image">
 </svelte:head>

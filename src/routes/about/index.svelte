@@ -245,7 +245,7 @@
 <svelte:head>
   <title>About | vnphanquang</title>
   <meta property="og:title" content="About vnphanquang">
-  <meta property="og:image" content="/images/screenshot-about.png">
+  <meta property="og:image" content="https://vnphanquang.com/images/screenshot-about.png">
   <meta property="og:url" content="https://vnphanquang.com/about">
   <meta name="twitter:card" content="summary_large_image">
 
