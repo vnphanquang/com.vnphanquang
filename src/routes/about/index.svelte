@@ -3,7 +3,20 @@
 
   const milestones = [
     {
-      id: 7,
+      id: 9,
+      time: '18th of May, 2022',
+      location: 'Ho Chi Minh, Vietnam',
+      headline: 'Relaunch of Personal Website',
+      title: 'Second version',
+      paragraphs: [
+        `This time the website was rebuilt with more modern technologies including
+        <a href="https://kit.svelte.dev/" class="c-link" target="_blank">Svelte-kit</a>,
+        <a class="c-link" href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>,
+        and hosted by <a class="c-link" href="https://vercel.com" target="_blank">Vercel</a>.`,
+      ],
+    },
+    {
+      id: 8,
       time: '30th of April, 2022',
       location: 'Ho Chi Minh, Vietnam',
       headline: `<a href="https://www.credly.com/badges/2d1c3bf1-28be-43aa-88c2-5413826174f1/public_url" target="_blank" class="flex items-end">
@@ -12,13 +25,13 @@
         </a>`,
       title: '',
       paragraphs: [
-        `This is not meant to facilitate a full-time Scrum Master career, at least not in the near future.
-        It is to understand Scrum as a developer, to gain the ability to understand its values and
+        `This was not meant to facilitate a full-time Scrum Master career, at least not in the near future.
+        It was to understand Scrum as a developer, to gain the ability to understand its values and
         pratices, and to maximize the contribution to Scrum team.`,
       ],
     },
     {
-      id: 6,
+      id: 7,
       time: 'March, 2022',
       location: 'Ho Chi Minh, Vietnam',
       headline: 'Open source developer',
@@ -47,7 +60,7 @@
       timemark: '2022',
     },
     {
-      id: 5,
+      id: 6,
       time: 'December, 2020',
       location: 'Ho Chi Minh, Vietnam',
       headline: 'The OrdoLink',
@@ -88,7 +101,7 @@
       ],
     },
     {
-      id: 4,
+      id: 5,
       time: 'December, 2019',
       location: 'Ho Chi Minh, Vietnam',
       headline: `
@@ -115,10 +128,9 @@
         The path out of the comfort zone into new territories now opened
         with a new chapter full of the unknown.`,
       ],
-      // timemark: '2019',
     },
     {
-      id: 3,
+      id: 4,
       time: 'July, 2019',
       location: 'Hayward, California, USA',
       headline: '<a class="c-link" href="http://www.nodexus.com/">Nodexus Inc.</a>',
@@ -135,6 +147,21 @@
         '"Theory is abstracted practice, and practice is applied theory", as they say.',
         `Also here was where chemistry laboratory experience and programming skill somewhat converged.
         A future emerged anew.`,
+      ],
+    },
+    {
+      id: 3,
+      time: 'June, 2019',
+      location: 'San Jose, California, USA',
+      headline: 'Launch of Personal Website',
+      title: 'First version',
+      paragraphs: [
+        `At the time it was just plain HTML, CSS, Javascript, served by a node server,
+        using the EJS template system, and hosted from a DigitalOcean droplet.`,
+        `There was also a
+        <a class="c-link" href="https://jsfiddle.net/vnphanquang/0hacv51p/" target="_blank">typing animation</a>
+        built from <a class="c-link" href="https://github.com/vnphanquang/pq-typewriterjs" target="_blank">scratch</a> with a
+        rather noble declaration method of annotating the markup with typing commands (in the form of HTML comments).`
       ],
       timemark: '2019',
     },
