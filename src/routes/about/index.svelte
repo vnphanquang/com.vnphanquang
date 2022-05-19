@@ -242,6 +242,20 @@
   }
 </script>
 
+<svelte:head>
+  <title>About | vnphanquang</title>
+  <meta property="og:title" content="About vnphanquang">
+  <meta property="og:image" content="/images/screenshot-about.png">
+  <meta property="og:url" content="https://vnphanquang.com/about">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta property="og:type" content="profile" />
+  <meta property="profile:first_name" content="Quang">
+  <meta property="profile:last_name" content="Phan">
+  <meta property="profile:gender" content="male">
+  <meta property="profile:username" content="vnphanquang">
+</svelte:head>
+
 <main class="grid place-items-center gap-y-14 py-10">
   <section
     class="

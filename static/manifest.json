@@ -27,6 +27,13 @@
       "type": "image/png",
       "platform": "wide",
       "label": "Homepage of vnphanquang"
+    },
+    {
+      "src": "/images/screenshot-about.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "About vnphanquang"
     }
   ]
 }

@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>Gallery | vnphanquang</title>
+</svelte:head>
+
 <main class="grid h-full place-items-center gap-y-14 py-10">
   <section class="text-center font-quang">
     <h1 class="text-5xl font-bold">Digital Memory Rectangles</h1>
