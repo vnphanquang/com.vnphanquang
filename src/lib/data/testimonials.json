@@ -4,7 +4,7 @@
     "quote": "He loves cycling everyday but still has an IT belly.",
     "author": "Tin Tran",
     "ref": "https://tintran.org/",
-    "avatar": "/images/testimonials/tintran.jpg",
+    "avatar": "/images/testimonials/tintran.webp",
     "title": "A brother from the marketing department",
     "position": {
       "x": "42%",
@@ -16,7 +16,7 @@
     "quote": "He is able to eat, program, and ride a bike at the same time.",
     "author": "Huy Dong",
     "ref": "https://www.juliandong.com",
-    "avatar": "/images/testimonials/huydong.jpg",
+    "avatar": "/images/testimonials/huydong.webp",
     "title": "A fellow Scrum Master",
     "position": {
       "x": "20%",
@@ -28,7 +28,7 @@
     "quote": "Something to say",
     "author": "Someone Else",
     "ref": "",
-    "avatar": "/images/testimonials/generic.png",
+    "avatar": "/images/testimonials/generic.webp",
     "title": "Fellow with some relationship",
     "position": {
       "x": "58%",
@@ -40,7 +40,7 @@
     "quote": "Something to say",
     "author": "Someone Else",
     "ref": "",
-    "avatar": "/images/testimonials/generic.png",
+    "avatar": "/images/testimonials/generic.webp",
     "title": "Fellow with some relationship",
     "position": {
       "x": "28%",
@@ -52,7 +52,7 @@
     "quote": "Something to say",
     "author": "Someone Else",
     "ref": "",
-    "avatar": "/images/testimonials/generic.png",
+    "avatar": "/images/testimonials/generic.webp",
     "title": "Fellow with some relationship",
     "position": {
       "x": "75%",
@@ -64,7 +64,7 @@
     "quote": "Something to say",
     "author": "Someone Else",
     "ref": "",
-    "avatar": "/images/testimonials/generic.png",
+    "avatar": "/images/testimonials/generic.webp",
     "title": "Fellow with some relationship",
     "position": {
       "x": "50%",

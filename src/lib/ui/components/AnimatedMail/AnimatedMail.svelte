@@ -3,7 +3,12 @@
   export let shadow = true;
 </script>
 
-<div class="letter-image {$$props.class}" on:click role={variant === 'button' ? 'button' : ''}>
+<div
+  class="letter-image {$$props.class}"
+  on:click
+  role={variant === 'button' ? 'button' : ''}
+  aria-label="Mail"
+>
   <div class="animated-mail">
     <div class="back-fold" />
     <div class="letter">

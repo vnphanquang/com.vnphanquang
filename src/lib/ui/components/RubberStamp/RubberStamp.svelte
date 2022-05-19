@@ -13,7 +13,7 @@
     padding: 0.25rem 1rem;
     border-radius: 1rem;
 
-    mask-image: url('/images/grunge.png');
+    mask-image: url('/images/grunge.webp');
     mask-size: 944px 604px;
     mix-blend-mode: multiply;
   }

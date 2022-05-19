@@ -105,7 +105,7 @@
   }
   .status span:nth-of-type(3)::before {
     opacity: 0.5;
-    background-image: url('/images/forest-mountain.png');
+    background-image: url('/images/forest-mountain.webp');
     background-size: 90%;
     background-repeat: no-repeat;
     background-position-y: 15%;

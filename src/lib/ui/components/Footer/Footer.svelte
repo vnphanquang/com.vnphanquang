@@ -51,7 +51,7 @@
     {#each socials as { href, icon, id } (id)}
       <li id="social-{id}" class="">
         <a {href}>
-          <img src={icon} alt={id} width="30" />
+          <img src={icon} alt={id} width="30" height="30" />
         </a>
       </li>
     {/each}

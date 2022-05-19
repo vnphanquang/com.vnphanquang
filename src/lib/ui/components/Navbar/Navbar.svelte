@@ -71,15 +71,17 @@
     {/if}
 
     <ul class="flex items-center justify-end">
-      <input type="checkbox" id="theme-toggler" bind:checked={isLightTheme} hidden />
-      <label class="cursor-pointer hover:text-primary" for="theme-toggler">
-        <span class="light">
-          <Icon data={moon} scale={2} />
-        </span>
-        <span class="dark">
-          <Icon data={lightbulb} scale={2} />
-        </span>
-      </label>
+      <li>
+        <input type="checkbox" id="theme-toggler" bind:checked={isLightTheme} hidden />
+        <label class="cursor-pointer hover:text-primary" for="theme-toggler">
+          <span class="light">
+            <Icon data={moon} scale={2} />
+          </span>
+          <span class="dark">
+            <Icon data={lightbulb} scale={2} />
+          </span>
+        </label>
+      </li>
     </ul>
 
     {#if !isLightTheme}

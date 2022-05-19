@@ -21,7 +21,7 @@
       location: 'Ho Chi Minh, Vietnam',
       headline: `<a href="https://www.credly.com/badges/2d1c3bf1-28be-43aa-88c2-5413826174f1/public_url" target="_blank" class="flex items-end">
           <span class="c-link">Professional Scrum Master Certification</span>
-          <img src="/images/psm1.png" alt="Professional Scrum Master 1" width="30" class="inline-block ml-2" />
+          <img src="/images/psm1.webp" alt="Professional Scrum Master 1" width="30" height="30" class="inline-block ml-2" />
         </a>`,
       title: '',
       paragraphs: [
@@ -38,7 +38,7 @@
       title: '',
       paragraphs: [
         `<a href="https://github.com/vnphanquang">
-          <img src="/images/socials/github.svg" alt="github" width="30" />
+          <img src="/images/socials/github.svg" alt="github" width="30" height="30" />
         </a>`,
         `Contributor to the ecosystems of
         <a class="c-link" href="https://svelte.dev/" target="_blank">Svelte</a>
@@ -112,6 +112,7 @@
           src="/images/designveloper.webp"
           alt="Designveloper"
           width="30"
+          height="30"
         />
       </a>`,
       title: 'Software Developer',
@@ -164,7 +165,7 @@
         `There was also a
         <a class="c-link" href="https://jsfiddle.net/vnphanquang/0hacv51p/" target="_blank">typing animation</a>
         built from <a class="c-link" href="https://github.com/vnphanquang/pq-typewriterjs" target="_blank">scratch</a> with a
-        rather noble declaration method of annotating the markup with typing commands (in the form of HTML comments).`
+        rather noble declaration method of annotating the markup with typing commands (in the form of HTML comments).`,
       ],
       timemark: '2019',
     },
@@ -244,16 +245,16 @@
 
 <svelte:head>
   <title>About | vnphanquang</title>
-  <meta property="og:title" content="About vnphanquang">
-  <meta property="og:image" content="https://vnphanquang.com/images/screenshot-about.png">
-  <meta property="og:url" content="https://vnphanquang.com/about">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="About vnphanquang" />
+  <meta property="og:image" content="https://vnphanquang.com/images/screenshot-about.png" />
+  <meta property="og:url" content="https://vnphanquang.com/about" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <meta property="og:type" content="profile" />
-  <meta property="profile:first_name" content="Quang">
-  <meta property="profile:last_name" content="Phan">
-  <meta property="profile:gender" content="male">
-  <meta property="profile:username" content="vnphanquang">
+  <meta property="profile:first_name" content="Quang" />
+  <meta property="profile:last_name" content="Phan" />
+  <meta property="profile:gender" content="male" />
+  <meta property="profile:username" content="vnphanquang" />
 </svelte:head>
 
 <main class="grid place-items-center gap-y-14 py-10">
@@ -267,7 +268,7 @@
   >
     <h1 class="font-quang text-5xl font-bold">Quang Phan</h1>
     <h2 class="font-quang text-2xl italic">Learner, Developer, Jack of Zero Trade</h2>
-    <img src="/images/vnphanquang/sketch_portrait.svg" alt="portrait" width="100" class="bg-bg" />
+    <img src="/images/vnphanquang/sketch_portrait.svg" alt="portrait" width="100" height="153" class="bg-bg" />
     <button id="resume-download" type="button" class="c-btn-outline py-1 px-2 text-xs uppercase">
       <a href="/QuangPhan_Resume.pdf" target="_blank"> Download PDF resume </a>
     </button>
@@ -379,6 +380,6 @@
     on:intersectonce={() => (intersectedMap.signature = true)}
   >
     <p class="mb-8 text-primary">~ • ~</p>
-    <img src="/images/vnphanquang/signature.svg" alt="signature" width="200" />
+    <img src="/images/vnphanquang/signature.svg" alt="signature" width="200" height="52" />
   </section>
 </main>

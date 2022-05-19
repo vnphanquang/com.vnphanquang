@@ -19,10 +19,11 @@
     type="button"
     on:click={() => dispatch('dismiss', 'closeBtnClick')}
     class="c-btn-icon absolute top-2 right-4"
+    aria-label="Close"
   >
     <Icon data={close} scale={1.25} />
   </button>
-  <img src={data.avatar} alt={data.author} class="rounded-full" width="60" />
+  <img src={data.avatar} alt={data.author} class="rounded-full" width="60" height="60" />
   <div class="">
     <a class="font-bold text-secondary hover:text-primary" href={data.ref} target="_blank"
       >{data.author}</a

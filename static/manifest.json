@@ -3,7 +3,7 @@
   "name": "vnphanquang",
   "shortname": "vnphanquang",
   "start_url": ".",
-  "display": "browser",
+  "display": "minimal-ui",
   "background_color": "#fbf1c7",
   "theme_color": "#3c3836",
   "description": "A personal website of Quang Phan",
@@ -12,7 +12,8 @@
     {
       "src": "/images/favicon/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/images/favicon/android-chrome-512x512.png",
@@ -34,6 +35,23 @@
       "type": "image/png",
       "platform": "wide",
       "label": "About vnphanquang"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "About",
+      "url": "/about",
+      "description": "Quang Phan's profile and timeline"
+    },
+    {
+      "name": "Blog",
+      "url": "/blog",
+      "description": "Quang Phan's blog"
+    },
+    {
+      "name": "Gallery",
+      "url": "/gallery",
+      "description": "Quang Phan's captured photos"
     }
   ]
 }

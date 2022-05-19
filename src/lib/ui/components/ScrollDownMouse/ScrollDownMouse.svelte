@@ -7,7 +7,7 @@
 </script>
 
 {#if variant === 'button'}
-  <button class={containerClass} type="button" on:click {id}>
+  <button class={containerClass} type="button" on:click {id} aria-label="Scroll Down">
     <span class={scrollerClass} />
   </button>
 {:else}

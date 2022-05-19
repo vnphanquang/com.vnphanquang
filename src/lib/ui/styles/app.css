@@ -7,6 +7,7 @@
   @font-face {
     font-family: 'PhanQuangCalligraphr';
     src: url(/fonts/PhanQuangCalligraphr-Regular.ttf) format("truetype");
+    font-display: swap;
   }
 
   :root {

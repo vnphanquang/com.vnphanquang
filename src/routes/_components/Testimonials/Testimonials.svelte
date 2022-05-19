@@ -76,6 +76,7 @@
             src={avatar}
             alt={author}
             width="50"
+            height="50"
             data-active={activeIndex === index ? 'true' : 'false'}
             class="avatar-trigger"
           />
@@ -108,6 +109,7 @@
           bind:this={testimonialCardMovableTrigger}
           class="c-btn-icon absolute top-2 right-10 hover:cursor-move"
           type="button"
+          aria-label="Move Around"
         >
           <Icon data={arrows} />
         </button>

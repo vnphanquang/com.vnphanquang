@@ -30,6 +30,7 @@
           type="button"
           on:click={() => (letter = false)}
           class="c-btn-icon absolute top-4 right-4"
+          aria-label="Close"
         >
           <Icon data={close} scale={1.5} />
         </button>
