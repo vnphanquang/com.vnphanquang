@@ -7,7 +7,10 @@
       time: '30th of April, 2022',
       location: 'Ho Chi Minh, Vietnam',
       headline:
-        '<a class="c-link" href="https://www.credly.com/badges/2d1c3bf1-28be-43aa-88c2-5413826174f1/public_url" target="_blank">Professional Scrum Master Certification</a>',
+        `<a href="https://www.credly.com/badges/2d1c3bf1-28be-43aa-88c2-5413826174f1/public_url" target="_blank" class="flex items-end">
+          <span class="c-link">Professional Scrum Master Certification</span>
+          <img src="/images/psm1.png" alt="Professional Scrum Master 1" width="30" class="inline-block ml-2" />
+        </a>`,
       title: '',
       paragraphs: [
         `This is not meant to facilitate a full-time Scrum Master career, at least not in the near future.
@@ -222,7 +225,7 @@
     <h1 class="font-quang text-5xl font-bold">Quang Phan</h1>
     <h2 class="font-quang text-2xl italic">Learner, Developer, Jack of Zero Trade</h2>
     <img src="/images/sketch_portrait.svg" alt="portrait" width="100" class="bg-bg" />
-    <button id="resume-download" type="button" class="c-btn py-1 px-2 text-xs uppercase">
+    <button id="resume-download" type="button" class="c-btn-outline py-1 px-2 text-xs uppercase">
       <a href="/QuangPhan_Resume.pdf" target="_blank"> Download PDF resume </a>
     </button>
     <p class="text-primary">~ • ~</p>
@@ -333,6 +336,6 @@
     on:intersectonce={() => (intersectedMap.signature = true)}
   >
     <p class="mb-8 text-primary">~ • ~</p>
-    <img src="/images/signature.svg" alt="signature" width="200" />
+    <img src="/images/vnphanquang/signature.svg" alt="signature" width="200" />
   </section>
 </main>
