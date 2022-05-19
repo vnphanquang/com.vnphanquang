@@ -6,8 +6,7 @@
       id: 7,
       time: '30th of April, 2022',
       location: 'Ho Chi Minh, Vietnam',
-      headline:
-        `<a href="https://www.credly.com/badges/2d1c3bf1-28be-43aa-88c2-5413826174f1/public_url" target="_blank" class="flex items-end">
+      headline: `<a href="https://www.credly.com/badges/2d1c3bf1-28be-43aa-88c2-5413826174f1/public_url" target="_blank" class="flex items-end">
           <span class="c-link">Professional Scrum Master Certification</span>
           <img src="/images/psm1.png" alt="Professional Scrum Master 1" width="30" class="inline-block ml-2" />
         </a>`,
@@ -216,7 +215,7 @@
 <main class="grid place-items-center gap-y-14 py-10">
   <section
     class="
-        grid place-items-center gap-y-6 text-center px-4
+        grid place-items-center gap-y-6 px-4 text-center
         {intersectedMap.header ? 'animate-fade-in-up' : 'opacity-0'}
       "
     use:intersect={{ threshold: 0.3, enabled: !intersectedMap.header }}

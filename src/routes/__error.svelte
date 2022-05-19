@@ -14,15 +14,14 @@
 </script>
 
 <script lang="ts">
-
   export let error: Error;
   export let status: number;
 
   let isNotFoundBlog = error?.name === NotFoundBlog.name;
 </script>
 
-<main class="h-full grid place-items-center place-content-center px-8 md:px-10 gap-y-10">
-  <h1 class="text-8xl font-bold uppercase grid grid-cols-3 gap-x-2 status">
+<main class="grid h-full place-content-center place-items-center gap-y-10 px-8 md:px-10">
+  <h1 class="status grid grid-cols-3 gap-x-2 font-bold uppercase">
     {#each status.toString() as letter}
       <span>{letter}</span>
     {/each}
@@ -30,7 +29,7 @@
   <p>
     {error.message}
   </p>
-  <h2 class="text-xl text-center max-w-xl">
+  <h2 class="max-w-xl text-center text-xl">
     {#if status === 404}
       {#if isNotFoundBlog}
         Oops, no blog with that name exists yet.
@@ -43,18 +42,28 @@
     Maybe try a different formula?
   </h2>
   <div class="relative">
-    <img src="/images/chemistry/flasks.svg" alt="chemistry flasks" width="100">
-    <img src="/images/chemistry/molecule1.svg" alt="molecule 1" width="30" class="absolute bottom-[80%] left-[80%] rotate-12">
-    <img src="/images/chemistry/molecule2.svg" alt="molecule 2" width="30" class="absolute bottom-[90%] right-[80%] rotate-12">
+    <img src="/images/chemistry/flasks.svg" alt="chemistry flasks" width="100" />
+    <img
+      src="/images/chemistry/molecule1.svg"
+      alt="molecule 1"
+      width="30"
+      class="absolute bottom-[80%] left-[80%] rotate-12"
+    />
+    <img
+      src="/images/chemistry/molecule2.svg"
+      alt="molecule 2"
+      width="30"
+      class="absolute bottom-[90%] right-[80%] rotate-12"
+    />
   </div>
-  <button class="c-btn uppercase text-sm" type="button" on:click={() => history.back()}>
+  <button class="c-btn text-sm uppercase" type="button" on:click={() => history.back()}>
     Go Back
   </button>
 </main>
 
 <style>
   .status span {
-    @apply text-bg relative h-32 w-32 grid place-items-center overflow-hidden bg-primary;
+    @apply relative grid h-24 w-24 place-items-center overflow-hidden bg-primary text-6xl text-bg sm:h-32 sm:w-32 sm:text-7xl lg:text-8xl;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   }
   .status span::before {
@@ -81,7 +90,7 @@
     background-position: 82% 30%;
   }
   .status span:nth-of-type(2)::before {
-    opacity: .25;
+    opacity: 0.25;
     background-image: url('/images/binary.svg');
     background-size: 40%;
     background-repeat: repeat;

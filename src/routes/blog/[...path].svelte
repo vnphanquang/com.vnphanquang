@@ -5,7 +5,7 @@
   export function load({ params }) {
     return {
       status: 404,
-      error: new NotFoundBlog(`Not found: /blog/${params.path}`)
+      error: new NotFoundBlog(`Not found: /blog/${params.path}`),
     };
   }
 </script>
