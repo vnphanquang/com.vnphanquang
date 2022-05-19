@@ -268,7 +268,13 @@
   >
     <h1 class="font-quang text-5xl font-bold">Quang Phan</h1>
     <h2 class="font-quang text-2xl italic">Learner, Developer, Jack of Zero Trade</h2>
-    <img src="/images/vnphanquang/sketch_portrait.svg" alt="portrait" width="100" height="153" class="bg-bg" />
+    <img
+      src="/images/vnphanquang/sketch_portrait.svg"
+      alt="portrait"
+      width="100"
+      height="153"
+      class="bg-bg"
+    />
     <button id="resume-download" type="button" class="c-btn-outline py-1 px-2 text-xs uppercase">
       <a href="/QuangPhan_Resume.pdf" target="_blank"> Download PDF resume </a>
     </button>
