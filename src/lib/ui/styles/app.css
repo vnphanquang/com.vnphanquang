@@ -108,6 +108,9 @@
   }
 
   .c-btn {
+    @apply cursor-pointer text-bg bg-primary py-2 px-4 rounded-lg hover:bg-primary-hover active:bg-primary-active;
+  }
+  .c-btn-outline {
     @apply cursor-pointer border bg-bg border-primary py-2 px-4 rounded-lg hover:bg-primary hover:text-bg active:text-bg active:bg-primary-active;
   }
   .c-btn-icon {

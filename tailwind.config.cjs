@@ -7,6 +7,7 @@ const colorPallet = {
   border: '#d5c4a1',
   primary: {
     DEFAULT: '#d65d03',
+    hover: '#c05302',
     active: '#af3a03',
   },
   secondary: '#98971a',
