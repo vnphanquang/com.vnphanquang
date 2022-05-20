@@ -2,6 +2,7 @@
   import { intersect } from '@svelte-put/intersect';
 
   import { AppRoutes } from '$generated/routing';
+  import socials from '$lib/data/socials.json';
 
   const milestones = [
     {
@@ -39,8 +40,8 @@
       headline: 'Open source developer',
       title: '',
       paragraphs: [
-        `<a href="https://github.com/vnphanquang">
-          <img src="/images/socials/github.svg" alt="github" width="30" height="30" />
+        `<a href="${socials.github.href}">
+          <img src="${socials.github.icon}" alt="github" width="30" height="30" />
         </a>`,
         `Contributor to the ecosystems of
         <a class="c-link" href="https://svelte.dev/" target="_blank">Svelte</a>

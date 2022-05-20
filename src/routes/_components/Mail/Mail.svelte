@@ -20,7 +20,7 @@
   </div>
 
   {#if letter}
-    <div class="fixed inset-0 z-10 grid place-items-center bg-bg-accent/75" out:fade>
+    <div class="fixed inset-0 z-overlay grid place-items-center bg-bg-accent/75" out:fade>
       <div
         class="border-letter relative max-h-[90vh] w-10/12 max-w-3xl overflow-auto bg-bg p-6 shadow-2xl md:w-8/12 md:p-20"
         transition:fly={{ y: 80 }}

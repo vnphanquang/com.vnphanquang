@@ -1,5 +1,6 @@
 <script lang="ts">
   import { AppRoutes } from '$generated/routing';
+  import socials from '$lib/data/socials.json';
   import { SkewedFlipCard } from '$lib/ui/components';
 
   const sectors = [
@@ -10,7 +11,7 @@
       paragraphs: [
         'This is where my code never see the light of day.',
         `Visit <a
-          href="https://github.com/vnphanquang"
+          href="${socials.github.href}"
           class="c-link"
           target="_blank">github</a
         > for "free" softwares.`,

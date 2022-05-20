@@ -32,7 +32,9 @@
   class={classnames(
     'grid place-items-center px-6 shadow-lg hover:shadow-xl',
     $$props.class,
-    navbarMenuOpen ? 'fixed top-0 left-0 bg-bg-accent' : 'backdrop-blur-sm bg-bg-accent/90 hover:bg-bg-accent/95',
+    navbarMenuOpen
+      ? 'fixed top-0 left-0 bg-bg-accent'
+      : 'bg-bg-accent/90 backdrop-blur-sm hover:bg-bg-accent/95',
   )}
 >
   <div class="grid h-20 w-full max-w-5xl grid-cols-[auto,auto,1fr] items-center gap-x-6">
@@ -84,25 +86,25 @@
         </label>
       </li>
     </ul>
-
-    {#if !isLightTheme}
-      <div transition:fade={{ duration: 800 }} class="backdrop fixed inset-0" />
-      <label
-        for="theme-toggler"
-        transition:fly={{ y: -500, easing: elasticInOut, duration: 1000 }}
-        class="fixed top-[10vh] left-1/2 -translate-x-1/2 cursor-pointer"
-      >
-        <div class="wire" />
-        <div class="bulb on">
-          <span />
-          <span />
-        </div>
-      </label>
-    {/if}
   </div>
 </nav>
 
-<style>
+{#if !isLightTheme}
+  <div transition:fade={{ duration: 800 }} class="backdrop fixed inset-0 z-navbar" />
+  <label
+    for="theme-toggler"
+    transition:fly={{ y: -500, easing: elasticInOut, duration: 1000 }}
+    class="fixed top-[10vh] left-1/2 z-navbar -translate-x-1/2 cursor-pointer"
+  >
+    <div class="wire" />
+    <div class="bulb on">
+      <span />
+      <span />
+    </div>
+  </label>
+{/if}
+
+<style lang="postcss">
   .navlink::after {
     @apply absolute top-full left-0 h-[2px] w-full origin-right scale-x-0 bg-primary transition-transform;
     content: '';
@@ -228,7 +230,6 @@
   }
 
   .backdrop {
-    content: '';
     pointer-events: none;
     background: radial-gradient(
       circle farthest-corner at 50vw 20vh,
