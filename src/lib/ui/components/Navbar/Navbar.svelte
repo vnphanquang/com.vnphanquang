@@ -32,7 +32,7 @@
   class={classnames(
     'grid place-items-center px-6 shadow-lg hover:shadow-xl',
     $$props.class,
-    navbarMenuOpen ? 'fixed top-0 left-0 bg-bg-accent' : 'bg-bg-accent/80 hover:bg-bg-accent/95',
+    navbarMenuOpen ? 'fixed top-0 left-0 bg-bg-accent' : 'backdrop-blur-sm bg-bg-accent/90 hover:bg-bg-accent/95',
   )}
 >
   <div class="grid h-20 w-full max-w-5xl grid-cols-[auto,auto,1fr] items-center gap-x-6">
