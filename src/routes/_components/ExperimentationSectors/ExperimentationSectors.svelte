@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { AppRoutes } from '$generated/routing';
   import { SkewedFlipCard } from '$lib/ui/components';
 
   const sectors = [
@@ -21,7 +22,7 @@
       headline: 'Cringeworthy writing, irrational logics, irrelevant topics, ...',
       paragraphs: [
         "This is what I'll definitely regret two years from now.",
-        `See <a href="/blog" class="c-link" sveltekit:prefetch>blog page</a> for more.`,
+        `See <a href="${AppRoutes.blog.index}" class="c-link" sveltekit:prefetch>blog page</a> for more.`,
       ],
     },
     {
@@ -30,7 +31,7 @@
       headline: 'Underexposed photos, unbalanced composition, out-of-focus subjects,...',
       paragraphs: [
         'Maybe one of these photo is worth a banh mi?',
-        `See <a href="/gallery" class="c-link" sveltekit:prefetch>gallery</a> for (perhaps) joy?`,
+        `See <a href="${AppRoutes.gallery.index}" class="c-link" sveltekit:prefetch>gallery</a> for (perhaps) joy?`,
       ],
     },
     {

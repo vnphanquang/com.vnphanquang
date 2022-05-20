@@ -28,7 +28,7 @@
   {/if}
 </div>
 
-<style>
+<style lang="postcss">
   .letter-image {
     position: absolute;
     top: 50%;

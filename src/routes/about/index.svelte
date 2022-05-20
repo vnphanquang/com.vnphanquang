@@ -1,6 +1,8 @@
 <script lang="ts">
   import { intersect } from '@svelte-put/intersect';
 
+  import { AppRoutes } from '$generated/routing';
+
   const milestones = [
     {
       id: 9,
@@ -247,7 +249,7 @@
   <title>About | vnphanquang</title>
   <meta property="og:title" content="About vnphanquang" />
   <meta property="og:image" content="https://vnphanquang.com/images/screenshot-about.png" />
-  <meta property="og:url" content="https://vnphanquang.com/about" />
+  <meta property="og:url" content="https://vnphanquang.com{AppRoutes.about.index}" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <meta property="og:type" content="profile" />

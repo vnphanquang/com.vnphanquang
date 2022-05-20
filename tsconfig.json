@@ -15,7 +15,9 @@
     "target": "es2020",
     "paths": {
       "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
+      "$lib/*": ["./src/lib/*"],
+      "$generated": ["./src/generated"],
+      "$generated/*": ["./src/generated/*"]
     }
   }
 }

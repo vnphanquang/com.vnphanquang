@@ -1,0 +1,13 @@
+{
+  "about": {
+    "index": "/about"
+  },
+  "blog": {
+    "[...path]": "/blog/[...path]",
+    "index": "/blog"
+  },
+  "gallery": {
+    "index": "/gallery"
+  },
+  "index": "/"
+}

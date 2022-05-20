@@ -63,7 +63,7 @@
   </button>
 </main>
 
-<style>
+<style lang="postcss">
   .status span {
     @apply relative grid h-24 w-24 place-items-center overflow-hidden bg-primary text-6xl text-bg sm:h-32 sm:w-32 sm:text-7xl lg:text-8xl;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);

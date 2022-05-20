@@ -6,20 +6,21 @@
   import { elasticInOut } from 'svelte/easing';
   import { fade, fly } from 'svelte/transition';
 
+  import { AppRoutes } from '$generated/routing';
   import { HamburgerBtn } from '$lib/ui/components/HamburgerBtn';
 
   let navbarMenuOpen = false;
   const navlinks = {
     blog: {
-      href: '/blog',
+      href: AppRoutes.blog.index,
       text: 'blog',
     },
     gallery: {
-      href: '/gallery',
+      href: AppRoutes.gallery.index,
       text: 'gallery',
     },
     about: {
-      href: '/about',
+      href: AppRoutes.about.index,
       text: 'about',
     },
   };

@@ -4,6 +4,7 @@
   import close from 'svelte-awesome/icons/close';
   import { fly, fade } from 'svelte/transition';
 
+  import { AppRoutes } from '$generated/routing';
   import { AnimatedMail } from '$lib/ui/components';
 
   let letter = false;
@@ -49,7 +50,9 @@
             My name is Quang Phan. In one sentence, i am currently a learner, a developer, a bicycle
             commuter, and an enthusiast for music theory & many other things. For more details,
             visit
-            <a href="/about" class="sveltekit:prefetch hover:text-primary">the about page</a>.
+            <a href={AppRoutes.about.index} class="sveltekit:prefetch hover:text-primary"
+              >the about page</a
+            >.
           </p>
           <p>
             You can also find me at <span class="text-primary">@vnphanquang</span> on most social platforms

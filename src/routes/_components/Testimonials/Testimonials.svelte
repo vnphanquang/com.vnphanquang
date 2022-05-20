@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import arrows from 'svelte-awesome/icons/arrows';
-  import Icon from 'svelte-awesome/components/Icon.svelte';
   import { clickoutside } from '@svelte-put/clickoutside';
   import { movable, type MovableEventDetails } from '@svelte-put/movable';
+  import { onMount } from 'svelte';
+  import Icon from 'svelte-awesome/components/Icon.svelte';
+  import arrows from 'svelte-awesome/icons/arrows';
   import { fade } from 'svelte/transition';
 
   import TestimonialCard from './TestimonialCard.svelte';
@@ -120,7 +120,7 @@
   <p class="mt-2 text-center italic opacity-50">Click on a face to see what they say</p>
 </div>
 
-<style>
+<style lang="postcss">
   .avatar-trigger {
     @apply cursor-pointer rounded-full transition-transform;
 
@@ -130,7 +130,7 @@
     }
     &[data-active='true'] {
       @apply scale-105;
-      box-shadow: theme(colors.secondary) 0px 0px 15px;
+      box-shadow: theme('colors.secondary') 0px 0px 15px;
     }
   }
 </style>

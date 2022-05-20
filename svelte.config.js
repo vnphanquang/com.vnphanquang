@@ -1,3 +1,5 @@
+import path from 'path';
+
 import adapter from '@sveltejs/adapter-vercel';
 import preprocess from 'svelte-preprocess';
 
@@ -12,6 +14,13 @@ const config = {
     prerender: {
       enabled: true,
       default: true,
+    },
+    vite: {
+      resolve: {
+        alias: {
+          $generated: path.resolve('./src/generated'),
+        },
+      },
     },
   },
 };
