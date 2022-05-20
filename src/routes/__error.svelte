@@ -20,7 +20,7 @@
   let isNotFoundBlog = error?.name === NotFoundBlog.name;
 </script>
 
-<main class="grid h-full place-content-center place-items-center gap-y-10 px-8 md:px-10">
+<main class="grid h-full place-content-center place-items-center gap-y-10 py-10 px-8 md:px-10">
   <h1 class="status grid grid-cols-3 gap-x-2 font-bold uppercase">
     {#each status.toString() as letter}
       <span>{letter}</span>
