@@ -12,8 +12,7 @@
     {
       "src": "/images/favicon/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "/images/favicon/android-chrome-512x512.png",
@@ -41,17 +40,38 @@
     {
       "name": "About",
       "url": "/about",
-      "description": "Quang Phan's profile and timeline"
+      "description": "Quang Phan's profile and timeline",
+      "icons": [
+        {
+          "src": "/images/favicon/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Blog",
       "url": "/blog",
-      "description": "Quang Phan's blog"
+      "description": "Quang Phan's blog",
+      "icons": [
+        {
+          "src": "/images/favicon/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Gallery",
       "url": "/gallery",
-      "description": "Quang Phan's captured photos"
+      "description": "Quang Phan's captured photos",
+      "icons": [
+        {
+          "src": "/images/favicon/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
