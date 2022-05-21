@@ -48,7 +48,10 @@
   {#if commandPalette}
     <div transition:fade={{ duration: 200 }} class="fixed inset-0 z-command bg-fg/30" />
     <div class="fixed inset-0 z-command" transition:fly={{ y: 80, duration: 200 }}>
-      <CommandPalette class="absolute top-[20%] left-1/2 -translate-x-1/2" />
+      <CommandPalette
+        class="absolute top-[20%] left-1/2 -translate-x-1/2"
+        on:execute={onCloseCommandPalette}
+      />
     </div>
   {/if}
 

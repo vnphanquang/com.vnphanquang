@@ -25,9 +25,7 @@
   </button>
   <img src={data.avatar} alt={data.author} class="rounded-full" width="60" height="60" />
   <div class="">
-    <a class="font-bold text-secondary c-link" href={data.ref} target="_blank"
-      >{data.author}</a
-    >
+    <a class="c-link font-bold text-secondary" href={data.ref} target="_blank">{data.author}</a>
     <p class="mt-2 italic opacity-50 active:cursor-text">{data.title}</p>
   </div>
   <blockquote class="active:cursor-text md:px-4">
