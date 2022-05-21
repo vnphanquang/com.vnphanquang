@@ -73,7 +73,7 @@
 
 <style>
   .enclosed {
-    @apply text-yellow;
+    @apply text-yellow2;
     background: theme('colors.fg');
     padding: 0 5px;
     display: inline-block;

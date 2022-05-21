@@ -5,6 +5,8 @@ import type { Command } from './CommandPalette.types';
 
 // TODO: extract id into own map
 // { open: internal: { ... }, external: { ... }, run: { ... } }
+
+// TODO: add own service to handle search & execution for command palette
 export const COMMANDS: Record<Command['id'], Command> = {
   // open
   'open.internal.home': {

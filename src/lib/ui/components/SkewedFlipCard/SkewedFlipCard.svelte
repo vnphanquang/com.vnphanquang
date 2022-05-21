@@ -72,7 +72,7 @@
   }
 
   .card {
-    @apply relative grid place-items-center bg-yellow/80;
+    @apply relative grid place-items-center bg-yellow2/80;
     grid-area: 1/1;
   }
   .card.hasBack {
@@ -85,7 +85,7 @@
   }
 
   .back {
-    @apply absolute inset-0 grid h-full w-full place-items-center bg-yellow/80;
+    @apply absolute inset-0 grid h-full w-full place-items-center bg-yellow2/80;
     transform-style: preserve-3d;
     backface-visibility: hidden;
     transform: rotateY(180deg);

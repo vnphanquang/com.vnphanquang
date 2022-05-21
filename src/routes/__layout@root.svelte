@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Navbar, Footer } from '$lib/ui/components';
+  import { NotificationContainer } from '$lib/ui/services/notification';
 </script>
 
 <div class="flex h-full flex-col">
@@ -11,3 +12,5 @@
 
   <Footer class="px-6 sm:px-10" />
 </div>
+
+<NotificationContainer class="fixed bottom-6 left-6 z-notification" />
