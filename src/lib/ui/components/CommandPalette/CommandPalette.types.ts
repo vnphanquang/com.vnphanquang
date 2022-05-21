@@ -1,7 +1,10 @@
 export type CommandType = 'open' | 'run';
+export type CommandScope = 'global' | 'about';
 export interface CommandInfo {
   id: string;
+  type: CommandType;
   description: string;
+  scopes: CommandScope[];
 }
 export interface CommandOpen extends CommandInfo {
   id: `open.${'internal' | 'external'}.${string}`;
