@@ -1,12 +1,14 @@
 <script lang="ts">
   import { intersect } from '@svelte-put/intersect';
 
+  import { beforeNavigate } from '$app/navigation';
   import { AppRoutes } from '$generated/routing';
   import socials from '$lib/data/socials.json';
 
   const milestones = [
     {
-      id: 9,
+      id: 10,
+      slug: 'personal-website-2nd',
       time: '18th of May, 2022',
       location: 'Ho Chi Minh, Vietnam',
       headline: 'Relaunch of Personal Website',
@@ -19,7 +21,8 @@
       ],
     },
     {
-      id: 8,
+      id: 9,
+      slug: 'professional-scrum-master-1',
       time: '30th of April, 2022',
       location: 'Ho Chi Minh, Vietnam',
       headline: `<a href="https://www.credly.com/badges/2d1c3bf1-28be-43aa-88c2-5413826174f1/public_url" target="_blank" class="flex items-end">
@@ -29,20 +32,22 @@
       title: '',
       paragraphs: [
         `This was not meant to facilitate a full-time Scrum Master career, at least not in the near future.
-        It was to understand Scrum as a developer, to gain the ability to understand its values and
-        pratices, and to maximize the contribution to Scrum team.`,
+        It was to understand Scrum as a developer, to gain the ability to justify its values and
+        practices, and to maximize the contribution to Scrum teams.`,
       ],
     },
     {
-      id: 7,
+      id: 8,
+      slug: 'end-at-designveloper',
       time: 'March, 2022',
       location: 'Ho Chi Minh, Vietnam',
-      headline: 'Open source developer',
+      headline: `
+        <a href="${socials.github.href}">
+          <span class="c-link">Open source developer</span>
+          <img src="${socials.github.icon}" alt="github" width="30" height="30" class="inline-block" />
+        </a>`,
       title: '',
       paragraphs: [
-        `<a href="${socials.github.href}">
-          <img src="${socials.github.icon}" alt="github" width="30" height="30" />
-        </a>`,
         `Contributor to the ecosystems of
         <a class="c-link" href="https://svelte.dev/" target="_blank">Svelte</a>
         (<a class="c-link" href="https://github.com/vnphanquang/svelte-put" target="_blank">@svelte-put</a>,
@@ -53,6 +58,10 @@
         (<a class="c-link" href="https://github.com/vnphanquang/monkeytype-readme" target="_blank">monkeytype-readme</a>)`,
         '----------',
         'A break from 9-5 jobs.',
+        `It was sad saying goodbye to the lovely people at
+        <a class="c-link" href="#designveloper">Designveloper</a>.
+        But time was on its way. The path out of the comfort zone into new territories
+        now opened with a new chapter full of the unknown.`,
         `Time was spent to research the Scrum framework and
         to catch up with interesting technologies such as
         <a class="c-link" href="https://turborepo.org/" target="_blank">Turborepo</a>,
@@ -60,10 +69,10 @@
         <a class="c-link" href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>,
         <a class="c-link" href="https://threejs.org/" target="_blank">Three.JS</a>, ...`,
       ],
-      timemark: '2022',
     },
     {
-      id: 6,
+      id: 7,
+      slug: 'the-ordolink',
       time: 'December, 2020',
       location: 'Ho Chi Minh, Vietnam',
       headline: 'The OrdoLink',
@@ -100,18 +109,19 @@
         `This bike took the place of the previous daily driver Fornix mountain bike.
         The daily commute became more fun. More and more long-distance journeys were
         made possible.`,
-        `It was name the "OrdoLink".`,
+        `It was named the "OrdoLink".`,
       ],
     },
     {
-      id: 5,
+      id: 6,
+      slug: 'designveloper',
       time: 'December, 2019',
       location: 'Ho Chi Minh, Vietnam',
       headline: `
-      <a class="flex items-end" href="https://www.designveloper.com/">
+      <a href="https://www.designveloper.com/">
         <span class="c-link">Designveloper</span>
         <img
-          class="inline-block rounded ml-2"
+          class="inline-block rounded"
           src="/images/designveloper.webp"
           alt="Designveloper"
           width="30"
@@ -128,20 +138,18 @@
         '----------',
         `A professional work environment, a young & growing company culture, strong teams,
         encouraging mentors, amazing colleagues, and great opportunities for self development`,
-        `It was sad saying goodbye to those lovely people. But time was on its way.
-        The path out of the comfort zone into new territories now opened
-        with a new chapter full of the unknown.`,
       ],
     },
     {
-      id: 4,
+      id: 5,
+      slug: 'nodexus',
       time: 'July, 2019',
       location: 'Hayward, California, USA',
       headline: '<a class="c-link" href="http://www.nodexus.com/">Nodexus Inc.</a>',
       title: 'Software R&D intern - Nodexus circuit printer system',
       paragraphs: [
         `Developer for the well-documented core implementation of Nodexus printer control operations, responsible for
-        motor synchronization at thousand-Hz & micron precision, a dedicated minimal UI.`,
+        motor synchronization at thousand-Hz & micron precision and a dedicated minimal UI.`,
         '----------',
         `It's surprising how far Python can go even at low level. Although of course you cannot compare it to C / Rust,
         the whole embedded system for this printer was made possible in
@@ -154,26 +162,39 @@
       ],
     },
     {
-      id: 3,
+      id: 4,
+      slug: 'personal-website-1st',
       time: 'June, 2019',
       location: 'San Jose, California, USA',
       headline: 'Launch of Personal Website',
       title: 'First version',
       paragraphs: [
         `At the time it was just plain HTML, CSS, Javascript, served by a node server,
-        using the EJS template system, and hosted initially with Heroku and then migrated
+        using the EJS template system, and hosted initially with Heroku then migrated
         to a DigitalOcean droplet.`,
-        `Suprisingly, the Heroku demo version can still be
+        `Suprisingly, the Heroku demo can still be
         <a class="c-link" href="https://phanvn-quang.herokuapp.com/" target="_blank">accessed here</a>.`,
         `There was also a
         <a class="c-link" href="https://jsfiddle.net/vnphanquang/0hacv51p/" target="_blank">typing animation</a>
         built from <a class="c-link" href="https://github.com/vnphanquang/pq-typewriterjs" target="_blank">scratch</a> with a
         rather noble declaration method of annotating the markup with typing commands (in the form of HTML comments).`,
       ],
-      timemark: '2019',
+    },
+    {
+      id: 3,
+      slug: 'foothill-graduation',
+      time: 'April, 2019',
+      location: 'Los Altos, California, USA',
+      headline: `Graduation from
+      <a class="c-link" href="#foothill">Foothill College</a>`,
+      title:
+        'High Honors Associate in Science degrees in Computer Science, Mathematics, and Chemistry',
+      paragraphs: [],
+      timemark: '2019'
     },
     {
       id: 2,
+      slug: 'san-jose-simocko',
       time: 'July, 2018',
       location: 'San Jose, California, USA',
       headline: '<a class="c-link" href="http://www.sjsu.edu/">San Jose State University</a>',
@@ -191,11 +212,11 @@
     },
     {
       id: 1,
+      slug: 'foothill',
       time: 'April, 2016',
       location: 'Los Altos, California, USA',
       headline: '<a class="c-link" href="https://foothill.edu/">Foothill College</a>',
-      title:
-        'High Honors Associate in Science degrees in Computer Science, Mathematics, and Chemistry',
+      title: '',
       paragraphs: [
         `Chemistry and Math tutor at the
         <a class="c-link" href="https://foothill.edu/eops" target="_blank">Extended Opportunity Program & Services</a> and
@@ -206,14 +227,15 @@
         `Receiver of the Achievement Award for high performance by doctor Gail Katsir and the department of
         <a class="c-link" href="https://foothill.edu/psme" target="_blank">Physical Sciences, Mathematics & Engineering</a>`,
         '----------',
-        `A naive decision to grab a backpack and go study aboard led to countless mistakes
-        that could be avoided by a more thought-out plan. For the first time the importance of
-        planning & research is learned & imprinted.`,
+        `A naive decision to grab a backpack and go study aboard that would led to countless mistakes
+        which could be avoided by a more thought-out plan. For the first time the importance of
+        planning & research is learned.`,
       ],
       timemark: '2016',
     },
     {
       id: 0,
+      slug: 'hcmus-biotech',
       time: 'August, 2015',
       location: 'Ho Chi Minh, Vietnam',
       headline:
@@ -244,6 +266,11 @@
   function onIntersect(id: number): void {
     milestonesIntersectedMap[id] = true;
   }
+
+  beforeNavigate((navigation) => {
+    const { cancel, to } = navigation;
+    console.log('to', to);
+  });
 </script>
 
 <svelte:head>
@@ -308,6 +335,7 @@
         next journey awaits ...
       </li>
       {#each milestones as milestone, index (milestone.id)}
+        <p class="invisible -mt-24 h-24" id={milestone.slug} />
         <li
           class="
             mt-1 grid grid-cols-[45px,1fr] justify-center gap-x-4 md:grid-cols-[1fr,auto,1fr] md:gap-x-8
