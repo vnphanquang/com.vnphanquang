@@ -33,6 +33,7 @@
 
 <svelte:head>
   <title>Home | vnphanquang</title>
+  <meta name="description" content="Quang Phan's personal website">
   <meta property="og:title" content="vnphanquang" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https:/vnphanquang.com/images/screenshot.png" />
