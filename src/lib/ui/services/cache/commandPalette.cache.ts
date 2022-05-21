@@ -37,7 +37,10 @@ export class CommandPaletteCache extends BrowserCache<CommandPaletteCacheMap> {
 
   public addRecentCommand(commandId: Command['id']) {
     const cache = this.get() ?? this.defaultCache;
-    const recentCommands = [commandId, ...cache.recentCommands].slice(0, cache.limit);
+    const recentCommands = [
+      commandId,
+      ...cache.recentCommands.filter(id => id !== commandId),
+    ].slice(0, cache.limit);
     this.set({
       ...cache,
       recentCommands,
