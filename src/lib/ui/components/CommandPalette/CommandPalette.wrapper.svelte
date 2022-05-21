@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fade, fly } from 'svelte/transition';
+  import { fade } from 'svelte/transition';
 
   import { beforeNavigate } from '$app/navigation';
   import { shortcut } from '$lib/ui/actions/shortcut';
@@ -39,11 +39,15 @@
 />
 
 {#if commandPalette}
-  <div transition:fade={{ duration: 200 }} class="fixed inset-0 z-command bg-fg/30" />
-  <div class="fixed inset-0 z-command" transition:fly={{ y: 80, duration: 200 }}>
-    <CommandPalette
-      class="absolute top-[20%] left-1/2 -translate-x-1/2"
-      on:execute={onCloseCommandPalette}
-    />
-  </div>
+  <div
+    transition:fade={{ duration: 200 }}
+    class="fixed inset-0 z-command bg-fg/30"
+    on:click={onCloseCommandPalette}
+    aria-roledescription="backdrop"
+    role="button"
+  />
+  <CommandPalette
+    class="fixed top-[20%] left-1/2 z-command -translate-x-1/2"
+    on:execute={onCloseCommandPalette}
+  />
 {/if}

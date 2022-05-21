@@ -1,36 +1,43 @@
+import { AppRoutes } from '$generated/routing';
 import socials from '$lib/data/socials.json';
 
 import type { Command } from './CommandPalette.types';
 
+// TODO: extract id into own map
+// { open: internal: { ... }, external: { ... }, run: { ... } }
 export const COMMANDS: Record<Command['id'], Command> = {
-  // open;
+  // open
   'open.internal.home': {
     type: 'open',
     id: 'open.internal.home',
-    href: '/',
+    href: AppRoutes.index,
     description: 'Open Home page',
     scopes: ['global'],
+    cacheable: true,
   },
   'open.internal.about': {
     type: 'open',
     id: 'open.internal.about',
-    href: '/about',
+    href: AppRoutes.about.index,
     description: 'Open About page',
     scopes: ['global'],
+    cacheable: true,
   },
   'open.internal.gallery': {
     type: 'open',
     id: 'open.internal.gallery',
-    href: '/gallery',
+    href: AppRoutes.gallery.index,
     description: 'Open Gallery page',
     scopes: ['global'],
+    cacheable: true,
   },
   'open.internal.blog': {
     type: 'open',
     id: 'open.internal.blog',
-    href: '/blog',
+    href: AppRoutes.blog.index,
     description: 'Open Blog page',
     scopes: ['global'],
+    cacheable: true,
   },
   'open.internal.resume': {
     type: 'open',
@@ -38,6 +45,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
     href: '/QuangPhan_Resume.pdf',
     description: "Open Quang Phan's resume",
     scopes: ['global'],
+    cacheable: true,
   },
   'open.external.github': {
     type: 'open',
@@ -45,6 +53,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
     href: socials.github.href,
     description: "Open Quang Phan's github profile",
     scopes: ['global'],
+    cacheable: true,
   },
   'open.external.twitter': {
     type: 'open',
@@ -52,6 +61,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
     href: socials.twitter.href,
     description: "Open Quang Phan's twitter profile",
     scopes: ['global'],
+    cacheable: true,
   },
   'open.external.instagram': {
     type: 'open',
@@ -59,6 +69,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
     href: socials.instagram.href,
     description: "Open Quang Phan's instagram profile",
     scopes: ['global'],
+    cacheable: true,
   },
   'open.external.linkedin': {
     type: 'open',
@@ -66,6 +77,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
     href: socials.linkedin.href,
     description: "Open Quang Phan's linkedin profile",
     scopes: ['global'],
+    cacheable: true,
   },
   'open.external.jsfiddle': {
     type: 'open',
@@ -73,6 +85,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
     href: socials.jsfiddle.href,
     description: "Open Quang Phan's jsfiddle profile",
     scopes: ['global'],
+    cacheable: true,
   },
   'open.external.stackoverflow': {
     type: 'open',
@@ -80,6 +93,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
     href: socials.stackoverflow.href,
     description: "Open Quang Phan's stackoverflow profile",
     scopes: ['global'],
+    cacheable: true,
   },
   'open.external.strava': {
     type: 'open',
@@ -87,6 +101,18 @@ export const COMMANDS: Record<Command['id'], Command> = {
     href: socials.strava.href,
     description: "Open Quang Phan's strava profile",
     scopes: ['global'],
+    cacheable: true,
+  },
+
+  // secret
+  'open.internal.exOcculto.solanumLycopersicum': {
+    type: 'open',
+    id: 'open.internal.exOcculto.solanumLycopersicum',
+    href: AppRoutes.exOcculto.solanumLycopersicum,
+    description: 'Welcome, sir. Press enter to open!',
+    scopes: ['global', 'secret'],
+    secret: 'amica>solanum',
+    cacheable: true,
   },
 
   // run
@@ -95,5 +121,6 @@ export const COMMANDS: Record<Command['id'], Command> = {
     id: 'theme.toggle',
     description: 'Toggle light bulb',
     scopes: ['global'],
+    cacheable: true,
   },
 };

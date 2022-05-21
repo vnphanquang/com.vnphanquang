@@ -6,6 +6,10 @@
     "[...path]": "/blog/[...path]",
     "index": "/blog"
   },
+  "exOcculto": {
+    "solanumLycopersicum": "/ex-occulto/solanum-lycopersicum",
+    "__dir": "/ex-occulto"
+  },
   "gallery": {
     "index": "/gallery"
   },

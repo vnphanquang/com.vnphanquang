@@ -4,7 +4,7 @@
   import { createEventDispatcher, onMount } from 'svelte';
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import searchIcon from 'svelte-awesome/icons/search';
-  import { slide } from 'svelte/transition';
+  import { slide, fly } from 'svelte/transition';
 
   import { goto } from '$app/navigation';
   import { CommandPaletteCache } from '$lib/ui/services/cache/commandPalette.cache';
@@ -38,10 +38,18 @@
     if (query && fuse) {
       hasSearched = true;
       results = fuse.search({
-        $and: [
-          { type: `=${type}` },
+        $or: [
           {
-            $or: [{ id: query }, { description: query }],
+            $and: [
+              { type: `="${type}"` },
+              { scopes: `!secret` },
+              {
+                $or: [{ id: query }, { description: query }],
+              },
+            ],
+          },
+          {
+            $and: [{ type: `="${type}"` }, { scopes: `'secret` }, { secret: `="${query}"` }],
           },
         ],
       });
@@ -113,7 +121,7 @@
           break;
       }
       dispatch('execute', command);
-      commandPaletteCacheService.addRecentCommand(command.id);
+      if (command.cacheable) commandPaletteCacheService.addRecentCommand(command.id);
     }
   }
 
@@ -135,8 +143,23 @@
     }
 
     const Fuse = (await import('fuse.js')).default;
-    const options = {
-      keys: ['id', 'type', 'description'],
+    const options: Fuse.IFuseOptions<Command> = {
+      includeScore: true,
+      useExtendedSearch: true,
+      threshold: 0.5,
+      keys: [
+        'id',
+        'type',
+        'description',
+        {
+          name: 'secret',
+          getFn: (command) => command.secret ?? '',
+        },
+        {
+          name: 'scopes',
+          getFn: (command) => command.scopes.join(','),
+        },
+      ],
     };
     fuse = new Fuse(Object.values(COMMANDS), options);
   });
@@ -145,6 +168,7 @@
 <form
   class="w-10/12 max-w-2xl rounded bg-bg-highlight shadow-lg focus-within:shadow-xl md:w-8/12 {$$props.class}"
   on:submit|preventDefault={submit}
+  transition:fly={{ y: 80, duration: 200 }}
 >
   <label class="flex items-center py-3 px-5 " for="command-palette">
     <p class="grid cursor-pointer grid-cols-[repeat(3,auto)] items-center gap-x-2 text-primary">

@@ -1,2 +1,3 @@
 User-agent: *
-Disallow:
+Disallow: /ex-occulto/
+Disallow: /images/ex-occulto/
