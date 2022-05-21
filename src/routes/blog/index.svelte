@@ -1,6 +1,6 @@
 <svelte:head>
   <title>Blog | vnphanquang</title>
-  <meta name="description" content="Quang Phan's blog page">
+  <meta name="description" content="Quang Phan's blog page" />
 </svelte:head>
 <!-- TODO: breadcumbs -->
 <main class="grid h-full place-items-center gap-y-14 py-10">

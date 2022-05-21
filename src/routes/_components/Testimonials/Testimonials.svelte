@@ -80,12 +80,8 @@
     {#if activeIndex !== undefined}
       <div
         class="inset-center absolute z-10 w-full max-w-sm"
-        style:top={testimonialCardPositionCache
-          ? `${testimonialCardPositionCache.top}px`
-          : '50%'}
-        style:left={testimonialCardPositionCache
-          ? `${testimonialCardPositionCache.left}px`
-          : '50%'}
+        style:top={testimonialCardPositionCache ? `${testimonialCardPositionCache.top}px` : '50%'}
+        style:left={testimonialCardPositionCache ? `${testimonialCardPositionCache.left}px` : '50%'}
         transition:fade={{ duration: 200 }}
         use:clickoutside={{ enabled: enableClickoutside, limit: { parent: containerNode } }}
         on:clickoutside={onDismiss}

@@ -8,6 +8,7 @@
 
   import { AppRoutes } from '$generated/routing';
   import { HamburgerBtn } from '$lib/ui/components/HamburgerBtn';
+  import { theme } from '$lib/ui/stores/theme';
 
   let navbarMenuOpen = false;
   const navlinks = {
@@ -25,7 +26,11 @@
     },
   };
 
-  let isLightTheme = true;
+  function toggleTheme() {
+    theme.toggle();
+  }
+
+  $: isLightTheme = $theme === 'light';
 </script>
 
 <nav
@@ -75,8 +80,8 @@
 
     <ul class="flex items-center justify-end">
       <li>
-        <input type="checkbox" id="theme-toggler" bind:checked={isLightTheme} hidden />
-        <label class="cursor-pointer hover:text-primary" for="theme-toggler">
+        <input type="checkbox" id="theme-toggler" checked={isLightTheme} hidden />
+        <label class="cursor-pointer hover:text-primary" for="theme-toggler" on:click={toggleTheme}>
           <span class="light">
             <Icon data={moon} scale={2} />
           </span>

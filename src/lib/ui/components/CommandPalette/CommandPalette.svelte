@@ -8,6 +8,7 @@
 
   import { goto } from '$app/navigation';
   import { CommandPaletteCache } from '$lib/ui/services/cache/commandPalette.cache';
+  import { theme } from '$lib/ui/stores/theme';
 
   import { COMMANDS } from './CommandPalette.constants';
   import type { CommandType, Command } from './CommandPalette.types';
@@ -103,6 +104,10 @@
           }
           break;
         case 'run':
+          // FIXME: static map for commandId to execute function
+          if (command.id === 'theme.toggle') {
+            theme.toggle();
+          }
           break;
         default:
           break;
@@ -115,10 +120,19 @@
   onMount(async () => {
     commandPaletteCacheService = new CommandPaletteCache();
     const recentCommands = commandPaletteCacheService.getRecentCommands();
-    results = recentCommands.map((c, index) => ({
-      item: COMMANDS[c],
-      refIndex: index,
-    }));
+    results = [];
+    for (let i = 0; i < recentCommands.length; i++) {
+      const command = COMMANDS[recentCommands[i]];
+      if (command) {
+        results.push({
+          item: command,
+          refIndex: i,
+        });
+      }
+    }
+    if (results.length) {
+      selectedIndex = 0;
+    }
 
     const Fuse = (await import('fuse.js')).default;
     const options = {
@@ -158,7 +172,7 @@
       class="max-h-[50vh] overflow-y-auto border-t border-border py-2"
     >
       {#if !hasSearched}
-      <p class="px-5 py-3 text-sm text-fg/50">(Showing recent commands)</p>
+        <p class="px-5 py-3 text-sm text-fg/50">(Showing recent commands)</p>
       {/if}
       {#each results as { item }, index (item.id)}
         <li>

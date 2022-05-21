@@ -23,7 +23,7 @@
 
 <svelte:head>
   <title>About | vnphanquang</title>
-  <meta name="description" content="Quang Phan's truncated timeline">
+  <meta name="description" content="Quang Phan's truncated timeline" />
 
   <meta property="og:title" content="About vnphanquang" />
   <meta property="og:image" content="https://vnphanquang.com/images/screenshot-about.png" />

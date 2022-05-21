@@ -13,7 +13,7 @@ export abstract class BrowserCache<T> {
     return cache;
   }
 
-  public get(): T|null {
+  public get(): T | null {
     const cache = this.storage.getItem(this.key);
     if (cache) {
       return JSON.parse(cache);

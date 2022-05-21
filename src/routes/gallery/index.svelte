@@ -1,6 +1,6 @@
 <svelte:head>
   <title>Gallery | vnphanquang</title>
-  <meta name="description" content="Quang Phan's gallery of captured photos & story behind them">
+  <meta name="description" content="Quang Phan's gallery of captured photos & story behind them" />
 </svelte:head>
 
 <main class="grid h-full place-items-center gap-y-14 py-10">

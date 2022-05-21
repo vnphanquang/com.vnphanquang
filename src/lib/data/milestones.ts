@@ -185,7 +185,7 @@ export const milestones = [
     title:
       'High Honors Associate in Science degrees in Computer Science, Mathematics, and Chemistry',
     paragraphs: [],
-    timemark: '2019'
+    timemark: '2019',
   },
   {
     id: 2,
