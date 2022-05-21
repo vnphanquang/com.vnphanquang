@@ -6,6 +6,8 @@
   import arrows from 'svelte-awesome/icons/arrows';
   import { fade } from 'svelte/transition';
 
+  import { TestimonialCardPositionCache } from '$lib/ui/services/cache/testimonialCardPosition.cache';
+
   import TestimonialCard from './TestimonialCard.svelte';
   import type { Testimonial } from './Testimonials.type';
 
@@ -16,11 +18,8 @@
 
   let containerNode: HTMLElement;
   let testimonialCardMovableTrigger: HTMLElement;
-  const TESTIMONIAL_CARD_POSITION_CACHE_ID = 'testimonial-card-position-cache';
-  let testimonialCardPositionCache: MovableEventDetails['position'] = {
-    left: 0,
-    top: 0,
-  };
+  let testimonialCardPositionCacheService: TestimonialCardPositionCache;
+  let testimonialCardPositionCache: MovableEventDetails['position'] | null;
 
   function onDismiss() {
     activeIndex = undefined;
@@ -30,12 +29,9 @@
     return `testimonial-${id}`;
   }
 
-  function updateTestimonialCardPositionCache(position: typeof testimonialCardPositionCache) {
+  function updateTestimonialCardPositionCache(position: MovableEventDetails['position']) {
     testimonialCardPositionCache = position;
-    sessionStorage.setItem(
-      TESTIMONIAL_CARD_POSITION_CACHE_ID,
-      JSON.stringify(testimonialCardPositionCache),
-    );
+    testimonialCardPositionCacheService.set(position);
   }
 
   function onMovableStart() {
@@ -47,10 +43,8 @@
   }
 
   onMount(() => {
-    const cache = sessionStorage.getItem(TESTIMONIAL_CARD_POSITION_CACHE_ID);
-    if (cache) {
-      testimonialCardPositionCache = JSON.parse(cache);
-    }
+    testimonialCardPositionCacheService = new TestimonialCardPositionCache();
+    testimonialCardPositionCache = testimonialCardPositionCacheService.get();
   });
 </script>
 
@@ -86,10 +80,10 @@
     {#if activeIndex !== undefined}
       <div
         class="inset-center absolute z-10 w-full max-w-sm"
-        style:top={testimonialCardPositionCache.top
+        style:top={testimonialCardPositionCache
           ? `${testimonialCardPositionCache.top}px`
           : '50%'}
-        style:left={testimonialCardPositionCache.left
+        style:left={testimonialCardPositionCache
           ? `${testimonialCardPositionCache.left}px`
           : '50%'}
         transition:fade={{ duration: 200 }}

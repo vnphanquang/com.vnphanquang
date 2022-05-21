@@ -7,6 +7,7 @@
   import { slide } from 'svelte/transition';
 
   import { goto } from '$app/navigation';
+  import { CommandPaletteCache } from '$lib/ui/services/cache/commandPalette.cache';
 
   import { COMMANDS } from './CommandPalette.constants';
   import type { CommandType, Command } from './CommandPalette.types';
@@ -21,6 +22,8 @@
   let input = '';
   let results: Fuse.FuseResult<Command>[] = [];
   let selectedIndex: number | undefined;
+  let hasSearched = false;
+  let commandPaletteCacheService: CommandPaletteCache;
 
   const dispatch = createEventDispatcher<{
     execute: Command;
@@ -32,6 +35,7 @@
 
   const search = debounce((query: string) => {
     if (query && fuse) {
+      hasSearched = true;
       results = fuse.search({
         $and: [
           { type: `=${type}` },
@@ -104,15 +108,23 @@
           break;
       }
       dispatch('execute', command);
+      commandPaletteCacheService.addRecentCommand(command.id);
     }
   }
 
   onMount(async () => {
+    commandPaletteCacheService = new CommandPaletteCache();
+    const recentCommands = commandPaletteCacheService.getRecentCommands();
+    results = recentCommands.map((c, index) => ({
+      item: COMMANDS[c],
+      refIndex: index,
+    }));
+
     const Fuse = (await import('fuse.js')).default;
     const options = {
       keys: ['id', 'type', 'description'],
     };
-    fuse = new Fuse(COMMANDS, options);
+    fuse = new Fuse(Object.values(COMMANDS), options);
   });
 </script>
 
@@ -145,6 +157,9 @@
       transition:slide={{ duration: 200 }}
       class="max-h-[50vh] overflow-y-auto border-t border-border py-2"
     >
+      {#if !hasSearched}
+      <p class="px-5 py-3 text-sm text-fg/50">(Showing recent commands)</p>
+      {/if}
       {#each results as { item }, index (item.id)}
         <li>
           <label
