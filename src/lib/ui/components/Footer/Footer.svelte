@@ -4,7 +4,7 @@
 
 <footer
   id="footer"
-  class="flex flex-col items-center bg-bg-accent py-8 shadow-xl md:px-32 {$$props.class} relative mt-16"
+  class="flex flex-col items-center bg-bg-accent py-10 shadow-xl md:px-32 {$$props.class} relative mt-16"
 >
   <ul class="grid grid-cols-7 place-items-center gap-x-6">
     {#each Object.values(socials) as { href, icon, id } (id)}
@@ -16,7 +16,7 @@
     {/each}
   </ul>
   <div
-    class="mt-6 grid grid-cols-1 place-items-center gap-y-2 gap-x-5 font-quang font-bold md:grid-cols-[auto,auto,auto]"
+    class="mt-10 grid grid-cols-1 place-items-center gap-y-1 gap-x-5 font-quang font-bold md:grid-cols-[repeat(3,auto)]"
   >
     <p>Burnt with calories</p>
     <p>🦠</p>
