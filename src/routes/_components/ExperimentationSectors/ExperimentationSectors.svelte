@@ -31,7 +31,7 @@
       title: ['captured', 'photos'],
       headline: 'Underexposed photos, unbalanced composition, out-of-focus subjects,...',
       paragraphs: [
-        'Maybe one of these photo is worth a banh mi?',
+        'Maybe one of these photos is worth a banh mi?',
         `See <a href="${AppRoutes.gallery.index}" class="c-link" sveltekit:prefetch>gallery</a> for (perhaps) joy?`,
       ],
     },
