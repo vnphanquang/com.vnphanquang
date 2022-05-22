@@ -80,8 +80,8 @@
 
     <ul class="flex items-center justify-end">
       <li>
-        <input type="checkbox" id="theme-toggler" checked={isLightTheme} hidden />
-        <label class="cursor-pointer hover:text-primary" for="theme-toggler" on:click={toggleTheme}>
+        <input type="checkbox" id="theme-toggler" checked={isLightTheme} hidden on:change={toggleTheme} />
+        <label class="cursor-pointer hover:text-primary" for="theme-toggler">
           <span class="light">
             <Icon data={moon} scale={2} />
           </span>
