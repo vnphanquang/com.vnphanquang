@@ -37,7 +37,7 @@
   <meta property="profile:username" content="vnphanquang" />
 </svelte:head>
 
-<main class="grid place-items-center gap-y-14 py-10">
+<main class="grid place-items-center gap-y-14 py-20">
   <section
     class="
         grid place-items-center gap-y-6 px-4 text-center
