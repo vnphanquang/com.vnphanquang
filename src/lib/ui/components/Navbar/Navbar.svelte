@@ -70,7 +70,7 @@
         "
         transition:fade={{ duration: 200 }}
       >
-        {#each Object.values(navlinks) as { href, text }}
+        {#each [{ href: AppRoutes.index, text: 'home' }, ...Object.values(navlinks)] as { href, text }}
           <li class="navlink relative px-3 hover:text-primary">
             <a {href} on:click={() => (navbarMenuOpen = false)} sveltekit:prefetch>{text}</a>
           </li>
