@@ -9,6 +9,7 @@
   import { goto } from '$app/navigation';
   import { CommandPaletteCache } from '$lib/ui/cache/commandPalette.cache';
   import { AchievementId, achievementService } from '$lib/ui/services/achievement';
+  import { notificationService } from '$lib/ui/services/notification';
   import { theme } from '$lib/ui/stores/theme';
 
   import { COMMANDS } from './CommandPalette.constants';
@@ -127,7 +128,18 @@
   }
 
   onMount(async () => {
-    achievementService.unlock(AchievementId.powerUser);
+    achievementService.lock(AchievementId.powerUser);
+    achievementService.unlock(AchievementId.powerUser).then((skipped) => {
+      if (!skipped) {
+        setTimeout(() => {
+          notificationService.push({
+            variant: 'warning',
+            duration: 10000,
+            text: 'For better user experience, turn off Vimium or any browser extension that might interfere with keyboard input.',
+          });
+        }, 0);
+      }
+    });
     commandPaletteCacheService = new CommandPaletteCache();
     const recentCommands = commandPaletteCacheService.getRecentCommands();
     results = [];
