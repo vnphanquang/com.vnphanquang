@@ -1,10 +1,14 @@
+import { browser } from '$app/env';
+
 export abstract class BrowserCache<T> {
   public abstract get key(): string;
   public abstract get storage(): Storage;
 
   constructor(defaultCache?: T) {
-    if (defaultCache && this.get() === null) {
-      this.set(defaultCache);
+    if (browser) {
+      if (defaultCache && this.get() === null) {
+        this.set(defaultCache);
+      }
     }
   }
 

@@ -2,13 +2,13 @@ import type { Command } from '$lib/ui/components/CommandPalette';
 
 import { BrowserCache } from './base/browser.cache';
 
-interface CommandPaletteCacheMap {
+interface CommandPaletteCacheData {
   limit: number;
   recentCommands: Array<Command['id']>;
 }
 
-export class CommandPaletteCache extends BrowserCache<CommandPaletteCacheMap> {
-  public defaultCache: CommandPaletteCacheMap;
+export class CommandPaletteCache extends BrowserCache<CommandPaletteCacheData> {
+  public defaultCache: CommandPaletteCacheData;
 
   constructor() {
     const defaultCache = {
@@ -19,11 +19,11 @@ export class CommandPaletteCache extends BrowserCache<CommandPaletteCacheMap> {
     this.defaultCache = defaultCache;
   }
 
-  public get key(): string {
+  public get key() {
     return 'command-palette';
   }
 
-  public get storage(): Storage {
+  public get storage() {
     return localStorage;
   }
 
@@ -52,7 +52,7 @@ export class CommandPaletteCache extends BrowserCache<CommandPaletteCacheMap> {
     return cache.recentCommands;
   }
 
-  public get(): CommandPaletteCacheMap {
+  public get(): CommandPaletteCacheData {
     return super.get() ?? this.defaultCache;
   }
 }

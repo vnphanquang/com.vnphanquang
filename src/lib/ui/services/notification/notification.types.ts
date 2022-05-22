@@ -4,9 +4,11 @@ export interface AppNotification {
   id: string;
   /** text content */
   text: string;
+  /** override title */
+  title: string;
   /** in milliseconds, default to 4000 */
   duration: number;
-  /** whether to show progress bar for duration */
+  /** whether to show progress bar for duration, has no effect if persistent is true, default to true */
   progress: boolean;
   /** default to 'info' */
   variant: AppNotificationVariant;
@@ -21,7 +23,7 @@ export interface AppNotification {
   onPopped?: (notification: AppNotification) => any | Promise<any>;
 }
 
-export type AppNotificationVariant = 'info' | 'success' | 'warning' | 'error';
+export type AppNotificationVariant = 'info' | 'success' | 'warning' | 'error' | 'achievement';
 export type AppNotificationInput = Partial<AppNotification>;
 export type VariantlessAppNotificationInput = Omit<AppNotificationInput, 'variant'>;
 

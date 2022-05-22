@@ -98,4 +98,5 @@ function createNotificationStore() {
   };
 }
 
-export const appNotification = createNotificationStore();
+export const notificationService = createNotificationStore();
+export type NotificationService = ReturnType<typeof createNotificationStore>;

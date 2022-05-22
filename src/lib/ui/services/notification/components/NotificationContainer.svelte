@@ -4,7 +4,7 @@
   import { quintOut } from 'svelte/easing';
   import { fly, fade } from 'svelte/transition';
 
-  import { appNotification } from '../notification.store';
+  import { notificationService } from '../notification.store';
   import type { AppNotification } from '../notification.types';
 
   import NotificationComponent from './Notification.svelte';
@@ -16,7 +16,7 @@
     if (!persistent) {
       timeOutIdMap.set(
         id,
-        setTimeout(() => appNotification.pop(id), duration),
+        setTimeout(() => notificationService.pop(id), duration),
       );
     }
   }
@@ -28,18 +28,18 @@
       clearTimeout(timeOutId);
       timeOutIdMap.delete(id);
     }
-    appNotification.pop(id);
+    notificationService.pop(id);
   }
 
   onMount(() => {
-    const unhook = appNotification.hook('push', addAutoTimeout);
+    const unhook = notificationService.hook('push', addAutoTimeout);
     return unhook;
   });
 </script>
 
 <aside class={$$props.class}>
   <ul class="row-auto grid grid-cols-1 gap-y-4">
-    {#each $appNotification as { onPopped, ...notification } (notification.id)}
+    {#each $notificationService as { onPopped, ...notification } (notification.id)}
       <li
         in:fly={{ x: 200, duration: 500 }}
         out:fade={{ duration: 350 }}

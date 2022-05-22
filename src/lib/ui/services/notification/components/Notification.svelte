@@ -6,7 +6,7 @@
   import { linear } from 'svelte/easing';
   import { tweened } from 'svelte/motion';
 
-  import { VariantToIconMap } from '../notification.constants';
+  import { VariantToIconMap, VariantToTitleMap } from '../notification.constants';
   import type { AppNotificationVariant } from '../notification.types';
 
   const TICK = 20; // 20 miliseconds
@@ -14,6 +14,7 @@
   export let id = '';
   export let variant: AppNotificationVariant;
   export let icon = VariantToIconMap[variant];
+  export let title = VariantToTitleMap[variant];
   export let text = '';
   export let duration = 0;
   export let progress = false;
@@ -55,34 +56,41 @@
 
 <section class={classnames('noti', `noti--${variant}`, progress && 'noti--progress')}>
   <div class="noti__content">
-    <span class="noti__icon">
-      <Icon data={icon} scale={1.2} />
-    </span>
-    <p class="text-sm self-end">
-      {text} Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat odio accusamus maiores! Numquam sit rem necessitatibus fugit consectetur similique cumque beatae ex, fuga tempore sint quam, minus architecto ab impedit.
+    <p class="noti__icon mt-[2px]">
+      <Icon data={icon} scale={2} />
     </p>
-    {#if !hideDismiss || !persistent}
-      <button type="button" class="c-btn-icon" on:click={onDismiss}>
-        <Icon data={closeIcon} scale={1.2} />
-      </button>
-    {/if}
+    <div class="">
+      <h6 class="font-bold text-lg">
+        {title}
+      </h6>
+      <p class="mt-2 text-sm">
+        {text}
+      </p>
+    </div>
   </div>
   {#if progress}
     <progress value={$percentage} class="block h-1 w-full {variant}" />
+  {/if}
+  {#if !hideDismiss && !persistent}
+    <button type="button" class="c-btn-icon absolute top-2 right-2" on:click={onDismiss}>
+      <Icon data={closeIcon} scale={1.2} />
+    </button>
   {/if}
 </section>
 
 <style lang="postcss">
   .noti {
     & .noti__content {
-      @apply grid min-w-[240px] max-w-md grid-cols-[auto,1fr,auto] border-l-[6px] bg-bg-accent py-3 rounded shadow-lg gap-x-4 px-4 items-start;
+      @apply relative min-w-[240px] max-w-md rounded border-l-[6px] bg-bg-accent py-3 px-4 shadow-lg;
+      @apply grid items-start grid-cols-[auto,1fr] gap-x-4;
     }
 
-    & .noti__icon {}
+    & .noti__icon {
+    }
 
     &.noti--progress {
       & .noti__content {
-        border-bottom: 0;
+        @apply rounded-none rounded-t;
       }
     }
 
@@ -90,7 +98,7 @@
       & .noti__content {
         @apply border-blue-500 border-opacity-50;
 
-        border-left-color: blue;
+        border-left-color: theme('colors.blue.500');
       }
 
       & .noti__icon {
@@ -102,7 +110,7 @@
       & .noti__content {
         @apply border-green-500 border-opacity-50;
 
-        border-left-color: green;
+        border-left-color: theme('colors.green.500');
       }
 
       & .noti__icon {
@@ -114,7 +122,7 @@
       & .noti__content {
         @apply border-orange-500 border-opacity-50;
 
-        border-left-color: border-orange-500;
+        border-left-color: theme('colors.orange.500');
       }
 
       & .noti__icon {
@@ -126,11 +134,23 @@
       & .noti__content {
         @apply border-red-500 border-opacity-50;
 
-        border-left-color: red;
+        border-left-color: theme('colors.red.500');
       }
 
       & .noti__icon {
         @apply text-red-500;
+      }
+    }
+
+    &.noti--achievement {
+      & .noti__content {
+        @apply border-amber-600 border-opacity-50;
+
+        border-left-color: theme('colors.amber.600');
+      }
+
+      & .noti__icon {
+        @apply text-amber-600;
       }
     }
   }

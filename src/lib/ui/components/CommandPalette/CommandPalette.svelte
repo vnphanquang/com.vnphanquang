@@ -7,7 +7,8 @@
   import { slide, fly } from 'svelte/transition';
 
   import { goto } from '$app/navigation';
-  import { CommandPaletteCache } from '$lib/ui/services/cache/commandPalette.cache';
+  import { CommandPaletteCache } from '$lib/ui/cache/commandPalette.cache';
+  import { AchievementId, achievementService } from '$lib/ui/services/achievement';
   import { theme } from '$lib/ui/stores/theme';
 
   import { COMMANDS } from './CommandPalette.constants';
@@ -126,6 +127,7 @@
   }
 
   onMount(async () => {
+    achievementService.unlock(AchievementId.powerUser);
     commandPaletteCacheService = new CommandPaletteCache();
     const recentCommands = commandPaletteCacheService.getRecentCommands();
     results = [];
