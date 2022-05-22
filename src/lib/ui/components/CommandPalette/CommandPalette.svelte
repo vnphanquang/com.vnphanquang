@@ -128,7 +128,6 @@
   }
 
   onMount(async () => {
-    achievementService.lock(AchievementId.powerUser);
     achievementService.unlock(AchievementId.powerUser).then((skipped) => {
       if (!skipped) {
         setTimeout(() => {
@@ -137,7 +136,7 @@
             duration: 10000,
             text: 'For better user experience, turn off Vimium or any browser extension that might interfere with keyboard input.',
           });
-        }, 0);
+        }, 10000);
       }
     });
     commandPaletteCacheService = new CommandPaletteCache();
