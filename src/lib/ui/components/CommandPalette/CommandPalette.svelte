@@ -13,7 +13,7 @@
   import { theme } from '$lib/ui/stores/theme';
 
   import { COMMANDS } from './CommandPalette.constants';
-  import type { CommandType, Command } from './CommandPalette.types';
+  import { type CommandType, type Command, COMMAND_ID_DICTIONARY } from './CommandPalette.types';
 
   const placeholders: Record<CommandType, string> = {
     open: 'site or file',
@@ -115,7 +115,7 @@
           break;
         case 'run':
           // FIXME: static map for commandId to execute function
-          if (command.id === 'theme.toggle') {
+          if (command.id === COMMAND_ID_DICTIONARY.run.theme.toggle) {
             theme.toggle();
           }
           break;

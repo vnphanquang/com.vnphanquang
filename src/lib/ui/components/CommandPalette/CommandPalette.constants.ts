@@ -1,105 +1,102 @@
 import { AppRoutes } from '$generated/routing';
 import socials from '$lib/data/socials.json';
 
-import type { Command } from './CommandPalette.types';
-
-// TODO: extract id into own map
-// { open: internal: { ... }, external: { ... }, run: { ... } }
+import { COMMAND_ID_DICTIONARY, type Command } from './CommandPalette.types';
 
 // TODO: add own service to handle search & execution for command palette
 export const COMMANDS: Record<Command['id'], Command> = {
   // open
-  'open.internal.home': {
+  [COMMAND_ID_DICTIONARY.open.internal.home]: {
     type: 'open',
-    id: 'open.internal.home',
+    id: COMMAND_ID_DICTIONARY.open.internal.home,
     href: AppRoutes.index,
     description: 'Open Home page',
     scopes: ['global'],
     cacheable: true,
   },
-  'open.internal.about': {
+  [COMMAND_ID_DICTIONARY.open.internal.about]: {
     type: 'open',
-    id: 'open.internal.about',
+    id: COMMAND_ID_DICTIONARY.open.internal.about,
     href: AppRoutes.about.index,
     description: 'Open About page',
     scopes: ['global'],
     cacheable: true,
   },
-  'open.internal.gallery': {
+  [COMMAND_ID_DICTIONARY.open.internal.gallery]: {
     type: 'open',
-    id: 'open.internal.gallery',
+    id: COMMAND_ID_DICTIONARY.open.internal.gallery,
     href: AppRoutes.gallery.index,
     description: 'Open Gallery page',
     scopes: ['global'],
     cacheable: true,
   },
-  'open.internal.blog': {
+  [COMMAND_ID_DICTIONARY.open.internal.blog]: {
     type: 'open',
-    id: 'open.internal.blog',
+    id: COMMAND_ID_DICTIONARY.open.internal.blog,
     href: AppRoutes.blog.index,
     description: 'Open Blog page',
     scopes: ['global'],
     cacheable: true,
   },
-  'open.internal.resume': {
+  [COMMAND_ID_DICTIONARY.open.internal.resume]: {
     type: 'open',
-    id: 'open.internal.resume',
+    id: COMMAND_ID_DICTIONARY.open.internal.resume,
     href: '/QuangPhan_Resume.pdf',
     description: "Open Quang Phan's resume",
     scopes: ['global'],
     cacheable: true,
   },
-  'open.external.github': {
+  [COMMAND_ID_DICTIONARY.open.external.github]: {
     type: 'open',
-    id: 'open.external.github',
+    id: COMMAND_ID_DICTIONARY.open.external.github,
     href: socials.github.href,
     description: "Open Quang Phan's github profile",
     scopes: ['global'],
     cacheable: true,
   },
-  'open.external.twitter': {
+  [COMMAND_ID_DICTIONARY.open.external.twitter]: {
     type: 'open',
-    id: 'open.external.twitter',
+    id: COMMAND_ID_DICTIONARY.open.external.twitter,
     href: socials.twitter.href,
     description: "Open Quang Phan's twitter profile",
     scopes: ['global'],
     cacheable: true,
   },
-  'open.external.instagram': {
+  [COMMAND_ID_DICTIONARY.open.external.instagram]: {
     type: 'open',
-    id: 'open.external.instagram',
+    id: COMMAND_ID_DICTIONARY.open.external.instagram,
     href: socials.instagram.href,
     description: "Open Quang Phan's instagram profile",
     scopes: ['global'],
     cacheable: true,
   },
-  'open.external.linkedin': {
+  [COMMAND_ID_DICTIONARY.open.external.linkedin]: {
     type: 'open',
-    id: 'open.external.linkedin',
+    id: COMMAND_ID_DICTIONARY.open.external.linkedin,
     href: socials.linkedin.href,
     description: "Open Quang Phan's linkedin profile",
     scopes: ['global'],
     cacheable: true,
   },
-  'open.external.jsfiddle': {
+  [COMMAND_ID_DICTIONARY.open.external.jsfiddle]: {
     type: 'open',
-    id: 'open.external.jsfiddle',
+    id: COMMAND_ID_DICTIONARY.open.external.jsfiddle,
     href: socials.jsfiddle.href,
     description: "Open Quang Phan's jsfiddle profile",
     scopes: ['global'],
     cacheable: true,
   },
-  'open.external.stackoverflow': {
+  [COMMAND_ID_DICTIONARY.open.external.stackoverflow]: {
     type: 'open',
-    id: 'open.external.stackoverflow',
+    id: COMMAND_ID_DICTIONARY.open.external.stackoverflow,
     href: socials.stackoverflow.href,
     description: "Open Quang Phan's stackoverflow profile",
     scopes: ['global'],
     cacheable: true,
   },
-  'open.external.strava': {
+  [COMMAND_ID_DICTIONARY.open.external.strava]: {
     type: 'open',
-    id: 'open.external.strava',
+    id: COMMAND_ID_DICTIONARY.open.external.strava,
     href: socials.strava.href,
     description: "Open Quang Phan's strava profile",
     scopes: ['global'],
@@ -107,9 +104,9 @@ export const COMMANDS: Record<Command['id'], Command> = {
   },
 
   // secret
-  'open.internal.exOcculto.solanumLycopersicum': {
+  [COMMAND_ID_DICTIONARY.open.internal.exOcculto.solanumLycopersicum]: {
     type: 'open',
-    id: 'open.internal.exOcculto.solanumLycopersicum',
+    id: COMMAND_ID_DICTIONARY.open.internal.exOcculto.solanumLycopersicum,
     href: AppRoutes.exOcculto.solanumLycopersicum,
     description: 'Welcome, sir. Press enter to open!',
     scopes: ['global', 'secret'],
@@ -118,9 +115,9 @@ export const COMMANDS: Record<Command['id'], Command> = {
   },
 
   // run
-  'theme.toggle': {
+  [COMMAND_ID_DICTIONARY.run.theme.toggle]: {
     type: 'run',
-    id: 'theme.toggle',
+    id: COMMAND_ID_DICTIONARY.run.theme.toggle,
     description: 'Toggle light bulb',
     scopes: ['global'],
     cacheable: true,
