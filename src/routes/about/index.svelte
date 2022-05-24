@@ -3,6 +3,7 @@
 
   import { AppRoutes } from '$generated/routing';
   import { milestones } from '$lib/data/milestones';
+  import { MediaOverlay } from '$lib/ui/components';
 
   const milestonesIntersectedMap: Record<number, boolean> = milestones.reduce((acc, curr) => {
     acc[curr.id] = false;
@@ -94,7 +95,8 @@
         >
           <div
             class="mt-1 hidden
-            text-sm text-[#7c6f64] md:block
+            text-sm text-[#7c6f64]
+            md:flex flex-col
             {index % 2 === 1
               ? 'md:col-start-3 md:row-start-1 md:justify-self-start md:text-left'
               : 'md:justify-self-end md:text-right'}
@@ -134,6 +136,16 @@
                 {@html paragraph}
               </p>
             {/each}
+            <ul class="flex gap-x-2 md:justify-end items-end overflow-x-auto max-w-full">
+              {#each milestone.images as { id, src, alt, width } (id)}
+                <li class="">
+                  <MediaOverlay {id} let:open>
+                    <img {src} {alt} {width} class="h-auto shadow rounded hover:shadow-lg" slot="static" />
+                    <img {src} {alt} class="shadow rounded w-max" />
+                  </MediaOverlay>
+                </li>
+              {/each}
+            </ul>
           </div>
           {#if milestone.timemark}
             <div class="relative pt-8 pb-20 md:col-[1/4] md:row-start-2">

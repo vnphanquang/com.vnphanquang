@@ -1,6 +1,18 @@
 import socials from '$lib/data/socials.json';
 
-export const milestones = [
+export interface Milestone {
+  id: number;
+  slug: string;
+  time: string;
+  location: string;
+  headline: string;
+  title: string;
+  paragraphs: string[];
+  images: Array<{ id: string; src: string; alt: string; width: number }>;
+  timemark?: string;
+}
+
+export const milestones: Milestone[] = [
   {
     id: 10,
     slug: 'personal-website-2nd',
@@ -14,6 +26,7 @@ export const milestones = [
       <a class="c-link" href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>,
       and hosted by <a class="c-link" href="https://vercel.com" target="_blank">Vercel</a>.`,
     ],
+    images: [],
   },
   {
     id: 9,
@@ -22,7 +35,7 @@ export const milestones = [
     location: 'Ho Chi Minh, Vietnam',
     headline: `<a href="https://www.credly.com/badges/2d1c3bf1-28be-43aa-88c2-5413826174f1/public_url" target="_blank" class="flex items-end">
         <span class="c-link">Professional Scrum Master Certification</span>
-        <img src="/images/psm1.webp" alt="Professional Scrum Master 1" width="30" height="30" class="inline-block ml-2" />
+        <img src="/images/psm/psm1-logo.webp" alt="Professional Scrum Master 1" width="30" height="30" class="inline-block ml-2" />
       </a>`,
     title: '',
     paragraphs: [
@@ -30,6 +43,14 @@ export const milestones = [
       It was to understand Scrum as a developer, to gain the ability to justify its values and
       practices, and to maximize the contribution to Scrum teams.`,
     ],
+    images: [
+      {
+        id: 'psm1-certificate',
+        alt: 'Certificate of Professional Scrum Master 1',
+        src: '/images/psm/psm1-certificate.webp',
+        width: 100,
+      },
+    ]
   },
   {
     id: 8,
@@ -64,6 +85,7 @@ export const milestones = [
       <a class="c-link" href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>,
       <a class="c-link" href="https://threejs.org/" target="_blank">Three.JS</a>, ...`,
     ],
+    images: [],
   },
   {
     id: 7,
@@ -106,6 +128,26 @@ export const milestones = [
       made possible.`,
       `It was named the "OrdoLink".`,
     ],
+    images: [
+      {
+        id: 'ordolink-lagi',
+        alt: 'The OrdoLink Bicycle - Lagi',
+        src: '/images/ordolink/lagi.webp',
+        width: 60,
+      },
+      {
+        id: 'ordolink-nhathoducba',
+        alt: 'The OrdoLink Bicycle - Duc Ba Church',
+        src: '/images/ordolink/nhathoducba.webp',
+        width: 100,
+      },
+      {
+        id: 'ordolink-rungcaosu',
+        alt: 'The OrdoLink Bicycle - Rubber Forest',
+        src: '/images/ordolink/rungcaosu.webp',
+        width: 100,
+      },
+    ],
   },
   {
     id: 6,
@@ -117,10 +159,10 @@ export const milestones = [
       <span class="c-link">Designveloper</span>
       <img
         class="inline-block rounded"
-        src="/images/designveloper.webp"
+        src="/images/designveloper/logo.webp"
         alt="Designveloper"
-        width="30"
-        height="30"
+        width="13.7"
+        height="18.5"
       />
     </a>`,
     title: 'Software Developer',
@@ -133,6 +175,26 @@ export const milestones = [
       '----------',
       `A professional work environment, a young & growing company culture, strong teams,
       encouraging mentors, amazing colleagues, and great opportunities for self development`,
+    ],
+    images: [
+      {
+        id: 'dsv-front-selfie',
+        alt: 'Designveloper - Front office selfie',
+        src: '/images/designveloper/front-selfie.webp',
+        width: 100,
+      },
+      {
+        id: 'dsv-christmas-tree',
+        alt: 'Designveloper - Christmas tree',
+        src: '/images/designveloper/christmas-tree.webp',
+        width: 60,
+      },
+      {
+        id: 'dsv-desk',
+        alt: 'Designveloper - Desk',
+        src: '/images/designveloper/desk.webp',
+        width: 60,
+      },
     ],
   },
   {
@@ -155,6 +217,26 @@ export const milestones = [
       `Also here was where chemistry laboratory experience and programming skill somewhat converged.
       A future emerged anew.`,
     ],
+    images: [
+      {
+        id: 'nodexux-door',
+        alt: 'Nodexus - Front door',
+        src: '/images/nodexus/door.webp',
+        width: 60,
+      },
+      {
+        id: 'nodexux-desk',
+        alt: 'Nodexus - Desk',
+        src: '/images/nodexus/desk.webp',
+        width: 100,
+      },
+      {
+        id: 'nodexux-printer',
+        alt: 'Nodexus - Printer',
+        src: '/images/nodexus/printer.webp',
+        width: 100,
+      },
+    ],
   },
   {
     id: 4,
@@ -174,6 +256,7 @@ export const milestones = [
       built from <a class="c-link" href="https://github.com/vnphanquang/pq-typewriterjs" target="_blank">scratch</a> with a
       rather noble declaration method of annotating the markup with typing commands (in the form of HTML comments).`,
     ],
+    images: [],
   },
   {
     id: 3,
@@ -186,10 +269,16 @@ export const milestones = [
       'High Honors Associate in Science degrees in Computer Science, Mathematics, and Chemistry',
     paragraphs: [],
     timemark: '2019',
+    images: [{
+      id: 'foothill-graduation-photo',
+      alt: 'Foothill - Graduation',
+      src: '/images/foothill/graduation.webp',
+      width: 100,
+    }],
   },
   {
     id: 2,
-    slug: 'san-jose-simocko',
+    slug: 'sjsu-simocko',
     time: 'July, 2018',
     location: 'San Jose, California, USA',
     headline: '<a class="c-link" href="http://www.sjsu.edu/">San Jose State University</a>',
@@ -204,13 +293,37 @@ export const milestones = [
       But you do look cool in lab coats so it's all worth it really!`,
     ],
     timemark: '2018',
+    images: [
+      {
+        id: 'sjsu-experiment',
+        alt: 'SJSU - Experiment',
+        src: '/images/sjsu/experiment.webp',
+        width: 60,
+      },
+      {
+        id: 'sjsu-selfie',
+        alt: 'SJSU - Selfie',
+        src: '/images/sjsu/selfie.webp',
+        width: 60,
+      },
+    ],
   },
   {
     id: 1,
     slug: 'foothill',
     time: 'April, 2016',
     location: 'Los Altos, California, USA',
-    headline: '<a class="c-link" href="https://foothill.edu/">Foothill College</a>',
+    headline: `
+    <a href="https://foothill.edu/">
+      <span class="c-link">Foothill College</span>
+      <img
+        class="inline-block rounded"
+        src="/images/foothill/logo.webp"
+        alt="Foothill College"
+        width="30"
+        height="30"
+      />
+    </a>`,
     title: '',
     paragraphs: [
       `Chemistry and Math tutor at the
@@ -227,14 +340,55 @@ export const milestones = [
       planning & research is learned.`,
     ],
     timemark: '2016',
+    images: [
+      {
+        id: 'foothill-pizza',
+        alt: 'Foothill - Free Pizza',
+        src: '/images/foothill/pizza.webp',
+        width: 100,
+      },
+      {
+        id: 'foothill-bamboo',
+        alt: 'Foothill - Bamboo Forest',
+        src: '/images/foothill/bamboo.webp',
+        width: 60,
+      },
+      {
+        id: 'foothill-locker',
+        alt: 'Foothill - Locker',
+        src: '/images/foothill/locker.webp',
+        width: 100,
+      },
+      {
+        id: 'foothill-phonebooth',
+        alt: 'Foothill - Phone Booth',
+        src: '/images/foothill/phonebooth.webp',
+        width: 100,
+      },
+      {
+        id: 'foothill-architect',
+        alt: 'Foothill - Science Architecture',
+        src: '/images/foothill/architect.webp',
+        width: 100,
+      },
+    ],
   },
   {
     id: 0,
     slug: 'hcmus-biotech',
     time: 'August, 2015',
     location: 'Ho Chi Minh, Vietnam',
-    headline:
-      '<a class="c-link" href="https://www.hcmus.edu.vn/">Ho Chi Minh University of Science</a>',
+    headline: `
+    <a href="https://www.hcmus.edu.vn/">
+      <span class="c-link">Ho Chi Minh University of Science</span>
+      <img
+        class="inline-block rounded"
+        src="/images/hcmus/logo.webp"
+        alt="Ho Chi Minh University of Science"
+        width="30"
+        height="30"
+      />
+    </a>`,
     title:
       '<a class="c-link" href="http://www.fbb.hcmus.edu.vn/ target="_blank">Biological Technology</a> major',
     paragraphs: [
@@ -243,5 +397,37 @@ export const milestones = [
       'No parents, full dorm life, new friends and "sketchy" people all around, living off instant noodles and scavenging free food at the end of each month when money ran low. What else could one ask for?',
     ],
     timemark: '2015',
+    images: [
+      {
+        id: 'hcmus-walkway',
+        alt: 'HCMUS - Walkway',
+        src: '/images/hcmus/walkway.webp',
+        width: 100,
+      },
+      {
+        id: 'hcmus-room',
+        alt: 'HCMUS - Dorm Room',
+        src: '/images/hcmus/room.webp',
+        width: 100,
+      },
+      {
+        id: 'hcmus-sunset',
+        alt: 'HCMUS - Sunset',
+        src: '/images/hcmus/sunset.webp',
+        width: 100,
+      },
+      {
+        id: 'hcmus-phonebooth',
+        alt: 'HCMUS - Phonebooth',
+        src: '/images/hcmus/phonebooth.webp',
+        width: 100,
+      },
+      {
+        id: 'hcmus-hallway',
+        alt: 'HCMUS - hallway',
+        src: '/images/hcmus/hallway.webp',
+        width: 100,
+      },
+    ],
   },
 ];
