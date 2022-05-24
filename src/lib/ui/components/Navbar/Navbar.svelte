@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import classnames from 'classnames';
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import lightbulb from 'svelte-awesome/icons/lightbulbO';
@@ -6,6 +6,8 @@
   import { elasticInOut } from 'svelte/easing';
   import { fade, fly } from 'svelte/transition';
 
+  import { browser } from '$app/env';
+  import { afterNavigate } from '$app/navigation';
   import { AppRoutes } from '$generated/routing';
   import { HamburgerBtn } from '$lib/ui/components/HamburgerBtn';
   import { theme } from '$lib/ui/stores/theme';
@@ -31,6 +33,11 @@
   }
 
   $: isLightTheme = $theme === 'light';
+
+  let pathname = browser ? location.pathname : '';
+  afterNavigate(({ to }) => {
+    pathname = to.pathname;
+  });
 </script>
 
 <nav
@@ -55,8 +62,8 @@
 
     <ul class="hidden grid-cols-[repeat(3,auto)] gap-x-4 font-quang text-lg font-bold md:grid">
       {#each Object.values(navlinks) as { href, text }}
-        <li class="navlink relative px-2 hover:text-primary">
-          <a {href}>{text}</a>
+        <li class="navlink relative px-2 hover:text-primary" data-active={pathname.startsWith(href) ? "true" : "false"}>
+          <a {href} sveltekit:prefetch>{text}</a>
         </li>
       {/each}
     </ul>
@@ -71,7 +78,7 @@
         transition:fade={{ duration: 200 }}
       >
         {#each [{ href: AppRoutes.index, text: 'home' }, ...Object.values(navlinks)] as { href, text }}
-          <li class="navlink relative px-3 hover:text-primary">
+          <li class="navlink relative px-3 hover:text-primary" data-active={pathname.startsWith(href) ? "true" : "false"}>
             <a {href} on:click={() => (navbarMenuOpen = false)} sveltekit:prefetch>{text}</a>
           </li>
         {/each}
@@ -121,6 +128,11 @@
     content: '';
   }
 
+  .navlink[data-active="true"] {
+    @apply text-primary;
+  }
+
+  .navlink[data-active="true"]::after,
   .navlink:hover::after {
     @apply origin-left scale-x-100;
   }
