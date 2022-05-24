@@ -7,6 +7,7 @@
     "index": "/blog"
   },
   "exOcculto": {
+    "chrysanthemumMaximum": "/ex-occulto/chrysanthemum-maximum",
     "solanumLycopersicum": "/ex-occulto/solanum-lycopersicum",
     "__dir": "/ex-occulto"
   },

@@ -18,6 +18,7 @@ export const COMMAND_ID_DICTIONARY = {
       resume: 'open.internal.resume',
       exOcculto: {
         solanumLycopersicum: 'open.internal.exOcculto.solanumLycopersicum',
+        chrysanthemumMaximum: 'open.internal.exOcculto.chrysanthemumMaximum'
       },
     },
     external: {
