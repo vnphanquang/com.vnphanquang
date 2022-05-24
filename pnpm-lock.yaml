@@ -51,8 +51,8 @@ devDependencies:
   '@svelte-put/clickoutside': 1.0.0
   '@svelte-put/intersect': 1.0.2
   '@svelte-put/movable': 1.1.6
-  '@sveltejs/adapter-vercel': 1.0.0-next.53
-  '@sveltejs/kit': 1.0.0-next.338_svelte@3.48.0
+  '@sveltejs/adapter-vercel': 1.0.0-next.54
+  '@sveltejs/kit': 1.0.0-next.342_svelte@3.48.0
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
   '@types/lodash.debounce': 4.0.7
   '@types/node': 17.0.35
@@ -190,14 +190,14 @@ packages:
     resolution: {integrity: sha512-tRLRIQt3+hm1oqOe8n4xGmdhe4TIyB1FVVOqBWfe0jKilT5mHqXpEZbAPIfPm9EeYxramFh6TFpnLY2EGdGLMg==}
     dev: true
 
-  /@sveltejs/adapter-vercel/1.0.0-next.53:
-    resolution: {integrity: sha512-MmeQxvUYP9UeNuVPd50ZeskzvIqIasyo1Ooa0SUPqoQ41IH+dnkT0+oGJplpX7Ii3gmTbJgleYkV6X6huWQESg==}
+  /@sveltejs/adapter-vercel/1.0.0-next.54:
+    resolution: {integrity: sha512-DnKexL3QzUcJlxUE6Mhi9Re3McSfVwvCqyd1UcBDpJK6rLmu8ASlcB9o/FY5RJIF3A+agfeypcQ4OFQJQH0nPQ==}
     dependencies:
       esbuild: 0.14.39
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.338_svelte@3.48.0:
-    resolution: {integrity: sha512-tqzSHB9ONjmUS8qsYUkypI1eg+FuyKVN5t0wEfIufv7X6ECK1xIRwU1A0igmNLPhqhTqAt3QNmFn2An0/8LbnQ==}
+  /@sveltejs/kit/1.0.0-next.342_svelte@3.48.0:
+    resolution: {integrity: sha512-sBFGdikwYHA/SkEpLr5fr4/bhMgesCR0g/IKZPs6oEvmGtouvdkszvqFY0Q/Iu3Z2smLRsz+PxtBBDovpbJhnQ==}
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
