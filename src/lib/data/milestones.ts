@@ -58,7 +58,7 @@ export const milestones: Milestone[] = [
     time: 'March, 2022',
     location: 'Ho Chi Minh, Vietnam',
     headline: `
-      <a href="${socials.github.href}">
+      <a href="${socials.github.href}" target="_blank">
         <span class="c-link">Open source developer</span>
         <img src="${socials.github.icon}" alt="github" width="30" height="30" class="inline-block" />
       </a>`,
@@ -155,7 +155,7 @@ export const milestones: Milestone[] = [
     time: 'December, 2019',
     location: 'Ho Chi Minh, Vietnam',
     headline: `
-    <a href="https://www.designveloper.com/">
+    <a href="https://www.designveloper.com/" target="_blank">
       <span class="c-link">Designveloper</span>
       <img
         class="inline-block rounded"
@@ -202,7 +202,7 @@ export const milestones: Milestone[] = [
     slug: 'nodexus',
     time: 'July, 2019',
     location: 'Hayward, California, USA',
-    headline: '<a class="c-link" href="http://www.nodexus.com/">Nodexus Inc.</a>',
+    headline: '<a class="c-link" href="http://www.nodexus.com/" target="_blank">Nodexus Inc.</a>',
     title: 'Software R&D intern - Nodexus circuit printer system',
     paragraphs: [
       `Developer for the well-documented core implementation of Nodexus printer control operations, responsible for
@@ -281,7 +281,7 @@ export const milestones: Milestone[] = [
     slug: 'sjsu-simocko',
     time: 'July, 2018',
     location: 'San Jose, California, USA',
-    headline: '<a class="c-link" href="http://www.sjsu.edu/">San Jose State University</a>',
+    headline: '<a class="c-link" href="http://www.sjsu.edu/" target="_blank">San Jose State University</a>',
     title:
       'Research intern in <a class="c-link" href="http://www.sjsu.edu/simocko/" target="_blank">Dr. Chester Simocko\'s</a> team on olefin metathesis polymerization',
     paragraphs: [
@@ -314,7 +314,7 @@ export const milestones: Milestone[] = [
     time: 'April, 2016',
     location: 'Los Altos, California, USA',
     headline: `
-    <a href="https://foothill.edu/">
+    <a href="https://foothill.edu/" target="_blank">
       <span class="c-link">Foothill College</span>
       <img
         class="inline-block rounded"
@@ -379,7 +379,7 @@ export const milestones: Milestone[] = [
     time: 'August, 2015',
     location: 'Ho Chi Minh, Vietnam',
     headline: `
-    <a href="https://www.hcmus.edu.vn/">
+    <a href="https://www.hcmus.edu.vn/" target="_blank">
       <span class="c-link">Ho Chi Minh University of Science</span>
       <img
         class="inline-block rounded"
@@ -390,7 +390,7 @@ export const milestones: Milestone[] = [
       />
     </a>`,
     title:
-      '<a class="c-link" href="http://www.fbb.hcmus.edu.vn/ target="_blank">Biological Technology</a> major',
+      '<a class="c-link" href="http://www.fbb.hcmus.edu.vn/" target="_blank">Biological Technology</a> major',
     paragraphs: [
       '----------',
       'Moving to the biggest city of Vietnam for the first time was a terrifyingly wonderful experience.',
