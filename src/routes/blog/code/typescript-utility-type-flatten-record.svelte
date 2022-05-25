@@ -3,8 +3,11 @@
   import typescript from 'svelte-highlight/languages/typescript';
   import gruvbox from 'svelte-highlight/styles/gruvbox-dark-soft';
 
-  import { AppRoutes } from '$generated/routing';
+  import { BLOG_METADATA, BLOG_ID_DICTIONARY } from '$lib/data/blogs';
   import { Heading, TableOfContent } from '$lib/ui/components';
+  import { blogDate } from '$lib/utils/datetime';
+
+  const METADATA = BLOG_METADATA[BLOG_ID_DICTIONARY.code.typescriptUtilityTypeFlattenRecord];
 
   const RESOURCES = {
     florisBernard: {
@@ -31,6 +34,10 @@
       name: 'Transform Union to Intersection',
       href: 'https://stackoverflow.com/questions/50374908/transform-union-type-to-intersection-type/50375286#50375286',
     },
+    utilityTypesRecord: {
+      name: 'Utility Type - Record',
+      href: 'https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type',
+    },
     utilityTypesPick: {
       name: 'Utility Type - Pick',
       href: 'https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys',
@@ -46,12 +53,17 @@
       id: 'utility-type-flatten-record',
       level: 1,
       class: 'font-quang',
-      text: 'Utility Type: Flatten a Nested Record',
+      text: METADATA.title,
     },
     toc: {
       id: 'table-of-contents',
       level: 2,
       text: 'Table of Contents',
+    },
+    note: {
+      id: 'note',
+      level: 2,
+      text: 'Note',
     },
     tldr: {
       id: 'tldr',
@@ -315,15 +327,19 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
 
 <svelte:head>
   <title>About | vnphanquang</title>
-  <meta name="description" content="Quang Phan's truncated timeline" />
+  <meta name="description" content={METADATA.description} />
 
-  <meta property="og:title" content="About vnphanquang" />
+  <meta property="og:title" content={METADATA.title} />
   <meta property="og:image" content="https://vnphanquang.com/images/screenshot-about.png" />
-  <meta
-    property="og:url"
-    content="https://vnphanquang.com{AppRoutes.blog.code.typescriptUtilityTypeFlattenRecord}"
-  />
+  <meta property="og:url" content="https://vnphanquang.com{METADATA.href}" />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <meta property="og:type" content="article" />
+  <meta property="article:author" content="Quang Phan" />
+  <meta property="article:tag" content="code" />
+  <meta property="article:tag" content="typescript" />
+  <meta property="article:published_time" content="{METADATA.publishedAt}" />
+  <meta property="article:modified_time" content="{METADATA.publishedAt}" />
 
   {@html gruvbox}
 </svelte:head>
@@ -333,11 +349,25 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
     <section class="text-center">
       <Heading {...HEADING.title} />
       <p class="italic">A quick walkthrough of how this it is put together</p>
+      <p class="flex justify-center gap-x-2">
+        {#each METADATA.tags as tag}
+          <span class="c-tag">{tag}</span>
+        {/each}
+      </p>
+      <p class="text-right">{blogDate(METADATA.updatedAt)}</p>
     </section>
     <section>
       <Heading {...HEADING.toc} />
       <TableOfContent.Node float={false} />
       <TableOfContent.Node />
+    </section>
+    <section>
+      <Heading {...HEADING.note} />
+      <p>
+        In this article, I'm using the term "record" and "object" interchangeably. I refer to object
+        as "record" for better alignment with the
+        <a href={RESOURCES.utilityTypesRecord.href} target="_blank">builtin Record utility type</a>.
+      </p>
     </section>
     <section>
       <Heading {...HEADING.tldr} />

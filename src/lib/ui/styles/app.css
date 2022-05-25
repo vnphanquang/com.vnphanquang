@@ -109,7 +109,7 @@
   }
 
   .c-btn {
-    @apply cursor-pointer text-bg bg-primary py-2 px-4 rounded-lg hover:bg-primary-hover active:bg-primary-active;
+    @apply cursor-pointer text-bg bg-primary py-2 px-4 rounded-xl hover:bg-primary-hover active:bg-primary-active;
   }
   .c-btn-outline {
     @apply cursor-pointer border bg-bg border-primary py-2 px-4 rounded-lg hover:bg-primary hover:text-bg active:text-bg active:bg-primary-active;
@@ -119,5 +119,9 @@
   }
   .c-btn-link {
     @apply cursor-pointer hover:bg-primary p-2 rounded hover:text-bg grid place-items-center;
+  }
+
+  .c-tag {
+    @apply rounded-xl bg-secondary px-2 text-sm text-bg;
   }
 }
