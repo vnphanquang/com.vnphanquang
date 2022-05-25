@@ -14,7 +14,7 @@
   }
 </script>
 
-<input type="checkbox" {id} hidden bind:checked={open}>
+<input type="checkbox" {id} hidden bind:checked={open} />
 
 {#if $$slots.static}
   <label for={id} class="cursor-pointer">
@@ -23,24 +23,19 @@
 {/if}
 
 <svelte:window
-    use:shortcut={{
-      trigger: {
-        key: 'Escape',
-        callback: onClose,
-        preventDefault: true,
-        enabled: open,
-      },
-    }}
+  use:shortcut={{
+    trigger: {
+      key: 'Escape',
+      callback: onClose,
+      preventDefault: true,
+      enabled: open,
+    },
+  }}
 />
 
 {#if open}
-  <aside
-    class="fixed inset-0 z-overlay" transition:fade={{ duration: 200 }}
-  >
-    <label
-      class="absolute inset-0 cursor-pointer bg-bg-accent/90"
-      for={id}
-    />
+  <aside class="fixed inset-0 z-overlay" transition:fade={{ duration: 200 }}>
+    <label class="absolute inset-0 cursor-pointer bg-bg-accent/90" for={id} />
     <button
       type="button"
       on:click={onClose}
@@ -49,7 +44,7 @@
     >
       <Icon data={close} scale={2} />
     </button>
-    <div class="absolute inset-center w-fit h-fit max-w-[90vw] max-h-[90vh]">
+    <div class="inset-center absolute h-fit max-h-[90vh] w-fit max-w-[90vw]">
       <slot {open} />
     </div>
   </aside>

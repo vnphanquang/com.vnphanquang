@@ -29,7 +29,8 @@ const config = {
       zIndex: {
         modal: '80', // a modal/dialog
         navbar: '90', // top-fixed navbar
-        overlay: '100', // a full screen overlay
+        float: '100', // floating buttons and such
+        overlay: '150', // a full screen overlay
         command: '200', // command palette
         notification: '300', // notification
       },
@@ -124,6 +125,36 @@ const config = {
         'fade-out-up': 'fade-out-up 500ms ease-out',
         wiggle: 'wiggle 1s ease-in-out infinite',
         dance: 'dance 1s ease-in-out both infinite',
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            'h2,h3,h4,h5,h6': {
+              position: 'relative',
+              '&:hover::before': {
+                content: '"#"',
+                position: 'absolute',
+                right: '101%',
+              },
+            },
+            pre: {
+              padding: '0',
+            },
+            code: {
+              'background-color': 'rgba(110,118,129,0.4)',
+              'border-radius': '6px',
+              'font-size': '85%',
+              'font-weight': 'normal',
+              padding: '0.2em 0.4em',
+            },
+            'code::before': {
+              content: 'none',
+            },
+            'code::after': {
+              content: 'none',
+            },
+          },
+        },
       },
     },
   },

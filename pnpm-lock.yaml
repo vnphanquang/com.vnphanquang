@@ -22,6 +22,7 @@ specifiers:
   eslint-plugin-import: ^2.26.0
   eslint-plugin-svelte3: ^4.0.0
   fuse.js: ^6.6.2
+  highlight.js: ^11.5.1
   lodash.debounce: ^4.0.8
   npm-run-all: ^4.1.5
   postcss: ^8.4.14
@@ -34,6 +35,7 @@ specifiers:
   svelte: ^3.48.0
   svelte-awesome: ^3.0.0
   svelte-check: ^2.7.1
+  svelte-highlight: ^6.0.1
   svelte-preprocess: ^4.10.6
   tailwindcss: ^3.0.24
   tslib: ^2.4.0
@@ -51,8 +53,8 @@ devDependencies:
   '@svelte-put/clickoutside': 1.0.0
   '@svelte-put/intersect': 1.0.2
   '@svelte-put/movable': 1.1.6
-  '@sveltejs/adapter-vercel': 1.0.0-next.54
-  '@sveltejs/kit': 1.0.0-next.342_svelte@3.48.0
+  '@sveltejs/adapter-vercel': 1.0.0-next.55
+  '@sveltejs/kit': 1.0.0-next.343_svelte@3.48.0
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.24
   '@types/lodash.debounce': 4.0.7
   '@types/node': 17.0.35
@@ -66,6 +68,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.16.0
   eslint-plugin-import: 2.26.0_eslint@8.16.0
   eslint-plugin-svelte3: 4.0.0_vypdqzeyqutkgs6qzc7qod4c64
+  highlight.js: 11.5.1
   npm-run-all: 4.1.5
   postcss: 8.4.14
   postcss-import: 14.1.0_postcss@8.4.14
@@ -77,6 +80,7 @@ devDependencies:
   svelte: 3.48.0
   svelte-awesome: 3.0.0_svelte@3.48.0
   svelte-check: 2.7.1_f7jympgstafqz7m4z373rocx7q
+  svelte-highlight: 6.0.1
   svelte-preprocess: 4.10.6_mwm5wq664vqgtsefspuzimthmq
   tailwindcss: 3.0.24
   tslib: 2.4.0
@@ -190,14 +194,14 @@ packages:
     resolution: {integrity: sha512-tRLRIQt3+hm1oqOe8n4xGmdhe4TIyB1FVVOqBWfe0jKilT5mHqXpEZbAPIfPm9EeYxramFh6TFpnLY2EGdGLMg==}
     dev: true
 
-  /@sveltejs/adapter-vercel/1.0.0-next.54:
-    resolution: {integrity: sha512-DnKexL3QzUcJlxUE6Mhi9Re3McSfVwvCqyd1UcBDpJK6rLmu8ASlcB9o/FY5RJIF3A+agfeypcQ4OFQJQH0nPQ==}
+  /@sveltejs/adapter-vercel/1.0.0-next.55:
+    resolution: {integrity: sha512-hmKbBw2o76j92gwrr+f7VccTwfYqg2wWliDvTbABywy0GQG3Y/QqCeowROoeaXqeMmolK6WtN8LC0Wef/Z5q5Q==}
     dependencies:
       esbuild: 0.14.39
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.342_svelte@3.48.0:
-    resolution: {integrity: sha512-sBFGdikwYHA/SkEpLr5fr4/bhMgesCR0g/IKZPs6oEvmGtouvdkszvqFY0Q/Iu3Z2smLRsz+PxtBBDovpbJhnQ==}
+  /@sveltejs/kit/1.0.0-next.343_svelte@3.48.0:
+    resolution: {integrity: sha512-M+K2To/QdEBl8OZS1V7JzsV9zZUNJRAay1ZVtDnlC75UgHECHhu72E5BtJWFXtINezQaMgGl62LuAGHItQxPlA==}
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
@@ -1603,6 +1607,16 @@ packages:
       function-bind: 1.1.1
     dev: true
 
+  /highlight.js/11.5.0:
+    resolution: {integrity: sha512-SM6WDj5/C+VfIY8pZ6yW6Xa0Fm1tniYVYWYW1Q/DcMnISZFrC3aQAZZZFAAZtybKNrGId3p/DNbFTtcTXXgYBw==}
+    engines: {node: '>=12.0.0'}
+    dev: true
+
+  /highlight.js/11.5.1:
+    resolution: {integrity: sha512-LKzHqnxr4CrD2YsNoIf/o5nJ09j4yi/GcH5BnYz9UnVpZdS4ucMgvP61TDty5xJcFGRjnH4DpujkS9bHT3hq0Q==}
+    engines: {node: '>=12.0.0'}
+    dev: true
+
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
     dev: true
@@ -2870,6 +2884,12 @@ packages:
       - sass
       - stylus
       - sugarss
+    dev: true
+
+  /svelte-highlight/6.0.1:
+    resolution: {integrity: sha512-FOe0ePVoP59VO7e0cAXZ7OMooXEuC/lh0FK4Zr++3qRzNWm14a/ljICBTGZXqD+/l3mAIB5EzkVu3Nc/TZEyuA==}
+    dependencies:
+      highlight.js: 11.5.0
     dev: true
 
   /svelte-hmr/0.14.11_svelte@3.48.0:

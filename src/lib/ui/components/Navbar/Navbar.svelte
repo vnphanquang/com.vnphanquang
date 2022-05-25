@@ -62,7 +62,10 @@
 
     <ul class="hidden grid-cols-[repeat(3,auto)] gap-x-4 font-quang text-lg font-bold md:grid">
       {#each Object.values(navlinks) as { href, text }}
-        <li class="navlink relative px-2 hover:text-primary" data-active={pathname.startsWith(href) ? "true" : "false"}>
+        <li
+          class="navlink relative px-2 hover:text-primary"
+          data-active={pathname.startsWith(href) ? 'true' : 'false'}
+        >
           <a {href} sveltekit:prefetch>{text}</a>
         </li>
       {/each}
@@ -78,7 +81,10 @@
         transition:fade={{ duration: 200 }}
       >
         {#each [{ href: AppRoutes.index, text: 'home' }, ...Object.values(navlinks)] as { href, text }}
-          <li class="navlink relative px-3 hover:text-primary" data-active={pathname.startsWith(href) ? "true" : "false"}>
+          <li
+            class="navlink relative px-3 hover:text-primary"
+            data-active={pathname.startsWith(href) ? 'true' : 'false'}
+          >
             <a {href} on:click={() => (navbarMenuOpen = false)} sveltekit:prefetch>{text}</a>
           </li>
         {/each}
@@ -108,11 +114,11 @@
 </nav>
 
 {#if !isLightTheme}
-  <div transition:fade={{ duration: 800 }} class="backdrop fixed inset-0 z-navbar" />
+  <div transition:fade={{ duration: 800 }} class="backdrop fixed inset-0 z-overlay" />
   <label
     for="theme-toggler"
     transition:fly={{ y: -500, easing: elasticInOut, duration: 1000 }}
-    class="fixed top-[10vh] left-1/2 z-navbar -translate-x-1/2 cursor-pointer"
+    class="fixed top-[10vh] left-1/2 z-overlay -translate-x-1/2 cursor-pointer"
   >
     <div class="wire" />
     <div class="bulb on">
@@ -128,11 +134,11 @@
     content: '';
   }
 
-  .navlink[data-active="true"] {
+  .navlink[data-active='true'] {
     @apply text-primary;
   }
 
-  .navlink[data-active="true"]::after,
+  .navlink[data-active='true']::after,
   .navlink:hover::after {
     @apply origin-left scale-x-100;
   }

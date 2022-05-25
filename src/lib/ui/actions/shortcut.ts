@@ -38,9 +38,7 @@ export function shortcut(node: HTMLElement, params: ShortcutParameters) {
         const modifierDefs = (Array.isArray(modifier) ? modifier : [modifier]).map((def) =>
           typeof def === 'string' ? [def] : def,
         );
-        const modified = modifierDefs.every((def) =>
-          def.every((modifier) => modifiedMap[modifier]),
-        );
+        const modified = modifierDefs.some((def) => def.every((modifier) => modifiedMap[modifier]));
         if (!modified) continue;
       }
       if (event.key === key && triggerEnabled) {

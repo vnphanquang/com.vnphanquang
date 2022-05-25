@@ -24,7 +24,7 @@
     trigger: [
       {
         key: 'k',
-        modifier: 'ctrl',
+        modifier: ['ctrl', 'meta'],
         callback: onOpenCommandPalette,
         preventDefault: true,
       },

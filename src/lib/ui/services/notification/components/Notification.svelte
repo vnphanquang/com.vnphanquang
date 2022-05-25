@@ -60,7 +60,7 @@
       <Icon data={icon} scale={2} />
     </p>
     <div class="">
-      <h6 class="font-bold text-lg">
+      <h6 class="text-lg font-bold">
         {title}
       </h6>
       <p class="mt-2 text-sm">
@@ -82,7 +82,7 @@
   .noti {
     & .noti__content {
       @apply relative min-w-[240px] max-w-md rounded border-l-[6px] bg-bg-accent py-3 px-4 shadow-lg;
-      @apply grid items-start grid-cols-[auto,1fr] gap-x-4;
+      @apply grid grid-cols-[auto,1fr] items-start gap-x-4;
     }
 
     & .noti__icon {

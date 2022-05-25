@@ -9,3 +9,5 @@ export * from './Navbar';
 export * from './HamburgerBtn';
 export * from './CommandPalette';
 export * from './MediaOverlay';
+export * from './Heading';
+export * from './TableOfContent';

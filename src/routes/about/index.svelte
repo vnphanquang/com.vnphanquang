@@ -95,8 +95,8 @@
         >
           <div
             class="mt-1 hidden
-            text-sm text-[#7c6f64]
-            md:flex flex-col
+            flex-col text-sm
+            text-[#7c6f64] md:flex
             {index % 2 === 1
               ? 'md:col-start-3 md:row-start-1 md:justify-self-start md:text-left'
               : 'md:justify-self-end md:text-right'}
@@ -136,12 +136,18 @@
                 {@html paragraph}
               </p>
             {/each}
-            <ul class="flex gap-x-2 md:justify-end items-end overflow-x-auto max-w-full">
+            <ul class="flex max-w-full items-end gap-x-2 overflow-x-auto md:justify-end">
               {#each milestone.images as { id, src, alt, width } (id)}
                 <li class="">
                   <MediaOverlay {id} let:open>
-                    <img {src} {alt} {width} class="h-auto shadow rounded hover:shadow-lg" slot="static" />
-                    <img {src} {alt} class="shadow rounded w-max" />
+                    <img
+                      {src}
+                      {alt}
+                      {width}
+                      class="h-auto rounded shadow hover:shadow-lg"
+                      slot="static"
+                    />
+                    <img {src} {alt} class="w-max rounded shadow" />
                   </MediaOverlay>
                 </li>
               {/each}

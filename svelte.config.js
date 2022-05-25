@@ -21,6 +21,9 @@ const config = {
           $generated: path.resolve('./src/generated'),
         },
       },
+      optimizeDeps: {
+        include: ['highlight.js', 'highlight.js/lib/core'],
+      },
     },
   },
 };

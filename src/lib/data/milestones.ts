@@ -50,7 +50,7 @@ export const milestones: Milestone[] = [
         src: '/images/psm/psm1-certificate.webp',
         width: 100,
       },
-    ]
+    ],
   },
   {
     id: 8,
@@ -269,19 +269,22 @@ export const milestones: Milestone[] = [
       'High Honors Associate in Science degrees in Computer Science, Mathematics, and Chemistry',
     paragraphs: [],
     timemark: '2019',
-    images: [{
-      id: 'foothill-graduation-photo',
-      alt: 'Foothill - Graduation',
-      src: '/images/foothill/graduation.webp',
-      width: 100,
-    }],
+    images: [
+      {
+        id: 'foothill-graduation-photo',
+        alt: 'Foothill - Graduation',
+        src: '/images/foothill/graduation.webp',
+        width: 100,
+      },
+    ],
   },
   {
     id: 2,
     slug: 'sjsu-simocko',
     time: 'July, 2018',
     location: 'San Jose, California, USA',
-    headline: '<a class="c-link" href="http://www.sjsu.edu/" target="_blank">San Jose State University</a>',
+    headline:
+      '<a class="c-link" href="http://www.sjsu.edu/" target="_blank">San Jose State University</a>',
     title:
       'Research intern in <a class="c-link" href="http://www.sjsu.edu/simocko/" target="_blank">Dr. Chester Simocko\'s</a> team on olefin metathesis polymerization',
     paragraphs: [
