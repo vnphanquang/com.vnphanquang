@@ -27,7 +27,7 @@
   <meta name="description" content="Quang Phan's truncated timeline" />
 
   <meta property="og:title" content="About vnphanquang" />
-  <meta property="og:image" content="https://vnphanquang.com/images/screenshot-about.png" />
+  <meta property="og:image" content="https://vnphanquang.com/images/screenshots/about.png" />
   <meta property="og:url" content="https://vnphanquang.com{AppRoutes.about.index}" />
   <meta name="twitter:card" content="summary_large_image" />
 

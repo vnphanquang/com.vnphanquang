@@ -330,7 +330,7 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   <meta name="description" content={METADATA.description} />
 
   <meta property="og:title" content={METADATA.title} />
-  <meta property="og:image" content="https://vnphanquang.com/images/screenshot-about.png" />
+  <meta property="og:image" content="https://vnphanquang.com/images/screenshots/blog-typescript-flatten-record.png" />
   <meta property="og:url" content="https://vnphanquang.com{METADATA.href}" />
   <meta name="twitter:card" content="summary_large_image" />
 

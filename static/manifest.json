@@ -22,14 +22,14 @@
   ],
   "screenshots": [
     {
-      "src": "/images/screenshot.png",
+      "src": "/images/screenshots/index.png",
       "sizes": "1280x720",
       "type": "image/png",
       "platform": "wide",
       "label": "Homepage of vnphanquang"
     },
     {
-      "src": "/images/screenshot-about.png",
+      "src": "/images/screenshots/about.png",
       "sizes": "1280x720",
       "type": "image/png",
       "platform": "wide",
