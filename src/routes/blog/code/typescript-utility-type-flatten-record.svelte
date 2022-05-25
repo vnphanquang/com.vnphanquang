@@ -338,8 +338,8 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   <meta property="article:author" content="Quang Phan" />
   <meta property="article:tag" content="code" />
   <meta property="article:tag" content="typescript" />
-  <meta property="article:published_time" content="{METADATA.publishedAt}" />
-  <meta property="article:modified_time" content="{METADATA.publishedAt}" />
+  <meta property="article:published_time" content={METADATA.publishedAt} />
+  <meta property="article:modified_time" content={METADATA.publishedAt} />
 
   {@html gruvbox}
 </svelte:head>
@@ -354,7 +354,7 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
           <span class="c-tag">{tag}</span>
         {/each}
       </p>
-      <p class="text-right">{blogDate(METADATA.updatedAt)}</p>
+      <p>{blogDate(METADATA.updatedAt)}</p>
     </section>
     <section>
       <Heading {...HEADING.toc} />

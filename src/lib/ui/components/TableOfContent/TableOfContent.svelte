@@ -37,7 +37,7 @@
 >
   {#if float}
     <input type="checkbox" id={ID} hidden bind:checked={open} />
-    <label class="flex w-full cursor-pointer items-start" for={ID}>
+    <label class="sticky top-0 flex w-full cursor-pointer items-start" for={ID}>
       <p class="flex flex-1 items-center justify-end">
         <Icon data={server} scale={1.25} />
       </p>

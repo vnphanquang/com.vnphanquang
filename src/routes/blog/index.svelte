@@ -24,15 +24,15 @@
 </svelte:head>
 
 <!-- TODO: breadcumbs -->
-<main class="flex flex-col h-full py-20 px-8 md:px-20 w-full max-w-5xl mx-auto">
+<main class="mx-auto flex h-full w-full max-w-5xl flex-col py-20 px-8 md:px-20">
   <h1 class="text-center font-quang text-6xl font-bold">Yet Another Blog</h1>
-  <p class='text-center mt-8 font-quang text-2xl'>
-    You write, i write, we all write
-  </p>
-  <section class="flex-1 mt-20">
+  <p class="mt-8 text-center font-quang text-2xl">You write, i write, we all write</p>
+  <section class="mt-20 flex-1">
     <ul>
       {#each Object.values(BLOG_METADATA) as { title, description, tags, href, updatedAt }}
-        <li class="relative grid grid-cols-1 gap-y-6 shadow-center-lg hover:shadow-center-xl p-8 rounded-xl bg-bg border-2 border-border">
+        <li
+          class="relative grid grid-cols-1 gap-y-6 rounded-xl border-2 border-border bg-bg p-8 shadow-center-lg hover:shadow-center-xl"
+        >
           <p class="flex gap-x-2">
             {#each tags as tag}
               <span class="c-tag">{tag}</span>
@@ -42,12 +42,14 @@
           <p class="">{blogDate(updatedAt)}</p>
           <p>{description}</p>
           <a {href} class="c-btn w-fit">Read on</a>
-          <p class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 bg-bg-accent rounded-full grid place-items-center p-3">
+          <p
+            class="absolute left-0 top-0 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-bg-accent p-3"
+          >
             <Icon data={getCornerIcon(tags)} scale={2} />
           </p>
         </li>
       {/each}
     </ul>
-    <p class="text-center mt-20">More to come...</p>
+    <p class="mt-20 text-center">More to come...</p>
   </section>
 </main>
