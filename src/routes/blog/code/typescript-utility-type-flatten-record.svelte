@@ -348,7 +348,6 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   <TableOfContent.Context>
     <section class="text-center">
       <Heading {...HEADING.title} />
-      <p class="italic">A quick walkthrough of how this it is put together</p>
       <p class="flex justify-center gap-x-2">
         {#each METADATA.tags as tag}
           <span class="c-tag">{tag}</span>
