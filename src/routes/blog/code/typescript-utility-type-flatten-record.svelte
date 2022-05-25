@@ -604,7 +604,7 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
       <p>Listed below is all the resources linked from this post.</p>
       <ul>
         {#each Object.values(RESOURCES) as { name, href }}
-          <li class="max-w-full text-ellipsis">
+          <li class="">
             {name}: <a {href} target="_blank">{href}</a>
           </li>
         {/each}
