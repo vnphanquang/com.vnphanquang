@@ -18,10 +18,6 @@
       href: AppRoutes.blog.index,
       text: 'blog',
     },
-    gallery: {
-      href: AppRoutes.gallery.index,
-      text: 'gallery',
-    },
     about: {
       href: AppRoutes.about.index,
       text: 'about',

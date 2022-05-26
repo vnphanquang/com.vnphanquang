@@ -2,20 +2,30 @@
   import classnames from 'classnames';
 
   export let id: string;
+  export let hoverToFlip = true;
   export let skew: 'left' | 'right' | 'none' = 'left';
 
   $: hasBack = $$slots.back;
 </script>
 
-<input type="checkbox" id="{id}-toggler" hidden class="toggler" />
+<input type="checkbox" id="{id}-toggler" hidden class="toggler {hoverToFlip ? 'hoverToFlip' : ''}" />
 <label {id} class="{skew} cursor-pointer" for="{id}-toggler">
-  <div class="card {classnames($$props.class, hasBack && 'hasBack')}">
+  <div class={classnames(
+    'card',
+    'relative grid place-items-center bg-yellow2/80',
+    $$props.class,
+    hasBack && 'hasBack',
+  )}>
     <div class="front">
       <slot name="front" />
     </div>
 
     {#if hasBack}
-      <div class="back">
+      <div class={classnames(
+        'back',
+        'absolute inset-0 grid h-full w-full place-items-center bg-yellow2/80',
+        $$props.class,
+      )}>
         <slot name="back" />
       </div>
     {/if}
@@ -42,15 +52,15 @@
     @apply drop-shadow-2xl;
   }
   .toggler:checked ~ label > .card.hasBack,
-  .toggler:hover ~ label > .card.hasBack {
+  .toggler.hoverToFlip:hover ~ label > .card.hasBack {
     transform: rotateY(180deg);
   }
   .toggler:checked ~ label > .card:not(.hasBack),
-  .toggler:hover ~ label > .card:not(.hasBack) {
+  .toggler.hoverToFlip:hover ~ label > .card:not(.hasBack) {
     transform: rotateY(0);
   }
   .toggler:checked ~ label::before,
-  .toggler:hover ~ label::before {
+  .toggler.hoverToFlip:hover ~ label::before {
     transform: none;
   }
   label > .card,
@@ -72,7 +82,6 @@
   }
 
   .card {
-    @apply relative grid place-items-center bg-yellow2/80;
     grid-area: 1/1;
   }
   .card.hasBack {
@@ -85,7 +94,6 @@
   }
 
   .back {
-    @apply absolute inset-0 grid h-full w-full place-items-center bg-yellow2/80;
     transform-style: preserve-3d;
     backface-visibility: hidden;
     transform: rotateY(180deg);

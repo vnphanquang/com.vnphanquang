@@ -16,11 +16,9 @@
 
 <input type="checkbox" {id} hidden bind:checked={open} />
 
-{#if $$slots.static}
-  <label for={id} class="cursor-pointer">
-    <slot {open} name="static" />
-  </label>
-{/if}
+<label for={id} class="cursor-pointer {$$props.class}">
+  <slot {open} />
+</label>
 
 <svelte:window
   use:shortcut={{
@@ -45,7 +43,11 @@
       <Icon data={close} scale={2} />
     </button>
     <div class="inset-center absolute h-fit max-h-[90vh] w-fit max-w-[90vw]">
-      <slot {open} />
+      {#if $$slots.overlay}
+        <slot {open} name="overlay" />
+      {:else}
+        <slot {open} />
+      {/if}
     </div>
   </aside>
 {/if}

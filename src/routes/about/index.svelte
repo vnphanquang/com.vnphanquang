@@ -145,9 +145,8 @@
                       {alt}
                       {width}
                       class="h-auto rounded shadow hover:shadow-lg"
-                      slot="static"
                     />
-                    <img {src} {alt} class="w-max rounded shadow" />
+                    <img {src} {alt} class="w-max rounded shadow" slot="overlay" />
                   </MediaOverlay>
                 </li>
               {/each}

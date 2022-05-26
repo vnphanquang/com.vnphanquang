@@ -32,7 +32,7 @@
       headline: 'Underexposed photos, unbalanced composition, out-of-focus subjects,...',
       paragraphs: [
         'Maybe one of these photos is worth a banh mi?',
-        `See <a href="${AppRoutes.gallery.index}" class="c-link" sveltekit:prefetch>gallery</a> for (perhaps) joy?`,
+        `See <a href="https://instagram.com/vnphanquang" class="c-link" target="_blank">instagram</a> for (perhaps) joy?`,
       ],
     },
     {

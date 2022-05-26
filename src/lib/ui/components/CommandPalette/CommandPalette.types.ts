@@ -13,7 +13,6 @@ export const COMMAND_ID_DICTIONARY = {
     internal: {
       home: 'open.internal.home',
       about: 'open.internal.about',
-      gallery: 'open.internal.gallery',
       blog: 'open.internal.blog',
       resume: 'open.internal.resume',
       exOcculto: {

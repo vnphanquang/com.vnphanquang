@@ -22,14 +22,6 @@ export const COMMANDS: Record<Command['id'], Command> = {
     scopes: ['global'],
     cacheable: true,
   },
-  [COMMAND_ID_DICTIONARY.open.internal.gallery]: {
-    type: 'open',
-    id: COMMAND_ID_DICTIONARY.open.internal.gallery,
-    href: AppRoutes.gallery.index,
-    description: 'Open Gallery page',
-    scopes: ['global'],
-    cacheable: true,
-  },
   [COMMAND_ID_DICTIONARY.open.internal.blog]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.internal.blog,

@@ -15,8 +15,5 @@
     "solanumLycopersicum": "/ex-occulto/solanum-lycopersicum",
     "__dir": "/ex-occulto"
   },
-  "gallery": {
-    "index": "/gallery"
-  },
   "index": "/"
 }

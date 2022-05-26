@@ -79,3 +79,15 @@
     {/if}
   </h6>
 {/if}
+
+<style lang="postcss">
+  h1,h2,h3,h4,h5,h6 {
+    position: relative;
+
+    &:hover::before {
+      content: '#';
+      position: absolute;
+      right: 101%;
+    }
+  }
+</style>
