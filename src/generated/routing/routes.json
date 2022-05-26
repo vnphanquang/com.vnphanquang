@@ -4,11 +4,8 @@
   },
   "blog": {
     "[...path]": "/blog/[...path]",
-    "code": {
-      "typescriptUtilityTypeFlattenRecord": "/blog/code/typescript-utility-type-flatten-record",
-      "__dir": "/blog/code"
-    },
-    "index": "/blog"
+    "index": "/blog",
+    "typescriptUtilityTypeFlattenRecord": "/blog/typescript-utility-type-flatten-record"
   },
   "exOcculto": {
     "chrysanthemumMaximum": "/ex-occulto/chrysanthemum-maximum",

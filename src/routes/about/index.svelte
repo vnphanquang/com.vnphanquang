@@ -1,6 +1,7 @@
 <script lang="ts">
   import { intersect } from '@svelte-put/intersect';
 
+  import { AppConfig } from '$config';
   import { AppRoutes } from '$generated/routing';
   import { milestones } from '$lib/data/milestones';
   import { MediaOverlay } from '$lib/ui/components';
@@ -27,8 +28,8 @@
   <meta name="description" content="Quang Phan's truncated timeline" />
 
   <meta property="og:title" content="About vnphanquang" />
-  <meta property="og:image" content="https://vnphanquang.com/images/screenshots/about.png" />
-  <meta property="og:url" content="https://vnphanquang.com{AppRoutes.about.index}" />
+  <meta property="og:image" content="{AppConfig.urls.web}/images/screenshots/about.png" />
+  <meta property="og:url" content="{AppConfig.urls.web}{AppRoutes.about.index}" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <meta property="og:type" content="profile" />

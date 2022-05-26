@@ -19,6 +19,7 @@ const config = {
       resolve: {
         alias: {
           $generated: path.resolve('./src/generated'),
+          $config: path.resolve(`./src/config/config.${process.env.NODE_ENV}.ts`)
         },
       },
       optimizeDeps: {

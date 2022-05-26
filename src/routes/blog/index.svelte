@@ -2,13 +2,17 @@
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import code from 'svelte-awesome/icons/code';
 
+  import { AppConfig } from '$config';
   import { AppRoutes } from '$generated/routing';
   import { BLOG_METADATA } from '$lib/data/blogs';
   import { blogDate } from '$lib/utils/datetime';
 
-  function getCornerIcon(tags: string[]) {
-    if (tags.includes('code')) {
-      return code;
+  function getCornerIcon(category: string) {
+    switch (category) {
+      case 'code':
+        return code;
+      default:
+        break;
     }
   }
 </script>
@@ -18,8 +22,8 @@
   <meta name="description" content="Quang Phan's blog page" />
 
   <meta property="og:title" content="Blog of vnphanquang" />
-  <meta property="og:image" content="https://vnphanquang.com/images/screenshots/blog.png" />
-  <meta property="og:url" content="https://vnphanquang.com{AppRoutes.blog.index}" />
+  <meta property="og:image" content="{AppConfig.urls.web}/images/screenshots/blog.png" />
+  <meta property="og:url" content="{AppConfig.urls.web}{AppRoutes.blog.index}" />
   <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
@@ -29,12 +33,12 @@
   <p class="mt-8 text-center font-quang text-2xl">You write, i write, we all write</p>
   <section class="mt-20 flex-1">
     <ul>
-      {#each Object.values(BLOG_METADATA) as { title, description, tags, href, updatedAt }}
+      {#each Object.values(BLOG_METADATA) as { title, description, category, tags, href, updatedAt }}
         <li
           class="relative grid grid-cols-1 gap-y-6 rounded-xl border-2 border-border bg-bg p-8 shadow-center-lg hover:shadow-center-xl"
         >
           <p class="flex gap-x-2">
-            {#each tags as tag}
+            {#each [category, ...tags] as tag}
               <span class="c-tag">{tag}</span>
             {/each}
           </p>
@@ -45,7 +49,7 @@
           <p
             class="absolute left-0 top-0 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-bg-accent p-3"
           >
-            <Icon data={getCornerIcon(tags)} scale={2} />
+            <Icon data={getCornerIcon(category)} scale={2} />
           </p>
         </li>
       {/each}

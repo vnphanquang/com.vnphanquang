@@ -1,6 +1,7 @@
 <script lang="ts">
   import { intersect } from '@svelte-put/intersect';
 
+  import { AppConfig } from '$config';
   import neverAskedQuestions from '$lib/data/neverAskedQuestions.json';
   import testimonials from '$lib/data/testimonials.json';
   import { ScrollDownMouse } from '$lib/ui/components';
@@ -36,8 +37,8 @@
   <meta name="description" content="Quang Phan's personal website" />
   <meta property="og:title" content="vnphanquang" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https:/vnphanquang.com/images/screenshots/index.png" />
-  <meta property="og:url" content="https://vnphanquang.com" />
+  <meta property="og:image" content="{AppConfig.urls.web}/images/screenshots/index.png" />
+  <meta property="og:url" content="{AppConfig.urls.web}" />
   <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 

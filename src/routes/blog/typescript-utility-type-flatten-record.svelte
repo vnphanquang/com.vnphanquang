@@ -3,11 +3,12 @@
   import typescript from 'svelte-highlight/languages/typescript';
   import gruvbox from 'svelte-highlight/styles/gruvbox-dark-soft';
 
+  import { AppConfig } from '$config';
   import { BLOG_METADATA, BLOG_ID_DICTIONARY } from '$lib/data/blogs';
   import { Heading, TableOfContent } from '$lib/ui/components';
   import { blogDate } from '$lib/utils/datetime';
 
-  const METADATA = BLOG_METADATA[BLOG_ID_DICTIONARY.code.typescriptUtilityTypeFlattenRecord];
+  const METADATA = BLOG_METADATA[BLOG_ID_DICTIONARY.typescriptUtilityTypeFlattenRecord];
 
   const RESOURCES = {
     florisBernard: {
@@ -330,8 +331,8 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   <meta name="description" content={METADATA.description} />
 
   <meta property="og:title" content={METADATA.title} />
-  <meta property="og:image" content="https://vnphanquang.com/images/screenshots/blog-typescript-flatten-record.png" />
-  <meta property="og:url" content="https://vnphanquang.com{METADATA.href}" />
+  <meta property="og:image" content={METADATA.screenshot} />
+  <meta property="og:url" content="{AppConfig.urls.web}{METADATA.href}" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <meta property="og:type" content="article" />

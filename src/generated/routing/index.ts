@@ -11,3 +11,4 @@ export function route(path: string, ...args: string[]): string {
   }
   return path;
 }
+

@@ -2,8 +2,8 @@
   "name": "com.vnphanquang",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "dev": "cross-env NODE_ENV=development svelte-kit dev",
+    "build": "cross-env NODE_ENV=development svelte-kit build",
     "build:production": "cross-env NODE_ENV=production svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",

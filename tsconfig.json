@@ -17,7 +17,8 @@
       "$lib": ["./src/lib"],
       "$lib/*": ["./src/lib/*"],
       "$generated": ["./src/generated"],
-      "$generated/*": ["./src/generated/*"]
+      "$generated/*": ["./src/generated/*"],
+      "$config": ["./src/config/config.development.ts"]
     }
   }
 }
