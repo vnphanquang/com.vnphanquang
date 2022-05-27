@@ -602,10 +602,10 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
     </section>
     <section>
       <Heading {...HEADING.reference} />
-      <p>Listed below is all the resources linked from this post.</p>
-      <ul>
+      <p>Listed in plain text below are all the resources linked from this post.</p>
+      <ul class="">
         {#each Object.values(RESOURCES) as { name, href }}
-          <li class="">
+          <li class="break-words mt-8">
             {name}: <a {href} target="_blank">{href}</a>
           </li>
         {/each}
