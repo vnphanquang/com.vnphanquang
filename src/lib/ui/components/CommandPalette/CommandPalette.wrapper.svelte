@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { shortcut } from '@svelte-put/shortcut';
   import { fade } from 'svelte/transition';
 
   import { beforeNavigate } from '$app/navigation';
-  import { shortcut } from '$lib/ui/actions/shortcut';
   import { CommandPalette } from '$lib/ui/components';
 
   let commandPalette = false;

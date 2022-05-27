@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { shortcut } from '@svelte-put/shortcut';
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import close from 'svelte-awesome/icons/close';
   import { fade } from 'svelte/transition';
 
-  import { shortcut } from '$lib/ui/actions/shortcut';
 
   export let id: string;
   export let open = false;
