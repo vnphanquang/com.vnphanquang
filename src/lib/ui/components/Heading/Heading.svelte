@@ -1,4 +1,6 @@
 <script lang="ts">
+  import classnames from 'classnames';
+
   import { TableOfContentContext } from '../TableOfContent/TableOfContent.context';
 
   export let id: string;
@@ -11,7 +13,11 @@
     context.register({ id, level, text });
   }
 
-  const classNames = `not-prose ${$$props.class}`;
+  const classNames = classnames(
+    'not-prose',
+    $$props.class,
+    anchored && 'anchored',
+  );
 </script>
 
 {#if anchored}
@@ -84,7 +90,7 @@
   h1,h2,h3,h4,h5,h6 {
     position: relative;
 
-    &:hover::before {
+    &.anchored:hover::before {
       content: '#';
       position: absolute;
       right: 101%;

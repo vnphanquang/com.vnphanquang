@@ -327,7 +327,7 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
 </script>
 
 <svelte:head>
-  <title>About | vnphanquang</title>
+  <title>Flatten Record | Blog | vnphanquang</title>
   <meta name="description" content={METADATA.description} />
 
   <meta property="og:title" content={METADATA.title} />
