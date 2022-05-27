@@ -161,8 +161,8 @@ export const milestones: Milestone[] = [
         class="inline-block rounded"
         src="/images/designveloper/logo.webp"
         alt="Designveloper"
-        width="13.7"
-        height="18.5"
+        width="30"
+        height="30"
       />
     </a>`,
     title: 'Software Developer',
@@ -323,8 +323,8 @@ export const milestones: Milestone[] = [
         class="inline-block rounded"
         src="/images/foothill/logo.webp"
         alt="Foothill College"
-        width="30"
-        height="30"
+        width="18"
+        height="25"
       />
     </a>`,
     title: '',
@@ -339,8 +339,8 @@ export const milestones: Milestone[] = [
       <a class="c-link" href="https://foothill.edu/psme" target="_blank">Physical Sciences, Mathematics & Engineering</a>`,
       '----------',
       `A naive decision to grab a backpack and go study aboard that would led to countless mistakes
-      which could be avoided by a more thought-out plan. For the first time the importance of
-      planning & research is learned.`,
+      which could have been avoided by a more thought-out plan (but no pain no gain, right?).
+      For the first time the importance of planning & research is well learned.`,
     ],
     timemark: '2016',
     images: [

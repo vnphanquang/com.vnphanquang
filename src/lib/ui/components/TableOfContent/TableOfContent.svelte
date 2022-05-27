@@ -27,6 +27,8 @@
   let open = false;
 </script>
 
+<!-- TODO: add a switch for automatically close on click (cached in localStorage) -->
+
 <div
   class={classnames(
     'not-prose flex w-fit flex-col overflow-auto',

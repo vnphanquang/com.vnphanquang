@@ -289,7 +289,9 @@ type Intermediate = ObjectPropertiesFlatMapping<NonFlatObject>;
 //     nested: "Object";
 // };
 
-// if all values of Intermediate extends "NonObject", then we have a flat object
+// if all values of Intermediate is of type "NonObject" literal
+// then we have a flat object,
+// which in this case we don't
 type IsFlat = ValuesOf<Intermediate> extends 'NonObject'
   ? true
   : false;
@@ -560,10 +562,10 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
           <Heading {...HEADING.flatObject} />
           <p>
             We have everything ready except the terminal case, aka when do we stop the recursive
-            algorithm? (or else it will run indefinitely).
+            algorithm (or else it will run indefinitely)?
           </p>
           <p>
-            For that, we need a <code>IsFlatObject</code> check to know when to stop.
+            For that, we need a <code>IsFlatObject</code> check.
           </p>
           <Highlight class="mt-2" language={typescript} code={CODES.isFlatObject} />
           <p>
@@ -590,8 +592,8 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
     <section>
       <Heading {...HEADING.limitation} />
       <p>
-        There is no deep merging strategy involved, meaning if two nested properties contain some
-        the same key with different values, <code>FlattenRecord</code> will result in
+        There is no deep merging strategy involved, meaning if two nested properties contain
+        one same key with different values, <code>FlattenRecord</code> will result in
         <code>never</code>.
       </p>
       <Highlight class="mt-2" language={typescript} code={CODES.limitationExample} />
