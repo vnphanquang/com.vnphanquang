@@ -86,6 +86,7 @@ export const milestones: Milestone[] = [
       <a class="c-link" href="https://threejs.org/" target="_blank">Three.JS</a>, ...`,
     ],
     images: [],
+    timemark: '2022',
   },
   {
     id: 7,
@@ -148,6 +149,7 @@ export const milestones: Milestone[] = [
         width: 100,
       },
     ],
+    timemark: '2020',
   },
   {
     id: 6,
@@ -327,7 +329,7 @@ export const milestones: Milestone[] = [
         height="25"
       />
     </a>`,
-    title: '',
+    title: 'Computer Science major',
     paragraphs: [
       `Chemistry and Math tutor at the
       <a class="c-link" href="https://foothill.edu/eops" target="_blank">Extended Opportunity Program & Services</a> and

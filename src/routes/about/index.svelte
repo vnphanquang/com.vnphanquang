@@ -1,10 +1,14 @@
 <script lang="ts">
   import { intersect } from '@svelte-put/intersect';
+  import { slide } from 'svelte/transition';
 
   import { AppConfig } from '$config';
   import { AppRoutes } from '$generated/routing';
   import { milestones } from '$lib/data/milestones';
   import { MediaOverlay } from '$lib/ui/components';
+
+  let SHOW_DETAILS_TOGGLER_ID = 'timeline-details-toggler';
+  let showDetails = true;
 
   const milestonesIntersectedMap: Record<number, boolean> = milestones.reduce((acc, curr) => {
     acc[curr.id] = false;
@@ -62,7 +66,7 @@
     </button>
     <p class="text-primary">~ • ~</p>
   </section>
-  <section class="w-full max-w-6xl px-4 md:px-10 xl:px-0">
+  <section class="w-full max-w-6xl px-4 md:px-10 xl:px-0 relative">
     <h2
       class="
         text-center font-quang text-3xl font-bold
@@ -73,7 +77,26 @@
     >
       A Truncated Timeline
     </h2>
-    <ul class="mt-6 flex flex-col items-center">
+    <div
+      class="
+        flex items-center gap-x-4 justify-end mt-6 w-full max-w-4xl
+        {intersectedMap.timelineHeading ? 'animate-fade-in-up' : 'opacity-0'}
+      "
+      use:intersect={{ threshold: 0.3, enabled: !intersectedMap.timelineHeading }}
+      on:intersectonce={() => (intersectedMap.timelineHeading = true)}
+    >
+      <label for={SHOW_DETAILS_TOGGLER_ID}>
+        Show details
+      </label>
+      <input
+        type="checkbox"
+        name={SHOW_DETAILS_TOGGLER_ID}
+        id={SHOW_DETAILS_TOGGLER_ID}
+        bind:checked={showDetails}
+        class="c-toggle-primary"
+      />
+    </div>
+    <ul class="mt-10 flex flex-col items-center">
       <li
         class="
           mb-4 self-start text-sm italic md:self-auto
@@ -89,6 +112,7 @@
         <li
           class="
             mt-1 grid grid-cols-[45px,1fr] justify-center gap-x-4 md:grid-cols-[1fr,auto,1fr] md:gap-x-8
+            {showDetails ? '' : 'mb-4'}
             {milestonesIntersectedMap[milestone.id] ? 'animate-fade-in-up' : 'opacity-0'}
           "
           use:intersect={{ threshold: 0.2, enabled: !milestonesIntersectedMap[milestone.id] }}
@@ -116,8 +140,7 @@
             {milestone.timemark ? 'pb-4' : 'pb-10'}
             {index % 2 === 1
               ? 'md:col-start-1 md:row-start-1 md:justify-items-end md:text-right'
-              : 'md:justify-items-start md:text-left'}
-          "
+              : 'md:justify-items-start md:text-left'}"
           >
             <p class="text-sm md:hidden">
               {milestone.time} - <span class="mt-4 italic">{milestone.location}</span>
@@ -132,26 +155,30 @@
                 {@html milestone.title}
               </h4>
             {/if}
-            {#each milestone.paragraphs as paragraph}
-              <p class="text-sm">
-                {@html paragraph}
-              </p>
-            {/each}
-            <ul class="flex max-w-full items-end gap-x-2 overflow-x-auto md:justify-end">
-              {#each milestone.images as { id, src, alt, width } (id)}
-                <li class="">
-                  <MediaOverlay {id} let:open>
-                    <img
-                      {src}
-                      {alt}
-                      {width}
-                      class="h-auto rounded shadow hover:shadow-lg"
-                    />
-                    <img {src} {alt} class="w-max rounded shadow" slot="overlay" />
-                  </MediaOverlay>
-                </li>
-              {/each}
-            </ul>
+            {#if showDetails}
+              <div class="grid grid-cols-1 gap-y-4" transition:slide>
+                {#each milestone.paragraphs as paragraph}
+                  <p class="text-sm">
+                    {@html paragraph}
+                  </p>
+                {/each}
+                <ul class="flex max-w-full items-end gap-x-2 overflow-x-auto md:justify-end">
+                  {#each milestone.images as { id, src, alt, width } (id)}
+                    <li class="">
+                      <MediaOverlay {id} let:open>
+                        <img
+                          {src}
+                          {alt}
+                          {width}
+                          class="h-auto rounded shadow hover:shadow-lg"
+                        />
+                        <img {src} {alt} class="w-max rounded shadow" slot="overlay" />
+                      </MediaOverlay>
+                    </li>
+                  {/each}
+                </ul>
+              </div>
+            {/if}
           </div>
           {#if milestone.timemark}
             <div class="relative pt-8 pb-20 md:col-[1/4] md:row-start-2">
