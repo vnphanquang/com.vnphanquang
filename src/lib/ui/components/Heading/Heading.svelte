@@ -13,11 +13,7 @@
     context.register({ id, level, text });
   }
 
-  const classNames = classnames(
-    'not-prose',
-    $$props.class,
-    anchored && 'anchored',
-  );
+  const classNames = classnames('not-prose', $$props.class, anchored && 'anchored');
 </script>
 
 {#if anchored}
@@ -87,7 +83,12 @@
 {/if}
 
 <style lang="postcss">
-  h1,h2,h3,h4,h5,h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     position: relative;
 
     &.anchored:hover::before {

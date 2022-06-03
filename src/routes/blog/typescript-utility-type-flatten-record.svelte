@@ -592,8 +592,8 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
     <section>
       <Heading {...HEADING.limitation} />
       <p>
-        There is no deep merging strategy involved, meaning if two nested properties contain
-        one same key with different values, <code>FlattenRecord</code> will result in
+        There is no deep merging strategy involved, meaning if two nested properties contain one
+        same key with different values, <code>FlattenRecord</code> will result in
         <code>never</code>.
       </p>
       <Highlight class="mt-2" language={typescript} code={CODES.limitationExample} />
@@ -607,7 +607,7 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
       <p>Listed in plain text below are all the resources linked from this post.</p>
       <ul class="">
         {#each Object.values(RESOURCES) as { name, href }}
-          <li class="break-words mt-8">
+          <li class="mt-8 break-words">
             {name}: <a {href} target="_blank">{href}</a>
           </li>
         {/each}

@@ -38,7 +38,7 @@
   <meta property="og:title" content="vnphanquang" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="{AppConfig.urls.web}/images/screenshots/index.png" />
-  <meta property="og:url" content="{AppConfig.urls.web}" />
+  <meta property="og:url" content={AppConfig.urls.web} />
   <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 

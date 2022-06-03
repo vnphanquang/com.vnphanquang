@@ -4,7 +4,6 @@
   import close from 'svelte-awesome/icons/close';
   import { fade } from 'svelte/transition';
 
-
   export let id: string;
   export let open = false;
   // TODO: find solution to make overlay works for multiple items with carousel style

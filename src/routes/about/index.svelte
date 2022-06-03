@@ -66,7 +66,7 @@
     </button>
     <p class="text-primary">~ • ~</p>
   </section>
-  <section class="w-full max-w-6xl px-4 md:px-10 xl:px-0 relative">
+  <section class="relative w-full max-w-6xl px-4 md:px-10 xl:px-0">
     <h2
       class="
         text-center font-quang text-3xl font-bold
@@ -79,15 +79,13 @@
     </h2>
     <div
       class="
-        flex items-center gap-x-4 justify-end mt-6 w-full max-w-4xl
+        mt-6 flex w-full max-w-4xl items-center justify-end gap-x-4
         {intersectedMap.timelineHeading ? 'animate-fade-in-up' : 'opacity-0'}
       "
       use:intersect={{ threshold: 0.3, enabled: !intersectedMap.timelineHeading }}
       on:intersectonce={() => (intersectedMap.timelineHeading = true)}
     >
-      <label for={SHOW_DETAILS_TOGGLER_ID}>
-        Show details
-      </label>
+      <label for={SHOW_DETAILS_TOGGLER_ID}> Show details </label>
       <input
         type="checkbox"
         name={SHOW_DETAILS_TOGGLER_ID}
@@ -111,7 +109,7 @@
         <p class="invisible -mt-24 h-24" id={milestone.slug} />
         <li
           class="
-            mt-1 grid grid-cols-[45px,1fr] justify-center gap-x-4 md:grid-cols-[1fr,auto,1fr] md:gap-x-8
+            mt-1 grid w-full grid-cols-[45px,1fr] justify-center gap-x-4 md:grid-cols-[1fr,auto,1fr] md:gap-x-8
             {showDetails ? '' : 'mb-4'}
             {milestonesIntersectedMap[milestone.id] ? 'animate-fade-in-up' : 'opacity-0'}
           "
@@ -166,12 +164,7 @@
                   {#each milestone.images as { id, src, alt, width } (id)}
                     <li class="">
                       <MediaOverlay {id} let:open>
-                        <img
-                          {src}
-                          {alt}
-                          {width}
-                          class="h-auto rounded shadow hover:shadow-lg"
-                        />
+                        <img {src} {alt} {width} class="h-auto rounded shadow hover:shadow-lg" />
                         <img {src} {alt} class="w-max rounded shadow" slot="overlay" />
                       </MediaOverlay>
                     </li>

@@ -79,7 +79,10 @@
         {#each [{ href: AppRoutes.index, text: 'home' }, ...Object.values(navlinks)] as { href, text }}
           <li
             class="navlink relative px-3 hover:text-primary"
-            data-active={(href === AppRoutes.index && href === pathname) || (href !== AppRoutes.index && pathname.startsWith(href)) ? 'true' : 'false'}
+            data-active={(href === AppRoutes.index && href === pathname) ||
+            (href !== AppRoutes.index && pathname.startsWith(href))
+              ? 'true'
+              : 'false'}
           >
             <a {href} on:click={() => (navbarMenuOpen = false)} sveltekit:prefetch>{text}</a>
           </li>

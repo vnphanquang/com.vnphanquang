@@ -12,14 +12,14 @@
   }
 </script>
 
-<svelte:window bind:scrollY={scrollY} bind:innerHeight={innerHeight} />
+<svelte:window bind:scrollY bind:innerHeight />
 
 {#if shown}
   <button
     transition:fly={{ y: 100, duration: 200 }}
     type="button"
     on:click={onClick}
-    class="c-btn-icon grid place-items-center p-4 fixed z-navbar bottom-4 right-4 bg-fg text-bg rounded-full shadow-lg"
+    class="c-btn-icon fixed bottom-4 right-4 z-navbar grid place-items-center rounded-full bg-fg p-4 text-bg shadow-lg"
     arial-label="Back to top"
   >
     <Icon data={arrowUp} scale={1.5} />
