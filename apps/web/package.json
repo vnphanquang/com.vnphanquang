@@ -31,6 +31,7 @@
     "@typescript-eslint/parser": "^5.25.0",
     "@vnphanquang/eslint-config": "workspace:^*",
     "@vnphanquang/prettierrc": "workspace:^",
+    "@vnphanquang/tailwind": "workspace:^",
     "autoprefixer": "^10.4.7",
     "cross-env": "^7.0.3",
     "cssnano": "^5.1.9",

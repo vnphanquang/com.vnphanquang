@@ -4,7 +4,8 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "configs/*"
+    "configs/*",
+    "libs/*"
   ],
   "scripts": {
     "turbo": "turbo",

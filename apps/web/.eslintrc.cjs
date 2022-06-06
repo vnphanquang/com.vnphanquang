@@ -1,5 +1,5 @@
 module.exports = {
-  ...require('@vnphanquang/prettierrc'),
+  ...require('@vnphanquang/eslint-plugin'),
   plugins: [require('prettier-plugin-tailwindcss')],
   tailwindConfig: './tailwind.config.cjs',
 };

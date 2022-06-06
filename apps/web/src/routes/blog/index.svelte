@@ -45,7 +45,7 @@
           <h2 class="text-2xl font-bold">{title}</h2>
           <p class="">{blogDate(updatedAt)}</p>
           <p>{description}</p>
-          <a {href} class="c-btn w-fit">Read on</a>
+          <a {href} class="c-btn w-fit" sveltekit:prefetch>Read on</a>
           <p
             class="absolute left-0 top-0 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-bg-accent p-3"
           >
