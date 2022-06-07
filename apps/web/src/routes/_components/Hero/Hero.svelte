@@ -1,5 +1,5 @@
 <script>
-  import { CornerRibbon, RubberStamp, TestTube } from '$lib/ui/components';
+  import { CornerRibbon, RubberStamp, TestTube } from '$lib/components';
 </script>
 
 <div

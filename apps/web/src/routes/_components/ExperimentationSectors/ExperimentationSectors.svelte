@@ -1,7 +1,7 @@
 <script lang="ts">
   import { AppRoutes } from '$generated/routing';
   import socials from '$lib/data/socials.json';
-  import { SkewedFlipCard } from '$lib/ui/components';
+  import { SkewedFlipCard } from '$lib/components';
 
   const sectors = [
     {

@@ -4,7 +4,7 @@
   import { AppConfig } from '$config';
   import neverAskedQuestions from '$lib/data/neverAskedQuestions.json';
   import testimonials from '$lib/data/testimonials.json';
-  import { ScrollDownMouse } from '$lib/ui/components';
+  import { ScrollDownMouse } from '$lib/components';
 
   import {
     NeverAskedQuestions,

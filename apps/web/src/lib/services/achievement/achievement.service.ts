@@ -1,4 +1,4 @@
-import { AchievementCache } from '$lib/ui/cache/achievement.cache';
+import { AchievementCache } from '$lib/cache/achievement.cache';
 
 import { notificationService, type NotificationService } from '../notification';
 
