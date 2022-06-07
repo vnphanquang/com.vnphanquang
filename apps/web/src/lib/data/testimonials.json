@@ -25,11 +25,11 @@
   },
   {
     "id": 2,
-    "quote": "Something to say",
-    "author": "Someone Else",
+    "quote": "This can be you",
+    "author": "You",
     "ref": "",
     "avatar": "/images/testimonials/generic.webp",
-    "title": "Fellow with some relationship",
+    "title": "You, yes it's you",
     "position": {
       "x": "58%",
       "y": "62%"
@@ -41,7 +41,7 @@
     "author": "Someone Else",
     "ref": "",
     "avatar": "/images/testimonials/generic.webp",
-    "title": "Fellow with some relationship",
+    "title": "Someone who knows Quang",
     "position": {
       "x": "28%",
       "y": "58%"
@@ -53,7 +53,7 @@
     "author": "Someone Else",
     "ref": "",
     "avatar": "/images/testimonials/generic.webp",
-    "title": "Fellow with some relationship",
+    "title": "Someone who knows Quang",
     "position": {
       "x": "75%",
       "y": "24%"
@@ -65,7 +65,7 @@
     "author": "Someone Else",
     "ref": "",
     "avatar": "/images/testimonials/generic.webp",
-    "title": "Fellow with some relationship",
+    "title": "Someone who knows Quang",
     "position": {
       "x": "50%",
       "y": "15%"
