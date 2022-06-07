@@ -2,9 +2,13 @@
   "$schema": "https://turborepo.org/schema.json",
   "baseBranch": "origin/main",
   "pipeline": {
+    "build:production": {
+      "dependsOn": ["^build:production"],
+      "outputs": [".svelte-kit/**", ".vercel_build_output/**"]
+    },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".svelte-kit/**"]
+      "outputs": [".svelte-kit/**"]
     },
     "lint": {
       "outputs": []
