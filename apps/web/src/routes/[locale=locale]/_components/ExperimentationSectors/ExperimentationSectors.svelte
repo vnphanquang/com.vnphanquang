@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { AppRoutes } from '$generated/routing';
   import socials from '$lib/data/socials.json';
   import { SkewedFlipCard } from '$lib/components';
+  import { AppRoutes, to } from '$lib/services/navigation';
 
   const sectors = [
     {
@@ -23,7 +23,7 @@
       headline: 'Cringeworthy writing, irrational logics, irrelevant topics, ...',
       paragraphs: [
         "This is what I'll definitely regret two years from now.",
-        `See <a href="${AppRoutes.blog.index}" class="c-link" sveltekit:prefetch>blog page</a> for more.`,
+        `See <a href="${to(AppRoutes.blog.index)}" class="c-link" sveltekit:prefetch>blog page</a> for more.`,
       ],
     },
     {

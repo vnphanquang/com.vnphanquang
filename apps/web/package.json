@@ -12,7 +12,7 @@
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "eslint --ignore-path .gitignore .",
     "format": "prettier --check --ignore-path .gitignore --plugin-search-dir=. \"./**/*.{ts,js,cjs,json,svelte}\"",
-    "codegen:routing": "roullector collect",
+    "codegen:routing": "roullector collect --inDir=\"./src/routes/[locale=locale]\"",
     "codegen": "run-p codegen:*"
   },
   "devDependencies": {
@@ -52,6 +52,7 @@
     "svelte-check": "^2.7.1",
     "svelte-highlight": "^6.0.1",
     "svelte-preprocess": "^4.10.6",
+    "sveltekit-i18n": "^2.2.2",
     "tailwindcss": "^3.0.24",
     "tslib": "^2.4.0",
     "typescript": "~4.6.4"

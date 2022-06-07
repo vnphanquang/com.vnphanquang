@@ -1,3 +1,15 @@
+<script lang="ts" context="module">
+  import { locale, loadTranslations } from '$lib/services/i18n';
+
+  import type { Load } from './__types/__layout';
+
+  export const load: Load = ({ params, url }) => {
+    locale.set(params.locale);
+    loadTranslations(params.locale, url.pathname);
+    return {};
+  };
+</script>
+
 <script lang="ts">
   import { Navbar, Footer } from '$lib/components';
   import { NotificationContainer } from '$lib/services/notification';
