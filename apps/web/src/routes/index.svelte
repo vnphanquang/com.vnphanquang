@@ -67,7 +67,6 @@
   <section
     id="testimonials"
     class="
-      text-fg
       grid w-full place-items-center bg-bg/50 py-14 px-6 sm:px-10 md:px-32
       {fadeIns.testimonials ? 'animate-fade-in-up' : 'opacity-0'}
     "
