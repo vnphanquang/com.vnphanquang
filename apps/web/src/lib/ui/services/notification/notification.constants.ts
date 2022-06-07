@@ -3,7 +3,6 @@ import exclamationCircle from 'svelte-awesome/icons/exclamationCircle';
 import exclamationTriangle from 'svelte-awesome/icons/exclamationTriangle';
 import infoCircle from 'svelte-awesome/icons/infoCircle';
 import trophy from 'svelte-awesome/icons/trophy';
-import { v4 as uuidv4 } from 'uuid';
 
 import type {
   AppNotificationVariant,
@@ -13,7 +12,7 @@ import type {
 
 export function createNotification(notification: AppNotificationInput): AppNotification {
   return {
-    id: uuidv4(),
+    id: crypto.randomUUID(),
     duration: 4000,
     variant: 'info',
     title: VariantToTitleMap[notification.variant ?? 'info'],
