@@ -5,7 +5,7 @@
   import { fly, fade } from 'svelte/transition';
 
   import { AppRoutes } from '$generated/routing';
-  import { AnimatedMail } from '$lib/ui/components';
+  import { AnimatedMail } from '$lib/components';
 
   let letter = false;
 </script>

@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import type { Load } from '@sveltejs/kit';
 
-  import { NotFoundBlog } from '$lib/ui/errors';
+  import { NotFoundBlog } from '$lib/errors';
 
   export const load: Load = ({ error, status }) => {
     return {

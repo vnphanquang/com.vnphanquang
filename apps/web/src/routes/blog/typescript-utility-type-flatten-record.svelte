@@ -5,7 +5,7 @@
 
   import { AppConfig } from '$config';
   import { BLOG_METADATA, BLOG_ID_DICTIONARY } from '$lib/data/blogs';
-  import { Heading, TableOfContent } from '$lib/ui/components';
+  import { Heading, TableOfContent } from '$lib/components';
   import { blogDate } from '$lib/utils/datetime';
 
   const METADATA = BLOG_METADATA[BLOG_ID_DICTIONARY.typescriptUtilityTypeFlattenRecord];

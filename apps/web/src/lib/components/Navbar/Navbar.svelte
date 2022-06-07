@@ -9,8 +9,8 @@
   import { browser } from '$app/env';
   import { afterNavigate } from '$app/navigation';
   import { AppRoutes } from '$generated/routing';
-  import { HamburgerBtn } from '$lib/ui/components/HamburgerBtn';
-  import { theme } from '$lib/ui/stores/theme';
+  import { HamburgerBtn } from '$lib/components/HamburgerBtn';
+  import { theme } from '$lib/stores/theme';
 
   let navbarMenuOpen = false;
   const navlinks = {

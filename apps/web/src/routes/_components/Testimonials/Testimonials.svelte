@@ -6,7 +6,7 @@
   import arrows from 'svelte-awesome/icons/arrows';
   import { fade } from 'svelte/transition';
 
-  import { TestimonialCardPositionCache } from '$lib/ui/cache/testimonialCardPosition.cache';
+  import { TestimonialCardPositionCache } from '$lib/cache/testimonialCardPosition.cache';
 
   import TestimonialCard from './TestimonialCard.svelte';
   import type { Testimonial } from './Testimonials.type';

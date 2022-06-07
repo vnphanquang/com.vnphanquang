@@ -1,4 +1,4 @@
-import type { Command } from '$lib/ui/components/CommandPalette';
+import type { Command } from '$lib/components/CommandPalette';
 
 import { BrowserCache } from './base/browser.cache';
 

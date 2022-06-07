@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
   import { AppRoutes } from '$generated/routing';
-  import { NotFoundBlog } from '$lib/ui/errors';
+  import { NotFoundBlog } from '$lib/errors';
 
   /** @type {import('./[...path]').Load} */
   export function load({ params }) {

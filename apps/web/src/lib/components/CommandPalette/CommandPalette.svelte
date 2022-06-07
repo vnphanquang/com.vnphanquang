@@ -7,10 +7,10 @@
   import { slide, fly } from 'svelte/transition';
 
   import { goto } from '$app/navigation';
-  import { CommandPaletteCache } from '$lib/ui/cache/commandPalette.cache';
-  import { AchievementId, achievementService } from '$lib/ui/services/achievement';
-  import { notificationService } from '$lib/ui/services/notification';
-  import { theme } from '$lib/ui/stores/theme';
+  import { CommandPaletteCache } from '$lib/cache/commandPalette.cache';
+  import { AchievementId, achievementService } from '$lib/services/achievement';
+  import { notificationService } from '$lib/services/notification';
+  import { theme } from '$lib/stores/theme';
 
   import { COMMANDS } from './CommandPalette.constants';
   import { type CommandType, type Command, COMMAND_ID_DICTIONARY } from './CommandPalette.types';

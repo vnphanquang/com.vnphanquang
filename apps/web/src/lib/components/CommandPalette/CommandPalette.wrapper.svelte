@@ -3,7 +3,7 @@
   import { fade } from 'svelte/transition';
 
   import { beforeNavigate } from '$app/navigation';
-  import { CommandPalette } from '$lib/ui/components';
+  import { CommandPalette } from '$lib/components';
 
   let commandPalette = false;
 

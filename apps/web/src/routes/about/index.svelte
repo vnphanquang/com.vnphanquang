@@ -5,7 +5,7 @@
   import { AppConfig } from '$config';
   import { AppRoutes } from '$generated/routing';
   import { milestones } from '$lib/data/milestones';
-  import { MediaOverlay } from '$lib/ui/components';
+  import { MediaOverlay } from '$lib/components';
 
   let SHOW_DETAILS_TOGGLER_ID = 'timeline-details-toggler';
   let showDetails = true;
