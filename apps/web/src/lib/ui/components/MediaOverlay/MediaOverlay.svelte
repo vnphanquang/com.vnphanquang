@@ -41,7 +41,7 @@
     >
       <Icon data={close} scale={2} />
     </button>
-    <div class="inset-center absolute h-fit max-h-[90vh] w-fit max-w-[90vw]">
+    <div class="absolute h-fit max-h-[90vh] w-fit max-w-[90vw] inset-center">
       {#if $$slots.overlay}
         <slot {open} name="overlay" />
       {:else}

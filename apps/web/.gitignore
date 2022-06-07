@@ -1,0 +1,3 @@
+.svelte-kit/
+.turbo/
+.vercel_build_output/

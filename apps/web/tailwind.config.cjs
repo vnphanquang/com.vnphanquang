@@ -14,10 +14,7 @@ const config = {
     },
   },
 
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@vnphanquang/tailwind'),
-  ],
+  plugins: [require('@tailwindcss/typography'), require('@vnphanquang/tailwind')],
 };
 
 module.exports = config;
