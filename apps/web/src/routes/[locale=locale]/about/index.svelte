@@ -3,9 +3,9 @@
   import { slide } from 'svelte/transition';
 
   import { AppConfig } from '$config';
-  import { AppRoutes } from '$generated/routing';
   import { milestones } from '$lib/data/milestones';
   import { MediaOverlay } from '$lib/components';
+  import { AppRoutes, to } from '$lib/services/navigation';
 
   let SHOW_DETAILS_TOGGLER_ID = 'timeline-details-toggler';
   let showDetails = true;
@@ -33,7 +33,7 @@
 
   <meta property="og:title" content="About vnphanquang" />
   <meta property="og:image" content="{AppConfig.urls.web}/images/screenshots/about.png" />
-  <meta property="og:url" content="{AppConfig.urls.web}{AppRoutes.about.index}" />
+  <meta property="og:url" content="{AppConfig.urls.web}{to(AppRoutes.about.index)}" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <meta property="og:type" content="profile" />

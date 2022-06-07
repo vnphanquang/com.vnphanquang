@@ -8,18 +8,18 @@
 
   import { browser } from '$app/env';
   import { afterNavigate } from '$app/navigation';
-  import { AppRoutes } from '$generated/routing';
   import { HamburgerBtn } from '$lib/components/HamburgerBtn';
+  import { AppRoutes, to } from '$lib/services/navigation';
   import { theme } from '$lib/stores/theme';
 
   let navbarMenuOpen = false;
   const navlinks = {
     blog: {
-      href: AppRoutes.blog.index,
+      href: to(AppRoutes.blog.index),
       text: 'blog',
     },
     about: {
-      href: AppRoutes.about.index,
+      href: to(AppRoutes.about.index),
       text: 'about',
     },
   };
@@ -53,7 +53,7 @@
       bind:open={navbarMenuOpen}
     />
     <p class="font-quang text-xl font-bold text-primary hover:text-secondary">
-      <a href="/" on:click={() => (navbarMenuOpen = false)}>vnphanquang</a>
+      <a href={to(AppRoutes.index)} on:click={() => (navbarMenuOpen = false)}>vnphanquang</a>
     </p>
 
     <ul class="hidden grid-cols-[repeat(3,auto)] gap-x-4 font-quang text-lg font-bold md:grid">
@@ -76,11 +76,11 @@
         "
         transition:fade={{ duration: 200 }}
       >
-        {#each [{ href: AppRoutes.index, text: 'home' }, ...Object.values(navlinks)] as { href, text }}
+        {#each [{ href: to(AppRoutes.index), text: 'home' }, ...Object.values(navlinks)] as { href, text }}
           <li
             class="navlink relative px-3 hover:text-primary"
-            data-active={(href === AppRoutes.index && href === pathname) ||
-            (href !== AppRoutes.index && pathname.startsWith(href))
+            data-active={(href === to(AppRoutes.index) && href === pathname) ||
+            (href !== to(AppRoutes.index) && pathname.startsWith(href))
               ? 'true'
               : 'false'}
           >

@@ -1,5 +1,5 @@
 import { AppConfig } from '$config';
-import { AppRoutes } from '$generated/routing';
+import { AppRoutes, to } from '$lib/services/navigation';
 
 export const BLOG_ID_DICTIONARY = {
   typescriptUtilityTypeFlattenRecord: 'typescript-utility-type-flatten-record',
@@ -15,6 +15,6 @@ export const BLOG_METADATA = {
     updatedAt: '2022-05-25',
     category: 'code',
     tags: ['typescript'],
-    href: AppRoutes.blog.typescriptUtilityTypeFlattenRecord,
+    href: to(AppRoutes.blog.typescriptUtilityTypeFlattenRecord),
   },
 };

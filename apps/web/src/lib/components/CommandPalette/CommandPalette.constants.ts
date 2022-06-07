@@ -1,5 +1,5 @@
-import { AppRoutes } from '$generated/routing';
 import socials from '$lib/data/socials.json';
+import { AppRoutes, to } from '$lib/services/navigation';
 
 import { COMMAND_ID_DICTIONARY, type Command } from './CommandPalette.types';
 
@@ -9,7 +9,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.internal.home]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.internal.home,
-    href: AppRoutes.index,
+    href: () => to(AppRoutes.index),
     description: 'Open Home page',
     scopes: ['global'],
     cacheable: true,
@@ -17,7 +17,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.internal.about]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.internal.about,
-    href: AppRoutes.about.index,
+    href: () => to(AppRoutes.about.index),
     description: 'Open About page',
     scopes: ['global'],
     cacheable: true,
@@ -25,7 +25,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.internal.blog]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.internal.blog,
-    href: AppRoutes.blog.index,
+    href: () => to(AppRoutes.blog.index),
     description: 'Open Blog page',
     scopes: ['global'],
     cacheable: true,
@@ -33,7 +33,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.internal.resume]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.internal.resume,
-    href: '/QuangPhan_Resume.pdf',
+    href: () => '/QuangPhan_Resume.pdf',
     description: "Open Quang Phan's resume",
     scopes: ['global'],
     cacheable: true,
@@ -41,7 +41,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.external.github]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.external.github,
-    href: socials.github.href,
+    href: () => socials.github.href,
     description: "Open Quang Phan's github profile",
     scopes: ['global'],
     cacheable: true,
@@ -49,7 +49,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.external.twitter]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.external.twitter,
-    href: socials.twitter.href,
+    href: () => socials.twitter.href,
     description: "Open Quang Phan's twitter profile",
     scopes: ['global'],
     cacheable: true,
@@ -57,7 +57,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.external.instagram]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.external.instagram,
-    href: socials.instagram.href,
+    href: () => socials.instagram.href,
     description: "Open Quang Phan's instagram profile",
     scopes: ['global'],
     cacheable: true,
@@ -65,7 +65,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.external.linkedin]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.external.linkedin,
-    href: socials.linkedin.href,
+    href: () => socials.linkedin.href,
     description: "Open Quang Phan's linkedin profile",
     scopes: ['global'],
     cacheable: true,
@@ -73,7 +73,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.external.jsfiddle]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.external.jsfiddle,
-    href: socials.jsfiddle.href,
+    href: () => socials.jsfiddle.href,
     description: "Open Quang Phan's jsfiddle profile",
     scopes: ['global'],
     cacheable: true,
@@ -81,7 +81,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.external.stackoverflow]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.external.stackoverflow,
-    href: socials.stackoverflow.href,
+    href: () => socials.stackoverflow.href,
     description: "Open Quang Phan's stackoverflow profile",
     scopes: ['global'],
     cacheable: true,
@@ -89,7 +89,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.external.strava]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.external.strava,
-    href: socials.strava.href,
+    href: () => socials.strava.href,
     description: "Open Quang Phan's strava profile",
     scopes: ['global'],
     cacheable: true,
@@ -99,7 +99,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.internal.exOcculto.solanumLycopersicum]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.internal.exOcculto.solanumLycopersicum,
-    href: AppRoutes.exOcculto.solanumLycopersicum,
+    href: () => to(AppRoutes.exOcculto.solanumLycopersicum),
     description: 'For one with a heart of a tomato...',
     scopes: ['global', 'secret'],
     secret: 'amica>solanum',
@@ -108,7 +108,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.internal.exOcculto.chrysanthemumMaximum]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.internal.exOcculto.solanumLycopersicum,
-    href: AppRoutes.exOcculto.chrysanthemumMaximum,
+    href: () => to(AppRoutes.exOcculto.chrysanthemumMaximum),
     description: 'Chrysanthemum flos imple cor meum in astris...',
     scopes: ['global', 'secret'],
     secret: 'chrysanthemum socius',

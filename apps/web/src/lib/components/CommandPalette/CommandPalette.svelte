@@ -108,9 +108,9 @@
       switch (command.type) {
         case 'open':
           if (command.id.startsWith('open.internal')) {
-            goto(command.href);
+            goto(command.href());
           } else {
-            window.open(command.href, '_blank');
+            window.open(command.href(), '_blank');
           }
           break;
         case 'run':

@@ -46,7 +46,7 @@ export interface CommandInfo {
 export interface CommandOpen extends CommandInfo {
   id: ValuesOf<FlattenRecord<CommandIdDictionary['open']>>;
   type: 'open';
-  href: string;
+  href: () => string;
 }
 
 export interface CommandRun extends CommandInfo {

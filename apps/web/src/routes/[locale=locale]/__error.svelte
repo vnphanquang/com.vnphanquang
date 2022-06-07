@@ -2,8 +2,10 @@
   import type { Load } from '@sveltejs/kit';
 
   import { NotFoundBlog } from '$lib/errors';
+  import { loadTranslations, locale, Locale } from '$lib/services/i18n';
 
   export const load: Load = ({ error, status }) => {
+    loadTranslations(locale.get() ?? Locale.en);
     return {
       props: {
         error,
@@ -14,6 +16,8 @@
 </script>
 
 <script lang="ts">
+  import { t } from '$lib/services/i18n';
+
   export let error: Error;
   export let status: number;
 
@@ -32,14 +36,14 @@
   <h2 class="max-w-xl text-center text-xl">
     {#if status === 404}
       {#if isNotFoundBlog}
-        Oops, no blog with that name exists yet.
+        {$t('error.NotFound.blog')}
       {:else}
-        The resource you are looking for is not available.
+        {$t('error.NotFound.others')}
       {/if}
     {:else}
-      Something went bonkers!
+      {$t('error.ServerError')}
     {/if}
-    Maybe try a different formula?
+    {$t('error.prompt')}
   </h2>
   <div class="relative">
     <img src="/images/chemistry/flasks.svg" alt="chemistry flasks" width="100" height="100" />
@@ -59,7 +63,7 @@
     />
   </div>
   <button class="c-btn text-sm uppercase" type="button" on:click={() => history.back()}>
-    Go Back
+    {$t('error.cta')}
   </button>
 </main>
 

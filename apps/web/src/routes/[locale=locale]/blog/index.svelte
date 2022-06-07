@@ -3,8 +3,8 @@
   import code from 'svelte-awesome/icons/code';
 
   import { AppConfig } from '$config';
-  import { AppRoutes } from '$generated/routing';
   import { BLOG_METADATA } from '$lib/data/blogs';
+  import { AppRoutes, to } from '$lib/services/navigation';
   import { blogDate } from '$lib/utils/datetime';
 
   function getCornerIcon(category: string) {
@@ -23,7 +23,7 @@
 
   <meta property="og:title" content="Blog of vnphanquang" />
   <meta property="og:image" content="{AppConfig.urls.web}/images/screenshots/blog.png" />
-  <meta property="og:url" content="{AppConfig.urls.web}{AppRoutes.blog.index}" />
+  <meta property="og:url" content="{AppConfig.urls.web}{to(AppRoutes.blog.index)}" />
   <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
