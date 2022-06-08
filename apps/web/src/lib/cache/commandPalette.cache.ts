@@ -2,7 +2,7 @@ import type { Command } from '$lib/components/CommandPalette';
 
 import { BrowserCache } from './base/browser.cache';
 
-interface CommandPaletteCacheData {
+export interface CommandPaletteCacheData {
   limit: number;
   recentCommands: Array<Command['id']>;
 }

@@ -23,7 +23,9 @@
       headline: 'Cringeworthy writing, irrational logics, irrelevant topics, ...',
       paragraphs: [
         "This is what I'll definitely regret two years from now.",
-        `See <a href="${to(AppRoutes.blog.index)}" class="c-link" sveltekit:prefetch>blog page</a> for more.`,
+        `See <a href="${to(
+          AppRoutes.blog.index,
+        )}" class="c-link" sveltekit:prefetch>blog page</a> for more.`,
       ],
     },
     {

@@ -1,9 +1,11 @@
 <script lang="ts">
   import classnames from 'classnames';
+  import { onMount } from 'svelte';
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import server from 'svelte-awesome/icons/server';
   import { slide } from 'svelte/transition';
 
+  import { TableOfContentsSettingsCache } from '$lib/cache/tableOfContentsSettings.cache';
   import { TableOfContentContext } from './TableOfContent.context';
 
   export let float = true;
@@ -25,36 +27,63 @@
   }
 
   let open = false;
-</script>
 
-<!-- TODO: add a switch for automatically close on click (cached in localStorage) -->
+  const CLOSE_ON_LINK_CLICK_ID = 'close-on-link-click';
+  let tableOfContentsSettingsCache: TableOfContentsSettingsCache;
+  let closeOnLinkClick: boolean;
+
+  $: closeOnLinkClick !== undefined && tableOfContentsSettingsCache.setCloseOnLinkClick(closeOnLinkClick);
+
+  function onLinkClick() {
+    if (closeOnLinkClick) {
+      open = false;
+    }
+  }
+
+  onMount(() => {
+    tableOfContentsSettingsCache = new TableOfContentsSettingsCache();
+    closeOnLinkClick = tableOfContentsSettingsCache.getCloseOnLinkClick();
+  });
+</script>
 
 <div
   class={classnames(
     'not-prose flex w-fit flex-col overflow-auto',
     float &&
-      "fixed right-4 top-24 z-float max-h-[calc(99vh-theme('spacing.32'))] max-w-[90vw] rounded bg-bg-accent p-3 shadow-lg hover:shadow-xl md:top-40 md:max-w-[50vw]",
+      "fixed right-4 top-24 z-float max-h-[calc(99vh-theme('spacing.36'))] max-w-[90vw] rounded bg-bg-accent shadow-lg hover:shadow-xl md:top-32 md:max-w-[50vw]",
     $$props.class,
   )}
 >
   {#if float}
     <input type="checkbox" id={ID} hidden bind:checked={open} />
-    <label class="sticky top-0 flex w-full cursor-pointer items-start" for={ID}>
+    <label class="sticky top-0 flex w-full cursor-pointer items-start p-3" for={ID}>
       <p class="flex flex-1 items-center justify-end">
         <Icon data={server} scale={1.25} />
       </p>
     </label>
   {/if}
   {#if open || !float}
-    <ul class={classnames('list-none', float && 'p-3 md:p-5')} transition:slide={{ duration: 200 }}>
+    <section class={classnames(float && 'p-3 md:p-5')} transition:slide={{ duration: 200 }}>
       {#if float}
+        <div class="mb-4 flex items-center justify-end gap-x-2">
+          <label for={CLOSE_ON_LINK_CLICK_ID}> Close on click </label>
+          <input
+            type="checkbox"
+            name={CLOSE_ON_LINK_CLICK_ID}
+            id={CLOSE_ON_LINK_CLICK_ID}
+            bind:checked={closeOnLinkClick}
+            class="c-toggle-primary"
+          />
+        </div>
         <h2 class="mb-4 text-lg font-bold">Table of Contents</h2>
       {/if}
-      {#each $tableOfContent as { id, level, text } (id)}
-        <li class={getLiClassNames(level)}>
-          <a href="#{id}">{text}</a>
-        </li>
-      {/each}
-    </ul>
+      <ul class="list-none">
+        {#each $tableOfContent as { id, level, text } (id)}
+          <li class={getLiClassNames(level)}>
+            <a href="#{id}" on:click={onLinkClick}>{text}</a>
+          </li>
+        {/each}
+      </ul>
+    </section>
   {/if}
 </div>

@@ -8,5 +8,5 @@
       status: 404,
       error: new NotFoundBlog(`Not found: ${to(AppRoutes.blog.index)}/${params.path}`),
     };
-  }
+  };
 </script>

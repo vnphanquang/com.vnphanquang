@@ -2,7 +2,7 @@ import type { AchievementId } from '../services/achievement/achievement.enum';
 
 import { BrowserCache } from './base/browser.cache';
 
-interface AchievementCacheData {
+export interface AchievementCacheData {
   unlocked: AchievementId[];
 }
 
