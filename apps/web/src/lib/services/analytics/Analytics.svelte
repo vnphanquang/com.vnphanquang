@@ -3,7 +3,7 @@
   import { page } from '$app/stores';
   import { AppConfig } from '$config';
 
-  const MEASUREMENT_ID = 'G-8WJ72291KL';
+  const MEASUREMENT_ID = AppConfig.env.gtagMeasurementId;
 
   $: if (browser && AppConfig.mode === 'production' && gtag) {
     gtag('config', MEASUREMENT_ID, {
@@ -22,8 +22,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-8WJ72291KL');
     </script>
   {/if}
 </svelte:head>

@@ -14,6 +14,10 @@ declare namespace App {
   // interface Stuff {}
 }
 
+interface ImportMetaEnv {
+  VITE_GTAG_MEASUREMENT_ID: string;
+}
+
 declare namespace svelte.JSX {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type EventHandler<E = Event, T = HTMLElement> = (event: E & { target: EventTarget & T }) => any;
