@@ -1,11 +1,11 @@
 <script lang="ts">
   import classnames from 'classnames';
-  import { onMount } from 'svelte';
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import server from 'svelte-awesome/icons/server';
   import { slide } from 'svelte/transition';
 
-  import { TableOfContentsSettingsCache } from '$lib/cache/tableOfContentsSettings.cache';
+  import { inputcache } from '$lib/actions/inputcache';
+
   import { TableOfContentContext } from './TableOfContent.context';
 
   export let float = true;
@@ -29,10 +29,7 @@
   let open = false;
 
   const CLOSE_ON_LINK_CLICK_ID = 'close-on-link-click';
-  let tableOfContentsSettingsCache: TableOfContentsSettingsCache;
   let closeOnLinkClick: boolean;
-
-  $: closeOnLinkClick !== undefined && tableOfContentsSettingsCache.setCloseOnLinkClick(closeOnLinkClick);
 
   function onLinkClick() {
     if (closeOnLinkClick) {
@@ -40,10 +37,6 @@
     }
   }
 
-  onMount(() => {
-    tableOfContentsSettingsCache = new TableOfContentsSettingsCache();
-    closeOnLinkClick = tableOfContentsSettingsCache.getCloseOnLinkClick();
-  });
 </script>
 
 <div
@@ -73,6 +66,7 @@
             id={CLOSE_ON_LINK_CLICK_ID}
             bind:checked={closeOnLinkClick}
             class="c-toggle-primary"
+            use:inputcache={{ id: CLOSE_ON_LINK_CLICK_ID}}
           />
         </div>
         <h2 class="mb-4 text-lg font-bold">Table of Contents</h2>

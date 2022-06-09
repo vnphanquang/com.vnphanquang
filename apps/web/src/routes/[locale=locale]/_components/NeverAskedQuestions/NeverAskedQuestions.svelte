@@ -3,6 +3,8 @@
   import chevronRight from 'svelte-awesome/icons/chevronRight';
   import { slide } from 'svelte/transition';
 
+  import { inputcache } from '$lib/actions/inputcache';
+
   export let data: {
     id: number;
     question: string;
@@ -13,12 +15,12 @@
 
   // TODO: fix @quantiz/common export-import and use slugify to generate slug for naq h3
 
-  let naqOnlyExpandOne = false;
+  let naqOnlyExpandOne: boolean;
   let expandedId: number | undefined;
   let expansionHistory: number[] = []; // saving index of naq
 
   function onChangeExpansionRule(event: { target: { checked: boolean } }) {
-    if (event.target.checked) {
+    if (naqOnlyExpandOne === false && event.target.checked) {
       let lastOpenedIndex = 0;
       for (const index of expansionHistory.reverse()) {
         if (naq[index].checked) {
@@ -27,14 +29,14 @@
         }
       }
       expandedId = naq[lastOpenedIndex].id;
-    } else {
+    } else if (naqOnlyExpandOne && event.target.checked === false) {
       for (const n of naq) {
         n.checked = expandedId === n.id;
       }
     }
   }
 
-  function onClickExpansion(index: number) {
+  function onExpansionsChanged(index: number) {
     if (expansionHistory[expansionHistory.length - 1] !== index) {
       expansionHistory.push(index);
     }
@@ -60,6 +62,7 @@
       class="c-toggle-primary"
       on:change={onChangeExpansionRule}
       bind:checked={naqOnlyExpandOne}
+      use:inputcache={{ id: 'naq-expansion-toggle' }}
     />
   </div>
 
@@ -67,23 +70,32 @@
     {#each naq as { id, question, answer, checked }, index (id)}
       {@const shouldExpand = naqOnlyExpandOne ? expandedId === id : checked}
       {@const htmlId = `naq-expansion-${id}`}
+      {@const name = 'naq-expansion'}
       <article class="hover:text-primary">
         <label
           for={htmlId}
           class="block border-b border-border px-4 py-6 hover:cursor-pointer"
-          on:click={() => onClickExpansion(index)}
         >
           {#if naqOnlyExpandOne}
             <input
               type="radio"
               id={htmlId}
-              name="naq-expansion"
+              {name}
+              on:change={() => onExpansionsChanged(index)}
               bind:group={expandedId}
               value={id}
               hidden
             />
           {:else}
-            <input type="checkbox" id={htmlId} bind:checked hidden />
+            <input
+              type="checkbox"
+              id={htmlId}
+              {name}
+              on:change={() => onExpansionsChanged(index)}
+              bind:checked
+              value={id}
+              hidden
+            />
           {/if}
           <div class="flex items-center justify-between">
             <h3 class="pr-4 font-bold sm:pr-10" id="naq-{id}">{question}</h3>
