@@ -36,7 +36,6 @@
       open = false;
     }
   }
-
 </script>
 
 <div
@@ -66,7 +65,7 @@
             id={CLOSE_ON_LINK_CLICK_ID}
             bind:checked={closeOnLinkClick}
             class="c-toggle-primary"
-            use:inputcache={{ id: CLOSE_ON_LINK_CLICK_ID}}
+            use:inputcache={{ id: CLOSE_ON_LINK_CLICK_ID }}
           />
         </div>
         <h2 class="mb-4 text-lg font-bold">Table of Contents</h2>

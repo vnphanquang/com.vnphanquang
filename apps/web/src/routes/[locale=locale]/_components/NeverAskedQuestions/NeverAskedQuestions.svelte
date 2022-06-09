@@ -72,10 +72,7 @@
       {@const htmlId = `naq-expansion-${id}`}
       {@const name = 'naq-expansion'}
       <article class="hover:text-primary">
-        <label
-          for={htmlId}
-          class="block border-b border-border px-4 py-6 hover:cursor-pointer"
-        >
+        <label for={htmlId} class="block border-b border-border px-4 py-6 hover:cursor-pointer">
           {#if naqOnlyExpandOne}
             <input
               type="radio"

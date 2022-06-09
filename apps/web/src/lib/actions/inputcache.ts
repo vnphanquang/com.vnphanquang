@@ -20,7 +20,9 @@ export function inputcache(node: HTMLInputElement, parameters: InputCacheParamet
         if (!!node.value && node.value !== 'off' && node.value !== 'on') {
           // if value, cache the group values
           const query = `input[name="${name}"]:checked`;
-          value = Array.from(document.querySelectorAll<HTMLInputElement>(query)).map(node => node.value);
+          value = Array.from(document.querySelectorAll<HTMLInputElement>(query)).map(
+            (node) => node.value,
+          );
         } else {
           // if no value, cache :checked state
           value = node.checked;
@@ -45,7 +47,6 @@ export function inputcache(node: HTMLInputElement, parameters: InputCacheParamet
           const previousChecked = node.checked;
           if (Array.isArray(value)) {
             node.checked = value.includes(node.value);
-
           } else {
             node.checked = value;
           }
@@ -71,6 +72,6 @@ export function inputcache(node: HTMLInputElement, parameters: InputCacheParamet
     },
     destroy() {
       node.removeEventListener('check', handler);
-    }
-  }
+    },
+  };
 }
