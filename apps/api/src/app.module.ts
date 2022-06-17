@@ -1,15 +1,19 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { TypedConfigModule, fileLoader } from 'nest-typed-config';
+
+import { Config } from '$config/index';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import configuration from './config/configuration';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [configuration],
+    /** https://github.com/Nikaple/nest-typed-config */
+    TypedConfigModule.forRoot({
+      schema: Config,
+      load: fileLoader({
+        basename: `.env.${process.env.NODE_ENV}`,
+      }),
     }),
   ],
   controllers: [AppController],

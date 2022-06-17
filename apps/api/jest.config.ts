@@ -10,5 +10,8 @@ const config: Config.InitialOptions = {
   collectCoverageFrom: ['**/*.(t|j)s'],
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
+  moduleNameMapper: {
+    '^$config/(.*)$': '<rootDir>/../src/config/$1',
+  },
 };
 export default config;
