@@ -9,10 +9,10 @@
     "build": "nest build",
     "lint": "eslint --ignore-path .gitignore .",
     "format": "prettier --check --ignore-path .gitignore --plugin-search-dir=. \"./**/*.{ts,js,cjs,json}\"",
+    "dev": "cross-env NODE_ENV=development nest start --watch",
     "start": "nest start",
-    "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "cross-env NODE_ENV=production node dist/main",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -21,9 +21,12 @@
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
-    "@nestjs/config": "^2.1.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-fastify": "^8.4.7",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "module-alias": "^2.2.2",
+    "nest-typed-config": "^2.4.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
@@ -41,6 +44,7 @@
     "@typescript-eslint/parser": "^5.0.0",
     "@vnphanquang/eslint-config": "workspace:^*",
     "@vnphanquang/prettierrc": "workspace:^",
+    "cross-env": "^7.0.3",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -53,5 +57,8 @@
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.0.0",
     "typescript": "^4.3.5"
+  },
+  "_moduleAliases": {
+    "$config": "dist/config"
   }
 }
