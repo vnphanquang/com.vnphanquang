@@ -4,7 +4,7 @@ import { Comment, Prisma } from '@prisma/client';
 import { PrismaService } from '$services/prisma/prisma.service';
 
 @Injectable()
-export class CommentDAO {
+export class CommentDao {
   constructor(private readonly prisma: PrismaService) {}
 
   byId(id: number) {
@@ -13,11 +13,23 @@ export class CommentDAO {
     });
   }
 
+  byUser(userId: number) {
+    return this.prisma.user.findUnique({ where: { id: userId } }).comments();
+  }
+
+  byPost(postId: number) {
+    return this.prisma.post.findUnique({ where: { id: postId } }).comments();
+  }
+
   all() {
     return this.prisma.comment.findMany();
   }
 
-  create(params: { authorId: number; data: Prisma.CommentCreateInput; postId: number }) {
+  create(params: {
+    authorId: number;
+    data: Omit<Prisma.CommentCreateInput, 'author' | 'post'>;
+    postId: number;
+  }) {
     const { authorId, data, postId } = params;
     return this.prisma.comment.create({
       data: {

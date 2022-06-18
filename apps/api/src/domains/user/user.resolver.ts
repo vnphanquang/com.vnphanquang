@@ -1,29 +1,40 @@
 import { ResolveField, Resolver, Root, Query, Args, Mutation } from '@nestjs/graphql';
 
-import { UserDAO } from './user.dao';
-import { UserDTO } from './user.dto';
+import { AuthenticationDao } from '$domains/authentication/authentication.dao';
+import { CommentDao } from '$domains/comment';
+import { UserDao } from '$domains/user/user.dao';
+import { UserDto } from '$domains/user/user.dto';
 
-@Resolver(() => UserDTO)
+@Resolver(() => UserDto)
 export class UserResolver {
-  constructor(private readonly userDAO: UserDAO) {}
+  constructor(
+    private readonly userDao: UserDao,
+    private readonly authenticationDao: AuthenticationDao,
+    private readonly commentDao: CommentDao,
+  ) {}
 
   @ResolveField()
-  comments(@Root() user: UserDTO) {
-    return this.userDAO.byId(user.id).comments();
+  comments(@Root() user: UserDto) {
+    return this.commentDao.byUser(user.id);
   }
 
-  @Query(() => [UserDTO])
+  @ResolveField()
+  authentications(@Root() user: UserDto) {
+    return this.authenticationDao.byUser(user.id);
+  }
+
+  @Query(() => [UserDto])
   users() {
-    return this.userDAO.all();
+    return this.userDao.all();
   }
 
-  @Mutation(() => UserDTO, { nullable: true })
+  @Mutation(() => UserDto, { nullable: true })
   deleteUser(@Args('id') id: number) {
-    return this.userDAO.delete(id);
+    return this.userDao.delete(id);
   }
 
-  @Query(() => UserDTO, { nullable: true })
+  @Query(() => UserDto, { nullable: true })
   userById(@Args('id') id: number) {
-    return this.userDAO.byId(id);
+    return this.userDao.byId(id);
   }
 }

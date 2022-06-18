@@ -9,11 +9,10 @@ import {
   Root,
 } from '@nestjs/graphql';
 
-import { PostDAO } from '$domains/post';
-import { UserDAO } from '$domains/user';
-
-import { CommentDAO } from './comment.dao';
-import { CommentDTO } from './comment.dto';
+import { CommentDao } from '$domains/comment/comment.dao';
+import { CommentDto } from '$domains/comment/comment.dto';
+import { PostDao } from '$domains/post';
+import { UserDao } from '$domains/user';
 
 @InputType()
 class CreateCommentInput {
@@ -27,50 +26,50 @@ class UpdateCommentInput {
   content?: string;
 }
 
-@Resolver(() => CommentDTO)
+@Resolver(() => CommentDto)
 export class CommentResolver {
   constructor(
-    private readonly commentDAO: CommentDAO,
-    private readonly postDAO: PostDAO,
-    private readonly userDAO: UserDAO,
+    private readonly commentDao: CommentDao,
+    private readonly postDao: PostDao,
+    private readonly userDao: UserDao,
   ) {}
 
-  @Mutation(() => CommentDTO)
+  @Mutation(() => CommentDto)
   createComment(
     @Args('data') data: CreateCommentInput,
     @Args('authorId') authorId: number,
     @Args('postId') postId: number,
   ) {
-    return this.commentDAO.create({ authorId, data, postId });
+    return this.commentDao.create({ authorId, data, postId });
   }
 
-  @Mutation(() => CommentDTO, { nullable: true })
+  @Mutation(() => CommentDto, { nullable: true })
   updateComment(@Args('id') id: number, @Args('data') data: UpdateCommentInput) {
-    return this.commentDAO.update(id, data);
+    return this.commentDao.update(id, data);
   }
 
-  @Mutation(() => CommentDTO, { nullable: true })
+  @Mutation(() => CommentDto, { nullable: true })
   deleteComment(@Args('id') id: number) {
-    return this.commentDAO.delete(id);
+    return this.commentDao.delete(id);
   }
 
-  @Query(() => [CommentDTO])
+  @Query(() => [CommentDto])
   comments() {
-    return this.commentDAO.all();
+    return this.commentDao.all();
   }
 
-  @Query(() => CommentDTO, { nullable: true })
+  @Query(() => CommentDto, { nullable: true })
   commentById(@Args('id') id: number) {
-    return this.commentDAO.byId(id);
+    return this.commentDao.byId(id);
   }
 
   @ResolveField()
-  post(@Root() comment: CommentDTO) {
-    return this.postDAO.byCommentId(comment.id);
+  post(@Root() comment: CommentDto) {
+    return this.postDao.byCommentId(comment.id);
   }
 
   @ResolveField()
-  author(@Root() comment: CommentDTO) {
-    return this.userDAO.byCommentId(comment.id);
+  author(@Root() comment: CommentDto) {
+    return this.userDao.byCommentId(comment.id);
   }
 }

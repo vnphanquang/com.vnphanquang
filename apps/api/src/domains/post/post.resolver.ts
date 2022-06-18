@@ -9,8 +9,9 @@ import {
   Root,
 } from '@nestjs/graphql';
 
-import { PostDAO } from './post.dao';
-import { PostDTO } from './post.dto';
+import { CommentDao } from '$domains/comment';
+import { PostDao } from '$domains/post/post.dao';
+import { PostDto } from '$domains/post/post.dto';
 
 @InputType()
 class UpdatePostInput {
@@ -18,32 +19,32 @@ class UpdatePostInput {
   title?: string;
 }
 
-@Resolver(() => PostDTO)
+@Resolver(() => PostDto)
 export class PostResolver {
-  constructor(private readonly postDAO: PostDAO) {}
+  constructor(private readonly postDao: PostDao, private readonly commentDao: CommentDao) {}
 
   @ResolveField()
-  comments(@Root() post: PostDTO) {
-    return this.postDAO.byId(post.id).comments();
+  comments(@Root() post: PostDto) {
+    return this.commentDao.byPost(post.id);
   }
 
-  @Query(() => [PostDTO])
+  @Query(() => [PostDto])
   posts() {
-    return this.postDAO.all();
+    return this.postDao.all();
   }
 
-  @Mutation(() => PostDTO, { nullable: true })
+  @Mutation(() => PostDto, { nullable: true })
   updatePost(@Args('id') id: number, @Args('data') data: UpdatePostInput) {
-    return this.postDAO.update(id, data);
+    return this.postDao.update(id, data);
   }
 
-  @Mutation(() => PostDTO, { nullable: true })
+  @Mutation(() => PostDto, { nullable: true })
   setPostPublication(@Args('id') id: number, @Args('published') published: boolean) {
-    return this.postDAO.update(id, { published });
+    return this.postDao.update(id, { published });
   }
 
-  @Query(() => PostDTO, { nullable: true })
+  @Query(() => PostDto, { nullable: true })
   userById(@Args('id') id: number) {
-    return this.postDAO.byId(id);
+    return this.postDao.byId(id);
   }
 }

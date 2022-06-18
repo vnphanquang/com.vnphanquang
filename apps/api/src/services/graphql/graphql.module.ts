@@ -4,15 +4,21 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
 
-import { CommentModule, CommentResolver } from '$domains/comment';
-import { PostModule, PostResolver } from '$domains/post';
-import { UserModule, UserResolver } from '$domains/user';
+import { AuthenticationDomainModule } from '$domains/authentication';
+import { AuthenticationResolver } from '$domains/authentication/authentication.resolver';
+import { CommentDomainModule } from '$domains/comment';
+import { CommentResolver } from '$domains/comment/comment.resolver';
+import { PostDomainModule } from '$domains/post';
+import { PostResolver } from '$domains/post/post.resolver';
+import { UserDomainModule } from '$domains/user';
+import { UserResolver } from '$domains/user/user.resolver';
 
 @Module({
   imports: [
-    UserModule,
-    PostModule,
-    CommentModule,
+    AuthenticationDomainModule,
+    UserDomainModule,
+    PostDomainModule,
+    CommentDomainModule,
     GraphQLModule.forRoot<MercuriusDriverConfig>({
       driver: MercuriusDriver,
       graphiql: true,
@@ -21,6 +27,6 @@ import { UserModule, UserResolver } from '$domains/user';
       sortSchema: true,
     }),
   ],
-  providers: [UserResolver, PostResolver, CommentResolver],
+  providers: [AuthenticationResolver, UserResolver, PostResolver, CommentResolver],
 })
 export class GraphqlModule {}

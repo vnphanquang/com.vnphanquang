@@ -4,7 +4,7 @@ import { Prisma } from '@prisma/client';
 import { PrismaService } from '$services/prisma/prisma.service';
 
 @Injectable()
-export class UserDAO {
+export class UserDao {
   constructor(private readonly prisma: PrismaService) {}
 
   byId(id: number) {
@@ -13,8 +13,18 @@ export class UserDAO {
     });
   }
 
+  byEmail(email: string) {
+    return this.prisma.user.findUnique({
+      where: { email },
+    });
+  }
+
   byCommentId(commentId: number) {
     return this.prisma.comment.findUnique({ where: { id: commentId } }).author();
+  }
+
+  byAuthenticationId(authenticationId: string) {
+    return this.prisma.authentication.findUnique({ where: { id: authenticationId } }).user();
   }
 
   all() {

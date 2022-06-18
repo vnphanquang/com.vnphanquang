@@ -4,13 +4,14 @@ import 'module-alias/register';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { fastify } from 'fastify';
+import fastifyCookie from 'fastify-cookie';
 
 import { ConfigService } from '$config/index';
 import { PrismaService } from '$services/prisma/prisma.service';
 
 import { AppModule } from './app.module';
 
-const fastifyInstance = fastify();
+const fastifyInstance = fastify({ logger: true });
 // keep compatible with express for oauth
 fastifyInstance.addHook('onRequest', (request, reply, done) => {
   (reply as any).setHeader = function (key, value) {
@@ -28,10 +29,15 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(fastifyInstance),
   );
+  const config = app.get(ConfigService).get();
+
+  app.register(fastifyCookie, {
+    secret: config.cookies.secret,
+  });
+
   const prisma = app.get(PrismaService);
   await prisma.enableShutdownHooks(app);
 
-  const config = app.get(ConfigService).get();
   try {
     await app.listen(config.port, config.host);
   } finally {

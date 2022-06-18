@@ -4,7 +4,7 @@ import { Prisma } from '@prisma/client';
 import { PrismaService } from '$services/prisma/prisma.service';
 
 @Injectable()
-export class PostDAO {
+export class PostDao {
   constructor(private readonly prisma: PrismaService) {}
 
   byId(id: number) {
