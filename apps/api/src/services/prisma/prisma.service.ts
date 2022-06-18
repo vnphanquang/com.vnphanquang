@@ -9,9 +9,44 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     await this.$connect();
   }
 
-  async enableShutdownHooks(app: INestApplication) {
+  async enableSoftDelete() {
+    this.$use(async (params, next) => {
+      if (params.action === 'delete') {
+        params.action = 'update';
+        params.args['data'] = { deleted: true };
+      } else if (params.action === 'deleteMany') {
+        params.action = 'updateMany';
+        if (params.args.data != undefined) {
+          params.args.data['deleted'] = true;
+        } else {
+          params.args['data'] = { deleted: true };
+        }
+      }
+      return next(params);
+    });
+
+    this.$use(async (params, next) => {
+      if (params.action === 'update') {
+        // Change to updateMany - you cannot filter
+        // by anything except ID / unique with findUnique
+        params.action = 'updateMany';
+        // Add 'deleted' filter
+        // ID filter maintained
+        params.args.where['deleted'] = false;
+      } else if (params.action === 'updateMany') {
+        if (params.args.where != undefined) {
+          params.args.where['deleted'] = false;
+        } else {
+          params.args['where'] = { deleted: false };
+        }
+      }
+      return next(params);
+    });
+  }
+
+  async enableShutdownHooks(_app: INestApplication) {
     this.$on('beforeExit', async () => {
-      await app.close();
+      console.log('Shutting down prisma...');
     });
   }
 }
