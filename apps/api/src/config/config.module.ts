@@ -1,17 +1,10 @@
 import { Module } from '@nestjs/common';
-import { TypedConfigModule, fileLoader } from 'nest-typed-config';
 
-import { Config } from './config';
+import { ConfigDynamicModule, ConfigService } from './config.service';
 
 @Module({
-  imports: [
-    /** https://github.com/Nikaple/nest-typed-config */
-    TypedConfigModule.forRoot({
-      schema: Config,
-      load: fileLoader({
-        basename: `.env.${process.env.NODE_ENV}`,
-      }),
-    }),
-  ],
+  imports: [ConfigDynamicModule],
+  providers: [ConfigService],
+  exports: [ConfigService],
 })
 export class ConfigModule {}
