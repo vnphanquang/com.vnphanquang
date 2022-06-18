@@ -21,6 +21,7 @@ enum AuthProvider {
 
 model User {
   id             Int            @id @default(autoincrement())
+  avatarUrl      String?
   name           String
   role           Role           @default(admin)
   createdAt      DateTime       @default(now())

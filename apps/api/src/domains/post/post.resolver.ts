@@ -24,34 +24,26 @@ export class PostResolver {
 
   @ResolveField()
   comments(@Root() post: PostDTO) {
-    return this.postDAO.findUnique({ id: post.id }).comments();
+    return this.postDAO.byId(post.id).comments();
   }
 
   @Query(() => [PostDTO])
   posts() {
-    return this.postDAO.findMany({});
+    return this.postDAO.all();
   }
 
   @Mutation(() => PostDTO, { nullable: true })
   updatePost(@Args('id') id: number, @Args('data') data: UpdatePostInput) {
-    return this.postDAO.update({
-      where: { id },
-      data: data,
-    });
+    return this.postDAO.update(id, data);
   }
 
   @Mutation(() => PostDTO, { nullable: true })
   setPostPublication(@Args('id') id: number, @Args('published') published: boolean) {
-    return this.postDAO.update({
-      where: { id },
-      data: {
-        published,
-      },
-    });
+    return this.postDAO.update(id, { published });
   }
 
   @Query(() => PostDTO, { nullable: true })
   userById(@Args('id') id: number) {
-    return this.postDAO.findUnique({ id });
+    return this.postDAO.byId(id);
   }
 }
