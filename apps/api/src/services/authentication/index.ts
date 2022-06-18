@@ -1,3 +1,4 @@
+export * from './authentication.dao';
 export * from './authentication.controller';
 export * from './authentication.module';
 export * from './authentication.service';

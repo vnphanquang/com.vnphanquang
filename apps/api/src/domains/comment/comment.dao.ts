@@ -7,34 +7,39 @@ import { PrismaService } from '$services/prisma/prisma.service';
 export class CommentDAO {
   constructor(private readonly prisma: PrismaService) {}
 
-  findUnique(commentWhereUniqueInput: Prisma.CommentWhereUniqueInput) {
+  byId(id: number) {
     return this.prisma.comment.findUnique({
-      where: commentWhereUniqueInput,
+      where: { id },
     });
   }
 
-  findMany(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.CommentWhereUniqueInput;
-    where?: Prisma.CommentWhereInput;
-    orderBy?: Prisma.CommentOrderByWithRelationInput;
-  }) {
-    return this.prisma.comment.findMany(params);
+  all() {
+    return this.prisma.comment.findMany();
   }
 
-  create(data: Prisma.CommentCreateInput) {
-    return this.prisma.comment.create({ data });
+  create(params: { authorId: number; data: Prisma.CommentCreateInput; postId: number }) {
+    const { authorId, data, postId } = params;
+    return this.prisma.comment.create({
+      data: {
+        ...data,
+        author: {
+          connect: { id: authorId },
+        },
+        post: {
+          connect: { id: postId },
+        },
+      },
+    });
   }
 
-  update(params: {
-    where: Prisma.CommentWhereUniqueInput;
-    data: Prisma.CommentUpdateInput;
-  }): Promise<Comment> {
-    return this.prisma.comment.update(params);
+  update(id: number, data: Prisma.CommentUpdateInput): Promise<Comment> {
+    return this.prisma.comment.update({
+      where: { id },
+      data,
+    });
   }
 
-  delete(where: Prisma.CommentWhereUniqueInput) {
-    return this.prisma.comment.delete({ where });
+  delete(id: number) {
+    return this.prisma.comment.delete({ where: { id } });
   }
 }

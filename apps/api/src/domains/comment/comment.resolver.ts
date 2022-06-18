@@ -9,6 +9,9 @@ import {
   Root,
 } from '@nestjs/graphql';
 
+import { PostDAO } from '$domains/post';
+import { UserDAO } from '$domains/user';
+
 import { CommentDAO } from './comment.dao';
 import { CommentDTO } from './comment.dto';
 
@@ -26,7 +29,11 @@ class UpdateCommentInput {
 
 @Resolver(() => CommentDTO)
 export class CommentResolver {
-  constructor(private readonly commentDAO: CommentDAO) {}
+  constructor(
+    private readonly commentDAO: CommentDAO,
+    private readonly postDAO: PostDAO,
+    private readonly userDAO: UserDAO,
+  ) {}
 
   @Mutation(() => CommentDTO)
   createComment(
@@ -34,49 +41,36 @@ export class CommentResolver {
     @Args('authorId') authorId: number,
     @Args('postId') postId: number,
   ) {
-    return this.commentDAO.create({
-      ...data,
-      author: {
-        connect: { id: authorId },
-      },
-      post: {
-        connect: { id: postId },
-      },
-    });
+    return this.commentDAO.create({ authorId, data, postId });
   }
 
   @Mutation(() => CommentDTO, { nullable: true })
   updateComment(@Args('id') id: number, @Args('data') data: UpdateCommentInput) {
-    return this.commentDAO.update({
-      where: { id },
-      data: {
-        ...data,
-      },
-    });
+    return this.commentDAO.update(id, data);
   }
 
   @Mutation(() => CommentDTO, { nullable: true })
   deleteComment(@Args('id') id: number) {
-    return this.commentDAO.delete({ id });
+    return this.commentDAO.delete(id);
   }
 
   @Query(() => [CommentDTO])
   comments() {
-    return this.commentDAO.findMany({});
+    return this.commentDAO.all();
   }
 
   @Query(() => CommentDTO, { nullable: true })
   commentById(@Args('id') id: number) {
-    return this.commentDAO.findUnique({ id });
+    return this.commentDAO.byId(id);
   }
 
   @ResolveField()
   post(@Root() comment: CommentDTO) {
-    return this.commentDAO.findUnique({ id: comment.id }).post();
+    return this.postDAO.byCommentId(comment.id);
   }
 
   @ResolveField()
   author(@Root() comment: CommentDTO) {
-    return this.commentDAO.findUnique({ id: comment.id }).author();
+    return this.userDAO.byCommentId(comment.id);
   }
 }

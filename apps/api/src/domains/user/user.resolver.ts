@@ -9,21 +9,21 @@ export class UserResolver {
 
   @ResolveField()
   comments(@Root() user: UserDTO) {
-    return this.userDAO.findUnique({ id: user.id }).comments();
+    return this.userDAO.byId(user.id).comments();
   }
 
   @Query(() => [UserDTO])
   users() {
-    return this.userDAO.findMany({});
+    return this.userDAO.all();
   }
 
   @Mutation(() => UserDTO, { nullable: true })
   deleteUser(@Args('id') id: number) {
-    return this.userDAO.delete({ id });
+    return this.userDAO.delete(id);
   }
 
   @Query(() => UserDTO, { nullable: true })
   userById(@Args('id') id: number) {
-    return this.userDAO.findUnique({ id });
+    return this.userDAO.byId(id);
   }
 }

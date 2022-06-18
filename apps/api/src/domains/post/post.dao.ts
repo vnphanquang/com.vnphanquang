@@ -7,28 +7,29 @@ import { PrismaService } from '$services/prisma/prisma.service';
 export class PostDAO {
   constructor(private readonly prisma: PrismaService) {}
 
-  findUnique(postWhereUniqueInput: Prisma.PostWhereUniqueInput) {
+  byId(id: number) {
     return this.prisma.post.findUnique({
-      where: postWhereUniqueInput,
+      where: { id },
     });
   }
 
-  findMany(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.PostWhereUniqueInput;
-    where?: Prisma.PostWhereInput;
-    orderBy?: Prisma.PostOrderByWithRelationInput;
-  }) {
-    return this.prisma.post.findMany(params);
+  byCommentId(commentId: number) {
+    return this.prisma.comment.findUnique({ where: { id: commentId } }).post();
+  }
+
+  all() {
+    return this.prisma.post.findMany();
   }
 
   create(data: Prisma.PostCreateInput) {
     return this.prisma.post.create({ data });
   }
 
-  update(params: { where: Prisma.PostWhereUniqueInput; data: Prisma.PostUpdateInput }) {
-    return this.prisma.post.update(params);
+  update(id: number, data: Prisma.PostUpdateInput) {
+    return this.prisma.post.update({
+      where: { id },
+      data,
+    });
   }
 
   delete(where: Prisma.PostWhereUniqueInput) {
