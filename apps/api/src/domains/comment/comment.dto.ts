@@ -1,10 +1,10 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 
-import { PostDTO } from '$domains/post';
-import { UserDTO } from '$domains/user';
+import { PostDto } from '$domains/post';
+import { UserDto } from '$domains/user';
 
 @ObjectType()
-export class CommentDTO {
+export class CommentDto {
   @Field(() => Int)
   id: number;
 
@@ -18,9 +18,9 @@ export class CommentDTO {
   @Field({ nullable: true })
   deletedAt: Date | null;
 
-  @Field(() => UserDTO)
-  author: UserDTO;
+  @Field(() => UserDto)
+  author: UserDto;
 
-  @Field(() => PostDTO)
-  post: PostDTO;
+  @Field(() => PostDto)
+  post: PostDto;
 }

@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 
 import { PrismaService } from '$services/prisma/prisma.service';
 
-import { UserDAO } from './user.dao';
+import { UserDao } from './user.dao';
 
 @Module({
   imports: [],
-  providers: [PrismaService, UserDAO],
-  exports: [UserDAO],
+  providers: [PrismaService, UserDao],
+  exports: [UserDao],
 })
-export class UserModule {}
+export class UserDomainModule {}

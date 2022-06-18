@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 
 import { PrismaService } from '$services/prisma/prisma.service';
 
-import { CommentDAO } from './comment.dao';
+import { CommentDao } from './comment.dao';
 
 @Module({
   imports: [],
-  providers: [PrismaService, CommentDAO],
-  exports: [CommentDAO],
+  providers: [PrismaService, CommentDao],
+  exports: [CommentDao],
 })
-export class CommentModule {}
+export class CommentDomainModule {}

@@ -1,13 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
+import { Prisma } from '@prisma/client';
 import { OAuth2Strategy, Profile } from 'passport-google-oauth';
 
 import { ConfigService } from '$config/index';
-import { UserDAO } from '$domains/user';
+
+import { AuthenticationService } from '../authentication.service';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(OAuth2Strategy, 'google') {
-  constructor(private readonly config: ConfigService, private readonly userDAO: UserDAO) {
+  constructor(
+    private readonly config: ConfigService,
+    private readonly authenticationService: AuthenticationService,
+  ) {
     super({
       ...config.get().oauth.google,
       scope: ['email', 'profile'],
@@ -17,15 +22,16 @@ export class GoogleStrategy extends PassportStrategy(OAuth2Strategy, 'google') {
   async validate(accessToken: string, refreshToken: string, profile: Profile) {
     const { name, emails, photos, id } = profile;
     const user = {
-      provider: 'google',
-      providerId: id,
       email: emails[0].value,
       firstName: name.givenName,
       lastName: name.familyName,
-      picture: photos[0].value,
-      accessToken,
+      avatarUrl: photos[0].value,
+    };
+    const authentication: Prisma.AuthenticationCreateWithoutUserInput = {
+      provider: 'google',
+      providerId: id,
     };
 
-    return user;
+    return this.authenticationService.oauth(user, authentication);
   }
 }

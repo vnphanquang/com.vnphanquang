@@ -2,13 +2,26 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type CommentDTO {
-  author: UserDTO!
+"""Open authentication (OAuth) provider"""
+enum AuthProvider {
+  google
+}
+
+type AuthenticationDto {
+  createdAt: DateTime!
+  id: String!
+  provider: AuthProvider!
+  providerId: String!
+  user: UserDto!
+}
+
+type CommentDto {
+  author: UserDto!
   content: String!
   createdAt: DateTime!
   deletedAt: DateTime
   id: Int!
-  post: PostDTO!
+  post: PostDto!
   updatedAt: DateTime
 }
 
@@ -22,16 +35,16 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  createComment(authorId: Float!, data: CreateCommentInput!, postId: Float!): CommentDTO!
-  deleteComment(id: Float!): CommentDTO
-  deleteUser(id: Float!): UserDTO
-  setPostPublication(id: Float!, published: Boolean!): PostDTO
-  updateComment(data: UpdateCommentInput!, id: Float!): CommentDTO
-  updatePost(data: UpdatePostInput!, id: Float!): PostDTO
+  createComment(authorId: Float!, data: CreateCommentInput!, postId: Float!): CommentDto!
+  deleteComment(id: Float!): CommentDto
+  deleteUser(id: Float!): UserDto
+  setPostPublication(id: Float!, published: Boolean!): PostDto
+  updateComment(data: UpdateCommentInput!, id: Float!): CommentDto
+  updatePost(data: UpdatePostInput!, id: Float!): PostDto
 }
 
-type PostDTO {
-  comments: [CommentDTO!]!
+type PostDto {
+  comments: [CommentDto!]!
   createdAt: DateTime!
   deletedAt: DateTime
   id: Int!
@@ -41,17 +54,18 @@ type PostDTO {
 }
 
 type Query {
-  commentById(id: Float!): CommentDTO
-  comments: [CommentDTO!]!
-  posts: [PostDTO!]!
-  userById(id: Float!): PostDTO
-  users: [UserDTO!]!
+  authentications: [AuthenticationDto!]!
+  commentById(id: Float!): CommentDto
+  comments: [CommentDto!]!
+  posts: [PostDto!]!
+  userById(id: Float!): PostDto
+  users: [UserDto!]!
 }
 
 """User role"""
 enum Role {
-  ADMIN
-  USER
+  admin
+  user
 }
 
 input UpdateCommentInput {
@@ -62,12 +76,15 @@ input UpdatePostInput {
   title: String
 }
 
-type UserDTO {
-  comments: [CommentDTO!]!
+type UserDto {
+  authentications: [AuthenticationDto!]!
+  comments: [CommentDto!]!
   createdAt: DateTime!
   deletedAt: DateTime
+  email: String!
+  firstName: String!
   id: Int!
-  name: String!
+  lastName: String!
   role: Role!
   updatedAt: DateTime
 }

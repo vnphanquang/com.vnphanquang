@@ -4,12 +4,9 @@ import { ConfigModule } from '$config/index';
 import { AuthenticationModule } from '$services/authentication';
 import { GraphqlModule } from '$services/graphql';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-
 @Module({
   imports: [ConfigModule, GraphqlModule, AuthenticationModule],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
