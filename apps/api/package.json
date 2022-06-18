@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "api for vnphanquang",
   "author": "Quang Phan",
-  "private": true,
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",

@@ -2,7 +2,6 @@
   "name": "@vnphanquang/web",
   "version": "0.0.1",
   "description": "frontend for vnphanquang",
-  "private": "true",
   "author": "Quang Phan",
   "scripts": {
     "dev": "cross-env NODE_ENV=development svelte-kit dev",

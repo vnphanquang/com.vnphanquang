@@ -1,6 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 
-import { CommentDTO } from '$modules/comment/comment.dto';
+import { CommentDTO } from '$domains/comment';
 
 @ObjectType()
 export class PostDTO {

@@ -12,7 +12,7 @@ const config: Config.InitialOptions = {
   testEnvironment: 'node',
   moduleNameMapper: {
     '^$config/(.*)$': '<rootDir>/../src/config/$1',
-    '^$modules/(.*)$': '<rootDir>/../src/modules/$1',
+    '^$domains/(.*)$': '<rootDir>/../src/domains/$1',
     '^$services/(.*)$': '<rootDir>/../src/services/$1',
   },
 };
