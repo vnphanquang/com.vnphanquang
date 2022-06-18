@@ -5,6 +5,7 @@ import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 
 import { Config } from '$config/index';
+import { PrismaService } from '$services/prisma/prisma.service';
 
 import { AppModule } from './app.module';
 
@@ -15,7 +16,15 @@ async function bootstrap() {
       logger: true,
     }),
   );
+  const prisma = app.get(PrismaService);
+  await prisma.enableShutdownHooks(app);
+
   const config = app.get(Config);
-  await app.listen(config.port, config.host);
+  try {
+    await app.listen(config.port, config.host);
+  } finally {
+    await prisma.$disconnect();
+  }
 }
+
 bootstrap();

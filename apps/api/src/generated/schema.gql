@@ -1,0 +1,73 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CommentDTO {
+  author: UserDTO!
+  content: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  post: PostDTO!
+  updatedAt: DateTime
+}
+
+input CreateCommentInput {
+  content: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createComment(authorId: Float!, data: CreateCommentInput!, postId: Float!): CommentDTO!
+  deleteComment(id: Float!): CommentDTO
+  deleteUser(id: Float!): UserDTO
+  setPostPublication(id: Float!, published: Boolean!): PostDTO
+  updateComment(data: UpdateCommentInput!, id: Float!): CommentDTO
+  updatePost(data: UpdatePostInput!, id: Float!): PostDTO
+}
+
+type PostDTO {
+  comments: [CommentDTO!]!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  published: Boolean!
+  title: String!
+  updatedAt: DateTime
+}
+
+type Query {
+  commentById(id: Float!): CommentDTO
+  comments: [CommentDTO!]!
+  posts: [PostDTO!]!
+  userById(id: Float!): PostDTO
+  users: [UserDTO!]!
+}
+
+"""User role"""
+enum Role {
+  ADMIN
+  USER
+}
+
+input UpdateCommentInput {
+  content: String
+}
+
+input UpdatePostInput {
+  title: String
+}
+
+type UserDTO {
+  comments: [CommentDTO!]!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  name: String!
+  role: Role!
+  updatedAt: DateTime
+}

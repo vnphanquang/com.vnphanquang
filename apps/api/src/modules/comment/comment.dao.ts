@@ -7,36 +7,34 @@ import { PrismaService } from '$services/prisma/prisma.service';
 export class CommentDAO {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findUnique(
-    commentWhereUniqueInput: Prisma.CommentWhereUniqueInput,
-  ): Promise<Comment | null> {
+  findUnique(commentWhereUniqueInput: Prisma.CommentWhereUniqueInput) {
     return this.prisma.comment.findUnique({
       where: commentWhereUniqueInput,
     });
   }
 
-  async findMany(params: {
+  findMany(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.CommentWhereUniqueInput;
     where?: Prisma.CommentWhereInput;
     orderBy?: Prisma.CommentOrderByWithRelationInput;
-  }): Promise<Comment[]> {
+  }) {
     return this.prisma.comment.findMany(params);
   }
 
-  async create(data: Prisma.CommentCreateInput): Promise<Comment> {
+  create(data: Prisma.CommentCreateInput) {
     return this.prisma.comment.create({ data });
   }
 
-  async update(params: {
+  update(params: {
     where: Prisma.CommentWhereUniqueInput;
     data: Prisma.CommentUpdateInput;
   }): Promise<Comment> {
     return this.prisma.comment.update(params);
   }
 
-  async delete(where: Prisma.CommentWhereUniqueInput): Promise<Comment> {
+  delete(where: Prisma.CommentWhereUniqueInput) {
     return this.prisma.comment.delete({ where });
   }
 }

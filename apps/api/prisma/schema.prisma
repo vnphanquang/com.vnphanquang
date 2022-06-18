@@ -16,30 +16,33 @@ enum Role {
 }
 
 model User {
-  id       Int       @id @default(autoincrement())
-  name     String
-  comments Comment[]
-  role     Role      @default(USER)
+  id        Int       @id @default(autoincrement())
+  name      String
+  role      Role      @default(USER)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  deletedAt DateTime?
+  comments  Comment[]
 }
 
 model Post {
-  id          Int       @id @default(autoincrement())
-  title       String
-  published   Boolean
-  createdAt   DateTime  @default(now())
-  publishedAt DateTime
-  updatedAt   DateTime
-  deletedAt   DateTime
-  comments    Comment[]
+  id        Int       @id @default(autoincrement())
+  title     String
+  published Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  deletedAt DateTime?
+  comments  Comment[]
 }
 
 model Comment {
-  id        String   @id @default(uuid())
+  id        Int       @id @default(autoincrement())
+  content   String    @default("")
   authorId  Int
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User      @relation(fields: [authorId], references: [id])
   postId    Int
-  post      Post     @relation(fields: [postId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime
-  deletedAt DateTime
+  post      Post      @relation(fields: [postId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  deletedAt DateTime?
 }
