@@ -10,10 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
-  id          Int       @id @default(autoincrement())
+  id       Int       @id @default(autoincrement())
   name     String
   comments Comment[]
+  role     Role      @default(USER)
 }
 
 model Post {
