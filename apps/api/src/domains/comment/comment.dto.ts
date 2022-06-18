@@ -1,18 +1,15 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Role } from '@prisma/client';
 
-import { CommentDTO } from '$modules/comment/comment.dto';
+import { PostDTO } from '$domains/post';
+import { UserDTO } from '$domains/user';
 
 @ObjectType()
-export class UserDTO {
+export class CommentDTO {
   @Field(() => Int)
   id: number;
 
   @Field()
-  name: string;
-
-  @Field(() => Role)
-  role: boolean;
+  content: string;
 
   @Field()
   createdAt: Date;
@@ -21,6 +18,9 @@ export class UserDTO {
   @Field({ nullable: true })
   deletedAt: Date | null;
 
-  @Field(() => [CommentDTO])
-  comments: [CommentDTO];
+  @Field(() => UserDTO)
+  author: UserDTO;
+
+  @Field(() => PostDTO)
+  post: PostDTO;
 }
