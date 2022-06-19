@@ -1,4 +1,5 @@
-import { Controller, Get, HttpStatus, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Query, Req, Res, UseGuards } from '@nestjs/common';
+import { AuthProvider } from '@prisma/client';
 
 import { ConfigService } from '$config/index';
 
@@ -10,10 +11,10 @@ import { JwtAuthService } from './strategy/jwt';
 
 @Controller('oauth')
 export class AuthenticationController {
-  constructor(
-    private readonly config: ConfigService,
-    private readonly jwtService: JwtAuthService,
-  ) {}
+  private redirectUrl: string;
+  constructor(private readonly config: ConfigService, private readonly jwtService: JwtAuthService) {
+    this.redirectUrl = this.config.get().urls.web;
+  }
 
   private login(req, res) {
     const { accessToken } = this.jwtService.sign(req.user);
@@ -22,8 +23,19 @@ export class AuthenticationController {
       ...options,
       path: '/',
     });
+    const redirectUrl = this.redirectUrl;
+    this.redirectUrl = this.config.get().urls.web;
+    res.redirect(302, redirectUrl);
+  }
 
-    res.redirect(302, this.config.get().urls.web);
+  @Get('/')
+  oauth(
+    @Query('redirectUrl') redirectUrl: string,
+    @Query('provider') provider: AuthProvider = AuthProvider.google,
+    @Res() res,
+  ) {
+    this.redirectUrl = redirectUrl;
+    res.redirect(302, `/oauth/${provider}`);
   }
 
   @Get('/google')
