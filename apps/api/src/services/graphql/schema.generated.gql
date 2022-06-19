@@ -4,6 +4,7 @@
 
 """Open authentication (OAuth) provider"""
 enum AuthProvider {
+  discord
   facebook
   github
   google

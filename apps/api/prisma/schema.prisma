@@ -19,6 +19,7 @@ enum AuthProvider {
   google
   facebook
   github
+  discord
 }
 
 model User {
