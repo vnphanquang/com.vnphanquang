@@ -1,6 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { AuthProvider } from '@prisma/client';
-import type { AuthProvider as AuthProviderType } from '@prisma/client';
 
 import { UserDto } from '$domains/user';
 
@@ -10,7 +9,7 @@ export class AuthenticationDto {
   id: string;
 
   @Field(() => AuthProvider)
-  provider: AuthProviderType;
+  provider: AuthProvider;
 
   @Field()
   providerId: string;

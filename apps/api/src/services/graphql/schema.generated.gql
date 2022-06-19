@@ -35,7 +35,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  createComment(authorId: Float!, data: CreateCommentInput!, postId: Float!): CommentDto!
+  createComment(data: CreateCommentInput!, postId: Float!): CommentDto!
   deleteComment(id: Float!): CommentDto
   deleteUser(id: Float!): UserDto
   setPostPublication(id: Float!, published: Boolean!): PostDto
@@ -79,11 +79,11 @@ input UpdatePostInput {
 }
 
 type UserDto {
-  authentications: [AuthenticationDto!]!
+  authentications: [AuthenticationDto!]
   comments: [CommentDto!]!
   createdAt: DateTime!
   deletedAt: DateTime
-  email: String!
+  email: String
   firstName: String!
   id: Int!
   lastName: String!

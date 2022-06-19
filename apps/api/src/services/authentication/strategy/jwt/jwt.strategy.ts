@@ -15,14 +15,12 @@ export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwt') {
       let token = null;
 
       if (req && req.cookies) {
-        const cookie = req.cookies[session.name];
-        if (cookie && session.signed) {
-          const { valid, value } = req.unsignCookie(cookie);
+        token = req.cookies[session.name];
+        if (token && session.signed) {
+          const { valid, value } = req.unsignCookie(token);
           if (valid) {
             token = value;
           }
-        } else {
-          token = cookie;
         }
       }
       return token;
