@@ -30,10 +30,15 @@ export interface ConfigOAuthOptionsSchema {
   callbackURL: string;
 }
 
+export interface ConfigOAuthDiscordOptionsSchema extends ConfigOAuthOptionsSchema {
+  generatedURL: string;
+}
+
 export interface ConfigOAuthSchema {
   google: ConfigOAuthOptionsSchema;
   facebook: ConfigOAuthOptionsSchema;
   github: ConfigOAuthOptionsSchema;
+  discord: ConfigOAuthDiscordOptionsSchema;
 }
 
 export interface ConfigSchema {

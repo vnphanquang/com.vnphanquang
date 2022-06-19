@@ -6,6 +6,7 @@ import {
   ConfigCookieOptionsSchema,
   ConfigCookiesSchema,
   ConfigJwtSchema,
+  ConfigOAuthDiscordOptionsSchema,
   ConfigOAuthOptionsSchema,
   ConfigOAuthSchema,
   ConfigSchema,
@@ -68,6 +69,14 @@ export class ConfigOAuthOptions implements ConfigOAuthOptionsSchema {
   public readonly callbackURL!: ConfigOAuthOptionsSchema['callbackURL'];
 }
 
+export class ConfigOAuthDiscordOptions
+  extends ConfigOAuthOptions
+  implements ConfigOAuthDiscordOptionsSchema
+{
+  @IsString()
+  public readonly generatedURL!: ConfigOAuthOptionsSchema['callbackURL'];
+}
+
 export class ConfigOAuth implements ConfigOAuthSchema {
   @Type(() => ConfigOAuthOptions)
   @IsNotEmptyObject()
@@ -80,6 +89,10 @@ export class ConfigOAuth implements ConfigOAuthSchema {
   @Type(() => ConfigOAuthOptions)
   @IsNotEmptyObject()
   public readonly github!: ConfigOAuthSchema['github'];
+
+  @Type(() => ConfigOAuthOptions)
+  @IsNotEmptyObject()
+  public readonly discord!: ConfigOAuthSchema['discord'];
 }
 
 export class Config implements ConfigSchema {

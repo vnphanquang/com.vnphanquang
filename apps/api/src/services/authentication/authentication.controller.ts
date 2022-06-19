@@ -2,6 +2,7 @@ import { Controller, Get, HttpStatus, Req, Res, UseGuards } from '@nestjs/common
 
 import { ConfigService } from '$config/index';
 
+import { DiscordOAuthGuard } from './strategy/discord';
 import { FacebookOAuthGuard } from './strategy/facebook';
 import { GithubOAuthGuard } from './strategy/github';
 import { GoogleOAuthGuard } from './strategy/google';
@@ -58,6 +59,18 @@ export class AuthenticationController {
   @Get('/github/redirect')
   @UseGuards(GithubOAuthGuard)
   async githubRedirect(@Req() req, @Res() res) {
+    this.login(req, res);
+  }
+
+  @Get('/discord')
+  @UseGuards(DiscordOAuthGuard)
+  async discord(@Res() res) {
+    res.redirect(302, this.config.get().oauth.discord.generatedURL);
+  }
+
+  @Get('/discord/redirect')
+  @UseGuards(DiscordOAuthGuard)
+  async discordRedirect(@Req() req, @Res() res) {
     this.login(req, res);
   }
 }
