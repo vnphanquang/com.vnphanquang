@@ -1,28 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { Prisma, User } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 import { AuthenticationDao } from '$domains/authentication';
 import { UserDao } from '$domains/user';
 
 @Injectable()
-export class AuthenticationService {
+export class OAuthService {
   constructor(
     private readonly userDao: UserDao,
     private readonly authenticationDao: AuthenticationDao,
-    private readonly jwtService: JwtService,
   ) {}
 
-  jwt(user: User) {
-    return {
-      accessToken: this.jwtService.sign({
-        ...user,
-        sub: user.id,
-      }),
-    };
-  }
-
-  async oauth(
+  async login(
     user: Prisma.UserCreateWithoutAuthenticationsInput,
     authentication: Prisma.AuthenticationCreateWithoutUserInput,
   ) {

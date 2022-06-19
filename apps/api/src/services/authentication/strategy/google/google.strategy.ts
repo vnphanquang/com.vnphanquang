@@ -4,15 +4,11 @@ import { Prisma } from '@prisma/client';
 import { OAuth2Strategy, Profile } from 'passport-google-oauth';
 
 import { ConfigService } from '$config/index';
-
-import { AuthenticationService } from '../authentication.service';
+import { OAuthService } from '$services/authentication/oauth';
 
 @Injectable()
-export class GoogleStrategy extends PassportStrategy(OAuth2Strategy, 'google') {
-  constructor(
-    private readonly config: ConfigService,
-    private readonly authenticationService: AuthenticationService,
-  ) {
+export class GoogleOAuthStrategy extends PassportStrategy(OAuth2Strategy, 'google') {
+  constructor(private readonly config: ConfigService, private readonly oauthService: OAuthService) {
     super({
       ...config.get().oauth.google,
       scope: ['email', 'profile'],
@@ -32,6 +28,6 @@ export class GoogleStrategy extends PassportStrategy(OAuth2Strategy, 'google') {
       providerId: id,
     };
 
-    return this.authenticationService.oauth(user, authentication);
+    return this.oauthService.login(user, authentication);
   }
 }

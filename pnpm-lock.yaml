@@ -47,6 +47,7 @@ importers:
       nest-typed-config: ^2.4.1
       passport: ^0.6.0
       passport-google-oauth: ^2.0.0
+      passport-jwt: ^4.0.0
       prettier: ^2.3.2
       prisma: ^3.15.2
       reflect-metadata: ^0.1.13
@@ -78,6 +79,7 @@ importers:
       nest-typed-config: 2.4.1_g7av3gvncewo44y4rurz3mgav4
       passport: 0.6.0
       passport-google-oauth: 2.0.0
+      passport-jwt: 4.0.0
       reflect-metadata: 0.1.13
       rimraf: 3.0.2
       rxjs: 7.5.5
@@ -6075,6 +6077,13 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       passport-oauth2: 1.6.1
+    dev: false
+
+  /passport-jwt/4.0.0:
+    resolution: {integrity: sha512-BwC0n2GP/1hMVjR4QpnvqA61TxenUMlmfNjYNgK0ZAs0HK4SOQkHcSv4L328blNTLtHq7DbmvyNJiH+bn6C5Mg==}
+    dependencies:
+      jsonwebtoken: 8.5.1
+      passport-strategy: 1.0.0
     dev: false
 
   /passport-oauth1/1.2.0:
