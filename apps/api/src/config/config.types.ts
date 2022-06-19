@@ -33,6 +33,7 @@ export interface ConfigOAuthOptionsSchema {
 export interface ConfigOAuthSchema {
   google: ConfigOAuthOptionsSchema;
   facebook: ConfigOAuthOptionsSchema;
+  github: ConfigOAuthOptionsSchema;
 }
 
 export interface ConfigSchema {

@@ -76,6 +76,10 @@ export class ConfigOAuth implements ConfigOAuthSchema {
   @Type(() => ConfigOAuthOptions)
   @IsNotEmptyObject()
   public readonly facebook!: ConfigOAuthSchema['google'];
+
+  @Type(() => ConfigOAuthOptions)
+  @IsNotEmptyObject()
+  public readonly github!: ConfigOAuthSchema['github'];
 }
 
 export class Config implements ConfigSchema {
