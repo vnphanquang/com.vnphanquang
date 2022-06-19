@@ -6,12 +6,18 @@ import { User } from '@prisma/client';
 export class JwtAuthService {
   constructor(private readonly jwtService: JwtService) {}
 
-  jwt(user: User) {
+  sign(user: User) {
+    const accessToken = this.jwtService.sign({
+      ...user,
+      sub: user.id,
+    });
     return {
-      accessToken: this.jwtService.sign({
-        ...user,
-        sub: user.id,
-      }),
+      accessToken,
     };
+  }
+
+  verfiy(token) {
+    const payload = this.jwtService.verify(token);
+    return payload;
   }
 }

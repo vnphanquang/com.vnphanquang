@@ -44,7 +44,7 @@ export class PostResolver {
   }
 
   @Query(() => PostDto, { nullable: true })
-  userById(@Args('id') id: number) {
+  postById(@Args('id') id: number) {
     return this.postDao.byId(id);
   }
 }

@@ -1,9 +1,11 @@
+import { UseGuards } from '@nestjs/common';
 import { ResolveField, Resolver, Root, Query, Args, Mutation } from '@nestjs/graphql';
 
 import { AuthenticationDao } from '$domains/authentication/authentication.dao';
 import { CommentDao } from '$domains/comment';
 import { UserDao } from '$domains/user/user.dao';
 import { UserDto } from '$domains/user/user.dto';
+import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/strategy/graphql';
 
 @Resolver(() => UserDto)
 export class UserResolver {
@@ -36,5 +38,11 @@ export class UserResolver {
   @Query(() => UserDto, { nullable: true })
   userById(@Args('id') id: number) {
     return this.userDao.byId(id);
+  }
+
+  @Query(() => UserDto)
+  @UseGuards(GraphQlAuthGuard)
+  me(@GraphQlCurrentUser() user: UserDto) {
+    return this.userDao.byId(user.id);
   }
 }
