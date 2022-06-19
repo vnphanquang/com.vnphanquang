@@ -1,11 +1,14 @@
 import { UseGuards } from '@nestjs/common';
 import { ResolveField, Resolver, Root, Query, Args, Mutation } from '@nestjs/graphql';
+import { Role, User } from '@prisma/client';
 
+import { AuthenticationDto } from '$domains/authentication';
 import { AuthenticationDao } from '$domains/authentication/authentication.dao';
-import { CommentDao } from '$domains/comment';
+import { CommentDao, CommentDto } from '$domains/comment';
 import { UserDao } from '$domains/user/user.dao';
 import { UserDto } from '$domains/user/user.dto';
 import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/strategy/graphql';
+import { authenticated, ResourceOwnerGuard, roles } from '$services/authorization';
 
 @Resolver(() => UserDto)
 export class UserResolver {
@@ -15,12 +18,14 @@ export class UserResolver {
     private readonly commentDao: CommentDao,
   ) {}
 
-  @ResolveField()
+  @ResolveField(() => [CommentDto])
   comments(@Root() user: UserDto) {
     return this.commentDao.byUser(user.id);
   }
 
-  @ResolveField()
+  @ResolveField(() => [AuthenticationDto], {
+    middleware: [authenticated, roles(Role.admin)],
+  })
   authentications(@Root() user: UserDto) {
     return this.authenticationDao.byUser(user.id);
   }
@@ -31,6 +36,7 @@ export class UserResolver {
   }
 
   @Mutation(() => UserDto, { nullable: true })
+  @UseGuards(GraphQlAuthGuard, ResourceOwnerGuard())
   deleteUser(@Args('id') id: number) {
     return this.userDao.delete(id);
   }
@@ -42,7 +48,7 @@ export class UserResolver {
 
   @Query(() => UserDto)
   @UseGuards(GraphQlAuthGuard)
-  me(@GraphQlCurrentUser() user: UserDto) {
+  me(@GraphQlCurrentUser() user: User) {
     return this.userDao.byId(user.id);
   }
 }

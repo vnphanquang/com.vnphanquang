@@ -1,9 +1,9 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Role } from '@prisma/client';
-import type { Role as RoleType } from '@prisma/client';
 
 import { AuthenticationDto } from '$domains/authentication';
 import { CommentDto } from '$domains/comment';
+import { authenticated } from '$services/authorization';
 
 @ObjectType()
 export class UserDto {
@@ -17,10 +17,13 @@ export class UserDto {
   lastName: string;
 
   @Field(() => Role)
-  role: RoleType;
+  role: Role;
 
-  @Field()
-  email?: string;
+  @Field({
+    middleware: [authenticated],
+    nullable: true,
+  })
+  email: string | null;
 
   @Field()
   createdAt: Date;
@@ -32,6 +35,8 @@ export class UserDto {
   @Field(() => [CommentDto])
   comments: CommentDto[];
 
-  @Field(() => [AuthenticationDto])
+  @Field(() => [AuthenticationDto], {
+    nullable: true,
+  })
   authentications: AuthenticationDto[];
 }

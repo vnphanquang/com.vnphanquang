@@ -4,6 +4,8 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
 
+import { ConfigModule } from '$config/config.module';
+import { ConfigService } from '$config/config.service';
 import { AuthenticationDomainModule } from '$domains/authentication';
 import { AuthenticationResolver } from '$domains/authentication/authentication.resolver';
 import { CommentDomainModule } from '$domains/comment';
@@ -12,6 +14,8 @@ import { PostDomainModule } from '$domains/post';
 import { PostResolver } from '$domains/post/post.resolver';
 import { UserDomainModule } from '$domains/user';
 import { UserResolver } from '$domains/user/user.resolver';
+import { JwtAuthModule, JwtAuthService } from '$services/authentication/strategy/jwt';
+import { PrismaService } from '$services/prisma';
 
 @Module({
   imports: [
@@ -19,14 +23,37 @@ import { UserResolver } from '$domains/user/user.resolver';
     UserDomainModule,
     PostDomainModule,
     CommentDomainModule,
-    GraphQLModule.forRoot<MercuriusDriverConfig>({
+    GraphQLModule.forRootAsync<MercuriusDriverConfig>({
       driver: MercuriusDriver,
-      graphiql: true,
-      path: '/graphql',
-      autoSchemaFile: join(process.cwd(), 'src/services/graphql/schema.generated.gql'),
-      sortSchema: true,
+      imports: [ConfigModule, JwtAuthModule],
+      useFactory: async (config: ConfigService, jwtAuthService: JwtAuthService) => {
+        return {
+          graphiql: true,
+          path: '/graphql',
+          autoSchemaFile: join(process.cwd(), 'src/services/graphql/schema.generated.gql'),
+          sortSchema: true,
+          context: (req) => {
+            let payload = null;
+            const session = config.get().cookies.session;
+            let token = req.cookies[session.name];
+            if (token) {
+              if (session.signed) {
+                const { valid, value } = req.unsignCookie(token);
+                if (valid) {
+                  token = value;
+                }
+              }
+              payload = jwtAuthService.verfiy(token);
+            }
+            if (payload) {
+              req.user = payload;
+            }
+          },
+        };
+      },
+      inject: [ConfigService, JwtAuthService],
     }),
   ],
-  providers: [AuthenticationResolver, UserResolver, PostResolver, CommentResolver],
+  providers: [PrismaService, AuthenticationResolver, UserResolver, PostResolver, CommentResolver],
 })
 export class GraphqlModule {}
