@@ -21,7 +21,7 @@ export class AuthenticationController {
   @Get('/google/redirect')
   @UseGuards(GoogleOAuthGuard)
   googleAuthRedirect(@Req() req, @Res() res) {
-    const { accessToken } = this.jwtService.jwt(req.user);
+    const { accessToken } = this.jwtService.sign(req.user);
     const { name, ...options } = this.config.get().cookies.session;
     res.cookie(name, accessToken, {
       ...options,

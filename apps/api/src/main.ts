@@ -1,17 +1,17 @@
 // eslint-disable-next-line import/order
 import 'module-alias/register';
 
+import fastifyCookie from '@fastify/cookie';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { fastify } from 'fastify';
-import fastifyCookie from 'fastify-cookie';
 
 import { ConfigService } from '$config/index';
 import { PrismaService } from '$services/prisma/prisma.service';
 
 import { AppModule } from './app.module';
 
-const fastifyInstance = fastify({ logger: true });
+const fastifyInstance = fastify({ logger: false });
 // keep compatible with express for oauth
 fastifyInstance.addHook('onRequest', (request, reply, done) => {
   (reply as any).setHeader = function (key, value) {

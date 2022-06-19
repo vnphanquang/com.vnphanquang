@@ -57,8 +57,10 @@ type Query {
   authentications: [AuthenticationDto!]!
   commentById(id: Float!): CommentDto
   comments: [CommentDto!]!
+  me: UserDto!
+  postById(id: Float!): PostDto
   posts: [PostDto!]!
-  userById(id: Float!): PostDto
+  userById(id: Float!): UserDto
   users: [UserDto!]!
 }
 

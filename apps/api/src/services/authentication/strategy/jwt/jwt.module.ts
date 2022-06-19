@@ -10,7 +10,8 @@ import { JwtAuthStrategy } from './jwt.strategy';
   imports: [
     JwtModule.registerAsync({
       useFactory: async (config: ConfigService) => {
-        const { issuer, secret, audience, expiresIn } = config.get().jwt;
+        const { jwt } = config.get();
+        const { issuer, secret, audience, expiresIn } = jwt;
         return {
           secret,
           signOptions: {
