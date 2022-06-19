@@ -1,2 +1,2 @@
-export * from './graphql.guard';
-export * from './graphql.decorator';
+export * from './graphql.guards';
+export * from './graphql.decorators';

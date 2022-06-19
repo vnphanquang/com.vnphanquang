@@ -1,8 +1,10 @@
 import { UseGuards } from '@nestjs/common';
 import { Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
+import { Role } from '@prisma/client';
 
 import { UserDao } from '$domains/user';
 import { GraphQlAuthGuard } from '$services/authentication/strategy/graphql';
+import { Roles, RolesGuard } from '$services/authorization';
 
 import { AuthenticationDao } from './authentication.dao';
 import { AuthenticationDto } from './authentication.dto';
@@ -20,8 +22,9 @@ export class AuthenticationResolver {
     return this.userDao.byAuthenticationId(authentication.id);
   }
 
+  @Roles(Role.admin)
   @Query(() => [AuthenticationDto])
-  @UseGuards(GraphQlAuthGuard)
+  @UseGuards(GraphQlAuthGuard, RolesGuard)
   authentications() {
     return this.authenticationDao.all();
   }
