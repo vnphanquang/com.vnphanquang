@@ -6,7 +6,7 @@ import {
   ConfigCookieOptionsSchema,
   ConfigCookiesSchema,
   ConfigJwtSchema,
-  ConfigOAuthGoogleSchema,
+  ConfigOAuthOptionsSchema,
   ConfigOAuthSchema,
   ConfigSchema,
   ConfigUrlsSchema,
@@ -57,21 +57,25 @@ export class ConfigUrls implements ConfigUrlsSchema {
   public readonly web: ConfigUrlsSchema['web'] = 'http://localhost:3000';
 }
 
-export class ConfigOAuthGoogle implements ConfigOAuthGoogleSchema {
+export class ConfigOAuthOptions implements ConfigOAuthOptionsSchema {
   @IsString()
-  public readonly clientID!: ConfigOAuthGoogleSchema['clientID'];
+  public readonly clientID!: ConfigOAuthOptionsSchema['clientID'];
 
   @IsString()
-  public readonly clientSecret!: ConfigOAuthGoogleSchema['clientSecret'];
+  public readonly clientSecret!: ConfigOAuthOptionsSchema['clientSecret'];
 
   @IsString()
-  public readonly callbackURL!: ConfigOAuthGoogleSchema['callbackURL'];
+  public readonly callbackURL!: ConfigOAuthOptionsSchema['callbackURL'];
 }
 
 export class ConfigOAuth implements ConfigOAuthSchema {
-  @Type(() => ConfigOAuthGoogle)
+  @Type(() => ConfigOAuthOptions)
   @IsNotEmptyObject()
   public readonly google!: ConfigOAuthSchema['google'];
+
+  @Type(() => ConfigOAuthOptions)
+  @IsNotEmptyObject()
+  public readonly facebook!: ConfigOAuthSchema['google'];
 }
 
 export class Config implements ConfigSchema {

@@ -24,14 +24,15 @@ export interface ConfigUrlsSchema {
   web: string;
 }
 
-export interface ConfigOAuthGoogleSchema {
+export interface ConfigOAuthOptionsSchema {
   clientID: string;
   clientSecret: string;
   callbackURL: string;
 }
 
 export interface ConfigOAuthSchema {
-  google: ConfigOAuthGoogleSchema;
+  google: ConfigOAuthOptionsSchema;
+  facebook: ConfigOAuthOptionsSchema;
 }
 
 export interface ConfigSchema {

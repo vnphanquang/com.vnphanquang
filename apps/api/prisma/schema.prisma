@@ -17,6 +17,7 @@ enum Role {
 
 enum AuthProvider {
   google
+  facebook
 }
 
 model User {
