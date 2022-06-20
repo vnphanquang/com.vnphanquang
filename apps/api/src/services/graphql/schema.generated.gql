@@ -90,6 +90,7 @@ type UserDto {
   email: String
   firstName: String!
   id: Int!
+  lastConnectedAuthenticationProvider: AuthProvider!
   lastName: String!
   role: Role!
   updatedAt: DateTime

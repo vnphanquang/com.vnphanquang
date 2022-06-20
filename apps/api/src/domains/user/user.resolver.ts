@@ -1,6 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { ResolveField, Resolver, Root, Query, Args, Mutation } from '@nestjs/graphql';
-import { Role, User } from '@prisma/client';
+import { AuthProvider, User } from '@prisma/client';
 
 import { AuthenticationDto } from '$domains/authentication';
 import { AuthenticationDao } from '$domains/authentication/authentication.dao';
@@ -21,6 +21,11 @@ export class UserResolver {
   @ResolveField(() => [CommentDto])
   comments(@Root() user: UserDto) {
     return this.commentDao.byUser(user.id);
+  }
+
+  @ResolveField(() => AuthProvider)
+  async lastConnectedAuthenticationProvider(@Root() user: UserDto) {
+    return (await this.authenticationDao.lastConnectedAuthenticationByUser(user.id))?.provider;
   }
 
   @ResolveField(() => [AuthenticationDto], {

@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Role } from '@prisma/client';
+import { AuthProvider, Role } from '@prisma/client';
 
 import { AuthenticationDto } from '$domains/authentication';
 import { CommentDto } from '$domains/comment';
@@ -39,4 +39,7 @@ export class UserDto {
     nullable: true,
   })
   authentications: AuthenticationDto[];
+
+  @Field(() => AuthProvider)
+  lastConnectedAuthenticationProvider: AuthProvider;
 }
