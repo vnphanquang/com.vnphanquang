@@ -7,8 +7,8 @@ import { AuthenticationDao } from '$domains/authentication/authentication.dao';
 import { CommentDao, CommentDto } from '$domains/comment';
 import { UserDao } from '$domains/user/user.dao';
 import { UserDto } from '$domains/user/user.dto';
-import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/strategy/graphql';
-import { authenticated, ResourceOwnerGuard, roles } from '$services/authorization';
+import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/graphql';
+import { authenticated, ResourceOwnerGuard } from '$services/authorization';
 
 @Resolver(() => UserDto)
 export class UserResolver {
@@ -24,7 +24,7 @@ export class UserResolver {
   }
 
   @ResolveField(() => [AuthenticationDto], {
-    middleware: [authenticated, roles(Role.admin)],
+    middleware: [authenticated],
   })
   authentications(@Root() user: UserDto) {
     return this.authenticationDao.byUser(user.id);
