@@ -21,9 +21,9 @@ export class GithubOAuthStrategy extends PassportStrategy(Strategy, 'github') {
   async validate(accessToken: string, _refreshToken: string, profile: Profile) {
     const { emails, photos, id, displayName } = profile;
     const user = {
-      email: emails[0].value,
+      email: emails?.[0]?.value,
       firstName: displayName,
-      avatarUrl: photos[0].value,
+      avatarUrl: photos?.[0]?.value,
     };
     const authentication: Prisma.AuthenticationCreateWithoutUserInput = {
       provider: 'github',

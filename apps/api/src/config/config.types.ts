@@ -39,6 +39,7 @@ export interface ConfigOAuthSchema {
   facebook: ConfigOAuthOptionsSchema;
   github: ConfigOAuthOptionsSchema;
   discord: ConfigOAuthDiscordOptionsSchema;
+  spotify: ConfigOAuthOptionsSchema;
 }
 
 export interface ConfigSchema {
