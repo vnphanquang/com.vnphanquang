@@ -15,6 +15,17 @@ export class AuthenticationDao {
     });
   }
 
+  lastConnectedAuthenticationByUser(userId: number) {
+    return this.prisma.authentication.findFirst({
+      where: {
+        userId,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
+
   byUser(userId: number) {
     return this.prisma.user.findUnique({ where: { id: userId } }).authentications();
   }
