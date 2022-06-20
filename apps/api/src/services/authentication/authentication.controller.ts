@@ -8,6 +8,7 @@ import { FacebookOAuthGuard } from './strategy/facebook';
 import { GithubOAuthGuard } from './strategy/github';
 import { GoogleOAuthGuard } from './strategy/google';
 import { JwtAuthService } from './strategy/jwt';
+import { SpotifyOAuthGuard } from './strategy/spotify';
 
 @Controller('oauth')
 export class AuthenticationController {
@@ -83,6 +84,18 @@ export class AuthenticationController {
   @Get('/discord/redirect')
   @UseGuards(DiscordOAuthGuard)
   async discordRedirect(@Req() req, @Res() res) {
+    this.login(req, res);
+  }
+
+  @Get('/spotify')
+  @UseGuards(SpotifyOAuthGuard)
+  async spotify() {
+    return HttpStatus.OK;
+  }
+
+  @Get('/spotify/redirect')
+  @UseGuards(SpotifyOAuthGuard)
+  async spotifyRedirect(@Req() req, @Res() res) {
     this.login(req, res);
   }
 }

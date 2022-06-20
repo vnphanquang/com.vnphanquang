@@ -23,10 +23,10 @@ export class FacebookOAuthStrategy extends PassportStrategy(Strategy, 'facebook'
     const { name, emails, photos, id } = profile;
 
     const user = {
-      email: emails[0].value,
+      email: emails?.[0]?.value,
       firstName: name.givenName,
       lastName: name.familyName,
-      avatarUrl: photos[0].value,
+      avatarUrl: photos?.[0]?.value,
     };
 
     const authentication: Prisma.AuthenticationCreateWithoutUserInput = {

@@ -8,6 +8,7 @@ import { FacebookOAuthModule } from './strategy/facebook';
 import { GithubOAuthModule } from './strategy/github';
 import { GoogleOAuthModule } from './strategy/google';
 import { JwtAuthModule } from './strategy/jwt';
+import { SpotifyOAuthModule } from './strategy/spotify';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { JwtAuthModule } from './strategy/jwt';
     FacebookOAuthModule,
     GithubOAuthModule,
     DiscordOAuthModule,
+    SpotifyOAuthModule,
   ],
   controllers: [AuthenticationController],
   providers: [ConfigService],

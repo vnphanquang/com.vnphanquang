@@ -90,9 +90,13 @@ export class ConfigOAuth implements ConfigOAuthSchema {
   @IsNotEmptyObject()
   public readonly github!: ConfigOAuthSchema['github'];
 
+  @Type(() => ConfigOAuthDiscordOptions)
+  @IsNotEmptyObject()
+  public readonly discord!: ConfigOAuthDiscordOptions;
+
   @Type(() => ConfigOAuthOptions)
   @IsNotEmptyObject()
-  public readonly discord!: ConfigOAuthSchema['discord'];
+  public readonly spotify!: ConfigOAuthSchema['spotify'];
 }
 
 export class Config implements ConfigSchema {
