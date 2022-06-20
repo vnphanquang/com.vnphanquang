@@ -15,7 +15,7 @@ import { CommentDao } from '$domains/comment/comment.dao';
 import { CommentDto } from '$domains/comment/comment.dto';
 import { PostDao } from '$domains/post';
 import { UserDao } from '$domains/user';
-import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/strategy/graphql';
+import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/graphql';
 import { ResourceOwnerGuard } from '$services/authorization';
 
 @InputType()

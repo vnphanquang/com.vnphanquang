@@ -14,7 +14,7 @@ import { Role } from '@prisma/client';
 import { CommentDao } from '$domains/comment';
 import { PostDao } from '$domains/post/post.dao';
 import { PostDto } from '$domains/post/post.dto';
-import { GraphQlAuthGuard } from '$services/authentication/strategy/graphql';
+import { GraphQlAuthGuard } from '$services/authentication/graphql';
 import { Roles } from '$services/authorization';
 
 @InputType()

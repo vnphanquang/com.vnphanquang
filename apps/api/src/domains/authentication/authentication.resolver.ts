@@ -3,7 +3,7 @@ import { Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import { Role } from '@prisma/client';
 
 import { UserDao } from '$domains/user';
-import { GraphQlAuthGuard } from '$services/authentication/strategy/graphql';
+import { GraphQlAuthGuard } from '$services/authentication/graphql';
 import { Roles, RolesGuard } from '$services/authorization';
 
 import { AuthenticationDao } from './authentication.dao';
