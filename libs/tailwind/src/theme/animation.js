@@ -29,7 +29,7 @@ module.exports = {
     'fade-in-down': {
       '0%': {
         opacity: '0',
-        transform: 'translateY(-80px)',
+        transform: 'translateY(-50px)',
       },
       '100%': {
         opacity: '1',
@@ -43,13 +43,13 @@ module.exports = {
       },
       to: {
         opacity: '0',
-        transform: 'translateY(80px)',
+        transform: 'translateY(50px)',
       },
     },
     'fade-in-up': {
       '0%': {
         opacity: '0',
-        transform: 'translateY(80px)',
+        transform: 'translateY(50px)',
       },
       '100%': {
         opacity: '1',
@@ -63,7 +63,7 @@ module.exports = {
       },
       to: {
         opacity: '0',
-        transform: 'translateY(80px)',
+        transform: 'translateY(50px)',
       },
     },
     wiggle: {

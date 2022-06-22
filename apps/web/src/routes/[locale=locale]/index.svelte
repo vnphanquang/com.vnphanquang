@@ -52,51 +52,43 @@
     <ScrollDownMouse class="mt-6" variant="button" on:click={scrollDownFromHero} />
   </section>
 
-  <section
-    id="sectors"
-    class="
-      grid w-full place-items-center bg-bg-accent/30 px-6 pt-14 pb-28 sm:px-10 md:px-32
-      {fadeIns.sectors ? 'animate-fade-in-up' : 'opacity-0'}
-    "
-    use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.sectors }}
-    on:intersectonce={() => (fadeIns.sectors = true)}
-  >
-    <ExperimentationSectors />
+  <section id="sectors" class="bg-bg-accent/30 px-6 pt-14 pb-28 sm:px-10 md:px-32">
+    <div
+      class="grid w-full place-items-center {fadeIns.sectors ? 'animate-fade-in-up' : 'opacity-0'}"
+      use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.sectors }}
+      on:intersectonce={() => (fadeIns.sectors = true)}
+    >
+      <ExperimentationSectors />
+    </div>
   </section>
 
-  <section
-    id="testimonials"
-    class="
-      grid w-full place-items-center bg-bg/50 py-14 px-6 sm:px-10 md:px-32
-      {fadeIns.testimonials ? 'animate-fade-in-up' : 'opacity-0'}
-    "
-    use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.testimonials }}
-    on:intersectonce={() => (fadeIns.testimonials = true)}
-  >
-    <Testimonials data={testimonials} class="w-full max-w-5xl" />
+  <section id="testimonials" class="bg-bg/50 py-14 px-6 sm:px-10 md:px-32">
+    <div
+      class="grid w-full place-items-center {fadeIns.testimonials ? 'animate-fade-in-up' : 'opacity-0'}"
+      use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.testimonials }}
+      on:intersectonce={() => (fadeIns.testimonials = true)}
+    >
+      <Testimonials data={testimonials} class="w-full max-w-5xl" />
+    </div>
   </section>
 
-  <section
-    id="never-asked-questions"
-    class="
-      grid w-full place-items-center bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32
-      {fadeIns.neverAskedQuestions ? 'animate-fade-in-up' : 'opacity-0'}
-    "
-    use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.neverAskedQuestions }}
-    on:intersectonce={() => (fadeIns.neverAskedQuestions = true)}
-  >
-    <NeverAskedQuestions data={neverAskedQuestions} class="w-full max-w-5xl" />
+  <section id="never-asked-questions" class="bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32">
+    <div
+      class="grid w-full place-items-center {fadeIns.neverAskedQuestions ? 'animate-fade-in-up' : 'opacity-0'}"
+      use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.neverAskedQuestions }}
+      on:intersectonce={() => (fadeIns.neverAskedQuestions = true)}
+    >
+      <NeverAskedQuestions data={neverAskedQuestions} class="w-full max-w-5xl" />
+    </div>
   </section>
 
-  <section
-    id="mail"
-    class="
-      grid w-full place-items-center py-14 px-6 sm:px-10 md:px-32
-      {fadeIns.mail ? 'animate-fade-in-up' : 'opacity-0'}
-    "
-    use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.mail }}
-    on:intersectonce={() => (fadeIns.mail = true)}
-  >
-    <Mail />
+  <section id="mail" class="py-14 px-6 sm:px-10 md:px-32">
+    <div
+      class="grid w-full place-items-center {fadeIns.mail ? 'animate-fade-in-up' : 'opacity-0'}"
+      use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.mail }}
+      on:intersectonce={() => (fadeIns.mail = true)}
+    >
+      <Mail />
+    </div>
   </section>
 </main>

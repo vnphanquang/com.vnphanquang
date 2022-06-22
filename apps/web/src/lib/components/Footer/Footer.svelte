@@ -1,26 +1,32 @@
 <script lang="ts">
   import socials from '$lib/data/socials.json';
+  import { intersect } from '@svelte-put/intersect';
+
+  let intersected = false;
 </script>
 
-<footer
-  id="footer"
-  class="flex flex-col items-center bg-bg-accent py-10 shadow-xl md:px-32 {$$props.class} relative mt-16"
->
-  <ul class="grid grid-cols-7 place-items-center gap-x-6">
-    {#each Object.values(socials) as { href, icon, id } (id)}
-      <li id="social-{id}" class="">
-        <a {href}>
-          <img src={icon} alt={id} width="30" height="30" />
-        </a>
-      </li>
-    {/each}
-  </ul>
+<footer id="footer" class="bg-bg-accent py-10 shadow-xl md:px-32 {$$props.class} relative mt-16">
   <div
-    class="mt-10 grid grid-cols-1 place-items-center gap-y-1 gap-x-5 font-quang font-bold md:grid-cols-[repeat(3,auto)]"
+    class="flex flex-col items-center {intersected ? 'animate-fade-in-up' : 'opacity-0'}"
+    use:intersect={{ threshold: 0.35, enabled: !intersected }}
+    on:intersectonce={() => (intersected = true)}
   >
-    <p>Burnt with calories</p>
-    <p>🦠</p>
-    <p>vnphanquang © {new Date().getFullYear()}</p>
+    <ul class="grid grid-cols-7 place-items-center gap-x-6">
+      {#each Object.values(socials) as { href, icon, id } (id)}
+        <li id="social-{id}" class="hover:-translate-y-1 transition-transform duration-200 active:scale-90">
+          <a {href} target="_blank">
+            <img src={icon} alt={id} width="30" height="30" />
+          </a>
+        </li>
+      {/each}
+    </ul>
+    <p
+      class="mt-10 grid grid-cols-1 place-items-center gap-y-1 gap-x-5 font-quang font-bold md:grid-cols-[repeat(3,auto)]"
+    >
+      <span>Burnt with calories</span>
+      <span>🦠</span>
+      <span>vnphanquang © {new Date().getFullYear()}</span>
+    </p>
   </div>
 
   <ul
@@ -41,6 +47,3 @@
     {/each}
   </ul>
 </footer>
-
-<style>
-</style>
