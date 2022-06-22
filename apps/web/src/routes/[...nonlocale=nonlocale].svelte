@@ -2,10 +2,10 @@
   import { locale, Locale } from '$lib/services/i18n';
   import type { Load } from './__types/[...nonlocale=nonlocale]';
 
-  export const load: Load = ({ params }) => {
+  export const load: Load = ({ params, url }) => {
     return {
       status: 301,
-      redirect: `/${locale.get() ?? Locale.en}/${params.nonlocale}`,
+      redirect: `/${locale.get() ?? Locale.en}/${params.nonlocale}${url.search}`,
     };
   };
 </script>
