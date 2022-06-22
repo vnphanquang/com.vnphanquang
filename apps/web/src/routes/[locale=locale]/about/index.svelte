@@ -60,6 +60,7 @@
       width="100"
       height="153"
       class="bg-bg"
+      loading="lazy"
     />
     <button id="resume-download" type="button" class="c-btn-outline py-1 px-2 text-xs uppercase">
       <a href="/QuangPhan_Resume.pdf" target="_blank"> Download PDF resume </a>
@@ -164,7 +165,7 @@
                   {#each milestone.images as { id, src, alt, width } (id)}
                     <li class="">
                       <MediaOverlay {id} let:open>
-                        <img {src} {alt} {width} class="h-auto rounded shadow hover:shadow-lg" />
+                        <img {src} {alt} {width} class="h-auto rounded shadow hover:shadow-lg" loading="lazy" />
                         <img {src} {alt} class="w-max rounded shadow" slot="overlay" />
                       </MediaOverlay>
                     </li>
@@ -205,6 +206,6 @@
     on:intersectonce={() => (intersectedMap.signature = true)}
   >
     <p class="mb-8 text-primary">~ • ~</p>
-    <img src="/images/vnphanquang/signature.svg" alt="signature" width="200" height="52" />
+    <img src="/images/vnphanquang/signature.svg" alt="signature" width="200" height="52" loading="lazy" />
   </section>
 </main>

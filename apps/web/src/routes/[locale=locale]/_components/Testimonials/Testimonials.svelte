@@ -73,6 +73,7 @@
             height="50"
             data-active={activeIndex === index ? 'true' : 'false'}
             class="avatar-trigger"
+            loading="lazy"
           />
         </label>
       </li>

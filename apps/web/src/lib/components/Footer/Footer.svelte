@@ -15,7 +15,7 @@
       {#each Object.values(socials) as { href, icon, id } (id)}
         <li id="social-{id}" class="hover:-translate-y-1 transition-transform duration-200 active:scale-90">
           <a {href} target="_blank">
-            <img src={icon} alt={id} width="30" height="30" />
+            <img src={icon} alt={id} width="30" height="30" loading="lazy" />
           </a>
         </li>
       {/each}

@@ -35,7 +35,7 @@ export const milestones: Milestone[] = [
     location: 'Ho Chi Minh, Vietnam',
     headline: `<a href="https://www.credly.com/badges/2d1c3bf1-28be-43aa-88c2-5413826174f1/public_url" target="_blank" class="flex items-end">
         <span class="c-link">Professional Scrum Master Certification</span>
-        <img src="/images/psm/psm1-logo.webp" alt="Professional Scrum Master 1" width="30" height="30" class="inline-block ml-2" />
+        <img src="/images/psm/psm1-logo.webp" alt="Professional Scrum Master 1" width="30" height="30" class="inline-block ml-2" loading="lazy" />
       </a>`,
     title: '',
     paragraphs: [
@@ -60,7 +60,7 @@ export const milestones: Milestone[] = [
     headline: `
       <a href="${socials.github.href}" target="_blank">
         <span class="c-link">Open source developer</span>
-        <img src="${socials.github.icon}" alt="github" width="30" height="30" class="inline-block" />
+        <img src="${socials.github.icon}" alt="github" width="30" height="30" class="inline-block" loading="lazy" />
       </a>`,
     title: '',
     paragraphs: [
@@ -115,6 +115,7 @@ export const milestones: Milestone[] = [
       >
         Follow me on
         <img
+          loading="lazy"
           src='https://badges.strava.com/logo-strava.png'
           alt='Strava'
           style='display:inline-block;margin-left:2px;vertical-align:text-bottom'
@@ -165,6 +166,7 @@ export const milestones: Milestone[] = [
         alt="Designveloper"
         width="30"
         height="30"
+        loading="lazy"
       />
     </a>`,
     title: 'Software Developer',
@@ -327,6 +329,7 @@ export const milestones: Milestone[] = [
         alt="Foothill College"
         width="18"
         height="25"
+        loading="lazy"
       />
     </a>`,
     title: 'Computer Science major',
@@ -392,6 +395,7 @@ export const milestones: Milestone[] = [
         alt="Ho Chi Minh University of Science"
         width="30"
         height="30"
+        loading="lazy"
       />
     </a>`,
     title:

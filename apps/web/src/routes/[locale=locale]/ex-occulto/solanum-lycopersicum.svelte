@@ -10,6 +10,7 @@
     width="500"
     height="500"
     class="rounded-lg"
+    loading="lazy"
   />
   <section class="prose text-2xl italic">
     <p>This is <strong>Tô</strong></p>
