@@ -1,3 +1,4 @@
+import { Session } from '@nestjs/common';
 import { Type } from 'class-transformer';
 import { IsString, IsNumber, IsEnum, IsNotEmptyObject, IsBoolean } from 'class-validator';
 
@@ -15,24 +16,24 @@ import {
 
 export class ConfigCookieOptions implements ConfigCookieOptionsSchema {
   @IsString()
-  name: string;
+  public readonly name!: string;
 
   @IsString()
-  domain: string;
+  public readonly domain?: string;
 
   @IsBoolean()
-  httpOnly: boolean;
+  public readonly httpOnly!: boolean;
 
   @IsBoolean()
-  secure: boolean;
+  public readonly secure!: boolean;
 
   @IsBoolean()
-  signed: boolean;
+  public readonly signed!: boolean;
 }
 
 export class ConfigCookies implements ConfigCookiesSchema {
   @IsString()
-  public readonly secret!: ConfigCookiesSchema['secret'];
+  public readonly secret: ConfigCookiesSchema['secret'];
 
   @Type(() => ConfigCookieOptions)
   @IsNotEmptyObject()
@@ -55,7 +56,7 @@ export class ConfigJwt implements ConfigJwtSchema {
 
 export class ConfigUrls implements ConfigUrlsSchema {
   @IsString()
-  public readonly web: ConfigUrlsSchema['web'] = 'http://localhost:3000';
+  public readonly web!: ConfigUrlsSchema['web'];
 }
 
 export class ConfigOAuthOptions implements ConfigOAuthOptionsSchema {
@@ -101,17 +102,17 @@ export class ConfigOAuth implements ConfigOAuthSchema {
 
 export class Config implements ConfigSchema {
   @IsEnum(Mode)
-  public readonly mode: ConfigSchema['mode'] = Mode.development;
+  public readonly mode!: ConfigSchema['mode'];
 
   @IsString()
-  public readonly host: ConfigSchema['host'] = '0.0.0.0';
+  public readonly host!: ConfigSchema['host'];
 
-  @IsNumber()
-  public readonly port: ConfigSchema['port'] = 3001;
+  @IsString()
+  public readonly port!: ConfigSchema['port'];
 
   @Type(() => ConfigUrls)
   @IsNotEmptyObject()
-  public readonly urls: ConfigUrls = new ConfigUrls();
+  public readonly urls!: ConfigUrls;
 
   @Type(() => ConfigOAuth)
   @IsNotEmptyObject()
