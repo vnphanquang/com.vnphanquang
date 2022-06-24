@@ -6,12 +6,15 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
+    "build:dev": "cross-env NODE_ENV=development nest build",
+    "build:prod": "cross-env NODE_ENV=production nest build",
     "lint": "eslint --ignore-path .gitignore .",
     "format": "prettier --check --ignore-path .gitignore --plugin-search-dir=. \"./**/*.{ts,js,cjs,json}\"",
     "dev": "cross-env NODE_ENV=development nest start --watch",
-    "start": "nest start",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "cross-env NODE_ENV=production node dist/main",
+    "start": "node dist/src/main",
+    "start:prod": "cross-env NODE_ENV=production node dist/src/main",
+    "start:dev": "cross-env NODE_ENV=production node dist/src/main",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -76,7 +79,8 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.0.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "webpack": "^5.73.0"
   },
   "_moduleAliases": {
     "$config": "dist/config"

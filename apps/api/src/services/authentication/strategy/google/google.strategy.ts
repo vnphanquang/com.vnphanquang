@@ -3,14 +3,20 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Prisma } from '@prisma/client';
 import { OAuth2Strategy, Profile, IOAuth2StrategyOption } from 'passport-google-oauth';
 
-import { ConfigService } from '$config/index';
+import { AppRoutes, ConfigService } from '$config/index';
 import { OAuthService } from '$services/authentication/oauth';
 
 @Injectable()
 export class GoogleOAuthStrategy extends PassportStrategy(OAuth2Strategy, 'google') {
   constructor(private readonly config: ConfigService, private readonly oauthService: OAuthService) {
+    const {
+      oauth: { google },
+      urls: { api },
+    } = config.get();
+    console.log('output', `${api}${AppRoutes.oauth.google.redirect.$path({ separator: '/' })}`);
     const options: IOAuth2StrategyOption = {
-      ...config.get().oauth.google,
+      ...google,
+      callbackURL: `${api}${AppRoutes.oauth.google.redirect.$path({ separator: '/' })}`,
     };
     super({
       ...options,

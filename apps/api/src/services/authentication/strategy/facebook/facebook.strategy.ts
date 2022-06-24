@@ -3,15 +3,20 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Prisma } from '@prisma/client';
 import { Strategy, StrategyOption, Profile } from 'passport-facebook';
 
-import { ConfigService } from '$config/config.service';
+import { AppRoutes, ConfigService } from '$config/config.service';
 import { OAuthService } from '$services/authentication/oauth';
 
 @Injectable()
 export class FacebookOAuthStrategy extends PassportStrategy(Strategy, 'facebook') {
   constructor(private readonly config: ConfigService, private readonly oauthService: OAuthService) {
+    const {
+      oauth: { facebook },
+      urls: { api },
+    } = config.get();
     const options: StrategyOption = {
-      ...config.get().oauth.facebook,
+      ...facebook,
       profileFields: ['id', 'name', 'emails', 'photos'],
+      callbackURL: `${api}${AppRoutes.oauth.facebook.redirect.$path({ separator: '/' })}`,
     };
     super({
       ...options,

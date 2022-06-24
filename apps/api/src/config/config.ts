@@ -1,6 +1,5 @@
-import { Session } from '@nestjs/common';
 import { Type } from 'class-transformer';
-import { IsString, IsNumber, IsEnum, IsNotEmptyObject, IsBoolean } from 'class-validator';
+import { IsString, IsEnum, IsNotEmptyObject, IsBoolean } from 'class-validator';
 
 import { Mode } from './config.enum';
 import {
@@ -57,6 +56,9 @@ export class ConfigJwt implements ConfigJwtSchema {
 export class ConfigUrls implements ConfigUrlsSchema {
   @IsString()
   public readonly web!: ConfigUrlsSchema['web'];
+
+  @IsString()
+  public readonly api!: ConfigUrlsSchema['api'];
 }
 
 export class ConfigOAuthOptions implements ConfigOAuthOptionsSchema {
@@ -65,9 +67,6 @@ export class ConfigOAuthOptions implements ConfigOAuthOptionsSchema {
 
   @IsString()
   public readonly clientSecret!: ConfigOAuthOptionsSchema['clientSecret'];
-
-  @IsString()
-  public readonly callbackURL!: ConfigOAuthOptionsSchema['callbackURL'];
 }
 
 export class ConfigOAuthDiscordOptions
@@ -75,7 +74,7 @@ export class ConfigOAuthDiscordOptions
   implements ConfigOAuthDiscordOptionsSchema
 {
   @IsString()
-  public readonly generatedURL!: ConfigOAuthOptionsSchema['callbackURL'];
+  public readonly generatedURL!: ConfigOAuthDiscordOptionsSchema['generatedURL'];
 }
 
 export class ConfigOAuth implements ConfigOAuthSchema {

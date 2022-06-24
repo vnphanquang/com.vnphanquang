@@ -22,12 +22,12 @@ export interface ConfigJwtSchema {
 
 export interface ConfigUrlsSchema {
   web: string;
+  api: string;
 }
 
 export interface ConfigOAuthOptionsSchema {
   clientID: string;
   clientSecret: string;
-  callbackURL: string;
 }
 
 export interface ConfigOAuthDiscordOptionsSchema extends ConfigOAuthOptionsSchema {

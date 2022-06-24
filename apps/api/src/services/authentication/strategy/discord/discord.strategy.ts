@@ -3,14 +3,19 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Prisma } from '@prisma/client';
 import { Strategy, StrategyOptions, Profile } from 'passport-discord';
 
-import { ConfigService } from '$config/index';
+import { AppRoutes, ConfigService } from '$config/index';
 import { OAuthService } from '$services/authentication/oauth';
 
 @Injectable()
 export class DiscordOAuthStrategy extends PassportStrategy(Strategy, 'discord') {
   constructor(private readonly config: ConfigService, private readonly oauthService: OAuthService) {
+    const {
+      oauth: { discord },
+      urls: { api },
+    } = config.get();
     const options: StrategyOptions = {
-      ...config.get().oauth.discord,
+      ...discord,
+      callbackURL: `${api}${AppRoutes.oauth.discord.redirect.$path({ separator: '/' })}`,
     };
     super({
       ...options,

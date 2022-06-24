@@ -3,14 +3,19 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Prisma } from '@prisma/client';
 import { Strategy, StrategyOptions, Profile } from 'passport-spotify';
 
-import { ConfigService } from '$config/index';
+import { AppRoutes, ConfigService } from '$config/index';
 import { OAuthService } from '$services/authentication/oauth';
 
 @Injectable()
 export class SpotifyOAuthStrategy extends PassportStrategy(Strategy, 'spotify') {
   constructor(private readonly config: ConfigService, private readonly oauthService: OAuthService) {
+    const {
+      oauth: { spotify },
+      urls: { api },
+    } = config.get();
     const options: StrategyOptions = {
-      ...config.get().oauth.spotify,
+      ...spotify,
+      callbackURL: `${api}${AppRoutes.oauth.spotify.redirect.$path({ separator: '/' })}`,
     };
     super({
       ...options,

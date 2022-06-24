@@ -3,14 +3,19 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Prisma } from '@prisma/client';
 import { Strategy, StrategyOptions, Profile } from 'passport-github';
 
-import { ConfigService } from '$config/index';
+import { AppRoutes, ConfigService } from '$config/index';
 import { OAuthService } from '$services/authentication/oauth';
 
 @Injectable()
 export class GithubOAuthStrategy extends PassportStrategy(Strategy, 'github') {
   constructor(private readonly config: ConfigService, private readonly oauthService: OAuthService) {
+    const {
+      oauth: { github },
+      urls: { api },
+    } = config.get();
     const options: StrategyOptions = {
-      ...config.get().oauth.github,
+      ...github,
+      callbackURL: `${api}${AppRoutes.oauth.github.redirect.$path({ separator: '/' })}`,
     };
     super({
       ...options,

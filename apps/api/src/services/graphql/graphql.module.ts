@@ -5,7 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
 
 import { ConfigModule } from '$config/config.module';
-import { ConfigService } from '$config/config.service';
+import { AppRoutes, ConfigService } from '$config/config.service';
 import { AuthenticationDomainModule } from '$domains/authentication';
 import { AuthenticationResolver } from '$domains/authentication/authentication.resolver';
 import { CommentDomainModule } from '$domains/comment';
@@ -29,7 +29,7 @@ import { PrismaService } from '$services/prisma';
       useFactory: async (config: ConfigService, jwtAuthService: JwtAuthService) => {
         return {
           graphiql: true,
-          path: '/graphql',
+          path: AppRoutes.graphql.$path(),
           autoSchemaFile: join(process.cwd(), 'src/services/graphql/schema.generated.gql'),
           sortSchema: true,
           context: (req) => {
