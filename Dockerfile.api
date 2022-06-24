@@ -1,0 +1,46 @@
+# global build args
+ARG NODE_VERSION="16.15.1"
+ARG PNPM_VERSION="7.3.0"
+ARG SCOPE=@vnphanquang/api
+
+#---------------------
+
+# stage: builder
+FROM node:${NODE_VERSION}-alpine as builder
+
+# arg
+ARG SCOPE
+ARG PNPM_VERSION
+
+WORKDIR /app
+COPY . .
+
+# install pnpm
+RUN npm install --location=global pnpm@${PNPM_VERSION}
+
+# install dependencies
+RUN pnpm install --filter=${SCOPE}
+
+WORKDIR /app/apps/api
+
+# prisma generate
+RUN pnpm prisma generate
+
+# build project
+RUN pnpm build
+
+# remove unused source
+RUN rm -rf apps/web
+RUN rm -rf libs/tailwind
+RUN rm -rf apps/api/src
+
+#---------------------
+
+# stage: executor
+FROM node:${NODE_VERSION}-alpine as executor
+
+WORKDIR /app
+COPY --from=builder /app ./
+
+# CMD cd $(pnpm list --filter=@vnphanquang/api --depth=-1 | grep -oP "(?<=\s).*") && npm run start
+CMD cd apps/api && npm run start

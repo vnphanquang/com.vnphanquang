@@ -11,6 +11,8 @@ export const ConfigDynamicModule = TypedConfigModule.forRoot({
   load: dotenvLoader({
     separator: '__',
     envFilePath: [join(process.cwd(), '.default.env'), join(process.cwd(), '.env')],
+    ignoreEnvVars: false,
+    ignoreEnvFile: false,
     expandVariables: true,
   }),
 });

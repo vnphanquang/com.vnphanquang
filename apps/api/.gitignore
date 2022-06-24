@@ -1,4 +1,2 @@
 dist/
 !.default.env
-.env.*
-.env
