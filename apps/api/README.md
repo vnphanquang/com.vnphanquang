@@ -7,4 +7,6 @@
    -e POSTGRES_PASSWORD="dev" \
    -e POSTGRES_DB="vnphanquang" \
    postgres
+
+   docker build -f Dockerfile.api -t vnphanquang:api .
 ```
