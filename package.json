@@ -13,11 +13,13 @@
     "build:production": "turbo run build:production",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint --parallel",
-    "format": "turbo run format --parallel"
+    "format": "turbo run format --parallel",
+    "pm2": "pm2"
   },
   "devDependencies": {
     "prettier": "latest",
-    "turbo": "latest"
+    "turbo": "latest",
+    "pm2": "latest"
   },
   "engines": {
     "pnpm": ">=7.0.0",
