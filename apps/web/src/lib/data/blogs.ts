@@ -1,5 +1,6 @@
-import { AppConfig } from '$config';
 import { AppRoutes, to } from '$lib/services/navigation';
+
+import { AppConfig } from '$config';
 
 export const BLOG_ID_DICTIONARY = {
   typescriptUtilityTypeFlattenRecord: 'typescript-utility-type-flatten-record',

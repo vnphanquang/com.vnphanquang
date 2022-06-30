@@ -1,11 +1,14 @@
 <script lang="ts">
   import { browser } from '$app/env';
   import { page } from '$app/stores';
+
   import { AppConfig } from '$config';
 
   const MEASUREMENT_ID = AppConfig.env.gtagMeasurementId;
 
+  // eslint-disable-next-line no-undef
   $: if (browser && AppConfig.mode === 'production' && gtag) {
+    // eslint-disable-next-line no-undef
     gtag('config', MEASUREMENT_ID, {
       page_title: document.title,
       page_location: $page.url.href,

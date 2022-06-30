@@ -1,6 +1,6 @@
 <script lang="ts">
-  import socials from '$lib/data/socials.json';
   import { SkewedFlipCard } from '$lib/components';
+  import socials from '$lib/data/socials.json';
   import { AppRoutes, to } from '$lib/services/navigation';
 
   const sectors = [

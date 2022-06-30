@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface InputCacheParameters {
   id: string;
   strategy?: 'local' | 'storage';
@@ -43,7 +44,7 @@ export function inputcache(node: HTMLInputElement, parameters: InputCacheParamet
       value = JSON.parse(cached);
       switch (type) {
         case 'checkbox':
-        case 'radio':
+        case 'radio': {
           const previousChecked = node.checked;
           if (Array.isArray(value)) {
             node.checked = value.includes(node.value);
@@ -54,13 +55,15 @@ export function inputcache(node: HTMLInputElement, parameters: InputCacheParamet
             node.dispatchEvent(new Event('change'));
           }
           break;
-        default:
+        }
+        default: {
           const previousValue = node.value;
           node.value = value;
           if (previousValue !== value) {
             node.dispatchEvent(new Event('input'));
           }
           break;
+        }
       }
     }
     node.addEventListener('change', handler);

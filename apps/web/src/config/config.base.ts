@@ -7,8 +7,8 @@ export interface AppConfigSchema {
     gtagMeasurementId: string;
   };
   cookies: {
-    session: 'vnphanquang__session-dev' | 'vnphanquang__session',
-  },
+    session: 'vnphanquang__session-dev' | 'vnphanquang__session';
+  };
 }
 export const BaseConfig: AppConfigSchema = {
   mode: 'unknown',

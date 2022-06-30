@@ -1,6 +1,7 @@
 /// <reference types="@sveltejs/kit" />
 /// <reference types="svelte" />
 /// <reference types="vite/client" />
+/// <reference types="@types/gtag.js" />
 
 // Typescript support in svelte-kit, see
 // https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#im-using-an-attributeevent-on-a-dom-element-and-it-throws-a-type-error

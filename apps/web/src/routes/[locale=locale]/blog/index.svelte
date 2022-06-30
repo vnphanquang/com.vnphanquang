@@ -2,10 +2,11 @@
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import code from 'svelte-awesome/icons/code';
 
-  import { AppConfig } from '$config';
   import { BLOG_METADATA } from '$lib/data/blogs';
   import { AppRoutes, to } from '$lib/services/navigation';
   import { blogDate } from '$lib/utils/datetime';
+  
+  import { AppConfig } from '$config';
 
   function getCornerIcon(category: string) {
     switch (category) {

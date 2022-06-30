@@ -1,10 +1,9 @@
 <script lang="ts">
   import { intersect } from '@svelte-put/intersect';
 
-  import { AppConfig } from '$config';
+  import { ScrollDownMouse } from '$lib/components';
   import neverAskedQuestions from '$lib/data/neverAskedQuestions.json';
   import testimonials from '$lib/data/testimonials.json';
-  import { ScrollDownMouse } from '$lib/components';
 
   import {
     NeverAskedQuestions,
@@ -13,6 +12,8 @@
     Hero,
     ExperimentationSectors,
   } from './_components';
+
+  import { AppConfig } from '$config';
 
   let heroNode: HTMLElement;
   const intersectionThreshold = 0.35;
@@ -64,7 +65,9 @@
 
   <section id="testimonials" class="bg-bg/50 py-14 px-6 sm:px-10 md:px-32">
     <div
-      class="grid w-full place-items-center {fadeIns.testimonials ? 'animate-fade-in-up' : 'opacity-0'}"
+      class="grid w-full place-items-center {fadeIns.testimonials
+        ? 'animate-fade-in-up'
+        : 'opacity-0'}"
       use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.testimonials }}
       on:intersectonce={() => (fadeIns.testimonials = true)}
     >
@@ -74,7 +77,9 @@
 
   <section id="never-asked-questions" class="bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32">
     <div
-      class="grid w-full place-items-center {fadeIns.neverAskedQuestions ? 'animate-fade-in-up' : 'opacity-0'}"
+      class="grid w-full place-items-center {fadeIns.neverAskedQuestions
+        ? 'animate-fade-in-up'
+        : 'opacity-0'}"
       use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.neverAskedQuestions }}
       on:intersectonce={() => (fadeIns.neverAskedQuestions = true)}
     >

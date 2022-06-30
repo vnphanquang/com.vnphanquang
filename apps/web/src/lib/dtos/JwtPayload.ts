@@ -3,7 +3,7 @@ export interface JwtPayload {
   avatarUrl: string;
   firstName: string;
   lastName: string;
-  role: 'admin' | 'user'
+  role: 'admin' | 'user';
   email: string;
   createdAt: string;
   updatedAt: null | string;

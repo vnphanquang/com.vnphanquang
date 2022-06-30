@@ -1,8 +1,9 @@
 import type { GetSession, Handle } from '@sveltejs/kit';
-import jwtDecode from 'jwt-decode';
 import { parse } from 'cookie';
+import jwtDecode from 'jwt-decode';
 
 import type { JwtPayload } from '$lib/dtos';
+
 import { AppConfig } from '$config';
 
 export const handle: Handle = ({ event, resolve }) => {
@@ -16,8 +17,8 @@ export const handle: Handle = ({ event, resolve }) => {
     }
   }
   return resolve(event);
-}
+};
 
 export const getSession: GetSession = (event) => {
   return event.locals.session ?? {};
-}
+};

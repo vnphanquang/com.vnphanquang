@@ -1,18 +1,16 @@
 <script lang="ts" context="module">
+  import { Navbar, Footer } from '$lib/components';
   import { locale, loadTranslations } from '$lib/services/i18n';
+  import { NotificationContainer } from '$lib/services/notification';
 
-  import type { Load } from './__types/__layout';
+  import type { Load } from './__types';
 
-  export const load: Load = ({ params, url }) => {
+  export const load: Load = ({ params, url, session }) => {
+    console.log(`Turbo ~ file: __layout@root.svelte ~ line 7 ~ session`, session);
     locale.set(params.locale);
     loadTranslations(params.locale, url.pathname);
     return {};
   };
-</script>
-
-<script lang="ts">
-  import { Navbar, Footer } from '$lib/components';
-  import { NotificationContainer } from '$lib/services/notification';
 </script>
 
 <div class="flex h-full flex-col">

@@ -1,6 +1,7 @@
 <script lang="ts">
-  import socials from '$lib/data/socials.json';
   import { intersect } from '@svelte-put/intersect';
+  
+  import socials from '$lib/data/socials.json';
 
   let intersected = false;
 </script>
@@ -13,7 +14,10 @@
   >
     <ul class="grid grid-cols-7 place-items-center gap-x-6">
       {#each Object.values(socials) as { href, icon, id } (id)}
-        <li id="social-{id}" class="hover:-translate-y-1 transition-transform duration-200 active:scale-90">
+        <li
+          id="social-{id}"
+          class="transition-transform duration-200 hover:-translate-y-1 active:scale-90"
+        >
           <a {href} target="_blank">
             <img src={icon} alt={id} width="30" height="30" loading="lazy" />
           </a>

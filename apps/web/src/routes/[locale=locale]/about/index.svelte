@@ -2,10 +2,11 @@
   import { intersect } from '@svelte-put/intersect';
   import { slide } from 'svelte/transition';
 
-  import { AppConfig } from '$config';
-  import { milestones } from '$lib/data/milestones';
   import { MediaOverlay } from '$lib/components';
+  import { milestones } from '$lib/data/milestones';
   import { AppRoutes, to } from '$lib/services/navigation';
+  
+  import { AppConfig } from '$config';
 
   let SHOW_DETAILS_TOGGLER_ID = 'timeline-details-toggler';
   let showDetails = true;
@@ -165,7 +166,13 @@
                   {#each milestone.images as { id, src, alt, width } (id)}
                     <li class="">
                       <MediaOverlay {id} let:open>
-                        <img {src} {alt} {width} class="h-auto rounded shadow hover:shadow-lg" loading="lazy" />
+                        <img
+                          {src}
+                          {alt}
+                          {width}
+                          class="h-auto rounded shadow hover:shadow-lg"
+                          loading="lazy"
+                        />
                         <img {src} {alt} class="w-max rounded shadow" slot="overlay" />
                       </MediaOverlay>
                     </li>
@@ -206,6 +213,12 @@
     on:intersectonce={() => (intersectedMap.signature = true)}
   >
     <p class="mb-8 text-primary">~ • ~</p>
-    <img src="/images/vnphanquang/signature.svg" alt="signature" width="200" height="52" loading="lazy" />
+    <img
+      src="/images/vnphanquang/signature.svg"
+      alt="signature"
+      width="200"
+      height="52"
+      loading="lazy"
+    />
   </section>
 </main>

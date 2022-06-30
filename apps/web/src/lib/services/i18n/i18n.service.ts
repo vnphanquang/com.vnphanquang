@@ -2,6 +2,7 @@ import i18n from 'sveltekit-i18n';
 import type { Config } from 'sveltekit-i18n';
 
 import { Locale, I18NS } from './i18n.enum';
+
 import { AppConfig } from '$config';
 
 const lang = {

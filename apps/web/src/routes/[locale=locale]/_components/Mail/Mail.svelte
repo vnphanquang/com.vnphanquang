@@ -60,7 +60,12 @@
           </p>
           <p>Cheers,</p>
           <!-- TODO: make this signature inline svg and add stroke offset animation -->
-          <img src="/images/vnphanquang/signature.svg" alt="Signature of Quang Phan" width="200" loading="lazy" />
+          <img
+            src="/images/vnphanquang/signature.svg"
+            alt="Signature of Quang Phan"
+            width="200"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

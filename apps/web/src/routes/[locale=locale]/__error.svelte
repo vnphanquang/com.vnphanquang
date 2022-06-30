@@ -2,6 +2,7 @@
   import type { Load } from '@sveltejs/kit';
 
   import { NotFoundBlog } from '$lib/errors';
+  // eslint-disable-next-line import/order
   import { loadTranslations, locale, Locale } from '$lib/services/i18n';
 
   export const load: Load = ({ error, status }) => {
@@ -46,7 +47,13 @@
     {$t('error.prompt')}
   </h2>
   <div class="relative">
-    <img src="/images/chemistry/flasks.svg" alt="chemistry flasks" width="100" height="100" loading="lazy" />
+    <img
+      src="/images/chemistry/flasks.svg"
+      alt="chemistry flasks"
+      width="100"
+      height="100"
+      loading="lazy"
+    />
     <img
       src="/images/chemistry/molecule1.svg"
       alt="molecule 1"
