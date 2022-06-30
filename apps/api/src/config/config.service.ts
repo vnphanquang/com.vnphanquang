@@ -10,7 +10,13 @@ export const ConfigDynamicModule = TypedConfigModule.forRoot({
   schema: Config,
   load: dotenvLoader({
     separator: '__',
-    envFilePath: [join(process.cwd(), '.default.env'), join(process.cwd(), '.env')],
+    envFilePath: [
+      // CAUTION: for merging strategy
+      // files that come before will take priority
+      // over those that come after
+      join(process.cwd(), '.env'),
+      join(process.cwd(), '.default.env'),
+    ],
     ignoreEnvVars: false,
     ignoreEnvFile: false,
     expandVariables: true,

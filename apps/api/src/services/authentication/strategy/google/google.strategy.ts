@@ -13,7 +13,6 @@ export class GoogleOAuthStrategy extends PassportStrategy(OAuth2Strategy, 'googl
       oauth: { google },
       urls: { api },
     } = config.get();
-    console.log('output', `${api}${AppRoutes.oauth.google.redirect.$path({ separator: '/' })}`);
     const options: IOAuth2StrategyOption = {
       ...google,
       callbackURL: `${api}${AppRoutes.oauth.google.redirect.$path({ separator: '/' })}`,
