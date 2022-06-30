@@ -30,7 +30,7 @@ import { PrismaService } from '$services/prisma';
         return {
           graphiql: true,
           path: AppRoutes.graphql.$path(),
-          autoSchemaFile: join(process.cwd(), 'src/services/graphql/schema.generated.gql'),
+          autoSchemaFile: join(process.cwd(), 'src/services/graphql/schema.generated.graphql'),
           sortSchema: true,
           context: (req) => {
             let payload = null;
