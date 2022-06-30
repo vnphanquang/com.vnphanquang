@@ -6,6 +6,9 @@ export interface AppConfigSchema {
   env: {
     gtagMeasurementId: string;
   };
+  cookies: {
+    session: 'vnphanquang__session-dev' | 'vnphanquang__session',
+  },
 }
 export const BaseConfig: AppConfigSchema = {
   mode: 'unknown',
@@ -14,5 +17,8 @@ export const BaseConfig: AppConfigSchema = {
   },
   env: {
     gtagMeasurementId: import.meta.env.VITE_GTAG_MEASUREMENT_ID,
+  },
+  cookies: {
+    session: 'vnphanquang__session-dev',
   },
 };

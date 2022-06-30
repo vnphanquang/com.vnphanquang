@@ -6,4 +6,7 @@ export const AppConfig: AppConfigSchema = {
   urls: {
     web: 'https://vnphanquang.com',
   },
+  cookies: {
+    session: 'vnphanquang__session',
+  },
 };
