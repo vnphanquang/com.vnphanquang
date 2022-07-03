@@ -52,6 +52,11 @@ export class CommentDao {
   }
 
   delete(id: number) {
-    return this.prisma.comment.delete({ where: { id } });
+    return this.prisma.comment.update({
+      where: { id },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
   }
 }

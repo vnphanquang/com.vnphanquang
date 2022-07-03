@@ -17,6 +17,14 @@ export class TestimonialDao {
     return this.prisma.testimonial.findMany();
   }
 
+  onlyPublished() {
+    return this.prisma.testimonial.findMany({
+      where: {
+        published: true,
+      },
+    });
+  }
+
   create(data: Prisma.TestimonialCreateInput) {
     return this.prisma.testimonial.create({ data });
   }
@@ -29,6 +37,11 @@ export class TestimonialDao {
   }
 
   delete(id: number) {
-    return this.prisma.testimonial.delete({ where: { id } });
+    return this.prisma.testimonial.update({
+      where: { id },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
   }
 }

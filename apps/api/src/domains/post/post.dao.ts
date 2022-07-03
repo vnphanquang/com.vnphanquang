@@ -21,6 +21,14 @@ export class PostDao {
     return this.prisma.post.findMany();
   }
 
+  onlyPublished() {
+    return this.prisma.post.findMany({
+      where: {
+        published: true,
+      },
+    });
+  }
+
   create(data: Prisma.PostCreateInput) {
     return this.prisma.post.create({ data });
   }
@@ -33,6 +41,11 @@ export class PostDao {
   }
 
   delete(id: number) {
-    return this.prisma.post.delete({ where: { id } });
+    return this.prisma.post.update({
+      where: { id },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
   }
 }

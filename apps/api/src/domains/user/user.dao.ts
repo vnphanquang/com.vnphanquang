@@ -39,6 +39,11 @@ export class UserDao {
   }
 
   delete(id: number) {
-    return this.prisma.user.delete({ where: { id } });
+    return this.prisma.user.update({
+      where: { id },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
   }
 }

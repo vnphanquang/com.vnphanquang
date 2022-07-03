@@ -1,8 +1,8 @@
 import { UseGuards } from '@nestjs/common';
 import { ResolveField, Resolver, Root, Query, Args, Mutation } from '@nestjs/graphql';
-import { Role } from '@prisma/client';
+import { Role, User } from '@prisma/client';
 
-import { GraphQlAuthGuard } from '$services/authentication/graphql';
+import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/graphql';
 import { Roles } from '$services/authorization';
 
 import { TestimonialDao } from './testimonial.dao';
@@ -20,8 +20,12 @@ export class TestimonialResolver {
   }
 
   @Query(() => [TestimonialDto])
-  testimonials() {
-    return this.testimonialDao.all();
+  testimonials(@GraphQlCurrentUser() user?: User) {
+    if (user?.role === 'admin') {
+      return this.testimonialDao.all();
+    } else {
+      return this.testimonialDao.onlyPublished();
+    }
   }
 
   @Query(() => TestimonialDto)
