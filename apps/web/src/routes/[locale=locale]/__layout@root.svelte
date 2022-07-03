@@ -5,8 +5,7 @@
 
   import type { Load } from './__types';
 
-  export const load: Load = ({ params, url, session }) => {
-    console.log(`Turbo ~ file: __layout@root.svelte ~ line 7 ~ session`, session);
+  export const load: Load = ({ params, url }) => {
     locale.set(params.locale);
     loadTranslations(params.locale, url.pathname);
     return {};

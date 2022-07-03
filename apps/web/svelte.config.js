@@ -14,7 +14,7 @@ const config = {
     adapter: adapter(),
     prerender: {
       enabled: true,
-      default: false,
+      default: true,
     },
     vite: {
       resolve: {
