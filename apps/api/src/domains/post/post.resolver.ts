@@ -1,14 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import {
-  Args,
-  Field,
-  InputType,
-  Mutation,
-  Query,
-  ResolveField,
-  Resolver,
-  Root,
-} from '@nestjs/graphql';
+import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import { Role } from '@prisma/client';
 
 import { CommentDao } from '$domains/comment';
@@ -17,11 +8,7 @@ import { PostDto } from '$domains/post/post.dto';
 import { GraphQlAuthGuard } from '$services/authentication/graphql';
 import { Roles } from '$services/authorization';
 
-@InputType()
-class UpdatePostInput {
-  @Field({ nullable: true })
-  title?: string;
-}
+import { CreatePostInput, UpdatePostInput } from './post.inputs';
 
 @Resolver(() => PostDto)
 export class PostResolver {
@@ -40,8 +27,22 @@ export class PostResolver {
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => PostDto, { nullable: true })
-  updatePost(@Args('id') id: number, @Args('data') data: UpdatePostInput) {
-    return this.postDao.update(id, data);
+  createPost(@Args('input') input: CreatePostInput) {
+    return this.postDao.create(input);
+  }
+
+  @Roles(Role.admin)
+  @UseGuards(GraphQlAuthGuard)
+  @Mutation(() => PostDto, { nullable: true })
+  updatePost(@Args('id') id: number, @Args('input') input: UpdatePostInput) {
+    return this.postDao.update(id, input);
+  }
+
+  @Roles(Role.admin)
+  @UseGuards(GraphQlAuthGuard)
+  @Mutation(() => PostDto, { nullable: true })
+  deletePost(@Args('id') id: number) {
+    return this.postDao.delete(id);
   }
 
   @Roles(Role.admin)

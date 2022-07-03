@@ -3,7 +3,9 @@ import { AuthProvider } from '@prisma/client';
 
 import { UserDto } from '$domains/user';
 
-@ObjectType()
+@ObjectType({
+  description: 'User authentication provider record',
+})
 export class AuthenticationDto {
   @Field()
   id: string;

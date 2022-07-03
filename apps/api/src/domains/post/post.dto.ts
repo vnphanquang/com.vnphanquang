@@ -2,7 +2,9 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 import { CommentDto } from '$domains/comment';
 
-@ObjectType()
+@ObjectType({
+  description: 'Blog post',
+})
 export class PostDto {
   @Field(() => Int)
   id: number;

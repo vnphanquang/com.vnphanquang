@@ -32,7 +32,7 @@ export class PostDao {
     });
   }
 
-  delete(where: Prisma.PostWhereUniqueInput) {
-    return this.prisma.post.delete({ where });
+  delete(id: number) {
+    return this.prisma.post.delete({ where: { id } });
   }
 }

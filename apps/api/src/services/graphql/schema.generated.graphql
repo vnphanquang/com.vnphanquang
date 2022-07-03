@@ -11,6 +11,7 @@ enum AuthProvider {
   spotify
 }
 
+"""User authentication provider record"""
 type AuthenticationDto {
   createdAt: DateTime!
   id: String!
@@ -19,6 +20,7 @@ type AuthenticationDto {
   user: UserDto!
 }
 
+"""Comment for blog post"""
 type CommentDto {
   author: UserDto!
   content: String!
@@ -33,6 +35,22 @@ input CreateCommentInput {
   content: String!
 }
 
+input CreatePostInput {
+  published: Boolean
+  title: String!
+}
+
+input CreateTestimonialInput {
+  author: String!
+  avatarUrl: String!
+  published: Boolean
+  quote: String!
+  ref: String!
+  title: String!
+  x: String!
+  y: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -40,13 +58,20 @@ scalar DateTime
 
 type Mutation {
   createComment(data: CreateCommentInput!, postId: Float!): CommentDto!
+  createPost(input: CreatePostInput!): PostDto
+  createTestimonial(input: CreateTestimonialInput!): TestimonialDto!
   deleteComment(id: Float!): CommentDto
+  deletePost(id: Float!): PostDto
+  deleteTestimonial(id: Float!): TestimonialDto
   deleteUser(id: Float!): UserDto
   setPostPublication(id: Float!, published: Boolean!): PostDto
+  setTestimonialPublication(id: Float!, published: Boolean!): TestimonialDto
   updateComment(data: UpdateCommentInput!, id: Float!): CommentDto
-  updatePost(data: UpdatePostInput!, id: Float!): PostDto
+  updatePost(id: Float!, input: UpdatePostInput!): PostDto
+  updateTestimonial(id: Float!, input: UpdateTestimonialInput!): TestimonialDto
 }
 
+"""Blog post"""
 type PostDto {
   comments: [CommentDto!]!
   createdAt: DateTime!
@@ -64,6 +89,8 @@ type Query {
   me: UserDto!
   postById(id: Float!): PostDto
   posts: [PostDto!]!
+  testimonialById(id: Float!): TestimonialDto!
+  testimonials: [TestimonialDto!]!
   userById(id: Float!): UserDto
   users: [UserDto!]!
 }
@@ -74,12 +101,44 @@ enum Role {
   user
 }
 
+"""Display coordinate of testimonial in 2D plane (pixel or percentage)"""
+type TestimonialCoordinateDto {
+  x: String!
+  y: String!
+}
+
+"""Testimonial"""
+type TestimonialDto {
+  author: String!
+  avatarUrl: String!
+  coordinate: TestimonialCoordinateDto!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: Int!
+  published: Boolean!
+  quote: String!
+  ref: String!
+  title: String!
+  updatedAt: DateTime
+}
+
 input UpdateCommentInput {
   content: String
 }
 
 input UpdatePostInput {
   title: String
+}
+
+input UpdateTestimonialInput {
+  author: String
+  avatarUrl: String
+  published: Boolean
+  quote: String
+  ref: String
+  title: String
+  x: String
+  y: String
 }
 
 type UserDto {

@@ -4,6 +4,7 @@ import 'module-alias/register';
 import fastifyCookie from '@fastify/cookie';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import AltairFastify from 'altair-fastify-plugin';
 import { fastify } from 'fastify';
 
 import { ConfigService } from '$config/index';
@@ -34,6 +35,12 @@ async function bootstrap() {
 
   app.register(fastifyCookie, {
     secret: config.cookies.secret,
+  });
+
+  app.register(AltairFastify, {
+    path: '/altair',
+    baseURL: '/altair/',
+    endpointURL: '/graphql',
   });
 
   const prisma = app.get(PrismaService);

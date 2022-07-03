@@ -44,6 +44,7 @@ model Authentication {
   userId     Int
   user       User         @relation(fields: [userId], references: [id])
   createdAt  DateTime     @default(now())
+
   @@unique([provider, providerId])
 }
 
@@ -64,6 +65,21 @@ model Comment {
   author    User      @relation(fields: [authorId], references: [id])
   postId    Int
   post      Post      @relation(fields: [postId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  deletedAt DateTime?
+}
+
+model Testimonial {
+  id        Int       @id @default(autoincrement())
+  quote     String
+  author    String
+  ref       String
+  avatarUrl String
+  title     String
+  x         String
+  y         String
+  published Boolean   @default(false)
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
   deletedAt DateTime?
