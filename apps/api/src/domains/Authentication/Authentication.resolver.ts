@@ -2,12 +2,12 @@ import { UseGuards } from '@nestjs/common';
 import { Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import { Role } from '@prisma/client';
 
-import { UserDao } from '$domains/user';
+import { UserDao } from '$domains/User';
 import { GraphQlAuthGuard } from '$services/authentication/graphql';
 import { Roles, RolesGuard } from '$services/authorization';
 
-import { AuthenticationDao } from './authentication.dao';
-import { AuthenticationDto } from './authentication.dto';
+import { AuthenticationDao } from './Authentication.dao';
+import { AuthenticationDto } from './Authentication.dto';
 
 @Resolver(() => AuthenticationDto)
 export class AuthenticationResolver {

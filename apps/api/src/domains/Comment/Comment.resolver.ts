@@ -11,10 +11,10 @@ import {
 } from '@nestjs/graphql';
 import { User } from '@prisma/client';
 
-import { CommentDao } from '$domains/comment/comment.dao';
-import { CommentDto } from '$domains/comment/comment.dto';
-import { PostDao } from '$domains/post';
-import { UserDao } from '$domains/user';
+import { CommentDao } from '$domains/Comment/Comment.dao';
+import { CommentDto } from '$domains/Comment/Comment.dto';
+import { PostDao } from '$domains/Post';
+import { UserDao } from '$domains/User';
 import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/graphql';
 import { ResourceOwnerGuard } from '$services/authorization';
 

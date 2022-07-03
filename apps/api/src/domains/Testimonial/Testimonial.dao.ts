@@ -20,7 +20,9 @@ export class TestimonialDao {
   onlyPublished() {
     return this.prisma.testimonial.findMany({
       where: {
-        published: true,
+        publishedAt: {
+          not: null,
+        },
       },
     });
   }

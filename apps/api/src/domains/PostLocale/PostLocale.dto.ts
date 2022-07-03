@@ -1,7 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Locale } from '@prisma/client';
 
-import { PostDto } from '$domains/post';
+import { PostDto } from '$domains/Post';
 
 @ObjectType({
   description: 'Blog post locale (site)',

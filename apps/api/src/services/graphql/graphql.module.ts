@@ -6,12 +6,12 @@ import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
 
 import { ConfigModule } from '$config/config.module';
 import { AppRoutes, ConfigService } from '$config/config.service';
-import { AuthenticationDomainModule, AuthenticationResolver } from '$domains/authentication';
-import { CommentDomainModule, CommentResolver } from '$domains/comment';
-import { PostDomainModule, PostResolver } from '$domains/post';
-import { PostLocaleDomainModule, PostLocaleResolver } from '$domains/postLocale';
-import { TestimonialDomainModule, TestimonialResolver } from '$domains/testimonial';
-import { UserDomainModule, UserResolver } from '$domains/user';
+import { AuthenticationDomainModule, AuthenticationResolver } from '$domains/Authentication';
+import { CommentDomainModule, CommentResolver } from '$domains/Comment';
+import { PostDomainModule, PostResolver } from '$domains/Post';
+import { PostLocaleDomainModule, PostLocaleResolver } from '$domains/PostLocale';
+import { TestimonialDomainModule, TestimonialResolver } from '$domains/Testimonial';
+import { UserDomainModule, UserResolver } from '$domains/User';
 import { JwtAuthModule, JwtAuthService } from '$services/authentication/strategy/jwt';
 import { PrismaService } from '$services/prisma';
 

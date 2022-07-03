@@ -2,13 +2,13 @@ import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import { Role } from '@prisma/client';
 
-import { CommentDao } from '$domains/comment';
-import { PostDao } from '$domains/post/post.dao';
-import { PostDto } from '$domains/post/post.dto';
+import { CommentDao } from '$domains/Comment';
+import { PostDao } from '$domains/Post/Post.dao';
+import { PostDto } from '$domains/Post/Post.dto';
 import { GraphQlAuthGuard } from '$services/authentication/graphql';
 import { Roles } from '$services/authorization';
 
-import { CreatePostInput, UpdatePostInput } from './post.inputs';
+import { CreatePostInput, UpdatePostInput } from './Post.inputs';
 
 @Resolver(() => PostDto)
 export class PostResolver {

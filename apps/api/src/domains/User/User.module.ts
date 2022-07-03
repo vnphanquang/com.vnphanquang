@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { PrismaService } from '$services/prisma/prisma.service';
 
-import { UserDao } from './user.dao';
+import { UserDao } from './User.dao';
 
 @Module({
   imports: [],

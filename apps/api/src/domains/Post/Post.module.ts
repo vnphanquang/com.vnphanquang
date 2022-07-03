@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { PrismaService } from '$services/prisma/prisma.service';
 
-import { PostDao } from './post.dao';
+import { PostDao } from './Post.dao';
 
 @Module({
   imports: [],

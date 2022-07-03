@@ -1,8 +1,8 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { AuthProvider, Role } from '@prisma/client';
 
-import { AuthenticationDto } from '$domains/authentication';
-import { CommentDto } from '$domains/comment';
+import { AuthenticationDto } from '$domains/Authentication';
+import { CommentDto } from '$domains/Comment';
 import { authenticated } from '$services/authorization';
 
 @ObjectType()

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 
-import { AuthenticationDomainModule } from '$domains/authentication';
-import { UserDomainModule } from '$domains/user';
+import { AuthenticationDomainModule } from '$domains/Authentication';
+import { UserDomainModule } from '$domains/User';
 
 import { OAuthService } from './oauth.service';
 

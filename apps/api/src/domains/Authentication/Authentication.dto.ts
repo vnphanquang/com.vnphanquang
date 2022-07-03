@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { AuthProvider } from '@prisma/client';
 
-import { UserDto } from '$domains/user';
+import { UserDto } from '$domains/User';
 
 @ObjectType({
   description: 'User authentication provider record',

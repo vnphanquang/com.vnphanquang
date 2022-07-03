@@ -1,7 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 
-import { PostDto } from '$domains/post';
-import { UserDto } from '$domains/user';
+import { PostDto } from '$domains/Post';
+import { UserDto } from '$domains/User';
 
 @ObjectType({
   description: 'Comment for blog post',

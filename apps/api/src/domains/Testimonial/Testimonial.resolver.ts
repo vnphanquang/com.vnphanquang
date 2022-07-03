@@ -5,9 +5,9 @@ import { Role, User } from '@prisma/client';
 import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/graphql';
 import { Roles } from '$services/authorization';
 
-import { TestimonialDao } from './testimonial.dao';
-import { TestimonialCoordinateDto, TestimonialDto } from './testimonial.dto';
-import { CreateTestimonialInput, UpdateTestimonialInput } from './testimonial.inputs';
+import { TestimonialDao } from './Testimonial.dao';
+import { TestimonialCoordinateDto, TestimonialDto } from './Testimonial.dto';
+import { CreateTestimonialInput, UpdateTestimonialInput } from './Testimonial.inputs';
 
 @Resolver(() => TestimonialDto)
 export class TestimonialResolver {

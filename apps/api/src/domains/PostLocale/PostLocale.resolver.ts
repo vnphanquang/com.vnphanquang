@@ -1,12 +1,12 @@
 import { ResolveField, Resolver, Root, Query, Mutation, Args } from '@nestjs/graphql';
 import { User } from '@prisma/client';
 
-import { PostDao } from '$domains/post/post.dao';
+import { PostDao } from '$domains/Post';
 import { GraphQlCurrentUser } from '$services/authentication/graphql';
 
-import { PostLocaleDao } from './postLocale.dao';
-import { PostLocaleDto } from './postLocale.dto';
-import { CreatePostLocaleInput, UpdatePostLocaleInput } from './postLocale.inputs';
+import { PostLocaleDao } from './PostLocale.dao';
+import { PostLocaleDto } from './PostLocale.dto';
+import { CreatePostLocaleInput, UpdatePostLocaleInput } from './PostLocale.inputs';
 
 @Resolver(() => PostLocaleDto)
 export class PostLocaleResolver {

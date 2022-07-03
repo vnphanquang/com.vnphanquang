@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 
-import { AuthenticationDao } from '$domains/authentication';
-import { UserDao } from '$domains/user';
+import { AuthenticationDao } from '$domains/Authentication';
+import { UserDao } from '$domains/User';
 
 @Injectable()
 export class OAuthService {
