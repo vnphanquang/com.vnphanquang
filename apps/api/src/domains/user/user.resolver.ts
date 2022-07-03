@@ -20,7 +20,12 @@ export class UserResolver {
 
   @ResolveField(() => [CommentDto])
   comments(@Root() user: UserDto) {
-    return this.commentDao.byUser(user.id);
+    return this.commentDao.byUserId(user.id);
+  }
+
+  @ResolveField()
+  deleted(@Root() user: UserDto) {
+    return !!user.deletedAt;
   }
 
   @ResolveField(() => AuthProvider)

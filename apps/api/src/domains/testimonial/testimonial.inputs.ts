@@ -13,7 +13,7 @@ export class CreateTestimonialInput {
   @Field()
   avatarUrl: string;
   @Field(() => Boolean, { nullable: true })
-  published: boolean;
+  published?: boolean;
   @Field()
   x: string;
   @Field()
@@ -23,19 +23,19 @@ export class CreateTestimonialInput {
 @InputType()
 export class UpdateTestimonialInput {
   @Field({ nullable: true })
-  quote: string;
+  quote?: string;
   @Field({ nullable: true })
-  author: string;
+  author?: string;
   @Field({ nullable: true })
-  title: string;
+  title?: string;
   @Field({ nullable: true })
-  ref: string;
+  ref?: string;
   @Field({ nullable: true })
-  avatarUrl: string;
+  avatarUrl?: string;
   @Field(() => Boolean, { nullable: true })
-  published: boolean;
+  published?: boolean;
   @Field({ nullable: true })
-  x: string;
+  x?: string;
   @Field({ nullable: true })
-  y: string;
+  y?: string;
 }

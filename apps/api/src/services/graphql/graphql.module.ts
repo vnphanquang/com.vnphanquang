@@ -6,15 +6,12 @@ import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
 
 import { ConfigModule } from '$config/config.module';
 import { AppRoutes, ConfigService } from '$config/config.service';
-import { AuthenticationDomainModule } from '$domains/authentication';
-import { AuthenticationResolver } from '$domains/authentication/authentication.resolver';
-import { CommentDomainModule } from '$domains/comment';
-import { CommentResolver } from '$domains/comment/comment.resolver';
-import { PostDomainModule } from '$domains/post';
-import { PostResolver } from '$domains/post/post.resolver';
+import { AuthenticationDomainModule, AuthenticationResolver } from '$domains/authentication';
+import { CommentDomainModule, CommentResolver } from '$domains/comment';
+import { PostDomainModule, PostResolver } from '$domains/post';
+import { PostLocaleDomainModule, PostLocaleResolver } from '$domains/postLocale';
 import { TestimonialDomainModule, TestimonialResolver } from '$domains/testimonial';
-import { UserDomainModule } from '$domains/user';
-import { UserResolver } from '$domains/user/user.resolver';
+import { UserDomainModule, UserResolver } from '$domains/user';
 import { JwtAuthModule, JwtAuthService } from '$services/authentication/strategy/jwt';
 import { PrismaService } from '$services/prisma';
 
@@ -23,6 +20,7 @@ import { PrismaService } from '$services/prisma';
     AuthenticationDomainModule,
     UserDomainModule,
     PostDomainModule,
+    PostLocaleDomainModule,
     CommentDomainModule,
     TestimonialDomainModule,
     GraphQLModule.forRootAsync<MercuriusDriverConfig>({
@@ -62,6 +60,7 @@ import { PrismaService } from '$services/prisma';
     AuthenticationResolver,
     UserResolver,
     PostResolver,
+    PostLocaleResolver,
     CommentResolver,
     TestimonialResolver,
   ],

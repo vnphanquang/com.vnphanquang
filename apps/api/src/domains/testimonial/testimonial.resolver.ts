@@ -19,6 +19,11 @@ export class TestimonialResolver {
     return { x, y };
   }
 
+  @ResolveField()
+  deleted(@Root() testimonial: TestimonialDto) {
+    return !!testimonial.deletedAt;
+  }
+
   @Query(() => [TestimonialDto])
   testimonials(@GraphQlCurrentUser() user?: User) {
     if (user?.role === 'admin') {
@@ -37,14 +42,20 @@ export class TestimonialResolver {
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => TestimonialDto)
   createTestimonial(@Args('input') input: CreateTestimonialInput) {
-    return this.testimonialDao.create(input);
+    return this.testimonialDao.create({
+      ...input,
+      publishedAt: input.published ? new Date() : null,
+    });
   }
 
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => TestimonialDto, { nullable: true })
   updateTestimonial(@Args('id') id: number, @Args('input') input: UpdateTestimonialInput) {
-    return this.testimonialDao.update(id, input);
+    return this.testimonialDao.update(id, {
+      ...input,
+      publishedAt: input.published ? new Date() : null,
+    });
   }
 
   @Roles(Role.admin)
@@ -58,6 +69,6 @@ export class TestimonialResolver {
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => TestimonialDto, { nullable: true })
   setTestimonialPublication(@Args('id') id: number, @Args('published') published: boolean) {
-    return this.testimonialDao.update(id, { published });
+    return this.testimonialDao.update(id, { publishedAt: published ? new Date() : null });
   }
 }

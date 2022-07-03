@@ -1,16 +1,20 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { PostCategory, PostTag } from '@prisma/client';
 
 @InputType()
 export class CreatePostInput {
-  @Field()
-  title: string;
+  @Field(() => PostCategory)
+  category: PostCategory;
 
-  @Field(() => Boolean, { nullable: true })
-  published: boolean;
+  @Field(() => [PostTag], { nullable: true })
+  tags: PostTag[];
 }
 
 @InputType()
 export class UpdatePostInput {
-  @Field({ nullable: true })
-  title?: string;
+  @Field(() => PostCategory, { nullable: true })
+  category?: PostCategory;
+
+  @Field(() => [PostTag], { nullable: true })
+  tags?: PostTag[];
 }

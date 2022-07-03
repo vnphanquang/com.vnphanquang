@@ -23,14 +23,17 @@ export class UserDto {
     middleware: [authenticated],
     nullable: true,
   })
-  email: string | null;
+  email?: string;
 
   @Field()
   createdAt: Date;
   @Field({ nullable: true })
-  updatedAt: Date | null;
+  updatedAt?: Date;
+
   @Field({ nullable: true })
-  deletedAt: Date | null;
+  deletedAt?: Date;
+  @Field()
+  deleted: boolean;
 
   @Field(() => [CommentDto])
   comments: CommentDto[];

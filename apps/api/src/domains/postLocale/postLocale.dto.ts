@@ -1,17 +1,28 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Locale } from '@prisma/client';
 
 import { PostDto } from '$domains/post';
-import { UserDto } from '$domains/user';
 
 @ObjectType({
-  description: 'Comment for blog post',
+  description: 'Blog post locale (site)',
 })
-export class CommentDto {
+export class PostLocaleDto {
   @Field(() => Int)
   id: number;
 
   @Field()
-  content: string;
+  title: string;
+  @Field()
+  summary: string;
+  @Field()
+  slug: string;
+  @Field(() => Locale)
+  locale: Locale;
+
+  @Field(() => Boolean)
+  published: boolean;
+  @Field({ nullable: true })
+  publishedAt?: Date;
 
   @Field()
   createdAt: Date;
@@ -22,9 +33,6 @@ export class CommentDto {
   deletedAt?: Date;
   @Field()
   deleted: boolean;
-
-  @Field(() => UserDto)
-  author: UserDto;
 
   @Field(() => PostDto)
   post: PostDto;

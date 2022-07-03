@@ -13,20 +13,16 @@ export class PostDao {
     });
   }
 
+  byPostLocaleId(postLocaleId: number) {
+    return this.prisma.postLocale.findUnique({ where: { id: postLocaleId } }).post();
+  }
+
   byCommentId(commentId: number) {
     return this.prisma.comment.findUnique({ where: { id: commentId } }).post();
   }
 
   all() {
     return this.prisma.post.findMany();
-  }
-
-  onlyPublished() {
-    return this.prisma.post.findMany({
-      where: {
-        published: true,
-      },
-    });
   }
 
   create(data: Prisma.PostCreateInput) {

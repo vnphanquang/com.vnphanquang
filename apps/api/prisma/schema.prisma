@@ -30,9 +30,11 @@ model User {
   lastName        String           @default("")
   role            Role             @default(user)
   email           String?          @unique
+  // timestamps
   createdAt       DateTime         @default(now())
   updatedAt       DateTime?        @updatedAt
   deletedAt       DateTime?
+  // relations
   comments        Comment[]
   authentications Authentication[]
 }
@@ -41,46 +43,85 @@ model Authentication {
   id         String       @id @default(uuid())
   provider   AuthProvider
   providerId String
+  // timestamps
+  createdAt  DateTime     @default(now())
+  // relations
   userId     Int
   user       User         @relation(fields: [userId], references: [id])
-  createdAt  DateTime     @default(now())
 
   @@unique([provider, providerId])
 }
 
+enum PostCategory {
+  code
+  life
+}
+
+enum PostTag {
+  typescript
+  bicycle
+}
+
+enum Locale {
+  en
+  vi
+}
+
 model Post {
-  id        Int       @id @default(autoincrement())
-  title     String
-  published Boolean   @default(false)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+  id        Int          @id @default(autoincrement())
+  category  PostCategory
+  tags      PostTag[]    @default([])
+  // timestamps
+  createdAt DateTime     @default(now())
+  updatedAt DateTime?    @updatedAt
   deletedAt DateTime?
+  // relations
   comments  Comment[]
+  locales   PostLocale[]
+}
+
+model PostLocale {
+  id          Int       @id @default(autoincrement())
+  title       String
+  summary     String
+  slug        String    @unique
+  locale      Locale
+  // timestamps
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+  deletedAt   DateTime?
+  // relations
+  postId      Int
+  post        Post      @relation(fields: [postId], references: [id])
 }
 
 model Comment {
   id        Int       @id @default(autoincrement())
   content   String    @default("")
-  authorId  Int
-  author    User      @relation(fields: [authorId], references: [id])
-  postId    Int
-  post      Post      @relation(fields: [postId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
   deletedAt DateTime?
+  // relations
+  authorId  Int
+  author    User      @relation(fields: [authorId], references: [id])
+
+  postId Int
+  post   Post @relation(fields: [postId], references: [id])
 }
 
 model Testimonial {
-  id        Int       @id @default(autoincrement())
-  quote     String
-  author    String
-  ref       String
-  avatarUrl String
-  title     String
-  x         String
-  y         String
-  published Boolean   @default(false)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
-  deletedAt DateTime?
+  id          Int       @id @default(autoincrement())
+  quote       String
+  author      String
+  ref         String
+  avatarUrl   String
+  title       String
+  x           String
+  y           String
+  // timestamps
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+  deletedAt   DateTime?
 }

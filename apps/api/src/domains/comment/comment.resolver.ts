@@ -42,10 +42,10 @@ export class CommentResolver {
   @UseGuards(GraphQlAuthGuard)
   createComment(
     @GraphQlCurrentUser() user: User,
-    @Args('data') data: CreateCommentInput,
     @Args('postId') postId: number,
+    @Args('input') input: CreateCommentInput,
   ) {
-    return this.commentDao.create({ authorId: user.id, data, postId });
+    return this.commentDao.create({ authorId: user.id, data: input, postId });
   }
 
   @Mutation(() => CommentDto, { nullable: true })
@@ -78,5 +78,10 @@ export class CommentResolver {
   @ResolveField()
   author(@Root() comment: CommentDto) {
     return this.userDao.byCommentId(comment.id);
+  }
+
+  @ResolveField()
+  deleted(@Root() comment: CommentDto) {
+    return !!comment.deletedAt;
   }
 }
