@@ -80,6 +80,7 @@ type Mutation {
   deletePost(id: Float!): PostDto
   deletePostLocale(id: Float!): PostLocaleDto!
   deleteTestimonial(id: Float!): TestimonialDto
+  deleteUser(id: Float!): UserDto
   setPostLocalePublication(id: Float!, published: Boolean!): PostLocaleDto!
   setTestimonialPublication(id: Float!, published: Boolean!): TestimonialDto
   updateComment(data: UpdateCommentInput!, id: Float!): CommentDto
@@ -133,11 +134,14 @@ type Query {
   authentications: [AuthenticationDto!]!
   commentById(id: Float!): CommentDto
   comments: [CommentDto!]!
+  me: UserDto!
   postById(id: Float!): PostDto
   postLocales: [PostLocaleDto!]!
   posts: [PostDto!]!
   testimonialById(id: Float!): TestimonialDto!
   testimonials: [TestimonialDto!]!
+  userById(id: Float!): UserDto
+  users: [UserDto!]!
 }
 
 """User role"""

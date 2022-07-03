@@ -2,7 +2,8 @@ import { UseGuards } from '@nestjs/common';
 import { ResolveField, Resolver, Root, Query, Args, Mutation } from '@nestjs/graphql';
 import { AuthProvider, User } from '@prisma/client';
 
-import { AuthenticationDto, AuthenticationDao } from '$domains/Authentication';
+import { AuthenticationDao } from '$domains/Authentication/Authentication.dao';
+import { AuthenticationDto } from '$domains/Authentication/Authentication.dto';
 import { CommentDao, CommentDto } from '$domains/Comment';
 import { UserDao } from '$domains/User/User.dao';
 import { UserDto } from '$domains/User/User.dto';
