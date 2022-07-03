@@ -9,7 +9,7 @@ export class CreatePostLocaleInput {
   summary: string;
   @Field()
   slug: string;
-  @Field(() => Locale)
+  @Field()
   locale: Locale;
 
   @Field(() => Boolean, { nullable: true })
@@ -24,7 +24,7 @@ export class UpdatePostLocaleInput {
   summary?: string;
   @Field({ nullable: true })
   slug?: string;
-  @Field(() => Locale, { nullable: true })
+  @Field({ nullable: true })
   locale?: Locale;
 
   @Field(() => Boolean, { nullable: true })

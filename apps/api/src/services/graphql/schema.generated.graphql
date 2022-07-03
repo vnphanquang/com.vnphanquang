@@ -25,6 +25,7 @@ type CommentDto {
   author: UserDto!
   content: String!
   createdAt: DateTime!
+  deleted: Boolean!
   deletedAt: DateTime
   id: Int!
   post: PostDto!
@@ -36,7 +37,15 @@ input CreateCommentInput {
 }
 
 input CreatePostInput {
+  category: PostCategory!
+  tags: [PostTag!]
+}
+
+input CreatePostLocaleInput {
+  locale: String!
   published: Boolean
+  slug: String!
+  summary: String!
   title: String!
 }
 
@@ -56,43 +65,79 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+"""Locale"""
+enum Locale {
+  en
+  vi
+}
+
 type Mutation {
-  createComment(data: CreateCommentInput!, postId: Float!): CommentDto!
+  createComment(input: CreateCommentInput!, postId: Float!): CommentDto!
   createPost(input: CreatePostInput!): PostDto
+  createPostLocale(input: CreatePostLocaleInput!, postId: Float!): PostLocaleDto!
   createTestimonial(input: CreateTestimonialInput!): TestimonialDto!
   deleteComment(id: Float!): CommentDto
   deletePost(id: Float!): PostDto
+  deletePostLocale(id: Float!): PostLocaleDto!
   deleteTestimonial(id: Float!): TestimonialDto
-  deleteUser(id: Float!): UserDto
-  setPostPublication(id: Float!, published: Boolean!): PostDto
+  setPostLocalePublication(id: Float!, published: Boolean!): PostLocaleDto!
   setTestimonialPublication(id: Float!, published: Boolean!): TestimonialDto
   updateComment(data: UpdateCommentInput!, id: Float!): CommentDto
   updatePost(id: Float!, input: UpdatePostInput!): PostDto
+  updatePostLocale(id: Float!, input: UpdatePostLocaleInput!): PostLocaleDto!
   updateTestimonial(id: Float!, input: UpdateTestimonialInput!): TestimonialDto
+}
+
+"""Post category"""
+enum PostCategory {
+  code
+  life
 }
 
 """Blog post"""
 type PostDto {
+  category: PostCategory!
   comments: [CommentDto!]!
   createdAt: DateTime!
+  deleted: Boolean!
   deletedAt: DateTime
   id: Int!
+  locales: [PostLocaleDto!]!
+  tags: [PostTag!]!
+  updatedAt: DateTime
+}
+
+"""Blog post locale (site)"""
+type PostLocaleDto {
+  createdAt: DateTime!
+  deleted: Boolean!
+  deletedAt: DateTime
+  id: Int!
+  locale: Locale!
+  post: PostDto!
   published: Boolean!
+  publishedAt: DateTime
+  slug: String!
+  summary: String!
   title: String!
   updatedAt: DateTime
+}
+
+"""Post tag"""
+enum PostTag {
+  bicycle
+  typescript
 }
 
 type Query {
   authentications: [AuthenticationDto!]!
   commentById(id: Float!): CommentDto
   comments: [CommentDto!]!
-  me: UserDto!
   postById(id: Float!): PostDto
+  postLocales: [PostLocaleDto!]!
   posts: [PostDto!]!
   testimonialById(id: Float!): TestimonialDto!
   testimonials: [TestimonialDto!]!
-  userById(id: Float!): UserDto
-  users: [UserDto!]!
 }
 
 """User role"""
@@ -113,6 +158,7 @@ type TestimonialDto {
   avatarUrl: String!
   coordinate: TestimonialCoordinateDto!
   createdAt: DateTime!
+  deleted: Boolean!
   deletedAt: DateTime
   id: Int!
   published: Boolean!
@@ -127,6 +173,15 @@ input UpdateCommentInput {
 }
 
 input UpdatePostInput {
+  category: PostCategory
+  tags: [PostTag!]
+}
+
+input UpdatePostLocaleInput {
+  locale: String
+  published: Boolean
+  slug: String
+  summary: String
   title: String
 }
 
@@ -145,6 +200,7 @@ type UserDto {
   authentications: [AuthenticationDto!]
   comments: [CommentDto!]!
   createdAt: DateTime!
+  deleted: Boolean!
   deletedAt: DateTime
   email: String
   firstName: String!
