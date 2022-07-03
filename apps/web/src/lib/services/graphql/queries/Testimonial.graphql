@@ -1,0 +1,18 @@
+query testimonials {
+  testimonials {
+    id
+    published
+    quote
+    ref
+    title
+    author
+    avatarUrl
+    coordinate {
+      x
+      y
+    }
+    updatedAt
+    createdAt
+    deletedAt
+  }
+}

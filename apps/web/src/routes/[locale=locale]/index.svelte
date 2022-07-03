@@ -1,9 +1,10 @@
-<script lang="ts">
+<script context="module" lang="ts">
   import { intersect } from '@svelte-put/intersect';
+  import type { Load } from '@sveltejs/kit';
 
   import { ScrollDownMouse } from '$lib/components';
   import neverAskedQuestions from '$lib/data/neverAskedQuestions.json';
-  import testimonials from '$lib/data/testimonials.json';
+  import { getTestimonials, testimonials } from '$lib/services/graphql/queries/Testimonial.gq';
 
   import {
     NeverAskedQuestions,
@@ -15,6 +16,14 @@
 
   import { AppConfig } from '$config';
 
+
+  export const load: Load = async ({ fetch }) => {
+    await getTestimonials({ fetch: fetch as any });
+    return {};
+  };
+</script>
+
+<script lang="ts">
   let heroNode: HTMLElement;
   const intersectionThreshold = 0.35;
   let fadeIns = {
@@ -71,7 +80,7 @@
       use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.testimonials }}
       on:intersectonce={() => (fadeIns.testimonials = true)}
     >
-      <Testimonials data={testimonials} class="w-full max-w-5xl" />
+      <Testimonials data={$testimonials.testimonials} class="w-full max-w-5xl" />
     </div>
   </section>
 

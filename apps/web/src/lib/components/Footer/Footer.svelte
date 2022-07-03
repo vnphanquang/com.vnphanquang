@@ -1,6 +1,6 @@
 <script lang="ts">
   import { intersect } from '@svelte-put/intersect';
-  
+
   import socials from '$lib/data/socials.json';
 
   let intersected = false;

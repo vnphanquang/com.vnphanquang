@@ -5,6 +5,7 @@ export const AppConfig: AppConfigSchema = {
   mode: 'production',
   urls: {
     web: 'https://vnphanquang.com',
+    api: 'https://api.vnphanquang.com/graphql',
   },
   cookies: {
     session: 'vnphanquang__session',

@@ -54,9 +54,9 @@
     <p class="mt-4 italic">Nobody was harmed in the making of this</p>
   </div>
   <ul class="relative grid h-80 w-full gap-10">
-    {#each data as { avatar, author, position, id }, index (id)}
+    {#each data as { avatarUrl, author, coordinate, id }, index (id)}
       {@const htmlId = getHtmlId(id)}
-      <li class="absolute z-0" style:left={position.x} style:bottom={position.y}>
+      <li class="absolute z-0" style:left={coordinate.x} style:bottom={coordinate.y}>
         <label for={htmlId}>
           <input
             type="radio"
@@ -67,7 +67,7 @@
             hidden
           />
           <img
-            src={avatar}
+            src={avatarUrl}
             alt={author}
             width="50"
             height="50"

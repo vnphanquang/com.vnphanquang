@@ -1,5 +1,6 @@
 import path from 'path';
 
+import gQueryCodegen from '@leveluptuts/g-query/codegen';
 import adapter from '@sveltejs/adapter-vercel';
 import preprocess from 'svelte-preprocess';
 
@@ -25,6 +26,14 @@ const config = {
       optimizeDeps: {
         include: ['highlight.js', 'highlight.js/lib/core'],
       },
+      plugins: [
+        gQueryCodegen({
+          schema: '../api/src/services/graphql/schema.generated.graphql',
+          out: './src/lib/services/graphql/queries',
+          gPath: '$lib/services/graphql/g',
+          // debug: false,
+        }),
+      ],
     },
   },
 };

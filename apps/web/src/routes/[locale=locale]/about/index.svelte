@@ -5,7 +5,7 @@
   import { MediaOverlay } from '$lib/components';
   import { milestones } from '$lib/data/milestones';
   import { AppRoutes, to } from '$lib/services/navigation';
-  
+
   import { AppConfig } from '$config';
 
   let SHOW_DETAILS_TOGGLER_ID = 'timeline-details-toggler';

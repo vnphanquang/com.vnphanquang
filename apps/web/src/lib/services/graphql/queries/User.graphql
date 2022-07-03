@@ -1,0 +1,13 @@
+query me {
+  me {
+    id
+    role
+    email
+    firstName
+    lastName
+    lastConnectedAuthenticationProvider
+    createdAt
+    updatedAt
+    deletedAt
+  }
+}

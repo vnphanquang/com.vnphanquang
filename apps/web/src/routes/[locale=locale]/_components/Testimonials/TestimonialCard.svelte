@@ -23,7 +23,7 @@
   >
     <Icon data={close} scale={1.25} />
   </button>
-  <img src={data.avatar} alt={data.author} class="rounded-full" width="60" height="60" />
+  <img src={data.avatarUrl} alt={data.author} class="rounded-full" width="60" height="60" />
   <div class="">
     <a class="c-link font-bold text-secondary" href={data.ref} target="_blank">{data.author}</a>
     <p class="mt-2 italic opacity-50 active:cursor-text">{data.title}</p>

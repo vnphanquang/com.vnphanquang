@@ -3,9 +3,9 @@ export interface Testimonial {
   quote: string;
   author: string;
   ref: string;
-  avatar: string;
+  avatarUrl: string;
   title: string;
-  position: {
+  coordinate: {
     x: string;
     y: string;
   };
