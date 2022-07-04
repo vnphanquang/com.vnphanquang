@@ -39,6 +39,7 @@ export type CommentDto = {
   author: UserDto;
   content: Scalars['String'];
   createdAt: Scalars['DateTime'];
+  deleted: Scalars['Boolean'];
   deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
   post: PostDto;
@@ -50,7 +51,15 @@ export type CreateCommentInput = {
 };
 
 export type CreatePostInput = {
+  category: PostCategory;
+  tags?: InputMaybe<Array<PostTag>>;
+};
+
+export type CreatePostLocaleInput = {
+  locale: Scalars['String'];
   published?: InputMaybe<Scalars['Boolean']>;
+  slug: Scalars['String'];
+  summary: Scalars['String'];
   title: Scalars['String'];
 };
 
@@ -65,31 +74,46 @@ export type CreateTestimonialInput = {
   y: Scalars['String'];
 };
 
+/** Locale */
+export enum Locale {
+  En = 'en',
+  Vi = 'vi'
+}
+
 export type Mutation = {
   __typename?: 'Mutation';
   createComment: CommentDto;
   createPost?: Maybe<PostDto>;
+  createPostLocale: PostLocaleDto;
   createTestimonial: TestimonialDto;
   deleteComment?: Maybe<CommentDto>;
   deletePost?: Maybe<PostDto>;
+  deletePostLocale: PostLocaleDto;
   deleteTestimonial?: Maybe<TestimonialDto>;
   deleteUser?: Maybe<UserDto>;
-  setPostPublication?: Maybe<PostDto>;
+  setPostLocalePublication: PostLocaleDto;
   setTestimonialPublication?: Maybe<TestimonialDto>;
   updateComment?: Maybe<CommentDto>;
   updatePost?: Maybe<PostDto>;
+  updatePostLocale: PostLocaleDto;
   updateTestimonial?: Maybe<TestimonialDto>;
 };
 
 
 export type MutationCreateCommentArgs = {
-  data: CreateCommentInput;
+  input: CreateCommentInput;
   postId: Scalars['Float'];
 };
 
 
 export type MutationCreatePostArgs = {
   input: CreatePostInput;
+};
+
+
+export type MutationCreatePostLocaleArgs = {
+  input: CreatePostLocaleInput;
+  postId: Scalars['Float'];
 };
 
 
@@ -108,6 +132,11 @@ export type MutationDeletePostArgs = {
 };
 
 
+export type MutationDeletePostLocaleArgs = {
+  id: Scalars['Float'];
+};
+
+
 export type MutationDeleteTestimonialArgs = {
   id: Scalars['Float'];
 };
@@ -118,7 +147,7 @@ export type MutationDeleteUserArgs = {
 };
 
 
-export type MutationSetPostPublicationArgs = {
+export type MutationSetPostLocalePublicationArgs = {
   id: Scalars['Float'];
   published: Scalars['Boolean'];
 };
@@ -142,22 +171,59 @@ export type MutationUpdatePostArgs = {
 };
 
 
+export type MutationUpdatePostLocaleArgs = {
+  id: Scalars['Float'];
+  input: UpdatePostLocaleInput;
+};
+
+
 export type MutationUpdateTestimonialArgs = {
   id: Scalars['Float'];
   input: UpdateTestimonialInput;
 };
 
+/** Post category */
+export enum PostCategory {
+  Code = 'code',
+  Life = 'life'
+}
+
 /** Blog post */
 export type PostDto = {
   __typename?: 'PostDto';
+  category: PostCategory;
   comments: Array<CommentDto>;
   createdAt: Scalars['DateTime'];
+  deleted: Scalars['Boolean'];
   deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
+  locales: Array<PostLocaleDto>;
+  tags: Array<PostTag>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+/** Blog post locale (site) */
+export type PostLocaleDto = {
+  __typename?: 'PostLocaleDto';
+  createdAt: Scalars['DateTime'];
+  deleted: Scalars['Boolean'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['Int'];
+  locale: Locale;
+  post: PostDto;
   published: Scalars['Boolean'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  slug: Scalars['String'];
+  summary: Scalars['String'];
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
+
+/** Post tag */
+export enum PostTag {
+  Bicycle = 'bicycle',
+  Typescript = 'typescript'
+}
 
 export type Query = {
   __typename?: 'Query';
@@ -166,6 +232,7 @@ export type Query = {
   comments: Array<CommentDto>;
   me: UserDto;
   postById?: Maybe<PostDto>;
+  postLocales: Array<PostLocaleDto>;
   posts: Array<PostDto>;
   testimonialById: TestimonialDto;
   testimonials: Array<TestimonialDto>;
@@ -213,6 +280,7 @@ export type TestimonialDto = {
   avatarUrl: Scalars['String'];
   coordinate: TestimonialCoordinateDto;
   createdAt: Scalars['DateTime'];
+  deleted: Scalars['Boolean'];
   deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
   published: Scalars['Boolean'];
@@ -227,6 +295,15 @@ export type UpdateCommentInput = {
 };
 
 export type UpdatePostInput = {
+  category?: InputMaybe<PostCategory>;
+  tags?: InputMaybe<Array<PostTag>>;
+};
+
+export type UpdatePostLocaleInput = {
+  locale?: InputMaybe<Scalars['String']>;
+  published?: InputMaybe<Scalars['Boolean']>;
+  slug?: InputMaybe<Scalars['String']>;
+  summary?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -246,6 +323,7 @@ export type UserDto = {
   authentications?: Maybe<Array<AuthenticationDto>>;
   comments: Array<CommentDto>;
   createdAt: Scalars['DateTime'];
+  deleted: Scalars['Boolean'];
   deletedAt?: Maybe<Scalars['DateTime']>;
   email?: Maybe<Scalars['String']>;
   firstName: Scalars['String'];

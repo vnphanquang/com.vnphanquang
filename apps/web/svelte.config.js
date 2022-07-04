@@ -16,6 +16,11 @@ const config = {
       enabled: true,
       default: true,
     },
+    csp: {
+      directives: {
+        'script-src': ['self']
+      },
+    },
     vite: {
       resolve: {
         alias: {
