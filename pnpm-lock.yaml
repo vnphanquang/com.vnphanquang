@@ -37,7 +37,6 @@ importers:
       '@types/supertest': ^2.0.11
       '@typescript-eslint/eslint-plugin': ^5.0.0
       '@typescript-eslint/parser': ^5.0.0
-      '@vnphanquang/api': 'link:'
       '@vnphanquang/eslint-config': workspace:^*
       '@vnphanquang/prettierrc': workspace:^
       altair-fastify-plugin: 4.3.1
@@ -83,7 +82,6 @@ importers:
       '@nestjs/passport': 8.2.2_ajebcnomotz225cztrmzhvaeiq
       '@nestjs/platform-fastify': 8.4.7_7tsmhnugyerf5okgqzer2mfqme
       '@prisma/client': 4.0.0_prisma@4.0.0
-      '@vnphanquang/api': 'link:'
       altair-fastify-plugin: 4.3.1_fastify@3.29.0
       class-transformer: 0.5.1
       class-validator: 0.13.2
