@@ -20,7 +20,10 @@
 <svelte:head>
   {#if AppConfig.mode === 'production'}
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={MEASUREMENT_ID}"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id={MEASUREMENT_ID}"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {

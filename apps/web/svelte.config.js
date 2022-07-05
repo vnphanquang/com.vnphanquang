@@ -18,7 +18,7 @@ const config = {
     },
     csp: {
       directives: {
-        'script-src': ['self']
+        'script-src': ['self', 'https://*.googletagmanager.com', 'sha256-1Ray/GuHtDhQt/fRxvE5QMSw6lDtuQboAn1Ti5HfNPI=']
       },
     },
     vite: {
