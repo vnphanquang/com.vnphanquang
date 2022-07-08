@@ -1,6 +1,3 @@
-import path from 'path';
-
-import gQueryCodegen from '@leveluptuts/g-query/codegen';
 import adapter from '@sveltejs/adapter-vercel';
 import preprocess from 'svelte-preprocess';
 
@@ -20,25 +17,6 @@ const config = {
       directives: {
         'script-src': ['self', 'https://*.googletagmanager.com', 'sha256-1Ray/GuHtDhQt/fRxvE5QMSw6lDtuQboAn1Ti5HfNPI=']
       },
-    },
-    vite: {
-      resolve: {
-        alias: {
-          $generated: path.resolve('./src/generated'),
-          $config: path.resolve(`./src/config/config.${process.env.NODE_ENV}.ts`),
-        },
-      },
-      optimizeDeps: {
-        include: ['highlight.js', 'highlight.js/lib/core'],
-      },
-      plugins: [
-        gQueryCodegen({
-          schema: '../api/src/services/graphql/schema.generated.graphql',
-          out: './src/lib/services/graphql/queries',
-          gPath: '$lib/services/graphql/g',
-          // debug: false,
-        }),
-      ],
     },
   },
 };
