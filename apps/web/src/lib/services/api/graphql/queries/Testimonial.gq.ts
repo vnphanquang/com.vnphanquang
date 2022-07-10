@@ -1,7 +1,7 @@
-import type * as Types from './types.gq';
+import type * as Types from '../../../../servicesapi/graphql/queries/types.gq';
 
 import { writable } from "svelte/store"
-import { g } from '$lib/services/graphql/g'
+import { g } from '$lib/services/api/graphql/g'
 import type { GFetchReturnWithErrors, GGetParameters } from '@leveluptuts/g-query'
 import gql from 'graphql-tag';
 export type TestimonialsQueryVariables = Types.Exact<{ [key: string]: never; }>;

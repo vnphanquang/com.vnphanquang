@@ -12,3 +12,4 @@ export * from './MediaOverlay';
 export * from './Heading';
 export * from './TableOfContent';
 export * from './BackToTopBtn';
+export * from './SearchBox';

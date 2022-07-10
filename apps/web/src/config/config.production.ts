@@ -5,7 +5,11 @@ export const AppConfig: AppConfigSchema = {
   mode: 'production',
   urls: {
     web: 'https://vnphanquang.com',
-    api: 'https://api.vnphanquang.com/graphql',
+    api: {
+      index: 'https://api.vnphanquang.com',
+      graphql: 'https://api.vnphanquang.com/graphql',
+      webWordFrequency: 'https://api.vnphanquang.com/web-word-frequency',
+    },
   },
   cookies: {
     session: 'vnphanquang__session',

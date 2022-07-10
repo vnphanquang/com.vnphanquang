@@ -4,7 +4,7 @@
 
   import { ScrollDownMouse } from '$lib/components';
   import neverAskedQuestions from '$lib/data/neverAskedQuestions.json';
-  import { getTestimonials, testimonials } from '$lib/services/graphql/queries/Testimonial.gq';
+  import { getTestimonials, testimonials } from '$lib/services/api/graphql/queries/Testimonial.gq';
 
   import {
     NeverAskedQuestions,

@@ -54,7 +54,7 @@
     on:intersectonce={() => (intersectedMap.header = true)}
   >
     <h1 class="font-quang text-5xl font-bold">Quang Phan</h1>
-    <h2 class="font-quang text-2xl italic">Learner, Developer, Jack of Zero Trade</h2>
+    <p class="font-quang text-2xl italic">Learner, Developer, Jack of Zero Trade</p>
     <img
       src="/images/vnphanquang/sketch_portrait.svg"
       alt="portrait"

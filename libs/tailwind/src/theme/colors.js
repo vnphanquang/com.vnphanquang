@@ -1,5 +1,9 @@
 const colorPallet = {
   fg: '#3c3836',
+  tooltip: {
+    bg: '#7c6f64',
+    fg: '#ebdbb2',
+  },
   bg: {
     DEFAULT: '#fbf1c7',
     accent: '#ebdbb2',

@@ -18,8 +18,8 @@ const config = {
   plugins: [
     gQueryCodegen({
       schema: '../api/src/services/graphql/schema.generated.graphql',
-      out: './src/lib/services/graphql/queries',
-      gPath: '$lib/services/graphql/g',
+      out: './src/lib/servicesapi//graphql/queries',
+      gPath: '$lib/services/api/graphql/g',
       // debug: false,
     }),
     sveltekit(),

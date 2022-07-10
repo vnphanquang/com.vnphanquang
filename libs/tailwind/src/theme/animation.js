@@ -8,6 +8,7 @@ module.exports = {
     'fade-out-up': 'fade-out-up 500ms ease-out',
     wiggle: 'wiggle 1s ease-in-out infinite',
     dance: 'dance 1s ease-in-out both infinite',
+    'progress-loading': 'progress-loading 5s infinite ease-in-out',
   },
   keyframes: {
     'fade-in': {
@@ -73,6 +74,9 @@ module.exports = {
     dance: {
       '0%, 100%': { transform: 'translate3d(0, -10px, 0)' },
       '50%': { transform: 'translate3d(0, 0, 0)' },
+    },
+    'progress-loading': {
+      '50%': { left: '107%' },
     },
   },
 };
