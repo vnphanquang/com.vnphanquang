@@ -5,7 +5,7 @@ export interface AppConfigSchema {
     api: {
       index: 'http://localhost:3001' | 'https://api.vnphanquang.com';
       graphql: 'http://localhost:3001/graphql' | 'https://api.vnphanquang.com/graphql';
-      webWordFrequency: 'http://localhost:5000' | 'https://api.vnphanquang.com/web-word-frequency';
+      webWordFrequency: 'http://localhost:3001/web-word-frequency' | 'https://api.vnphanquang.com/web-word-frequency';
     };
   };
   env: {
@@ -22,7 +22,7 @@ export const BaseConfig: AppConfigSchema = {
     api: {
       index: 'http://localhost:3001',
       graphql: 'http://localhost:3001/graphql',
-      webWordFrequency: 'http://localhost:5000',
+      webWordFrequency: 'http://localhost:3001/web-word-frequency',
     },
   },
   env: {

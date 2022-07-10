@@ -21,6 +21,8 @@
   export let debounceMs = 250;
   export let search: SearchFunction = () => {/**/};
 
+  let searchInputElement: HTMLInputElement;
+
   let lastQuery = '';
   let hasSearched = false;
   let showResult = false;
@@ -88,8 +90,9 @@
 
   function onSubmit() {
     const selected = selectedIndex !== undefined ? results[selectedIndex] : query;
-    showResult = false;
     dispatch('submit', selected);
+    searchInputElement?.blur();
+    showResult = false;
   }
 </script>
 
@@ -108,6 +111,7 @@
       <Icon data={icon} scale={1.2} />
     </p>
     <input
+      bind:this={searchInputElement}
       {id}
       {autocomplete}
       {placeholder}

@@ -2,7 +2,7 @@ import type { PaginationOptions, WebWordFrequencyRecentResponse, WebWordFrequenc
 
 import { AppConfig } from '$config';
 
-const ENDPOINT = `${AppConfig.urls.api.webWordFrequency}/web-word-frequency`;
+const ENDPOINT = AppConfig.urls.api.webWordFrequency;
 
 export async function webWordFrequencyRecent() {
   const response = await fetch(`${ENDPOINT}/recent`);

@@ -40,6 +40,22 @@ export const AppRoutes = {
     $path: (params?: { separator?: string; depth?: number }) => '/graphql',
     $key: () => 'graphql',
   },
+  webwordfrequency: {
+    $path: (params?: { separator?: string; depth?: number }) => '/web-word-frequency',
+    $key: () => 'web-word-frequency',
+    recent: {
+      $path: (params?: { separator?: string; depth?: number }) => '/web-word-frequency/recent',
+      $key: () => 'recent',
+    },
+    search: {
+      $path: (params?: { separator?: string; depth?: number }) => '/web-word-frequency/search',
+      $key: () => 'search',
+    },
+    scrape: {
+      $path: (params?: { separator?: string; depth?: number }) => '/web-word-frequency/scrape',
+      $key: () => 'scrape',
+    },
+  },
   oauth: {
     $path: (params?: { separator?: string; depth?: number }) => '/oauth',
     $key: () => 'oauth',
