@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Locale } from '@prisma/client';
+import type { Locale } from '@prisma/client';
 
 @InputType()
 export class CreatePostLocaleInput {
