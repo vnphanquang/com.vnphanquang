@@ -12,14 +12,14 @@
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
 
-  $: xDomain = data.map(([x,]) => x);
-  $: yDomain = data.map(([,y]) => y);
+  $: xDomain = data.map(([x]) => x);
+  $: yDomain = data.map(([, y]) => y);
 
   $: yScale = scaleBand().domain(xDomain).range([0, innerHeight]).padding(0.1);
-  $: xScale = scaleLinear().domain([0, Math.max.apply(null, yDomain)]).range([0, innerWidth]);
-
+  $: xScale = scaleLinear()
+    .domain([0, Math.max.apply(null, yDomain)])
+    .range([0, innerWidth]);
 </script>
-
 
 <svg {width} {height} class="text-base-content fill-current {$$props.class}">
   <g transform={`translate(${margin.left},${margin.top})`}>

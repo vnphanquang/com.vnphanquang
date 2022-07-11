@@ -38,6 +38,14 @@ export const COMMANDS: Record<Command['id'], Command> = {
     scopes: ['global'],
     cacheable: true,
   },
+  [COMMAND_ID_DICTIONARY.open.internal.experiment.webWordFrequency]: {
+    type: 'open',
+    id: COMMAND_ID_DICTIONARY.open.internal.experiment.webWordFrequency,
+    href: () => to(AppRoutes.experiment.webWordFrequency.index),
+    description: 'Open Web Word Frequency experiment application',
+    scopes: ['global'],
+    cacheable: true,
+  },
   [COMMAND_ID_DICTIONARY.open.external.github]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.external.github,

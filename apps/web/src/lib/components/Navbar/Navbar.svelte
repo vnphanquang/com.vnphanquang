@@ -18,6 +18,10 @@
       href: to(AppRoutes.blog.index),
       text: 'blog',
     },
+    experiment: {
+      href: to(AppRoutes.experiment.index),
+      text: 'experiments',
+    },
     about: {
       href: to(AppRoutes.about.index),
       text: 'about',

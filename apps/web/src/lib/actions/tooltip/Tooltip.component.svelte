@@ -15,7 +15,7 @@
 
 <style lang="postcss">
   #tooltip {
-    @apply text-sm text-tooltip-fg bg-tooltip-bg rounded-lg py-2 px-3 z-tooltip;
+    @apply z-tooltip rounded-lg bg-tooltip-bg py-2 px-3 text-sm text-tooltip-fg;
   }
 
   #arrow,

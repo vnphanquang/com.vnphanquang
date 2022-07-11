@@ -33,7 +33,7 @@
   <h1 class="text-center font-quang text-6xl font-bold">Yet Another Blog</h1>
   <p class="mt-8 text-center font-quang text-2xl">You write, i write, we all write</p>
   <section class="mt-20 flex-1">
-    <ul>
+    <ul class="flex flex-col gap-y-10">
       {#each Object.values(BLOG_METADATA) as { title, description, category, tags, href, updatedAt }}
         <li
           class="relative grid grid-cols-1 gap-y-6 rounded-xl border-2 border-border bg-bg p-8 shadow-center-lg hover:shadow-center-xl"

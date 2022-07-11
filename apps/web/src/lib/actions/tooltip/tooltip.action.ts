@@ -17,7 +17,10 @@ const defaultParameters: ActionTooltipParameters = {
   props: {},
 };
 
-export function tooltip(node: HTMLElement | SVGElement, parameters: Partial<ActionTooltipParameters>) {
+export function tooltip(
+  node: HTMLElement | SVGElement,
+  parameters: Partial<ActionTooltipParameters>,
+) {
   parameters = {
     ...defaultParameters,
     ...parameters,
@@ -33,7 +36,7 @@ export function tooltip(node: HTMLElement | SVGElement, parameters: Partial<Acti
     // do update
     parameters = {
       ...defaultParameters,
-      ...params
+      ...params,
     };
 
     if (!oldParams.enabled && parameters.enabled) {

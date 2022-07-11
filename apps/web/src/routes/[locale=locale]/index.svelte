@@ -16,8 +16,8 @@
 
   import { AppConfig } from '$config';
 
-
   export const load: Load = async ({ fetch }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await getTestimonials({ fetch: fetch as any });
     return {};
   };

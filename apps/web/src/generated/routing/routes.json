@@ -1,4 +1,5 @@
 {
+  "[...notfound]": "/[...notfound]",
   "about": {
     "index": "/about"
   },
@@ -11,6 +12,12 @@
     "chrysanthemumMaximum": "/ex-occulto/chrysanthemum-maximum",
     "solanumLycopersicum": "/ex-occulto/solanum-lycopersicum",
     "__dir": "/ex-occulto"
+  },
+  "experiment": {
+    "index": "/experiment",
+    "webWordFrequency": {
+      "index": "/experiment/web-word-frequency"
+    }
   },
   "index": "/"
 }

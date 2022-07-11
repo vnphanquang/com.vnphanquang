@@ -15,7 +15,7 @@
     webWordFrequencyRecent,
     webWordFrequencyScrape,
     webWordFrequencySearch,
-    type WebWordFrequencyScrapeResponse
+    type WebWordFrequencyScrapeResponse,
   } from '$lib/services/api/webwordfrequency';
 
   import { BarChart } from './_components';
@@ -82,13 +82,13 @@
       url = detail.text;
     }
     if (scrapeResponse) {
-      let previousUrl = ''
+      let previousUrl = '';
       try {
         previousUrl = (await scrapeResponse).url;
       } catch (error) {
-      } finally {
-        if (previousUrl === url) return;
+        //
       }
+      if (previousUrl === url) return;
     }
     query = url;
     scrapeResponse = webWordFrequencyScrape(url);
@@ -102,7 +102,11 @@
     }
   }
 
-  function slice(words: WebWordFrequencyScrapeResponse['words'], offset: number, perPage: number): WebWordFrequencyScrapeResponse['words'] {
+  function slice(
+    words: WebWordFrequencyScrapeResponse['words'],
+    offset: number,
+    perPage: number,
+  ): WebWordFrequencyScrapeResponse['words'] {
     const end = offset + perPage;
     let remainder = 0;
     if (end > words.length) {
@@ -113,7 +117,7 @@
 </script>
 
 <svelte:head>
-  <title> Web Word Frequency | Experiment | vnphanquang</title>
+  <title>Web Word Frequency | Experiment | vnphanquang</title>
   <meta name="description" content="Scrape URL and count word occurrence" />
 </svelte:head>
 
@@ -126,13 +130,15 @@
   <section class="w-10/12 max-w-2xl md:w-8/12">
     <SearchBox
       id="url"
-      bind:query={query}
+      bind:query
       placeholder="input an url"
       results={recent}
       on:submit={scrape}
       {search}
     />
   </section>
+
+  <p class="">Note: currently only English language is supported.</p>
 
   {#if !!scrapeResponse}
     {#await scrapeResponse}
@@ -165,9 +171,13 @@
             <div class="c-stat-figure">
               <Icon data={database} scale={2} />
             </div>
-            <div class="c-stat-title">{from_cached ? 'URL already scraped' : 'URL is now cached'}</div>
+            <div class="c-stat-title">
+              {from_cached ? 'URL already scraped' : 'URL is now cached'}
+            </div>
             <div class="c-stat-value">Cached</div>
-            <div class="c-stat-desc">{from_cached ? 'Scraped' : 'Cached'} at {new Date(scraped_at).toLocaleString()}</div>
+            <div class="c-stat-desc">
+              {from_cached ? 'Scraped' : 'Cached'} at {new Date(scraped_at).toLocaleString()}
+            </div>
           </div>
         </div>
 
@@ -178,9 +188,19 @@
           <div class="c-tabs">
             {#each VIEW_MODES as mode (mode.id)}
               {@const active = mode.id === viewMode}
-              <label class="c-tab {active ? 'c-tab-active' : ''} flex gap-x-2" for={`view-${mode.id}`}>
+              <label
+                class="c-tab {active ? 'c-tab-active' : ''} flex gap-x-2"
+                for={`view-${mode.id}`}
+              >
                 <span>{mode.text}</span>
-                <input type="radio" name="view-mode" id={`view-${mode.id}`} value={mode.id} hidden bind:group={viewMode}>
+                <input
+                  type="radio"
+                  name="view-mode"
+                  id={`view-${mode.id}`}
+                  value={mode.id}
+                  hidden
+                  bind:group={viewMode}
+                />
                 <Icon data={mode.icon} scale={1} />
               </label>
             {/each}
@@ -190,7 +210,10 @@
         {#if viewMode === 'table'}
           {@const offset = page * perPage}
           {@const maxPage = Math.ceil(words.length / perPage) - 1}
-          <div class="overflow-x-auto shadow-md hover:shadow-lg rounded-lg text-sm" transition:fade={{ duration: 250 }}>
+          <div
+            class="overflow-x-auto shadow-md hover:shadow-lg rounded-lg text-sm"
+            transition:fade={{ duration: 250 }}
+          >
             <div class="py-4 px-6 bg-bg-accent/50">
               <label for="table-per-page" class="flex items-baseline gap-x-2">
                 Showing
@@ -206,10 +229,9 @@
                 </select>
                 entries each page
               </label>
-
             </div>
             <table class="w-full text-sm text-left">
-              <thead class='uppercase bg-bg-accent'>
+              <thead class="uppercase bg-bg-accent">
                 <tr>
                   <th class="px-6 py-3">#</th>
                   <th class="px-6 py-3">Word</th>
@@ -227,39 +249,41 @@
               </tbody>
             </table>
             <div class="py-4 px-6 bg-bg-accent/50 flex justify-between items-end">
-              <p>Showing {offset + 1} to {Math.min(offset + perPage, words.length)} of {total} entries</p>
+              <p>
+                Showing {offset + 1} to {Math.min(offset + perPage, words.length)} of {total} entries
+              </p>
               <div class="table-pagination-btn-group">
                 <button
                   class="table-pagination-btn"
-                  on:click={() => page = 0}
-                  use:tooltip={{ content: 'First page', placement: 'top' }}
-                >«‹</button>
+                  on:click={() => (page = 0)}
+                  use:tooltip={{ content: 'First page', placement: 'top' }}>«‹</button
+                >
                 <button
                   class="table-pagination-btn"
-                  on:click={() => page = paginate(page, maxPage, -5)}
-                  use:tooltip={{ content: 'Back 5 pages', placement: 'top' }}
-                >«</button>
+                  on:click={() => (page = paginate(page, maxPage, -5))}
+                  use:tooltip={{ content: 'Back 5 pages', placement: 'top' }}>«</button
+                >
                 <button
                   class="table-pagination-btn"
-                  on:click={() => page = paginate(page, maxPage, -1)}
-                  use:tooltip={{ content: 'Previous page', placement: 'top' }}
-                >‹</button>
+                  on:click={() => (page = paginate(page, maxPage, -1))}
+                  use:tooltip={{ content: 'Previous page', placement: 'top' }}>‹</button
+                >
                 <p class="table-pagination-btn-label">{page + 1}</p>
                 <button
                   class="table-pagination-btn"
-                  on:click={() => page = paginate(page, maxPage, 1)}
-                  use:tooltip={{ content: 'Next page', placement: 'top' }}
-                >›</button>
+                  on:click={() => (page = paginate(page, maxPage, 1))}
+                  use:tooltip={{ content: 'Next page', placement: 'top' }}>›</button
+                >
                 <button
                   class="table-pagination-btn"
-                  on:click={() => page = paginate(page, maxPage, 5)}
-                  use:tooltip={{ content: 'Skip 5 page', placement: 'top' }}
-                >»</button>
+                  on:click={() => (page = paginate(page, maxPage, 5))}
+                  use:tooltip={{ content: 'Skip 5 page', placement: 'top' }}>»</button
+                >
                 <button
                   class="table-pagination-btn"
-                  on:click={() => page = maxPage}
-                  use:tooltip={{ content: 'Last page', placement: 'top' }}
-                >›»</button>
+                  on:click={() => (page = maxPage)}
+                  use:tooltip={{ content: 'Last page', placement: 'top' }}>›»</button
+                >
               </div>
             </div>
           </div>
@@ -270,9 +294,19 @@
               <div class="c-tabs">
                 {#each CHART_VIEW_MODES as mode (mode.id)}
                   {@const active = mode.id === chartViewMode}
-                  <label class="c-tab {active ? 'c-tab-active' : ''} flex gap-x-2" for={`view-${mode.id}`}>
+                  <label
+                    class="c-tab {active ? 'c-tab-active' : ''} flex gap-x-2"
+                    for={`view-${mode.id}`}
+                  >
                     <span>{mode.text}</span>
-                    <input type="radio" name="view-mode" id={`view-${mode.id}`} value={mode.id} hidden bind:group={chartViewMode}>
+                    <input
+                      type="radio"
+                      name="view-mode"
+                      id={`view-${mode.id}`}
+                      value={mode.id}
+                      hidden
+                      bind:group={chartViewMode}
+                    />
                   </label>
                 {/each}
               </div>
@@ -287,7 +321,6 @@
         {:else}
           <!-- should never reach -->
         {/if}
-
       </section>
     {:catch error}
       <p class="text-red-500" in:fly={{ y: 30, duration: 250 }}>
@@ -295,7 +328,6 @@
       </p>
     {/await}
   {/if}
-
 </main>
 
 <style lang="postcss">
@@ -305,8 +337,8 @@
   .c-tab {
     @apply text-center leading-loose opacity-50 hover:opacity-100;
     @apply relative flex-wrap items-center justify-center;
-    @apply px-4 h-8 inline-flex cursor-pointer select-none;
-    @apply border-border border-solid border-b-2;
+    @apply inline-flex h-8 cursor-pointer select-none px-4;
+    @apply border-b-2 border-solid border-border;
 
     &.c-tab-active {
       @apply border-fg opacity-100;
@@ -321,13 +353,13 @@
   }
 
   .table-pagination-btn-group {
-    @apply flex rounded-md overflow-hidden bg-bg-accent shadow hover:shadow-md;
+    @apply flex overflow-hidden rounded-md bg-bg-accent shadow hover:shadow-md;
   }
   .table-pagination-btn-label {
-    @apply grid place-items-center text-sm px-2 font-bold;
+    @apply grid place-items-center px-2 text-sm font-bold;
     width: 4ch;
   }
   .table-pagination-btn {
-    @apply cursor-pointer h-8 w-8 hover:bg-bg active:scale-95 overflow-hidden;
+    @apply h-8 w-8 cursor-pointer overflow-hidden hover:bg-bg active:scale-95;
   }
 </style>

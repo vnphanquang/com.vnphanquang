@@ -19,6 +19,9 @@ export const COMMAND_ID_DICTIONARY = {
         solanumLycopersicum: 'open.internal.exOcculto.solanumLycopersicum',
         chrysanthemumMaximum: 'open.internal.exOcculto.chrysanthemumMaximum',
       },
+      experiment: {
+        webWordFrequency: 'open.internal.experiment.webWordFrequency',
+      },
     },
     external: {
       github: 'open.external.github',

@@ -13,13 +13,16 @@
   export let autocomplete = 'off';
 
   /** svelte-awesome icon that will be passed to data attribute */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   export let icon: any = searchIcon;
 
   export let results: SearchResultItem[] = [];
   export let query = '';
 
   export let debounceMs = 250;
-  export let search: SearchFunction = () => {/**/};
+  export let search: SearchFunction = () => {
+    /**/
+  };
 
   let searchInputElement: HTMLInputElement;
 
@@ -31,7 +34,6 @@
   const dispatch = createEventDispatcher<{
     submit: SearchSubmitDetail;
   }>();
-
 
   function onClickOutside() {
     showResult = false;
@@ -74,10 +76,14 @@
       const searched = await search(query);
       if (searched) {
         hasSearched = true;
-        results = searched.map((item, index) => typeof item === 'string' ? {
-          id: index.toString(),
-          text: item,
-        } : item);
+        results = searched.map((item, index) =>
+          typeof item === 'string'
+            ? {
+                id: index.toString(),
+                text: item,
+              }
+            : item,
+        );
         selectedIndex = undefined;
       }
     }
@@ -98,7 +104,7 @@
 
 <form
   class="
-    relative shadow-lg focus-within:shadow-xl bg-bg-accent
+    relative bg-bg-accent shadow-lg focus-within:shadow-xl
     {results.length && showResult ? 'rounded-t-md' : 'rounded-md'}
     {$$props.class}
   "
@@ -127,25 +133,27 @@
     <ul
       transition:slide={{ duration: 200 }}
       class="
-        absolute z-modal left-0 right-0 top-full
+        absolute left-0 right-0 top-full z-modal
         max-h-[50vh] overflow-y-auto
-        bg-bg-accent rounded-b-lg border-t border-border
-        shadow-lg hover:shadow-xl
-        py-2
+        rounded-b-lg border-t border-border bg-bg-accent
+        py-2 shadow-lg
+        hover:shadow-xl
       "
     >
       <slot name="top" searched={hasSearched} class="py-3 px-5">
         {#if !hasSearched}
-          <p class="text-sm text-gray-500 py-3 px-5">
-            (Showing recent URLs)
-          </p>
+          <p class="py-3 px-5 text-sm text-gray-500">(Showing recent URLs)</p>
         {/if}
       </slot>
       {#each results as item, index (item.id)}
         {@const inputId = `${id}-result-${item.id}`}
         {@const inputName = `${id}-result`}
         <li class="hover:bg-primary-hover">
-          <label for={inputId} class="cursor-pointer" on:click|preventDefault={() => onClick(index)}>
+          <label
+            for={inputId}
+            class="cursor-pointer"
+            on:click|preventDefault={() => onClick(index)}
+          >
             <input
               hidden
               class="peer"
