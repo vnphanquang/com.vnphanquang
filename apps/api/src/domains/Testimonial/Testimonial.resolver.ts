@@ -24,6 +24,11 @@ export class TestimonialResolver {
     return !!testimonial.deletedAt;
   }
 
+  @ResolveField()
+  published(@Root() testimonial: TestimonialDto) {
+    return !!testimonial.publishedAt;
+  }
+
   @Query(() => [TestimonialDto])
   testimonials(@GraphQlCurrentUser() user?: User) {
     if (user?.role === 'admin') {

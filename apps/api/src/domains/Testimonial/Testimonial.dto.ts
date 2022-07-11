@@ -36,6 +36,8 @@ export class TestimonialDto {
 
   @Field(() => Boolean)
   published: boolean;
+  @Field({ nullable: true })
+  publishedAt?: Date;
 
   @Field(() => TestimonialCoordinateDto)
   coordinate: TestimonialCoordinateDto;
