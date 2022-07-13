@@ -1,15 +1,19 @@
 <script lang="ts">
+  import { clickoutside } from '@svelte-put/clickoutside';
   import classnames from 'classnames';
   import Icon from 'svelte-awesome/components/Icon.svelte';
+  import language from 'svelte-awesome/icons/language';
   import lightbulb from 'svelte-awesome/icons/lightbulbO';
   import moon from 'svelte-awesome/icons/moonO';
   import { elasticInOut } from 'svelte/easing';
-  import { fade, fly } from 'svelte/transition';
+  import { fade, fly, slide } from 'svelte/transition';
 
   import { browser } from '$app/env';
-  import { afterNavigate } from '$app/navigation';
+  import { afterNavigate, goto } from '$app/navigation';
+  import { tooltip } from '$lib/actions/tooltip';
   import { HamburgerBtn } from '$lib/components/HamburgerBtn';
-  import { AppRoutes, to } from '$lib/services/navigation';
+  import { Locale, locale, t } from '$lib/services/i18n';
+  import { AppRoutes, to, withLocale } from '$lib/services/navigation';
   import { theme } from '$lib/stores/theme';
 
   let navbarMenuOpen = false;
@@ -26,10 +30,35 @@
       href: to(AppRoutes.about.index),
       text: 'about',
     },
+  } as const;
+
+  const locales = {
+    [Locale.En]: {
+      id: Locale.En,
+      icon: '/images/locale/en.png',
+      text: 'English',
+      hint: 'Fish and chips',
+    },
+    [Locale.Vi]: {
+      id: Locale.Vi,
+      icon: '/images/locale/vi.png',
+      text: 'Tiếng Việt',
+      hint: 'Bánh mì',
+    },
   };
+
+  let showLocaleDropdown = false;
 
   function toggleTheme() {
     theme.toggle();
+  }
+
+  function changeLocale(newLocale: Locale) {
+    showLocaleDropdown = false;
+    if ($locale !== newLocale) {
+      const path = withLocale(location.pathname, newLocale);
+      goto(path);
+    }
   }
 
   $: isLightTheme = $theme === 'light';
@@ -94,8 +123,46 @@
       </ul>
     {/if}
 
-    <ul class="flex items-center justify-end">
-      <li>
+    <ul class="flex items-center justify-end gap-x-6">
+      <li
+        class="relative"
+        use:clickoutside={{ enabled: showLocaleDropdown }}
+        on:clickoutside={() => (showLocaleDropdown = false)}
+      >
+        <label
+          class="c-btn-icon"
+          for="locale-dropdown"
+          use:tooltip={{ content: $t('navbar.tooltip.locale') }}
+        >
+          <Icon data={language} scale={2} />
+        </label>
+        <input type="checkbox" id="locale-dropdown" hidden bind:checked={showLocaleDropdown} />
+        {#if showLocaleDropdown}
+          <ul
+            class="absolute top-full right-0 mt-2 w-max rounded bg-bg py-2 shadow-center-xl"
+            transition:slide={{ duration: 200 }}
+          >
+            {#each Object.values(locales) as { id, icon, text, hint } (id)}
+              <li>
+                <button
+                  on:click={() => changeLocale(id)}
+                  class="flex w-full items-center gap-x-4 py-2 px-4 hover:bg-primary"
+                >
+                  <img
+                    src={icon}
+                    alt={hint}
+                    width="32"
+                    height="32"
+                    use:tooltip={{ content: hint }}
+                  />
+                  <span>{text}</span>
+                </button>
+              </li>
+            {/each}
+          </ul>
+        {/if}
+      </li>
+      <li use:tooltip={{ content: $t('navbar.tooltip.theme'), placement: 'bottom' }}>
         <input
           type="checkbox"
           id="theme-toggler"

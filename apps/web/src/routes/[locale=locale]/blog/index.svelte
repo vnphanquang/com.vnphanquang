@@ -3,7 +3,7 @@
   import code from 'svelte-awesome/icons/code';
 
   import { getPostLocales, postLocales } from '$lib/services/api/graphql/queries/PostLocale.gq';
-  import { loadTranslations, t } from '$lib/services/i18n';
+  import { t } from '$lib/services/i18n';
   import type { Locale } from '$lib/services/i18n';
   import { AppRoutes, to } from '$lib/services/navigation';
   import { blogDate } from '$lib/utils/datetime';
@@ -14,7 +14,6 @@
   export const load: Load = async ({ fetch, params, url }) => {
     const locale = params.locale;
 
-    loadTranslations(locale, url.pathname);
     await getPostLocales({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       fetch: fetch as any,

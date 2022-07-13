@@ -24,6 +24,16 @@ const config: Config = {
     // error
     {
       locale: Locale.En,
+      key: I18NS.navbar,
+      loader: async () => (await import('./translations/en/navbar.json')).default,
+    },
+    {
+      locale: Locale.Vi,
+      key: I18NS.navbar,
+      loader: async () => (await import('./translations/vi/navbar.json')).default,
+    },
+    {
+      locale: Locale.En,
       key: I18NS.error,
       // routes: [],
       loader: async () => (await import('./translations/en/error.json')).default,

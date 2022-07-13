@@ -2,6 +2,7 @@
  * Supported namespaces for i18n translations
  */
 export enum I18NS {
+  navbar = 'navbar',
   home = 'home',
   error = 'error',
   blog = 'blog',
