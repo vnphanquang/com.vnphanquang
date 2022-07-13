@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Locale, Prisma } from '@prisma/client';
 
 import { PrismaService } from '$services/prisma';
 
@@ -13,16 +13,30 @@ export class PostLocaleDao {
     });
   }
 
-  all() {
-    return this.prisma.postLocale.findMany();
+  byPostId(postId: number, locale: Locale) {
+    return this.prisma.postLocale.findMany({
+      where: {
+        postId,
+        locale,
+      },
+    });
   }
 
-  getPublished() {
+  all(locale?: Locale) {
+    return this.prisma.postLocale.findMany({
+      where: {
+        ...(locale && { locale }),
+      },
+    });
+  }
+
+  getPublished(locale?: Locale) {
     return this.prisma.postLocale.findMany({
       where: {
         publishedAt: {
           not: null,
         },
+        ...(locale && { locale }),
       },
     });
   }

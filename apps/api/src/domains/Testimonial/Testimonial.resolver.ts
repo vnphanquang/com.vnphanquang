@@ -47,9 +47,10 @@ export class TestimonialResolver {
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => TestimonialDto)
   createTestimonial(@Args('input') input: CreateTestimonialInput) {
+    const { published, ...others } = input;
     return this.testimonialDao.create({
-      ...input,
-      publishedAt: input.published ? new Date() : null,
+      ...others,
+      publishedAt: published ? new Date() : null,
     });
   }
 
@@ -57,9 +58,10 @@ export class TestimonialResolver {
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => TestimonialDto, { nullable: true })
   updateTestimonial(@Args('id') id: number, @Args('input') input: UpdateTestimonialInput) {
+    const { published, ...others } = input;
     return this.testimonialDao.update(id, {
-      ...input,
-      publishedAt: input.published ? new Date() : null,
+      ...others,
+      publishedAt: published ? new Date() : null,
     });
   }
 

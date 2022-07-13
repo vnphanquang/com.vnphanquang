@@ -14,11 +14,11 @@ export class CommentDao {
   }
 
   byUserId(userId: number) {
-    return this.prisma.user.findUnique({ where: { id: userId } }).comments();
+    return this.prisma.comment.findMany({ where: { authorId: userId } });
   }
 
   byPostId(postId: number) {
-    return this.prisma.post.findUnique({ where: { id: postId } }).comments();
+    return this.prisma.comment.findMany({ where: { postId } });
   }
 
   all() {

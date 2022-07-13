@@ -1,10 +1,11 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
-import { Role } from '@prisma/client';
+import { Locale, Role } from '@prisma/client';
 
 import { CommentDao } from '$domains/Comment';
 import { PostDao } from '$domains/Post/Post.dao';
 import { PostDto } from '$domains/Post/Post.dto';
+import { PostLocaleDao } from '$domains/PostLocale';
 import { GraphQlAuthGuard } from '$services/authentication/graphql';
 import { Roles } from '$services/authorization';
 
@@ -12,7 +13,11 @@ import { CreatePostInput, UpdatePostInput } from './Post.inputs';
 
 @Resolver(() => PostDto)
 export class PostResolver {
-  constructor(private readonly postDao: PostDao, private readonly commentDao: CommentDao) {}
+  constructor(
+    private readonly postDao: PostDao,
+    private readonly commentDao: CommentDao,
+    private readonly postLocaleDao: PostLocaleDao,
+  ) {}
 
   @ResolveField()
   comments(@Root() post: PostDto) {
@@ -22,6 +27,19 @@ export class PostResolver {
   @ResolveField()
   deleted(@Root() post: PostDto) {
     return !!post.deletedAt;
+  }
+
+  @ResolveField()
+  locales(
+    @Root() post: PostDto,
+    @Args({
+      name: 'locale',
+      type: () => Locale,
+      defaultValue: Locale.en,
+    })
+    locale: Locale,
+  ) {
+    return this.postLocaleDao.byPostId(post.id, locale);
   }
 
   @Query(() => [PostDto])

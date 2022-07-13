@@ -1,5 +1,5 @@
 import { ResolveField, Resolver, Root, Query, Mutation, Args } from '@nestjs/graphql';
-import { User } from '@prisma/client';
+import { Locale, User } from '@prisma/client';
 
 import { PostDao } from '$domains/Post';
 import { GraphQlCurrentUser } from '$services/authentication/graphql';
@@ -28,39 +28,49 @@ export class PostLocaleResolver {
   }
 
   @Query(() => [PostLocaleDto])
-  postLocales(@GraphQlCurrentUser() user?: User) {
+  postLocales(
+    @GraphQlCurrentUser() user?: User,
+    @Args({
+      name: 'locale',
+      type: () => Locale,
+      nullable: true,
+    })
+    locale?: Locale,
+  ) {
     if (user?.role === 'admin') {
-      return this.postLocaleDao.all();
+      return this.postLocaleDao.all(locale);
     } else {
-      return this.postLocaleDao.getPublished();
+      return this.postLocaleDao.getPublished(locale);
     }
   }
 
   @Mutation(() => PostLocaleDto)
   createPostLocale(@Args('postId') postId: number, @Args('input') input: CreatePostLocaleInput) {
-    this.postLocaleDao.create(postId, {
-      ...input,
-      publishedAt: input.published ? new Date() : null,
+    const { published, ...others } = input;
+    return this.postLocaleDao.create(postId, {
+      ...others,
+      publishedAt: published ? new Date() : null,
     });
   }
 
   @Mutation(() => PostLocaleDto)
   updatePostLocale(@Args('id') id: number, @Args('input') input: UpdatePostLocaleInput) {
-    this.postLocaleDao.update(id, {
-      ...input,
-      publishedAt: input.published ? new Date() : null,
+    const { published, ...others } = input;
+    return this.postLocaleDao.update(id, {
+      ...others,
+      publishedAt: published ? new Date() : null,
     });
   }
 
   @Mutation(() => PostLocaleDto)
   setPostLocalePublication(@Args('id') id: number, @Args('published') published: boolean) {
-    this.postLocaleDao.update(id, {
+    return this.postLocaleDao.update(id, {
       publishedAt: published ? new Date() : null,
     });
   }
 
   @Mutation(() => PostLocaleDto)
   deletePostLocale(@Args('id') id: number) {
-    this.postLocaleDao.delete(id);
+    return this.postLocaleDao.delete(id);
   }
 }

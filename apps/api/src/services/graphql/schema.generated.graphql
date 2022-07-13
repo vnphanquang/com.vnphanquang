@@ -42,7 +42,7 @@ input CreatePostInput {
 }
 
 input CreatePostLocaleInput {
-  locale: String!
+  locale: Locale!
   published: Boolean
   slug: String!
   summary: String!
@@ -103,7 +103,7 @@ type PostDto {
   deleted: Boolean!
   deletedAt: DateTime
   id: Int!
-  locales: [PostLocaleDto!]!
+  locales(locale: Locale = en): [PostLocaleDto!]!
   tags: [PostTag!]!
   updatedAt: DateTime
 }
@@ -136,7 +136,7 @@ type Query {
   comments: [CommentDto!]!
   me: UserDto!
   postById(id: Float!): PostDto
-  postLocales: [PostLocaleDto!]!
+  postLocales(locale: Locale): [PostLocaleDto!]!
   posts: [PostDto!]!
   testimonialById(id: Float!): TestimonialDto!
   testimonials: [TestimonialDto!]!
@@ -166,6 +166,7 @@ type TestimonialDto {
   deletedAt: DateTime
   id: Int!
   published: Boolean!
+  publishedAt: DateTime
   quote: String!
   ref: String!
   title: String!
@@ -182,7 +183,7 @@ input UpdatePostInput {
 }
 
 input UpdatePostLocaleInput {
-  locale: String
+  locale: Locale
   published: Boolean
   slug: String
   summary: String

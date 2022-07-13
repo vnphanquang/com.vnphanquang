@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import type { Locale } from '@prisma/client';
+import { Locale } from '@prisma/client';
 
 @InputType()
 export class CreatePostLocaleInput {
@@ -9,7 +9,7 @@ export class CreatePostLocaleInput {
   summary: string;
   @Field()
   slug: string;
-  @Field()
+  @Field(() => Locale)
   locale: Locale;
 
   @Field(() => Boolean, { nullable: true })
@@ -24,7 +24,7 @@ export class UpdatePostLocaleInput {
   summary?: string;
   @Field({ nullable: true })
   slug?: string;
-  @Field({ nullable: true })
+  @Field(() => Locale, { nullable: true })
   locale?: Locale;
 
   @Field(() => Boolean, { nullable: true })
