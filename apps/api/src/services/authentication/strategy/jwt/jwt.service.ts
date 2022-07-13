@@ -16,7 +16,7 @@ export class JwtAuthService {
     };
   }
 
-  verfiy(token) {
+  verify(token) {
     const payload = this.jwtService.verify(token);
     return payload;
   }

@@ -1,8 +1,10 @@
+import { UseGuards } from '@nestjs/common';
 import { ResolveField, Resolver, Root, Query, Mutation, Args } from '@nestjs/graphql';
-import { Locale, User } from '@prisma/client';
+import { Locale, Role, User } from '@prisma/client';
 
 import { PostDao } from '$domains/Post';
-import { GraphQlCurrentUser } from '$services/authentication/graphql';
+import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/graphql';
+import { Roles } from '$services/authorization';
 
 import { PostLocaleDao } from './PostLocale.dao';
 import { PostLocaleDto } from './PostLocale.dto';
@@ -44,6 +46,8 @@ export class PostLocaleResolver {
     }
   }
 
+  @Roles(Role.admin)
+  @UseGuards(GraphQlAuthGuard)
   @Mutation(() => PostLocaleDto)
   createPostLocale(@Args('postId') postId: number, @Args('input') input: CreatePostLocaleInput) {
     const { published, ...others } = input;
@@ -54,6 +58,8 @@ export class PostLocaleResolver {
   }
 
   @Mutation(() => PostLocaleDto)
+  @Roles(Role.admin)
+  @UseGuards(GraphQlAuthGuard)
   updatePostLocale(@Args('id') id: number, @Args('input') input: UpdatePostLocaleInput) {
     const { published, ...others } = input;
     return this.postLocaleDao.update(id, {
@@ -63,6 +69,8 @@ export class PostLocaleResolver {
   }
 
   @Mutation(() => PostLocaleDto)
+  @Roles(Role.admin)
+  @UseGuards(GraphQlAuthGuard)
   setPostLocalePublication(@Args('id') id: number, @Args('published') published: boolean) {
     return this.postLocaleDao.update(id, {
       publishedAt: published ? new Date() : null,
@@ -70,6 +78,8 @@ export class PostLocaleResolver {
   }
 
   @Mutation(() => PostLocaleDto)
+  @Roles(Role.admin)
+  @UseGuards(GraphQlAuthGuard)
   deletePostLocale(@Args('id') id: number) {
     return this.postLocaleDao.delete(id);
   }

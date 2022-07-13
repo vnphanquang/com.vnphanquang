@@ -3,6 +3,7 @@ import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
+import { FastifyReply, FastifyRequest } from 'fastify';
 
 import { ConfigModule } from '$config/config.module';
 import { AppRoutes, ConfigService } from '$config/config.service';
@@ -33,21 +34,25 @@ import { PrismaService } from '$services/prisma';
           path: AppRoutes.graphql.$path(),
           autoSchemaFile: join(process.cwd(), 'src/services/graphql/schema.generated.graphql'),
           sortSchema: true,
-          context: (req) => {
+          context: (req: FastifyRequest, res: FastifyReply) => {
             let payload = null;
             const session = config.get().cookies.session;
             let token = req.cookies[session.name];
-            if (token) {
-              if (session.signed) {
-                const { valid, value } = req.unsignCookie(token);
-                if (valid) {
-                  token = value;
+            try {
+              if (token) {
+                if (session.signed) {
+                  const { valid, value } = req.unsignCookie(token);
+                  if (valid) {
+                    token = value;
+                  }
                 }
+                payload = jwtAuthService.verify(token);
               }
-              payload = jwtAuthService.verfiy(token);
-            }
-            if (payload) {
-              req.user = payload;
+              if (payload) {
+                (req as any).user = payload;
+              }
+            } catch (error) {
+              res.clearCookie(session.name);
             }
           },
         };
