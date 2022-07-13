@@ -10,6 +10,8 @@ const config = {
         // maybe vite copy plugin to copy to public asset folder?
         quang: ['PhanQuangCalligraphr', 'sans-serif'],
         fira: ['Fira Code', 'monospace'],
+        texturina: ['Texturina', 'sans-serif'],
+        sourcecodepro: ['SourceCodePro VF', 'SourceCodePro', 'monospace'],
       },
     },
   },

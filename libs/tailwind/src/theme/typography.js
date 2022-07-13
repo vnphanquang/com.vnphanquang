@@ -17,6 +17,7 @@ module.exports = {
           'background-color': 'rgba(110,118,129,0.4)',
           'border-radius': '6px',
           'font-size': '85%',
+          'font-family': 'Fira Code, monospace',
           'font-weight': 'normal',
           padding: '0.2em 0.4em',
         },

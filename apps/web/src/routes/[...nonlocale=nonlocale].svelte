@@ -6,7 +6,7 @@
   export const load: Load = ({ params, url }) => {
     return {
       status: 301,
-      redirect: `/${locale.get() ?? Locale.en}/${params.nonlocale}${url.search}`,
+      redirect: `/${locale.get() ?? Locale.En}/${params.nonlocale}${url.search}`,
     };
   };
 </script>

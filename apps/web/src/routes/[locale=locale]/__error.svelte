@@ -3,10 +3,10 @@
 
   import { NotFoundBlog } from '$lib/errors';
   // eslint-disable-next-line import/order
-  import { loadTranslations, locale, Locale } from '$lib/services/i18n';
+  import { loadTranslations, locale, Locale, t } from '$lib/services/i18n';
 
   export const load: Load = ({ error, status }) => {
-    loadTranslations(locale.get() ?? Locale.en);
+    loadTranslations(locale.get() ?? Locale.En);
     return {
       props: {
         error,
@@ -17,8 +17,6 @@
 </script>
 
 <script lang="ts">
-  import { t } from '$lib/services/i18n';
-
   export let error: Error;
   export let status: number;
 

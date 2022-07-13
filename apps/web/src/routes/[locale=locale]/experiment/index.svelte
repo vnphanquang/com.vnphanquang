@@ -18,7 +18,7 @@
 
 <main class="mx-auto flex max-w-5xl flex-col py-20 px-8 md:px-20">
   <h1 class="text-center font-quang text-6xl font-bold">Experiments</h1>
-  <p class="mt-8 text-center font-quang text-2xl">Once in a while, a wild flower blooms</p>
+  <p class="mt-8 text-center text-lg italic">Once in a while, a wild flower blooms</p>
   <section class="mt-20 flex-1">
     <ul class="flex flex-col gap-y-10">
       {#each Object.values(EXPERIMENTS) as { id, href, title, description } (id)}

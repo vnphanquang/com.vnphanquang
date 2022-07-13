@@ -1,0 +1,24 @@
+query postLocales($locale: Locale) {
+  postLocales(locale: $locale) {
+    id
+    locale
+    slug
+    summary
+    title
+    post {
+      category
+      createdAt
+      id
+      tags
+      updatedAt
+      deletedAt
+      deleted
+    }
+    createdAt
+    deleted
+    deletedAt
+    published
+    publishedAt
+    updatedAt
+  }
+}

@@ -1,4 +1,5 @@
 @import "firacode.css";
+@import "sourcecodepro.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,9 +12,14 @@
   }
 
   html {
-    @apply h-full bg-bg bg-paper text-fg font-fira;
+    font-size: 16px;
+    @apply h-full bg-bg bg-paper text-fg font-sourcecodepro;
 
     scroll-behavior: smooth;
+  }
+
+  code:not(#fakeId) {
+    @apply font-fira;
   }
 
   body {

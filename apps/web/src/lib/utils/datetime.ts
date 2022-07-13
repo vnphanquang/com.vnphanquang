@@ -1,5 +1,13 @@
-export const fullDateFormat = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full' });
+import { Locale } from '$lib/services/i18n';
 
-export function blogDate(date: Date | string) {
-  return fullDateFormat.format(new Date(date));
+const localeMapping = {
+  [Locale.En]: 'en-GB',
+  [Locale.Vi]: 'vi',
+} as const;
+
+export const fullDateFormat = (locale: Locale) =>
+  new Intl.DateTimeFormat(localeMapping[locale], { dateStyle: 'full' });
+
+export function blogDate(date: Date | string, locale: Locale) {
+  return fullDateFormat(locale).format(new Date(date));
 }
