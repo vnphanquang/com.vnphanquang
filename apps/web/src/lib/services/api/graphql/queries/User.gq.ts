@@ -1,4 +1,4 @@
-import type * as Types from '../../../../servicesapi/graphql/queries/types.gq';
+import type * as Types from './types.gq';
 
 import { writable } from "svelte/store"
 import { g } from '$lib/services/api/graphql/g'

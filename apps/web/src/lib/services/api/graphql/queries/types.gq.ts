@@ -56,7 +56,7 @@ export type CreatePostInput = {
 };
 
 export type CreatePostLocaleInput = {
-  locale: Scalars['String'];
+  locale: Locale;
   published?: InputMaybe<Scalars['Boolean']>;
   slug: Scalars['String'];
   summary: Scalars['String'];
@@ -202,6 +202,12 @@ export type PostDto = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
+
+/** Blog post */
+export type PostDtoLocalesArgs = {
+  locale?: InputMaybe<Locale>;
+};
+
 /** Blog post locale (site) */
 export type PostLocaleDto = {
   __typename?: 'PostLocaleDto';
@@ -251,6 +257,11 @@ export type QueryPostByIdArgs = {
 };
 
 
+export type QueryPostLocalesArgs = {
+  locale?: InputMaybe<Locale>;
+};
+
+
 export type QueryTestimonialByIdArgs = {
   id: Scalars['Float'];
 };
@@ -284,6 +295,7 @@ export type TestimonialDto = {
   deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
   published: Scalars['Boolean'];
+  publishedAt?: Maybe<Scalars['DateTime']>;
   quote: Scalars['String'];
   ref: Scalars['String'];
   title: Scalars['String'];
@@ -300,7 +312,7 @@ export type UpdatePostInput = {
 };
 
 export type UpdatePostLocaleInput = {
-  locale?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Locale>;
   published?: InputMaybe<Scalars['Boolean']>;
   slug?: InputMaybe<Scalars['String']>;
   summary?: InputMaybe<Scalars['String']>;

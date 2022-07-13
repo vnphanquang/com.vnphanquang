@@ -18,7 +18,7 @@ const config = {
   plugins: [
     gQueryCodegen({
       schema: '../api/src/services/graphql/schema.generated.graphql',
-      out: './src/lib/servicesapi//graphql/queries',
+      out: './src/lib/services/api/graphql/queries',
       gPath: '$lib/services/api/graphql/g',
       // debug: false,
     }),
