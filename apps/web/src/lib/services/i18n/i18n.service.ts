@@ -1,7 +1,7 @@
 import i18n from 'sveltekit-i18n';
 import type { Config } from 'sveltekit-i18n';
 
-// import { browser } from '$app/env';
+import { browser } from '$app/env';
 import { Locale } from '$lib/services/api/graphql/queries/types.gq';
 
 import { I18NS } from './i18n.enum';
@@ -13,18 +13,18 @@ const lang = {
   [Locale.Vi]: 'Vietnamese',
 };
 
-// function getInitLocale(): Locale {
-//   if (browser && navigator) {
-//     const lang = navigator.language?.substring(0, 2);
-//     if (Object.values(Locale).some((le) => le === lang)) {
-//       return lang as Locale;
-//     }
-//   }
-//   return Locale.En;
-// }
+function getInitLocale(): Locale {
+  if (browser && navigator) {
+    const lang = navigator.language?.substring(0, 2);
+    if (Object.values(Locale).some((le) => le === lang)) {
+      return lang as Locale;
+    }
+  }
+  return Locale.En;
+}
 
 const config: Config = {
-  // initLocale: getInitLocale(),
+  initLocale: getInitLocale(),
   log: {
     level: AppConfig.mode === 'development' ? 'debug' : 'error',
   },
