@@ -13,21 +13,21 @@
   import { tooltip } from '$lib/actions/tooltip';
   import { HamburgerBtn } from '$lib/components/HamburgerBtn';
   import { Locale, locale, t } from '$lib/services/i18n';
-  import { AppRoutes, to, withLocale } from '$lib/services/navigation';
+  import { AppRoutes, to } from '$lib/services/navigation';
   import { theme } from '$lib/stores/theme';
 
   let navbarMenuOpen = false;
-  const navlinks = {
+  $: navlinks = {
     blog: {
-      href: to(AppRoutes.blog.index),
+      href: `/${$locale}${AppRoutes.blog.index}`,
       text: 'blog',
     },
     experiment: {
-      href: to(AppRoutes.experiment.index),
+      href: `/${$locale}${AppRoutes.experiment.index}`,
       text: 'experiments',
     },
     about: {
-      href: to(AppRoutes.about.index),
+      href: `/${$locale}${AppRoutes.about.index}`,
       text: 'about',
     },
   } as const;
@@ -56,7 +56,7 @@
   function changeLocale(newLocale: Locale) {
     showLocaleDropdown = false;
     if ($locale !== newLocale) {
-      const path = withLocale(location.pathname, newLocale);
+      const path = `/${newLocale}/${location.pathname.substring(4)}`;
       goto(path);
     }
   }
