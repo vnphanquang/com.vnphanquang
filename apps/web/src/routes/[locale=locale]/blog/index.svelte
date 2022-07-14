@@ -54,7 +54,7 @@
 
 <!-- TODO: breadcumbs -->
 <main class="mx-auto flex h-full w-full max-w-5xl flex-col py-20 px-8 md:px-20">
-  <h1 class="text-center font-quang text-6xl font-bold">{$t('blog.title')}</h1>
+  <h1 class="text-center text-6xl font-bold">{$t('blog.title')}</h1>
   <p class="mt-8 text-center text-lg italic">{$t('blog.subtitle')}</p>
   <section class="mt-20 flex-1">
     <ul class="flex flex-col gap-y-10">
