@@ -42,7 +42,7 @@
           </p>
           <p>Dear visitor,</p>
           <p
-            class="first-letter:float-left first-letter:text-7xl first-letter:font-bold first-letter:text-primary"
+            class="first-letter:float-left first-letter:text-6xl first-letter:font-bold first-letter:text-primary"
           >
             Thank you for taking the time to stop by my personal website & digital playground.
           </p>
