@@ -1,9 +1,9 @@
 {
   "NotFound": {
-    "blog": "Úi da, hem có blog nào với tựa này hết bạn à.",
+    "blog": "Úi da, hăm có blog nào với tựa này hết bạn à.",
     "others": "Bạn tìm gì thế, chắc là sai URL ở đâu rầu."
   },
   "ServerError": "Có lỗi rầu bạn ơi huhu!",
-  "prompt": "Bạn đã sử dụng chất thử khác chưa",
+  "prompt": "Bạn đã sử dụng chất thử khác chưa?",
   "cta": "Dzìa trang trước"
 }

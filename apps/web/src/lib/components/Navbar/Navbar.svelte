@@ -1,6 +1,7 @@
 <script lang="ts">
   import { clickoutside } from '@svelte-put/clickoutside';
   import classnames from 'classnames';
+  import { onMount } from 'svelte';
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import language from 'svelte-awesome/icons/language';
   import lightbulb from 'svelte-awesome/icons/lightbulbO';
@@ -11,9 +12,11 @@
   import { browser } from '$app/env';
   import { afterNavigate, goto } from '$app/navigation';
   import { tooltip } from '$lib/actions/tooltip';
+  import { I18NCache } from '$lib/cache/i18n.cache';
   import { HamburgerBtn } from '$lib/components/HamburgerBtn';
   import { Locale, locale, t } from '$lib/services/i18n';
   import { AppRoutes, to } from '$lib/services/navigation';
+  import { notificationService } from '$lib/services/notification';
   import { theme } from '$lib/stores/theme';
 
   let navbarMenuOpen = false;
@@ -49,15 +52,21 @@
 
   let showLocaleDropdown = false;
 
+  let i18nCache: I18NCache;
+
   function toggleTheme() {
     theme.toggle();
   }
 
-  function changeLocale(newLocale: Locale) {
+  async function changeLocale(newLocale: Locale) {
     showLocaleDropdown = false;
     if ($locale !== newLocale) {
       const path = `/${newLocale}/${location.pathname.substring(4)}`;
-      goto(path);
+      await goto(path);
+      if (!i18nCache.getUserSwitchedOnce()) {
+        notificationService.warning($t('navbar.localeChangeNotice'), { duration: 10000 });
+        i18nCache.setUserSwitchedOnce(true);
+      }
     }
   }
 
@@ -66,6 +75,10 @@
   let pathname = browser ? location.pathname : '';
   afterNavigate(({ to }) => {
     pathname = to.pathname;
+  });
+
+  onMount(() => {
+    i18nCache = new I18NCache();
   });
 </script>
 

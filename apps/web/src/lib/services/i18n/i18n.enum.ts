@@ -7,4 +7,6 @@ export enum I18NS {
   error = 'error',
   blog = 'blog',
   experiment = 'experiment',
+  notification = 'notification',
+  achievement = 'achievement',
 }

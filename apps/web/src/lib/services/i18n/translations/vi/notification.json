@@ -1,0 +1,10 @@
+{
+  "title": {
+    "info": "Thông tin",
+    "success": "Thành công",
+    "warning": "Cảnh báo",
+    "error": "Lỗi",
+    "achievement": "Thành tích"
+  },
+  "keybindingInterferenceNotice": "Vimium hoặc các plugin tương tự từ trình duyệt có thể gây ảnh hưởng đến trải nghiệm của bạn khi dùng Command Palette."
+}

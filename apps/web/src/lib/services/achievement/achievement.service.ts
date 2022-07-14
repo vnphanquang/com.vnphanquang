@@ -1,12 +1,13 @@
 import { AchievementCache } from '$lib/cache/achievement.cache';
+import { t } from '$lib/services/i18n';
 
 import { notificationService, type NotificationService } from '../notification';
 
-import { ACHIEVEMENTS } from './achievement.constants';
 import type { AchievementId } from './achievement.enum';
 
 export class AchievementService {
   constructor(
+    private readonly i18nService: typeof t,
     private readonly achievementCache: AchievementCache,
     private readonly notificationService: NotificationService,
   ) {
@@ -25,10 +26,11 @@ export class AchievementService {
     if (!this.achievementCache.unlocked(achievementId)) {
       this.achievementCache.unlock(achievementId);
 
-      const achievement = ACHIEVEMENTS[achievementId];
+      const title = this.i18nService.get(`achievement.${achievementId}.title`);
+      const text = this.i18nService.get(`achievement.${achievementId}.notification`);
       await this.notificationService.push({
-        text: achievement.notification,
-        title: achievement.name,
+        text,
+        title,
         variant: 'achievement',
         duration: 10000,
       });
@@ -43,6 +45,7 @@ export class AchievementService {
 }
 
 export const achievementService = new AchievementService(
+  t,
   new AchievementCache(),
   notificationService,
 );

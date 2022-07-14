@@ -36,6 +36,26 @@ const config: Config = {
     // error
     {
       locale: Locale.En,
+      key: I18NS.notification,
+      loader: async () => (await import('./translations/en/notification.json')).default,
+    },
+    {
+      locale: Locale.Vi,
+      key: I18NS.notification,
+      loader: async () => (await import('./translations/vi/notification.json')).default,
+    },
+    {
+      locale: Locale.En,
+      key: I18NS.achievement,
+      loader: async () => (await import('./translations/en/achievement.json')).default,
+    },
+    {
+      locale: Locale.Vi,
+      key: I18NS.achievement,
+      loader: async () => (await import('./translations/vi/achievement.json')).default,
+    },
+    {
+      locale: Locale.En,
       key: I18NS.navbar,
       loader: async () => (await import('./translations/en/navbar.json')).default,
     },

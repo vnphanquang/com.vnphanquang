@@ -15,7 +15,7 @@ export function createNotification(notification: AppNotificationInput): AppNotif
     id: crypto.randomUUID(),
     duration: 4000,
     variant: 'info',
-    title: VariantToTitleMap[notification.variant ?? 'info'],
+    title: '',
     text: '',
     hideDismiss: false,
     persistent: false,

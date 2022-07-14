@@ -4,6 +4,8 @@
   import { quintOut } from 'svelte/easing';
   import { fly, fade } from 'svelte/transition';
 
+  import { t } from '$lib/services/i18n';
+
   import { notificationService } from '../notification.store';
   import type { AppNotification } from '../notification.types';
 
@@ -39,13 +41,14 @@
 
 <aside class={$$props.class}>
   <ul class="row-auto grid grid-cols-1 gap-y-4">
-    {#each $notificationService as { onPopped, ...notification } (notification.id)}
+    {#each $notificationService as { onPopped, title, ...notification } (notification.id)}
+      {@const localeTitle = title || $t(`notification.title.${notification.variant}`)}
       <li
         in:fly={{ x: 200, duration: 500 }}
         out:fade={{ duration: 350 }}
         animate:flip={{ easing: quintOut, duration: 500 }}
       >
-        <NotificationComponent {...notification} on:dismiss={onDismiss} />
+        <NotificationComponent {...notification} title={localeTitle} on:dismiss={onDismiss} />
       </li>
     {/each}
   </ul>

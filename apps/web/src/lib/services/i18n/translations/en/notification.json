@@ -1,0 +1,10 @@
+{
+  "title": {
+    "info": "Info",
+    "success": "Success",
+    "warning": "Warning",
+    "error": "Error",
+    "achievement": "Achievement"
+  },
+  "keybindingInterferenceNotice": "Vimium or similar browser extensions might interfere with your experience in the Command Palette."
+}

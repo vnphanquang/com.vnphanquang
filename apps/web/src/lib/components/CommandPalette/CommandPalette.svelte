@@ -9,6 +9,7 @@
   import { goto } from '$app/navigation';
   import { CommandPaletteCache } from '$lib/cache/commandPalette.cache';
   import { AchievementId, achievementService } from '$lib/services/achievement';
+  import { t } from '$lib/services/i18n';
   import { notificationService } from '$lib/services/notification';
   import { theme } from '$lib/stores/theme';
 
@@ -134,7 +135,7 @@
           notificationService.push({
             variant: 'warning',
             duration: 10000,
-            text: 'For better user experience, turn off Vimium or any browser extension that might interfere with keyboard input.',
+            text: $t('notification.keybindingInterferenceNotice'),
           });
         }, 10000);
       }
