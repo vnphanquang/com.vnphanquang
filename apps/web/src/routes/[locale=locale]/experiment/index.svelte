@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from '$lib/services/i18n';
   import { AppRoutes, to } from '$lib/services/navigation';
 
   const EXPERIMENTS = {
@@ -17,8 +18,8 @@
 </svelte:head>
 
 <main class="mx-auto flex max-w-5xl flex-col py-20 px-8 md:px-20">
-  <h1 class="text-center font-quang text-6xl font-bold">Experiments</h1>
-  <p class="mt-8 text-center text-lg italic">Once in a while, a wild flower blooms</p>
+  <h1 class="text-center text-6xl font-bold">{$t('experiment.title')}</h1>
+  <p class="mt-8 text-center text-lg italic">{$t('experiment.subtitle')}</p>
   <section class="mt-20 flex-1">
     <ul class="flex flex-col gap-y-10">
       {#each Object.values(EXPERIMENTS) as { id, href, title, description } (id)}
@@ -27,10 +28,10 @@
         >
           <p class="text-2xl font-bold">{title}</p>
           <p>{description}</p>
-          <a {href} class="c-btn w-fit">Explore</a>
+          <a {href} class="c-btn w-fit">{$t('experiment.explore')}</a>
         </li>
       {/each}
     </ul>
-    <p class="mt-20 text-center">Wild flowers are out there, but none has fully bloomed yet...</p>
+    <p class="mt-20 text-center">{$t('experiment.etc')}</p>
   </section>
 </main>

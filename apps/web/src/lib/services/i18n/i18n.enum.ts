@@ -6,4 +6,5 @@ export enum I18NS {
   home = 'home',
   error = 'error',
   blog = 'blog',
+  experiment = 'experiment',
 }
