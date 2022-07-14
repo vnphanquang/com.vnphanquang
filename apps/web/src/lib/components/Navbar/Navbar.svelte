@@ -156,7 +156,7 @@
             transition:slide={{ duration: 200 }}
           >
             {#each Object.values(locales) as { id, icon, text, hint } (id)}
-              <li>
+              <li lang={id}>
                 <button
                   on:click={() => changeLocale(id)}
                   class="flex w-full items-center gap-x-4 py-2 px-4 hover:bg-primary"
