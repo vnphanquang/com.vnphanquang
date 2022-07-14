@@ -2,14 +2,13 @@
   import { browser } from '$app/env';
   import { page } from '$app/stores';
 
-  import { AppConfig } from '$config';
-
-  const MEASUREMENT_ID = AppConfig.env.gtagMeasurementId;
+  export let enabled = false;
+  export let measurementId: string;
 
   // eslint-disable-next-line no-undef
-  $: if (browser && AppConfig.mode === 'production' && gtag) {
+  $: if (browser && enabled && gtag) {
     // eslint-disable-next-line no-undef
-    gtag('config', MEASUREMENT_ID, {
+    gtag('config', measurementId, {
       page_title: document.title,
       page_location: $page.url.href,
       page_path: $page.url.pathname,
@@ -18,9 +17,9 @@
 </script>
 
 <svelte:head>
-  {#if AppConfig.mode === 'production'}
+  {#if enabled}
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={MEASUREMENT_ID}"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={measurementId}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
