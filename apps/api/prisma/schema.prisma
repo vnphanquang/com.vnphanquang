@@ -94,6 +94,8 @@ model PostLocale {
   // relations
   postId      Int
   post        Post      @relation(fields: [postId], references: [id])
+
+  @@unique([postId, locale])
 }
 
 model Comment {
