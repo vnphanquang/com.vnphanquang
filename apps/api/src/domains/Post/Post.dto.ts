@@ -30,6 +30,6 @@ export class PostDto {
   @Field(() => [CommentDto])
   comments: CommentDto[];
 
-  @Field(() => [PostLocaleDto])
-  locales: PostLocaleDto[];
+  @Field(() => PostLocaleDto)
+  locale: PostLocaleDto;
 }

@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import { Locale, Role } from '@prisma/client';
 
 import { CommentDao } from '$domains/Comment';
@@ -30,7 +30,7 @@ export class PostResolver {
   }
 
   @ResolveField()
-  locales(
+  locale(
     @Root() post: PostDto,
     @Args({
       name: 'locale',
@@ -57,19 +57,19 @@ export class PostResolver {
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => PostDto, { nullable: true })
-  updatePost(@Args('id') id: number, @Args('input') input: UpdatePostInput) {
+  updatePost(@Args('id', { type: () => Int }) id: number, @Args('input') input: UpdatePostInput) {
     return this.postDao.update(id, input);
   }
 
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => PostDto, { nullable: true })
-  deletePost(@Args('id') id: number) {
+  deletePost(@Args('id', { type: () => Int }) id: number) {
     return this.postDao.delete(id);
   }
 
   @Query(() => PostDto, { nullable: true })
-  postById(@Args('id') id: number) {
+  postById(@Args('id', { type: () => Int }) id: number) {
     return this.postDao.byId(id);
   }
 }

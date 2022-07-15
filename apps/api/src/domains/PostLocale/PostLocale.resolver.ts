@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { ResolveField, Resolver, Root, Query, Mutation, Args } from '@nestjs/graphql';
+import { ResolveField, Resolver, Root, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { Locale, Role, User } from '@prisma/client';
 
 import { PostDao } from '$domains/Post';
@@ -49,7 +49,10 @@ export class PostLocaleResolver {
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => PostLocaleDto)
-  createPostLocale(@Args('postId') postId: number, @Args('input') input: CreatePostLocaleInput) {
+  createPostLocale(
+    @Args('postId', { type: () => Int }) postId: number,
+    @Args('input') input: CreatePostLocaleInput,
+  ) {
     const { published, ...others } = input;
     return this.postLocaleDao.create(postId, {
       ...others,
@@ -60,7 +63,10 @@ export class PostLocaleResolver {
   @Mutation(() => PostLocaleDto)
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
-  updatePostLocale(@Args('id') id: number, @Args('input') input: UpdatePostLocaleInput) {
+  updatePostLocale(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('input') input: UpdatePostLocaleInput,
+  ) {
     const { published, ...others } = input;
     return this.postLocaleDao.update(id, {
       ...others,
@@ -71,7 +77,10 @@ export class PostLocaleResolver {
   @Mutation(() => PostLocaleDto)
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
-  setPostLocalePublication(@Args('id') id: number, @Args('published') published: boolean) {
+  setPostLocalePublication(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('published') published: boolean,
+  ) {
     return this.postLocaleDao.update(id, {
       publishedAt: published ? new Date() : null,
     });
@@ -80,7 +89,7 @@ export class PostLocaleResolver {
   @Mutation(() => PostLocaleDto)
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
-  deletePostLocale(@Args('id') id: number) {
+  deletePostLocale(@Args('id', { type: () => Int }) id: number) {
     return this.postLocaleDao.delete(id);
   }
 }

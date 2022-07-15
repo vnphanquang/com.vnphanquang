@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { ResolveField, Resolver, Root, Query, Args, Mutation } from '@nestjs/graphql';
+import { ResolveField, Resolver, Root, Query, Args, Mutation, Int } from '@nestjs/graphql';
 import { AuthProvider, User } from '@prisma/client';
 
 import { AuthenticationDao } from '$domains/Authentication/Authentication.dao';
@@ -47,12 +47,15 @@ export class UserResolver {
 
   @Mutation(() => UserDto, { nullable: true })
   @UseGuards(GraphQlAuthGuard, ResourceOwnerGuard())
-  deleteUser(@Args('id') id: number) {
+  deleteUser(@Args('id', { type: () => Int }) id: number) {
     return this.userDao.delete(id);
   }
 
   @Query(() => UserDto, { nullable: true })
-  userById(@Args('id') id: number) {
+  userById(
+    @Args('id', { type: () => Int })
+    id: number,
+  ) {
     return this.userDao.byId(id);
   }
 

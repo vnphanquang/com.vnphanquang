@@ -14,7 +14,7 @@ export class PostLocaleDao {
   }
 
   byPostId(postId: number, locale: Locale) {
-    return this.prisma.postLocale.findMany({
+    return this.prisma.postLocale.findFirst({
       where: {
         postId,
         locale,

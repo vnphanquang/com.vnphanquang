@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { ResolveField, Resolver, Root, Query, Args, Mutation } from '@nestjs/graphql';
+import { ResolveField, Resolver, Root, Query, Args, Mutation, Int } from '@nestjs/graphql';
 import { Role, User } from '@prisma/client';
 
 import { GraphQlAuthGuard, GraphQlCurrentUser } from '$services/authentication/graphql';
@@ -39,7 +39,7 @@ export class TestimonialResolver {
   }
 
   @Query(() => TestimonialDto)
-  testimonialById(@Args('id') id: number) {
+  testimonialById(@Args('id', { type: () => Int }) id: number) {
     return this.testimonialDao.byId(id);
   }
 
@@ -57,7 +57,10 @@ export class TestimonialResolver {
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => TestimonialDto, { nullable: true })
-  updateTestimonial(@Args('id') id: number, @Args('input') input: UpdateTestimonialInput) {
+  updateTestimonial(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('input') input: UpdateTestimonialInput,
+  ) {
     const { published, ...others } = input;
     return this.testimonialDao.update(id, {
       ...others,
@@ -68,14 +71,17 @@ export class TestimonialResolver {
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => TestimonialDto, { nullable: true })
-  deleteTestimonial(@Args('id') id: number) {
+  deleteTestimonial(@Args('id', { type: () => Int }) id: number) {
     return this.testimonialDao.delete(id);
   }
 
   @Roles(Role.admin)
   @UseGuards(GraphQlAuthGuard)
   @Mutation(() => TestimonialDto, { nullable: true })
-  setTestimonialPublication(@Args('id') id: number, @Args('published') published: boolean) {
+  setTestimonialPublication(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('published') published: boolean,
+  ) {
     return this.testimonialDao.update(id, { publishedAt: published ? new Date() : null });
   }
 }

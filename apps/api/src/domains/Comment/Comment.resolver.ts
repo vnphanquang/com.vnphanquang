@@ -3,6 +3,7 @@ import {
   Args,
   Field,
   InputType,
+  Int,
   Mutation,
   Query,
   ResolveField,
@@ -42,7 +43,7 @@ export class CommentResolver {
   @UseGuards(GraphQlAuthGuard)
   createComment(
     @GraphQlCurrentUser() user: User,
-    @Args('postId') postId: number,
+    @Args('postId', { type: () => Int }) postId: number,
     @Args('input') input: CreateCommentInput,
   ) {
     return this.commentDao.create({ authorId: user.id, data: input, postId });
@@ -50,13 +51,16 @@ export class CommentResolver {
 
   @Mutation(() => CommentDto, { nullable: true })
   @UseGuards(GraphQlAuthGuard, ResourceOwnerGuard({ resource: 'comment' }))
-  updateComment(@Args('id') id: number, @Args('data') data: UpdateCommentInput) {
+  updateComment(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('data') data: UpdateCommentInput,
+  ) {
     return this.commentDao.update(id, data);
   }
 
   @Mutation(() => CommentDto, { nullable: true })
   @UseGuards(GraphQlAuthGuard, ResourceOwnerGuard({ resource: 'comment' }))
-  deleteComment(@Args('id') id: number) {
+  deleteComment(@Args('id', { type: () => Int }) id: number) {
     return this.commentDao.delete(id);
   }
 
@@ -66,7 +70,7 @@ export class CommentResolver {
   }
 
   @Query(() => CommentDto, { nullable: true })
-  commentById(@Args('id') id: number) {
+  commentById(@Args('id', { type: () => Int }) id: number) {
     return this.commentDao.byId(id);
   }
 
