@@ -62,11 +62,13 @@
     showLocaleDropdown = false;
     if ($locale !== newLocale) {
       const path = `/${newLocale}/${location.pathname.substring(4)}`;
+      $locale = newLocale;
       await goto(path);
       if (!i18nCache.getUserSwitchedOnce()) {
         notificationService.warning($t('navbar.localeChangeNotice'), { duration: 10000 });
         i18nCache.setUserSwitchedOnce(true);
       }
+      document?.querySelector('html')?.setAttribute('lang', newLocale);
     }
   }
 
