@@ -46,8 +46,11 @@ declare namespace svelte.JSX {
     // on:intersect
     onintersect?: (event: CustomEvent<import('@svelte-put/intersect').IntersectDetail>) => void;
     onintersectonce?: (event: CustomEvent<import('@svelte-put/intersect').IntersectDetail>) => void;
+    ontoc?: (event: CustomEvent<import('./lib/actions/toc').TocEventDetails>) => void;
   }
 }
 
 declare module '*.svelte';
 declare module '@icons-pack/svelte-simple-icons';
+declare module 'svelte-highlight/styles/gruvbox-dark-soft';
+declare module 'svelte-highlight/languages/typescript';
