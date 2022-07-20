@@ -136,6 +136,7 @@ type Query {
   comments: [CommentDto!]!
   me: UserDto!
   postById(id: Int!): PostDto
+  postLocaleBySlug(slug: String!): PostLocaleDto
   postLocales(locale: Locale): [PostLocaleDto!]!
   posts: [PostDto!]!
   testimonialById(id: Int!): TestimonialDto!

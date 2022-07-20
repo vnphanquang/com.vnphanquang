@@ -1,0 +1,36 @@
+query postLocaleById($slug: String!) {
+  postLocaleBySlug(slug: $slug) {
+    createdAt
+    deleted
+    deletedAt
+    id
+    locale
+    post {
+      category
+      comments {
+        author {
+          firstName
+          lastName
+        }
+        content
+        createdAt
+        deleted
+        deletedAt
+        id
+        updatedAt
+      }
+      createdAt
+      deleted
+      deletedAt
+      id
+      tags
+      updatedAt
+    }
+    published
+    publishedAt
+    slug
+    summary
+    title
+    updatedAt
+  }
+}

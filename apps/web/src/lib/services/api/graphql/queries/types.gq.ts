@@ -102,7 +102,7 @@ export type Mutation = {
 
 export type MutationCreateCommentArgs = {
   input: CreateCommentInput;
-  postId: Scalars['Float'];
+  postId: Scalars['Int'];
 };
 
 
@@ -113,7 +113,7 @@ export type MutationCreatePostArgs = {
 
 export type MutationCreatePostLocaleArgs = {
   input: CreatePostLocaleInput;
-  postId: Scalars['Float'];
+  postId: Scalars['Int'];
 };
 
 
@@ -123,62 +123,62 @@ export type MutationCreateTestimonialArgs = {
 
 
 export type MutationDeleteCommentArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 
 export type MutationDeletePostArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 
 export type MutationDeletePostLocaleArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 
 export type MutationDeleteTestimonialArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 
 export type MutationDeleteUserArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 
 export type MutationSetPostLocalePublicationArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
   published: Scalars['Boolean'];
 };
 
 
 export type MutationSetTestimonialPublicationArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
   published: Scalars['Boolean'];
 };
 
 
 export type MutationUpdateCommentArgs = {
   data: UpdateCommentInput;
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 
 export type MutationUpdatePostArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
   input: UpdatePostInput;
 };
 
 
 export type MutationUpdatePostLocaleArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
   input: UpdatePostLocaleInput;
 };
 
 
 export type MutationUpdateTestimonialArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
   input: UpdateTestimonialInput;
 };
 
@@ -197,14 +197,14 @@ export type PostDto = {
   deleted: Scalars['Boolean'];
   deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
-  locales: Array<PostLocaleDto>;
+  locale: PostLocaleDto;
   tags: Array<PostTag>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
 /** Blog post */
-export type PostDtoLocalesArgs = {
+export type PostDtoLocaleArgs = {
   locale?: InputMaybe<Locale>;
 };
 
@@ -238,6 +238,7 @@ export type Query = {
   comments: Array<CommentDto>;
   me: UserDto;
   postById?: Maybe<PostDto>;
+  postLocaleBySlug?: Maybe<PostLocaleDto>;
   postLocales: Array<PostLocaleDto>;
   posts: Array<PostDto>;
   testimonialById: TestimonialDto;
@@ -248,12 +249,17 @@ export type Query = {
 
 
 export type QueryCommentByIdArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 
 export type QueryPostByIdArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
+};
+
+
+export type QueryPostLocaleBySlugArgs = {
+  slug: Scalars['String'];
 };
 
 
@@ -263,12 +269,12 @@ export type QueryPostLocalesArgs = {
 
 
 export type QueryTestimonialByIdArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 
 export type QueryUserByIdArgs = {
-  id: Scalars['Float'];
+  id: Scalars['Int'];
 };
 
 /** User role */

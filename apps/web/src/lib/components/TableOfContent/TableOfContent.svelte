@@ -5,26 +5,12 @@
   import { slide } from 'svelte/transition';
 
   import { inputcache } from '$lib/actions/inputcache';
-
-  import { TableOfContentContext } from './TableOfContent.context';
+  import type { TocEventDetails, TocEventItemDetails } from '$lib/actions/toc';
+  import { toc } from '$lib/actions/toc';
 
   export let float = true;
 
   const ID = 'table-of-content-trigger';
-
-  const tableOfContent = TableOfContentContext.get();
-
-  function getLiClassNames(level: 1 | 2 | 3 | 4 | 5 | 6) {
-    return classnames(
-      'not-prose c-link',
-      level === 1 && 'font-bold',
-      level === 2 && 'ml-4',
-      level === 3 && 'ml-10',
-      level === 4 && 'ml-16',
-      level === 5 && 'ml-14',
-      level === 6 && 'ml-28',
-    );
-  }
 
   let open = false;
 
@@ -36,7 +22,27 @@
       open = false;
     }
   }
+
+  let items: TocEventItemDetails[];
+  function onToc(e: CustomEvent<TocEventDetails>) {
+    items = e.detail.items;
+
+    if (!float) {
+      const hash = location.hash?.substring(1);
+      let matched: HTMLElement | undefined;
+      for (const item of items) {
+        if (item.id === hash) {
+          matched = item.anchor ?? item.element;
+        }
+      }
+      if (matched) {
+        matched.click();
+      }
+    }
+  }
 </script>
+
+<svelte:body use:toc={{ indicator: false, stimulateHashNavigation: false }} on:toc={onToc} />
 
 <div
   class={classnames(
@@ -68,15 +74,38 @@
             use:inputcache={{ id: CLOSE_ON_LINK_CLICK_ID }}
           />
         </div>
-        <h2 class="mb-4 text-lg font-bold">Table of Contents</h2>
+        <p class="mb-4 text-lg font-bold">Table of Contents</p>
       {/if}
-      <ul class="list-none">
-        {#each $tableOfContent as { id, level, text } (id)}
-          <li class={getLiClassNames(level)}>
-            <a href="#{id}" on:click={onLinkClick}>{text}</a>
-          </li>
-        {/each}
-      </ul>
+      {#if items}
+        <ul class="toc-ul">
+          {#each items as {id, element, text} (id)}
+            <li class="toc-li toc-li--{element.tagName.toLowerCase()}">
+              <a href="#{id}" on:click={onLinkClick} class="c-link">{text}</a>
+            </li>
+          {/each}
+        </ul>
+      {/if}
     </section>
   {/if}
 </div>
+
+<style>
+  .toc-li.toc-li--h1 {
+    font-weight: bold;
+  }
+  .toc-li.toc-li--h2 {
+    margin-left: 1rem;
+  }
+  .toc-li.toc-li--h3 {
+    margin-left: 2.5rem;
+  }
+  .toc-li.toc-li--h4 {
+    margin-left: 4rem;
+  }
+  .toc-li.toc-li--h5 {
+    margin-left: 6rem;
+  }
+  .toc-li.toc-li--h6 {
+    margin-left: 7rem;
+  }
+</style>
