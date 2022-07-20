@@ -36,7 +36,7 @@
 
   function scrollDownFromHero() {
     window.scrollTo({
-      top: heroNode.offsetTop + heroNode.clientHeight,
+      top: heroNode.offsetTop + heroNode.clientHeight - 20,
       behavior: 'smooth',
     });
   }
