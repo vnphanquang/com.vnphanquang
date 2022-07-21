@@ -2,7 +2,8 @@
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import code from 'svelte-awesome/icons/code';
 
-  import { getPostLocales, postLocales } from '$lib/services/api/graphql/queries/PostLocale.gq';
+  import { getPostLocalesForBlogIndex } from '$lib/services/api/graphql/queries/Post.gq';
+  import type { PostLocalesForBlogIndexQuery } from '$lib/services/api/graphql/queries/Post.gq';
   import { t } from '$lib/services/i18n';
   import type { Locale } from '$lib/services/i18n';
   import { AppRoutes, to } from '$lib/services/navigation';
@@ -11,10 +12,10 @@
   import { AppConfig } from '$config';
   import type { Load } from '.svelte-kit/types/src/routes/[locale=locale]/blog/__types/[...path]';
 
-  export const load: Load = async ({ fetch, params, url }) => {
+  export const load: Load = async ({ fetch, params }) => {
     const locale = params.locale;
 
-    await getPostLocales({
+    const { postLocales } = await getPostLocalesForBlogIndex({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       fetch: fetch as any,
       variables: {
@@ -23,6 +24,7 @@
     });
     return {
       props: {
+        postLocales,
         locale,
       },
     };
@@ -31,6 +33,7 @@
 
 <script lang="ts">
   export let locale: Locale;
+  export let postLocales: PostLocalesForBlogIndexQuery['postLocales'] = [];
 
   function getCornerIcon(category: string) {
     switch (category) {
@@ -58,10 +61,10 @@
   <p class="mt-8 text-center text-lg italic">{$t('blog.subtitle')}</p>
   <section class="mt-20 flex-1">
     <ul class="flex flex-col gap-y-10">
-      {#each $postLocales.postLocales as { updatedAt, id, published, title, summary, post, slug } (id)}
+      {#each postLocales as { updatedAt, id, published, title, summary, post } (id)}
         {@const category = post.category}
         {@const tags = post.tags}
-        {@const href = `${to(AppRoutes.blog.index)}/${slug}`}
+        {@const href = `${to(AppRoutes.blog.index)}/${post.slug}`}
         <li
           class="relative grid grid-cols-1 gap-y-6 rounded-xl border-2 border-border bg-bg p-8 shadow-center-lg hover:shadow-center-xl"
         >

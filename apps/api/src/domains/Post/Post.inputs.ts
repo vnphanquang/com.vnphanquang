@@ -8,6 +8,9 @@ export class CreatePostInput {
 
   @Field(() => [PostTag], { nullable: true })
   tags: PostTag[];
+
+  @Field()
+  slug: string;
 }
 
 @InputType()
@@ -17,4 +20,7 @@ export class UpdatePostInput {
 
   @Field(() => [PostTag], { nullable: true })
   tags?: PostTag[];
+
+  @Field({ nullable: true })
+  slug?: string;
 }

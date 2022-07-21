@@ -71,6 +71,7 @@ model Post {
   id        Int          @id @default(autoincrement())
   category  PostCategory
   tags      PostTag[]    @default([])
+  slug      String       @unique
   // timestamps
   createdAt DateTime     @default(now())
   updatedAt DateTime?    @updatedAt
@@ -84,7 +85,6 @@ model PostLocale {
   id          Int       @id @default(autoincrement())
   title       String
   summary     String
-  slug        String    @unique
   locale      Locale
   // timestamps
   publishedAt DateTime?

@@ -1,7 +1,5 @@
 import { route } from '$generated/routing';
-import { locale } from '$lib/services/i18n';
-
-import { Locale } from '../api/graphql/queries/types.gq';
+import { locale, Locale } from '$lib/services/i18n';
 
 export function to(path: string, ...args: string[]) {
   return `/${locale.get() ?? Locale.En}${route(path, ...args)}`;

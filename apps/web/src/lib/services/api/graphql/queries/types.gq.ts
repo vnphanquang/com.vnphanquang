@@ -52,13 +52,13 @@ export type CreateCommentInput = {
 
 export type CreatePostInput = {
   category: PostCategory;
+  slug: Scalars['String'];
   tags?: InputMaybe<Array<PostTag>>;
 };
 
 export type CreatePostLocaleInput = {
   locale: Locale;
   published?: InputMaybe<Scalars['Boolean']>;
-  slug: Scalars['String'];
   summary: Scalars['String'];
   title: Scalars['String'];
 };
@@ -197,7 +197,8 @@ export type PostDto = {
   deleted: Scalars['Boolean'];
   deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
-  locale: PostLocaleDto;
+  locale?: Maybe<PostLocaleDto>;
+  slug: Scalars['String'];
   tags: Array<PostTag>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -219,7 +220,6 @@ export type PostLocaleDto = {
   post: PostDto;
   published: Scalars['Boolean'];
   publishedAt?: Maybe<Scalars['DateTime']>;
-  slug: Scalars['String'];
   summary: Scalars['String'];
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -238,7 +238,7 @@ export type Query = {
   comments: Array<CommentDto>;
   me: UserDto;
   postById?: Maybe<PostDto>;
-  postLocaleBySlug?: Maybe<PostLocaleDto>;
+  postBySlug?: Maybe<PostDto>;
   postLocales: Array<PostLocaleDto>;
   posts: Array<PostDto>;
   testimonialById: TestimonialDto;
@@ -258,7 +258,7 @@ export type QueryPostByIdArgs = {
 };
 
 
-export type QueryPostLocaleBySlugArgs = {
+export type QueryPostBySlugArgs = {
   slug: Scalars['String'];
 };
 
@@ -314,13 +314,13 @@ export type UpdateCommentInput = {
 
 export type UpdatePostInput = {
   category?: InputMaybe<PostCategory>;
+  slug?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Array<PostTag>>;
 };
 
 export type UpdatePostLocaleInput = {
   locale?: InputMaybe<Locale>;
   published?: InputMaybe<Scalars['Boolean']>;
-  slug?: InputMaybe<Scalars['String']>;
   summary?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
 };

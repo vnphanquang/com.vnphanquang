@@ -1,5 +1,43 @@
-query postLocaleById($slug: String!) {
-  postLocaleBySlug(slug: $slug) {
+query postForPage($slug: String!, $locale: Locale = en) {
+  postBySlug(slug: $slug) {
+    category
+    comments {
+      author {
+        firstName
+        lastName
+      }
+      content
+      createdAt
+      deleted
+      deletedAt
+      id
+      updatedAt
+    }
+    createdAt
+    deleted
+    deletedAt
+    id
+    locale(locale: $locale) {
+      createdAt
+      deleted
+      deletedAt
+      id
+      locale
+      published
+      publishedAt
+      summary
+      title
+      updatedAt
+    }
+    slug
+    tags
+    updatedAt
+  }
+}
+
+# TODO: filter deleted & blogs that do not have any locales published
+query postLocalesForBlogIndex($locale: Locale!) {
+  postLocales(locale: $locale) {
     createdAt
     deleted
     deletedAt
@@ -7,28 +45,16 @@ query postLocaleById($slug: String!) {
     locale
     post {
       category
-      comments {
-        author {
-          firstName
-          lastName
-        }
-        content
-        createdAt
-        deleted
-        deletedAt
-        id
-        updatedAt
-      }
       createdAt
       deleted
       deletedAt
       id
+      slug
       tags
       updatedAt
     }
     published
     publishedAt
-    slug
     summary
     title
     updatedAt

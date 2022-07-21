@@ -13,6 +13,12 @@ export class PostDao {
     });
   }
 
+  bySlug(slug: string) {
+    return this.prisma.post.findUnique({
+      where: { slug },
+    });
+  }
+
   byPostLocaleId(postLocaleId: number) {
     return this.prisma.postLocale.findUnique({ where: { id: postLocaleId } }).post();
   }

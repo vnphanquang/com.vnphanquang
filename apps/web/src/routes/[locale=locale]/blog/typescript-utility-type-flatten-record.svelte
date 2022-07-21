@@ -5,7 +5,9 @@
 
   import { TableOfContent } from '$lib/components';
   import { BLOG_METADATA, BLOG_ID_DICTIONARY } from '$lib/data/blogs';
-  import type { PostLocaleByIdQuery } from '$lib/services/api/graphql/queries/Post.gq';
+  import { NotFoundBlog } from '$lib/errors';
+  import type { PostForPageQuery } from '$lib/services/api/graphql/queries/Post.gq';
+  import { getPostForPage } from '$lib/services/api/graphql/queries/Post.gq';
   import { Locale, locale } from '$lib/services/i18n';
   import { to } from '$lib/services/navigation';
   import { blogDate } from '$lib/utils/datetime';
@@ -13,17 +15,28 @@
   import { AppConfig } from '$config';
   import type { Load } from '.svelte-kit/types/src/routes/[locale=locale]/blog/__types/typescript-utility-type-flatten-record';
 
-  export const load: Load = async ({ stuff }) => {
+  export const load: Load = async ({ url, fetch }) => {
+    const slug = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
+    const { postBySlug } = await getPostForPage({
+      fetch: fetch as any,
+      variables: { slug },
+    });
+    if (!postBySlug) {
+      return {
+        status: 404,
+        error: new NotFoundBlog(`Not found: ${url.pathname}`),
+      };
+    }
     return {
       props: {
-        ...stuff,
+        post: postBySlug,
       },
     };
   };
 </script>
 
 <script lang="ts">
-  export let postLocale: NonNullable<PostLocaleByIdQuery['postLocaleBySlug']>;
+  export let post: NonNullable<PostForPageQuery['postBySlug']>;
 
   const METADATA = BLOG_METADATA[BLOG_ID_DICTIONARY.typescriptUtilityTypeFlattenRecord];
 
@@ -260,33 +273,33 @@ type CommandId = ValuesOf<FlattenRecord<CommandIdDictionary>>;
 type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   };
 
-  const date = blogDate(postLocale.updatedAt, $locale as Locale);
+  const date = blogDate(post.locale?.updatedAt, $locale as Locale);
 </script>
 
 <svelte:head>
   <title>Flatten Record | Blog | vnphanquang</title>
-  <meta name="description" content={postLocale.summary} />
+  <meta name="description" content={post.locale?.summary} />
 
-  <meta property="og:title" content={postLocale.title} />
+  <meta property="og:title" content={post.locale?.title} />
   <meta property="og:image" content={METADATA.screenshot} />
-  <meta property="og:url" content="{AppConfig.urls.web}{to(`/blog/${postLocale.slug}`)}" />
+  <meta property="og:url" content="{AppConfig.urls.web}{to(`/blog/${post.slug}`)}" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <meta property="og:type" content="article" />
   <meta property="article:author" content="Quang Phan" />
   <meta property="article:tag" content="code" />
   <meta property="article:tag" content="typescript" />
-  <meta property="article:published_time" content={postLocale.publishedAt} />
-  <meta property="article:modified_time" content={postLocale.updatedAt} />
+  <meta property="article:published_time" content={post.locale?.publishedAt} />
+  <meta property="article:modified_time" content={post.locale?.updatedAt} />
 
   {@html gruvbox}
 </svelte:head>
 
 <main class="prose relative mx-auto w-full max-w-6xl py-20 px-6 sm:px-10 md:px-20">
   <section class="text-center">
-    <h1>{postLocale.title}</h1>
+    <h1>{post.locale?.title}</h1>
     <p class="flex justify-center gap-x-2">
-      {#each postLocale.post.tags as tag}
+      {#each post.tags as tag}
         <span class="c-tag">{tag}</span>
       {/each}
     </p>

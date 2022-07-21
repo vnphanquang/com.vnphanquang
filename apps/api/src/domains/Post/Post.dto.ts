@@ -11,6 +11,9 @@ export class PostDto {
   @Field(() => Int)
   id: number;
 
+  @Field()
+  slug: string;
+
   @Field(() => PostCategory)
   category: PostCategory;
 
@@ -30,6 +33,6 @@ export class PostDto {
   @Field(() => [CommentDto])
   comments: CommentDto[];
 
-  @Field(() => PostLocaleDto)
+  @Field(() => PostLocaleDto, { nullable: true })
   locale: PostLocaleDto;
 }

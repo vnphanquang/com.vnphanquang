@@ -72,4 +72,9 @@ export class PostResolver {
   postById(@Args('id', { type: () => Int }) id: number) {
     return this.postDao.byId(id);
   }
+
+  @Query(() => PostDto, { nullable: true })
+  postBySlug(@Args('slug') slug: string) {
+    return this.postDao.bySlug(slug);
+  }
 }

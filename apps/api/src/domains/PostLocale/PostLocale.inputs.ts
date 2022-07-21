@@ -7,8 +7,6 @@ export class CreatePostLocaleInput {
   title: string;
   @Field()
   summary: string;
-  @Field()
-  slug: string;
   @Field(() => Locale)
   locale: Locale;
 
@@ -22,8 +20,6 @@ export class UpdatePostLocaleInput {
   title?: string;
   @Field({ nullable: true })
   summary?: string;
-  @Field({ nullable: true })
-  slug?: string;
   @Field(() => Locale, { nullable: true })
   locale?: Locale;
 

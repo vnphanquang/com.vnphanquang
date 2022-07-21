@@ -7,12 +7,6 @@ import { PrismaService } from '$services/prisma';
 export class PostLocaleDao {
   constructor(private readonly prisma: PrismaService) {}
 
-  bySlug(slug: string) {
-    return this.prisma.postLocale.findUnique({
-      where: { slug },
-    });
-  }
-
   byPostId(postId: number, locale: Locale) {
     return this.prisma.postLocale.findFirst({
       where: {

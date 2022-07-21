@@ -14,8 +14,6 @@ export class PostLocaleDto {
   title: string;
   @Field()
   summary: string;
-  @Field()
-  slug: string;
   @Field(() => Locale)
   locale: Locale;
 

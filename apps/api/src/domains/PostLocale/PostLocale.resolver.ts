@@ -29,11 +29,6 @@ export class PostLocaleResolver {
     return !!postLocale.deletedAt;
   }
 
-  @Query(() => PostLocaleDto, { nullable: true })
-  postLocaleBySlug(@Args('slug') slug: string) {
-    return this.postLocaleDao.bySlug(slug);
-  }
-
   @Query(() => [PostLocaleDto])
   postLocales(
     @GraphQlCurrentUser() user?: User,
