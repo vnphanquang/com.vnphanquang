@@ -10,10 +10,14 @@
 // for information about these interfaces
 declare namespace App {
   interface Locals {
-    session?: import('./lib/dtos').JwtPayload;
+    jwt?: import('./lib/dtos').JwtPayload;
   }
   // interface Platform {}
-  // interface Session {}
+
+  interface Session {
+    jwt?: import('./lib/dtos').JwtPayload;
+  }
+
   interface Stuff {
     meta?: {
       title?: string;

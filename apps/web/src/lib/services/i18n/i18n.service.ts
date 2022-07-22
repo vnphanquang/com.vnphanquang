@@ -100,6 +100,18 @@ const config: Config = {
       routes: [`/vi/experiment`],
       loader: async () => (await import('./translations/vi/experiment.json')).default,
     },
+    {
+      locale: Locale.En,
+      key: I18NS.login,
+      routes: [`/en/login`],
+      loader: async () => (await import('./translations/en/login.json')).default,
+    },
+    {
+      locale: Locale.Vi,
+      key: I18NS.login,
+      routes: [`/vi/login`],
+      loader: async () => (await import('./translations/vi/login.json')).default,
+    },
     // home
     // {
     //   locale: Locale.En,

@@ -6,6 +6,7 @@
   import language from 'svelte-awesome/icons/language';
   import lightbulb from 'svelte-awesome/icons/lightbulbO';
   import moon from 'svelte-awesome/icons/moonO';
+  import signIn from 'svelte-awesome/icons/signIn';
   import { elasticInOut } from 'svelte/easing';
   import { fade, fly, slide } from 'svelte/transition';
 
@@ -93,14 +94,14 @@
       : 'bg-bg-accent/90 backdrop-blur-sm hover:bg-bg-accent/95',
   )}
 >
-  <div class="grid h-20 w-full max-w-5xl grid-cols-[auto,auto,1fr] items-center gap-x-6">
+  <div class="flex h-20 w-full max-w-5xl items-center gap-x-6">
     <HamburgerBtn
       id="navbar-menu"
       class="hover:text-primary md:hidden"
       variant="random"
       bind:open={navbarMenuOpen}
     />
-    <p class="font-quang text-xl font-bold text-primary hover:text-secondary">
+    <p class="hidden font-quang text-xl font-bold text-primary hover:text-secondary md:block">
       <a href={to(AppRoutes.index)} on:click={() => (navbarMenuOpen = false)}>vnphanquang</a>
     </p>
 
@@ -138,7 +139,7 @@
       </ul>
     {/if}
 
-    <ul class="flex items-center justify-end gap-x-6">
+    <ul class="flex flex-1 items-center justify-end gap-x-6">
       <li
         class="relative"
         use:clickoutside={{ enabled: showLocaleDropdown }}
@@ -193,6 +194,11 @@
             <Icon data={lightbulb} scale={2} />
           </span>
         </label>
+      </li>
+      <li use:tooltip={{ content: $t('navbar.tooltip.login'), placement: 'bottom' }}>
+        <a href={to(AppRoutes.login.index)} class="hover:text-primary">
+          <Icon data={signIn} scale={2} />
+        </a>
       </li>
     </ul>
   </div>

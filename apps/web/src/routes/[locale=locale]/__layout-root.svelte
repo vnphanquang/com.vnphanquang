@@ -1,6 +1,8 @@
 <script lang="ts">
   import { browser } from '$app/env';
+  import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/stores';
+  import { AppRoutes } from '$generated/routing';
   import BackToTopBtn from '$lib/components/BackToTopBtn/BackToTopBtn.svelte';
   import CommandPaletteWrapper from '$lib/components/CommandPalette/CommandPalette.wrapper.svelte';
   import { Locale } from '$lib/services/i18n';
@@ -40,6 +42,13 @@
       page_path: $page.url.pathname,
     });
   }
+
+  beforeNavigate(({ from, to }) => {
+    if (to?.pathname.endsWith(AppRoutes.login.index) && from.pathname !== to.pathname) {
+      const redirectUrl = `${AppConfig.urls.web}${from.pathname}`;
+      to.searchParams.append('redirectUrl', redirectUrl);
+    }
+  });
 </script>
 
 <svelte:head>

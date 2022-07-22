@@ -1,7 +1,8 @@
 {
   "tooltip": {
     "theme": "Bật/tắt đèn",
-    "locale": "Ngôn ngữ"
+    "locale": "Ngôn ngữ",
+    "login": "Đăng nhập"
   },
   "localeChangeNotice": "Một số nội dung chỉ được viết bởi một ngôn ngữ hoặc đang được dịch."
 }

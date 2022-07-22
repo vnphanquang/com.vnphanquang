@@ -182,9 +182,9 @@
           </div>
         </div>
 
-        <div class="justify-end hidden md:flex">
+        <div class="justify-end hidden md:flex items-end">
           <div class="flex-1 border-b-2 border-border border-opacity-50">
-            <h2 class="font-bold">Frequencies</h2>
+            <p class="font-bold">Frequencies</p>
           </div>
           <div class="c-tabs">
             {#each VIEW_MODES as mode (mode.id)}
@@ -332,6 +332,7 @@
 </main>
 
 <style lang="postcss">
+  /* FIXME: extract this to tailwind plugin */
   .c-tabs {
     @apply flex flex-wrap items-end;
   }

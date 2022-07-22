@@ -1,0 +1,11 @@
+{
+  "title": "Đăng Nhập",
+  "subtitle": "Đăng nhập giúp bạn bình luận trên các bài viết và truy cập các tính năng ẩn.",
+  "cta": "Đăng nhập bằng",
+  "orbitalCenterTooltip": "Nhấn vào một liên kết trên vòng tròn để đăng nhập.",
+  "displayMode": {
+    "title": "Chế độ hiển thị",
+    "orbital": "Quỹ đạo",
+    "buttons": "Danh sách"
+  }
+}

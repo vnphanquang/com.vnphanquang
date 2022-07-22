@@ -2,36 +2,36 @@
   "github": {
     "id": "github",
     "href": "https://github.com/vnphanquang",
-    "icon": "/images/socials/github.svg"
+    "icon": "/images/brands/github.svg"
   },
   "twitter": {
     "id": "twitter",
     "href": "https://twitter.com/vnphanquang",
-    "icon": "/images/socials/twitter.svg"
+    "icon": "/images/brands/twitter.svg"
   },
   "instagram": {
     "id": "instagram",
     "href": "https://instagram.com/vnphanquang",
-    "icon": "/images/socials/instagram.svg"
+    "icon": "/images/brands/instagram.svg"
   },
   "linkedin": {
     "id": "linkedin",
     "href": "https://linkedin.com/in/vnphanquang",
-    "icon": "/images/socials/linkedin.svg"
+    "icon": "/images/brands/linkedin.svg"
   },
   "jsfiddle": {
     "id": "jsfiddle",
     "href": "https://jsfiddle.net/user/vnphanquang",
-    "icon": "/images/socials/jsfiddle.svg"
+    "icon": "/images/brands/jsfiddle.svg"
   },
   "stackoverflow": {
     "id": "stackoverflow",
     "href": "https://stackoverflow.com/users/9943094/vnphanquang",
-    "icon": "/images/socials/stackoverflow.svg"
+    "icon": "/images/brands/stackoverflow.svg"
   },
   "strava": {
     "id": "strava",
     "href": "https://www.strava.com/athletes/49111844",
-    "icon": "/images/socials/strava.svg"
+    "icon": "/images/brands/strava.svg"
   }
 }

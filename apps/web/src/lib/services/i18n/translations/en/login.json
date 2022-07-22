@@ -1,0 +1,11 @@
+{
+  "title": "Login",
+  "subtitle": "Logged-in visitors can comment on blog posts and access some hidden features.",
+  "cta": "Login with",
+  "orbitalCenterTooltip": "Click on rotating authentication provider to login",
+  "displayMode": {
+    "title": "Display mode",
+    "orbital": "Orbital",
+    "buttons": "Buttons"
+  }
+}

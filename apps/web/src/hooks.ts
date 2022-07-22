@@ -14,7 +14,7 @@ export const handle: Handle = async ({ event, resolve }) => {
   if (token) {
     const payload = jwtDecode<JwtPayload>(token);
     if (payload) {
-      event.locals.session = payload;
+      event.locals.jwt = payload;
     }
   }
 
@@ -30,5 +30,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 };
 
 export const getSession: GetSession = (event) => {
-  return event.locals.session ?? {};
+  return {
+    jwt: event.locals.jwt,
+  };
 };

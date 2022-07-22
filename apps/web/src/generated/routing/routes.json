@@ -19,5 +19,11 @@
       "index": "/experiment/web-word-frequency"
     }
   },
-  "index": "/"
+  "index": "/",
+  "login": {
+    "index": "/login"
+  },
+  "profile": {
+    "index": "/profile"
+  }
 }

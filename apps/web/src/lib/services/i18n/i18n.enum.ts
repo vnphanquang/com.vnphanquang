@@ -9,4 +9,5 @@ export enum I18NS {
   experiment = 'experiment',
   notification = 'notification',
   achievement = 'achievement',
+  login = 'login',
 }

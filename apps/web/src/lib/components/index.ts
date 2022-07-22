@@ -12,3 +12,4 @@ export * from './MediaOverlay';
 export * from './TableOfContent';
 export * from './BackToTopBtn';
 export * from './SearchBox';
+export * from './OrbitalList';
