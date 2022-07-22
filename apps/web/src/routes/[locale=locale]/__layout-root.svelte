@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { browser } from '$app/env';
   import { page } from '$app/stores';
   import BackToTopBtn from '$lib/components/BackToTopBtn/BackToTopBtn.svelte';
   import CommandPaletteWrapper from '$lib/components/CommandPalette/CommandPalette.wrapper.svelte';
-  import Analytics from '$lib/services/analytics/Analytics.svelte';
   import { Locale } from '$lib/services/i18n';
   import '$lib/styles/app.css';
 
@@ -12,7 +12,6 @@
   $: pathname = $page.url.pathname.substring(3);
   $: originalUrl = `${AppConfig.urls.web}${pathname}`;
 
-  // seo
   $: meta = $page.stuff.meta;
 
   $: title = meta?.title ?? 'vnphanquang';
@@ -26,6 +25,21 @@
   $: twitterCard = meta?.twitter?.card ?? 'summary_large_image';
   $: twitterImageAlt = meta?.twitter?.imageAlt ?? 'vnphanquang website';
   $: twitterSite = meta?.twitter?.site ?? '@vnphanquang';
+
+  $: facebookAppId = AppConfig.env.facebookAppId;
+
+  $: gtagMeasurementId = AppConfig.env.gtagMeasurementId;
+  $: gtagEnabled = AppConfig.mode === 'production';
+
+  // eslint-disable-next-line no-undef
+  $: if (browser && gtagEnabled && gtag) {
+    // eslint-disable-next-line no-undef
+    gtag('config', gtagMeasurementId, {
+      page_title: document.title,
+      page_location: $page.url.href,
+      page_path: $page.url.pathname,
+    });
+  }
 </script>
 
 <svelte:head>
@@ -42,7 +56,7 @@
   <meta name="twitter:image:alt" content={twitterImageAlt} />
   <meta name="twitter:site" content={twitterSite} />
 
-  <meta property="fb:app_id" content={AppConfig.env.facebookAppId} />
+  <meta property="fb:app_id" content={facebookAppId} />
 
   {#if meta?.article}
     {@const { author, section, tags = [], publishedTime, modifiedTime } = meta.article}
@@ -67,12 +81,19 @@
   {#each Object.values(Locale).filter((le) => le !== locale) as l}
     <link rel="alternate" hreflang={l} href="{AppConfig.urls.web}/{l}{pathname}" />
   {/each}
-</svelte:head>
 
-<Analytics
-  measurementId={AppConfig.env.gtagMeasurementId}
-  enabled={AppConfig.mode === 'production'}
-/>
+  {#if gtagEnabled}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={gtagMeasurementId}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+    </script>
+  {/if}
+</svelte:head>
 
 <slot />
 
