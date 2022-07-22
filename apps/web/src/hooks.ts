@@ -19,11 +19,11 @@ export const handle: Handle = async ({ event, resolve }) => {
   }
 
   // language slug
-  const locale = event.url.pathname.substring(1,3);
-  if (Object.values(Locale).some(le => le === locale)) {
+  const locale = event.url.pathname.substring(1, 3);
+  if (Object.values(Locale).some((le) => le === locale)) {
     const response = await resolve(event);
     const body = await response.text();
-    return new Response(body.replace('<html lang="en">', `<html lang="${locale}">`), response);
+    return new Response(body.replace('%html.lang%', locale), response);
   }
 
   return resolve(event);

@@ -14,11 +14,41 @@ declare namespace App {
   }
   // interface Platform {}
   // interface Session {}
-  // interface Stuff {}
+  interface Stuff {
+    meta?: {
+      title?: string;
+      description?: string;
+      og?: {
+        title?: string;
+        description?: string;
+        type?: 'website' | 'article' | 'profile';
+        image?: string;
+      };
+      twitter?: {
+        card?: string;
+        imageAlt?: string;
+        site?: string;
+      };
+      article?: {
+        author: string;
+        tags?: string[];
+        section: string;
+        publishedTime: string;
+        modifiedTime: string;
+      };
+      profile?: {
+        firstName: string;
+        lastName: string;
+        gender: 'male' | 'female';
+        username: string;
+      };
+    };
+  }
 }
 
 interface ImportMetaEnv {
   VITE_GTAG_MEASUREMENT_ID: string;
+  VITE_FACEBOOK_APP_ID: string;
 }
 
 declare namespace svelte.JSX {

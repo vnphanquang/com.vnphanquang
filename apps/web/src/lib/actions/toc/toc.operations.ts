@@ -29,8 +29,18 @@ export function resolveParameters(parameters: Partial<TocParameters> = {}): Reso
 
   return {
     ...mergedParameters,
-    anchored: typeof anchored === 'boolean' ? (anchored ? DEFAULT_PARAMETERS.anchored as number : -1) : anchored,
-    indicator: typeof indicator === 'boolean' ? (indicator ? DEFAULT_PARAMETERS.indicator as string : '') : indicator,
+    anchored:
+      typeof anchored === 'boolean'
+        ? anchored
+          ? (DEFAULT_PARAMETERS.anchored as number)
+          : -1
+        : anchored,
+    indicator:
+      typeof indicator === 'boolean'
+        ? indicator
+          ? (DEFAULT_PARAMETERS.indicator as string)
+          : ''
+        : indicator,
     selector: `${mergedParameters.selector}${ignoreSelector.map((i) => `:not(${i})`).join()}`,
   };
 }
@@ -47,7 +57,14 @@ export function removeStyle(id: string) {
 }
 
 export function transformTocItems(elements: HTMLElement[], parameters: ResolvedTocParameters) {
-  const { injectedStyleId, insertedAnchorClass, anchored, indicator, insertedParagraphClass, itemClass } = parameters;
+  const {
+    injectedStyleId,
+    insertedAnchorClass,
+    anchored,
+    indicator,
+    insertedParagraphClass,
+    itemClass,
+  } = parameters;
 
   const items: TocEventItemDetails[] = [];
 

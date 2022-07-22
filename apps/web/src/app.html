@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="%html.lang%">
   <head>
     <meta charset="utf-8" />
-    <link rel="preload" href="/fonts/PhanQuangCalligraphr-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="/fonts/FiraCode/woff2/FiraCode-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="%sveltekit.assets%/fonts/PhanQuangCalligraphr-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="%sveltekit.assets%/fonts/SourceCodePro/SourceCodePro-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="%sveltekit.assets%/fonts/SourceCodePro/SourceCodePro-Italic-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/images/favicon/favicon-16x16.png">
@@ -12,20 +13,6 @@
     <meta name="msapplication-TileColor" content="#ffc40d">
     <meta name="theme-color" content="#3c3836">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!--  Essential META Tags -->
-    <!-- inserted per page / layout -->
-
-    <!--  Non-Essential, But Recommended -->
-    <meta property="og:description" content="Quang Phan's personal website">
-    <meta property="og:site_name" content="vnphanquang">
-    <meta name="twitter:image:alt" content="vnphanquang website">
-
-    <!--  Non-Essential, But Required for Analytics -->
-    <!-- <meta property="fb:app_id" content="your_app_id" /> -->
-    <meta name="twitter:site" content="@vnphanquang">
-
-    <title>vnphanquang</title>
 
     %sveltekit.head%
   </head>

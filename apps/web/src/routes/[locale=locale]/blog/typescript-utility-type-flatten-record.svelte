@@ -9,10 +9,8 @@
   import type { PostForPageQuery } from '$lib/services/api/graphql/queries/Post.gq';
   import { getPostForPage } from '$lib/services/api/graphql/queries/Post.gq';
   import { Locale, locale } from '$lib/services/i18n';
-  import { to } from '$lib/services/navigation';
   import { blogDate } from '$lib/utils/datetime';
 
-  import { AppConfig } from '$config';
   import type { Load } from '.svelte-kit/types/src/routes/[locale=locale]/blog/__types/typescript-utility-type-flatten-record';
 
   export const load: Load = async ({ url, fetch }) => {
@@ -31,14 +29,30 @@
       props: {
         post: postBySlug,
       },
+      stuff: {
+        meta: {
+          title: 'Flatten Record | Blog | vnphanquang',
+          description: postBySlug.locale?.summary,
+          og: {
+            type: 'article',
+            title: postBySlug.locale?.title,
+            image: BLOG_METADATA[BLOG_ID_DICTIONARY.typescriptUtilityTypeFlattenRecord].screenshot,
+          },
+          article: {
+            author: 'Quang Phan',
+            section: postBySlug.category,
+            tags: [postBySlug.category, ...postBySlug.tags],
+            publishedTime: postBySlug.locale?.publishedAt,
+            modifiedTime: postBySlug.locale?.updatedAt,
+          },
+        },
+      },
     };
   };
 </script>
 
 <script lang="ts">
   export let post: NonNullable<PostForPageQuery['postBySlug']>;
-
-  const METADATA = BLOG_METADATA[BLOG_ID_DICTIONARY.typescriptUtilityTypeFlattenRecord];
 
   const RESOURCES = {
     florisBernard: {
@@ -277,21 +291,6 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
 </script>
 
 <svelte:head>
-  <title>Flatten Record | Blog | vnphanquang</title>
-  <meta name="description" content={post.locale?.summary} />
-
-  <meta property="og:title" content={post.locale?.title} />
-  <meta property="og:image" content={METADATA.screenshot} />
-  <meta property="og:url" content="{AppConfig.urls.web}{to(`/blog/${post.slug}`)}" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <meta property="og:type" content="article" />
-  <meta property="article:author" content="Quang Phan" />
-  <meta property="article:tag" content="code" />
-  <meta property="article:tag" content="typescript" />
-  <meta property="article:published_time" content={post.locale?.publishedAt} />
-  <meta property="article:modified_time" content={post.locale?.updatedAt} />
-
   {@html gruvbox}
 </svelte:head>
 
@@ -312,15 +311,15 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
 
   <h2>Note</h2>
   <p>
-    In this article, I'm using the term "record" and "object" interchangeably. I refer to object
-    as "record" for better alignment with the
+    In this article, I'm using the term "record" and "object" interchangeably. I refer to object as
+    "record" for better alignment with the
     <a href={RESOURCES.utilityTypesRecord.href} target="_blank">builtin Record utility type</a>.
   </p>
 
   <h2>TLDR;</h2>
   <p>
-    See below if you already understand the assignment and just want to grab the code (or you
-    want to see everything in one place).
+    See below if you already understand the assignment and just want to grab the code (or you want
+    to see everything in one place).
   </p>
   <p>Refer to the table of contents to quickly skip to your points of interest.</p>
   <Highlight language={typescript} code={CODES.tldr} />
@@ -329,19 +328,17 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   <p>
     This article is built upon many techniques borrowed from
     <a href={RESOURCES.florisBernard.href} target="_blank">Floris Bernard's article</a>. His
-    <em>finite recursion</em> method is very practical and might be the only solution to some other
-    real world problems. I recommend checking it out if you can.
+    <em>finite recursion</em> method is very practical and might be the only solution to some other real
+    world problems. I recommend checking it out if you can.
   </p>
 
   <h2>Laying out the Problem</h2>
   <p>
     For this website, I want to experiment creating a command palette like one you would see in
-    VSCode. In fact, hit 'Ctrl+K' right now and you should be able to see it pop up (press
-    'Escape' to close).
+    VSCode. In fact, hit 'Ctrl+K' right now and you should be able to see it pop up (press 'Escape'
+    to close).
   </p>
-  <p>
-    I need an ID for each supported command, and end up with a dictionary for all these ids.
-  </p>
+  <p>I need an ID for each supported command, and end up with a dictionary for all these ids.</p>
   <details open class="mt-4">
     <summary class="cursor-pointer"><code>COMMAND_LOOKUP</code></summary>
     <Highlight language={typescript} code={CODES.commandLookup} />
@@ -351,13 +348,13 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   <p>I could now do</p>
   <Highlight language={typescript} code={CODES.executeReference} />
   <p>
-    You might notice the use of <code>as const</code> in the dictionary declaration. This is
-    called "const assertions" and was
+    You might notice the use of <code>as const</code> in the dictionary declaration. This is called
+    "const assertions" and was
     <a class="c-link" href={RESOURCES.asConstRelease.href} target="_blank"
       >introduced in TypeScript 3.4</a
-    >. It helps hint immutability and is especially helpful with object mapping. Try leaving it
-    in and out and see the change to the inferred type of your constant (just hover your mouse
-    over if using VSCode). You can also see
+    >. It helps hint immutability and is especially helpful with object mapping. Try leaving it in
+    and out and see the change to the inferred type of your constant (just hover your mouse over if
+    using VSCode). You can also see
     <a class="c-link" href={RESOURCES.asConstMatt.href} target="_blank"
       >Matt Pocock's short video explanation</a
     >.
@@ -384,8 +381,8 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
       <ol class="list-[lower-alpha]">
         <li>Extract all <strong>non-object </strong> properties of the record,</li>
         <li>
-          Extract all <strong>object</strong> properties and recursively repeat (a) & (b) until we
-          read the last leaf node,
+          Extract all <strong>object</strong> properties and recursively repeat (a) & (b) until we read
+          the last leaf node,
         </li>
         <li>Merge (a) & (b) together into a final flatten record.</li>
       </ol>
@@ -399,58 +396,55 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   <p>The second is easy, that's just</p>
   <Highlight language={typescript} code={CODES.valuesOf} />
   <p>
-    But the first require a recursive type that is more complicated. Let break it down one step at
-    a time.
+    But the first require a recursive type that is more complicated. Let break it down one step at a
+    time.
   </p>
 
   <h2>Walking through the Implementation</h2>
   <p>
-    Let's introduce an example interface with better coverage than <code>COMMAND_LOOKUP</code>.
-    We will work out way through each step with this.
+    Let's introduce an example interface with better coverage than <code>COMMAND_LOOKUP</code>. We
+    will work out way through each step with this.
   </p>
   <Highlight language={typescript} code={CODES.exampleInterface} />
 
   <h3>Checking for Object</h3>
   <p>
-    The first thing we need to look out for is the fact that arrays in Javascript are objects
-    too.
+    The first thing we need to look out for is the fact that arrays in Javascript are objects too.
   </p>
   <Highlight language={typescript} code={`typeof [] === 'object' // => true`} />
   <p>
-    Therefore, we need to exclude arrays when checking whether a property is indeed an object
-    by our definition.
+    Therefore, we need to exclude arrays when checking whether a property is indeed an object by our
+    definition.
   </p>
   <Highlight language={typescript} code={CODES.isObject} />
   <p>
-    If you are not familiar with the phrase <code>T extends ... ? ... : ...</code>, it is
-    called "conditional types" and was
-    <a href={RESOURCES.conditionalTypes.href} target="_blank">introduced in Typescript 2.8</a
-    >. We will utilize this concept extensively throughout the rest of the journey here.
+    If you are not familiar with the phrase <code>T extends ... ? ... : ...</code>, it is called
+    "conditional types" and was
+    <a href={RESOURCES.conditionalTypes.href} target="_blank">introduced in Typescript 2.8</a>. We
+    will utilize this concept extensively throughout the rest of the journey here.
   </p>
 
   <h3>Extracting Non-Object Properties</h3>
   <p>
-    First we iterate through the keys of the record and remove any object properties and focus
-    on non-object ones for now.
+    First we iterate through the keys of the record and remove any object properties and focus on
+    non-object ones for now.
   </p>
   <Highlight language={typescript} code={CODES.nonObjectKeysOf} />
   <p>
-    There are two parts to this. First, we map the original record into another where each
-    property' value is either its associated key if it is a non-object or
+    There are two parts to this. First, we map the original record into another where each property'
+    value is either its associated key if it is a non-object or
     <code>never</code> otherwise.
   </p>
   <Highlight language={typescript} code={CODES.nonObjectKeysOfIntermediate} />
   <p>
     The rest is just <code>Intermediate[keyof T]</code>, which is
-    <code>'array' | never | 'nonObject'</code>. And since <code>never</code> is inclusive in
-    any union, that eventually just means <code>'array' | 'nonObject'</code>.
+    <code>'array' | never | 'nonObject'</code>. And since <code>never</code> is inclusive in any
+    union, that eventually just means <code>'array' | 'nonObject'</code>.
   </p>
   <Highlight language={typescript} code={CODES.nonObjectKeys} />
   <p>
     Now we can use the builtin
-    <a href={RESOURCES.utilityTypesPick.href} target="_blank"
-      >utility type <code>Pick</code></a
-    >
+    <a href={RESOURCES.utilityTypesPick.href} target="_blank">utility type <code>Pick</code></a>
     to scoop out all the non-object properties.
   </p>
   <Highlight language={typescript} code={CODES.nonObjectPropertiesOf} />
@@ -475,14 +469,14 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
 
   <h4>Transforming Union to Intersection</h4>
   <p>
-    We can't really do much with the <code>UnionOfObjectValues</code> we've just got. We'd
-    prefer merging them into a single interface, aka an <strong>intersection</strong>, to be
-    able continue our recursive algorithm.
+    We can't really do much with the <code>UnionOfObjectValues</code> we've just got. We'd prefer
+    merging them into a single interface, aka an <strong>intersection</strong>, to be able continue
+    our recursive algorithm.
   </p>
   <Highlight language={typescript} code={CODES.unionToIntersection} />
   <p>
-    Now this is some mind-bending typescript magic that requires much explaining, but I
-    won't add another explanation here because it might confuse you even further.
+    Now this is some mind-bending typescript magic that requires much explaining, but I won't add
+    another explanation here because it might confuse you even further.
   </p>
   <p>
     You can read <a href={RESOURCES.unionToIntersectionStackoverflow.href} target="_blank"
@@ -498,25 +492,24 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
 
   <h4>Checking for Flat Object</h4>
   <p>
-    We have everything ready except the terminal case, aka when do we stop the recursive
-    algorithm (or else it will run indefinitely)?
+    We have everything ready except the terminal case, aka when do we stop the recursive algorithm
+    (or else it will run indefinitely)?
   </p>
   <p>
     For that, we need a <code>IsFlatObject</code> check.
   </p>
   <Highlight language={typescript} code={CODES.isFlatObject} />
   <p>
-    This looks much but is actually quite simple. It's just an extension on <code
-      >IsObject</code
-    >. Here's an example.
+    This looks much but is actually quite simple. It's just an extension on <code>IsObject</code>.
+    Here's an example.
   </p>
   <Highlight language={typescript} code={CODES.isFlatObjectBreakdown} />
 
   <h3>Putting Things Together</h3>
   <Highlight language={typescript} code={CODES.flattenRecord} />
   <p>
-    There's not much left to explain, we're just putting together what we've already covered
-    in previous sections. Let's put it to use:
+    There's not much left to explain, we're just putting together what we've already covered in
+    previous sections. Let's put it to use:
   </p>
   <Highlight language={typescript} code={CODES.flattenExample} />
   <p>Finally, we can come back and resolve the original problem.</p>
@@ -524,8 +517,8 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
 
   <h2>Limitation</h2>
   <p>
-    There is no deep merging strategy involved, meaning if two nested properties contain one
-    same key with different values, <code>FlattenRecord</code> will result in
+    There is no deep merging strategy involved, meaning if two nested properties contain one same
+    key with different values, <code>FlattenRecord</code> will result in
     <code>never</code>.
   </p>
   <Highlight language={typescript} code={CODES.limitationExample} />

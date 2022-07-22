@@ -78,7 +78,7 @@
       {/if}
       {#if items}
         <ul class="toc-ul">
-          {#each items as {id, element, text} (id)}
+          {#each items as { id, element, text } (id)}
             <li class="toc-li toc-li--{element.tagName.toLowerCase()}">
               <a href="#{id}" on:click={onLinkClick} class="c-link">{text}</a>
             </li>

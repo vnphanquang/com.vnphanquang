@@ -1,13 +1,36 @@
-<script lang="ts">
+<script lang="ts" context="module">
   import { intersect } from '@svelte-put/intersect';
   import { slide } from 'svelte/transition';
 
   import { MediaOverlay } from '$lib/components';
   import { milestones } from '$lib/data/milestones';
-  import { AppRoutes, to } from '$lib/services/navigation';
 
-  import { AppConfig } from '$config';
+  import type { Load } from '.svelte-kit/types/src/routes/[locale=locale]/about/__types';
 
+  export const load: Load = () => {
+    return {
+      stuff: {
+        meta: {
+          title: 'About | vnphanquang',
+          description: "Quang Phan's truncated timeline",
+          og: {
+            title: 'About vnphanquang',
+            image: '/images/screenshots/about.png',
+            type: 'profile',
+          },
+          profile: {
+            firstName: 'Quang',
+            lastName: 'Phan',
+            gender: 'male',
+            username: 'vnphanquang',
+          },
+        },
+      },
+    };
+  };
+</script>
+
+<script lang="ts">
   let SHOW_DETAILS_TOGGLER_ID = 'timeline-details-toggler';
   let showDetails = true;
 
@@ -27,22 +50,6 @@
     milestonesIntersectedMap[id] = true;
   }
 </script>
-
-<svelte:head>
-  <title>About | vnphanquang</title>
-  <meta name="description" content="Quang Phan's truncated timeline" />
-
-  <meta property="og:title" content="About vnphanquang" />
-  <meta property="og:image" content="{AppConfig.urls.web}/images/screenshots/about.png" />
-  <meta property="og:url" content="{AppConfig.urls.web}{to(AppRoutes.about.index)}" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <meta property="og:type" content="profile" />
-  <meta property="profile:first_name" content="Quang" />
-  <meta property="profile:last_name" content="Phan" />
-  <meta property="profile:gender" content="male" />
-  <meta property="profile:username" content="vnphanquang" />
-</svelte:head>
 
 <main class="grid place-items-center gap-y-14 py-20">
   <section

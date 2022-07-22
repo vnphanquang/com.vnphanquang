@@ -26,6 +26,12 @@
       props: {
         recent: urls.map((url, index) => ({ id: index.toString(), text: url })),
       },
+      stuff: {
+        meta: {
+          title: 'Web Word Frequency | Experiment | vnphanquang',
+          description: 'Scrape URL and count word occurrence',
+        },
+      },
     };
   };
 </script>
@@ -115,11 +121,6 @@
     return [...words.slice(offset, end), ...new Array(remainder).fill(['', ''])];
   }
 </script>
-
-<svelte:head>
-  <title>Web Word Frequency | Experiment | vnphanquang</title>
-  <meta name="description" content="Scrape URL and count word occurrence" />
-</svelte:head>
 
 <main class="flex flex-col items-center gap-y-20 py-20">
   <section class="flex flex-col gap-y-6 text-center font-quang">

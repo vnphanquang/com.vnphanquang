@@ -95,7 +95,7 @@
             />
           {/if}
           <div class="flex items-center justify-between">
-            <h3 class="pr-4 font-bold sm:pr-10 justify-self-start" id="naq-{id}">{question}</h3>
+            <h3 class="justify-self-start pr-4 font-bold sm:pr-10" id="naq-{id}">{question}</h3>
             <div>
               <Icon
                 data={chevronRight}

@@ -9,7 +9,6 @@
   import { AppRoutes, to } from '$lib/services/navigation';
   import { blogDate } from '$lib/utils/datetime';
 
-  import { AppConfig } from '$config';
   import type { Load } from '.svelte-kit/types/src/routes/[locale=locale]/blog/__types/[...path]';
 
   export const load: Load = async ({ fetch, params }) => {
@@ -26,6 +25,16 @@
       props: {
         postLocales,
         locale,
+      },
+      stuff: {
+        meta: {
+          title: 'Blog | vnphanquang',
+          description: "Quang Phan's blog listing",
+          og: {
+            title: 'Blog of vnphanquang',
+            image: '/images/screenshots/blog.png',
+          },
+        },
       },
     };
   };
@@ -44,16 +53,6 @@
     }
   }
 </script>
-
-<svelte:head>
-  <title>Blog | vnphanquang</title>
-  <meta name="description" content="Quang Phan's blog page" />
-
-  <meta property="og:title" content="Blog of vnphanquang" />
-  <meta property="og:image" content="{AppConfig.urls.web}/images/screenshots/blog.png" />
-  <meta property="og:url" content="{AppConfig.urls.web}{to(AppRoutes.blog.index)}" />
-  <meta name="twitter:card" content="summary_large_image" />
-</svelte:head>
 
 <!-- TODO: breadcumbs -->
 <main class="mx-auto flex h-full w-full max-w-5xl flex-col py-20 px-8 md:px-20">

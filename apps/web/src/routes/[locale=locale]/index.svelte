@@ -19,7 +19,22 @@
   export const load: Load = async ({ fetch }) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await getTestimonials({ fetch: fetch as any });
-    return {};
+    return {
+      stuff: {
+        meta: {
+          title: `Home | vnphanquang`,
+          description: `Quang Phan's personal website`,
+          og: {
+            title: 'vnphanquang',
+            type: 'webiste',
+            image: '/images/screenshots/index.png',
+          },
+          twitter: {
+            card: 'summary_large_image',
+          },
+        },
+      },
+    };
   };
 </script>
 
@@ -41,16 +56,6 @@
     });
   }
 </script>
-
-<svelte:head>
-  <title>Home | vnphanquang</title>
-  <meta name="description" content="Quang Phan's personal website" />
-  <meta property="og:title" content="vnphanquang" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="{AppConfig.urls.web}/images/screenshots/index.png" />
-  <meta property="og:url" content={AppConfig.urls.web} />
-  <meta name="twitter:card" content="summary_large_image" />
-</svelte:head>
 
 <main class="flex flex-col">
   <section

@@ -12,6 +12,7 @@ export interface AppConfigSchema {
   };
   env: {
     gtagMeasurementId: string;
+    facebookAppId: string;
   };
   cookies: {
     session: 'vnphanquang__session-dev' | 'vnphanquang__session';
@@ -29,6 +30,7 @@ export const BaseConfig: AppConfigSchema = {
   },
   env: {
     gtagMeasurementId: import.meta.env.VITE_GTAG_MEASUREMENT_ID,
+    facebookAppId: import.meta.env.VITE_FACEBOOK_APP_ID,
   },
   cookies: {
     session: 'vnphanquang__session-dev',

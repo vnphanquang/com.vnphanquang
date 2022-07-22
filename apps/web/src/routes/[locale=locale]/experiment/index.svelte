@@ -1,7 +1,22 @@
-<script lang="ts">
+<script lang="ts" context="module">
   import { t } from '$lib/services/i18n';
   import { AppRoutes, to } from '$lib/services/navigation';
 
+  import type { Load } from '.svelte-kit/types/src/routes/[locale=locale]/experiment/__types';
+
+  export const load: Load = () => {
+    return {
+      stuff: {
+        meta: {
+          title: 'Experiments | vnphanquang',
+          description: 'Just some experiments from vnphanquang',
+        },
+      },
+    };
+  };
+</script>
+
+<script lang="ts">
   const EXPERIMENTS = {
     webWordFrequency: {
       id: 'web-word-frequency',
@@ -11,11 +26,6 @@
     },
   } as const;
 </script>
-
-<svelte:head>
-  <title>Experiments | vnphanquang</title>
-  <meta name="description" content="Just some experiments from vnphanquang" />
-</svelte:head>
 
 <main class="mx-auto flex max-w-5xl flex-col py-20 px-8 md:px-20">
   <h1 class="text-center text-6xl font-bold">{$t('experiment.title')}</h1>
