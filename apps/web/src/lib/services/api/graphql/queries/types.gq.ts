@@ -20,7 +20,7 @@ export enum AuthProvider {
   Facebook = 'facebook',
   Github = 'github',
   Google = 'google',
-  Spotify = 'spotify',
+  Spotify = 'spotify'
 }
 
 /** User authentication provider record */
@@ -77,7 +77,7 @@ export type CreateTestimonialInput = {
 /** Locale */
 export enum Locale {
   En = 'en',
-  Vi = 'vi',
+  Vi = 'vi'
 }
 
 export type Mutation = {
@@ -99,68 +99,83 @@ export type Mutation = {
   updateTestimonial?: Maybe<TestimonialDto>;
 };
 
+
 export type MutationCreateCommentArgs = {
   input: CreateCommentInput;
   postId: Scalars['Int'];
 };
 
+
 export type MutationCreatePostArgs = {
   input: CreatePostInput;
 };
+
 
 export type MutationCreatePostLocaleArgs = {
   input: CreatePostLocaleInput;
   postId: Scalars['Int'];
 };
 
+
 export type MutationCreateTestimonialArgs = {
   input: CreateTestimonialInput;
 };
+
 
 export type MutationDeleteCommentArgs = {
   id: Scalars['Int'];
 };
 
+
 export type MutationDeletePostArgs = {
   id: Scalars['Int'];
 };
+
 
 export type MutationDeletePostLocaleArgs = {
   id: Scalars['Int'];
 };
 
+
 export type MutationDeleteTestimonialArgs = {
   id: Scalars['Int'];
 };
 
+
 export type MutationDeleteUserArgs = {
   id: Scalars['Int'];
 };
+
 
 export type MutationSetPostLocalePublicationArgs = {
   id: Scalars['Int'];
   published: Scalars['Boolean'];
 };
 
+
 export type MutationSetTestimonialPublicationArgs = {
   id: Scalars['Int'];
   published: Scalars['Boolean'];
 };
+
 
 export type MutationUpdateCommentArgs = {
   data: UpdateCommentInput;
   id: Scalars['Int'];
 };
 
+
 export type MutationUpdatePostArgs = {
   id: Scalars['Int'];
   input: UpdatePostInput;
 };
 
+
 export type MutationUpdatePostLocaleArgs = {
   id: Scalars['Int'];
   input: UpdatePostLocaleInput;
 };
+
 
 export type MutationUpdateTestimonialArgs = {
   id: Scalars['Int'];
@@ -170,7 +185,7 @@ export type MutationUpdateTestimonialArgs = {
 /** Post category */
 export enum PostCategory {
   Code = 'code',
-  Life = 'life',
+  Life = 'life'
 }
 
 /** Blog post */
@@ -187,6 +202,7 @@ export type PostDto = {
   tags: Array<PostTag>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
+
 
 /** Blog post */
 export type PostDtoLocaleArgs = {
@@ -212,7 +228,7 @@ export type PostLocaleDto = {
 /** Post tag */
 export enum PostTag {
   Bicycle = 'bicycle',
-  Typescript = 'typescript',
+  Typescript = 'typescript'
 }
 
 export type Query = {
@@ -231,25 +247,31 @@ export type Query = {
   users: Array<UserDto>;
 };
 
+
 export type QueryCommentByIdArgs = {
   id: Scalars['Int'];
 };
+
 
 export type QueryPostByIdArgs = {
   id: Scalars['Int'];
 };
 
+
 export type QueryPostBySlugArgs = {
   slug: Scalars['String'];
 };
+
 
 export type QueryPostLocalesArgs = {
   locale?: InputMaybe<Locale>;
 };
 
+
 export type QueryTestimonialByIdArgs = {
   id: Scalars['Int'];
 };
+
 
 export type QueryUserByIdArgs = {
   id: Scalars['Int'];
@@ -258,7 +280,7 @@ export type QueryUserByIdArgs = {
 /** User role */
 export enum Role {
   Admin = 'admin',
-  User = 'user',
+  User = 'user'
 }
 
 /** Display coordinate of testimonial in 2D plane (pixel or percentage) */

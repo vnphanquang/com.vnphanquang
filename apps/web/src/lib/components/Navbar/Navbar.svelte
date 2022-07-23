@@ -10,8 +10,8 @@
   import { elasticInOut } from 'svelte/easing';
   import { fade, fly, slide } from 'svelte/transition';
 
-  import { browser } from '$app/env';
-  import { afterNavigate, goto } from '$app/navigation';
+  import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
   import { tooltip } from '$lib/actions/tooltip';
   import { I18NCache } from '$lib/cache/i18n.cache';
   import { HamburgerBtn } from '$lib/components/HamburgerBtn';
@@ -21,6 +21,7 @@
   import { theme } from '$lib/stores/theme';
 
   let navbarMenuOpen = false;
+
   $: navlinks = {
     blog: {
       href: `/${$locale}${AppRoutes.blog.index}`,
@@ -75,11 +76,6 @@
 
   $: isLightTheme = $theme === 'light';
 
-  let pathname = browser ? location.pathname : '';
-  afterNavigate(({ to }) => {
-    pathname = to.pathname;
-  });
-
   onMount(() => {
     i18nCache = new I18NCache();
   });
@@ -109,7 +105,7 @@
       {#each Object.values(navlinks) as { href, text }}
         <li
           class="navlink relative px-2 hover:text-primary"
-          data-active={pathname.startsWith(href) ? 'true' : 'false'}
+          data-active={$page.url.pathname.startsWith(href) ? 'true' : 'false'}
         >
           <a {href} sveltekit:prefetch>{text}</a>
         </li>
@@ -128,8 +124,8 @@
         {#each [{ href: to(AppRoutes.index), text: 'home' }, ...Object.values(navlinks)] as { href, text }}
           <li
             class="navlink relative px-3 hover:text-primary"
-            data-active={(href === to(AppRoutes.index) && href === pathname) ||
-            (href !== to(AppRoutes.index) && pathname.startsWith(href))
+            data-active={(href === to(AppRoutes.index) && href === $page.url.pathname) ||
+            (href !== to(AppRoutes.index) && $page.url.pathname.startsWith(href))
               ? 'true'
               : 'false'}
           >
