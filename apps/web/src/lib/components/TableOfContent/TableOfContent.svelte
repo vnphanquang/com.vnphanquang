@@ -1,12 +1,12 @@
 <script lang="ts">
+  import { toc } from '@svelte-put/toc';
+  import type { TocEventDetails, TocEventItemDetails } from '@svelte-put/toc';
   import classnames from 'classnames';
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import server from 'svelte-awesome/icons/server';
   import { slide } from 'svelte/transition';
 
   import { inputcache } from '$lib/actions/inputcache';
-  import type { TocEventDetails, TocEventItemDetails } from '$lib/actions/toc';
-  import { toc } from '$lib/actions/toc';
 
   export let float = true;
 
