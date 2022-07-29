@@ -1,7 +1,7 @@
 export interface AppConfigSchema {
   mode: 'unknown' | 'development' | 'production';
   urls: {
-    web: 'http://localhost:3000' | 'https://vnphanquang.com';
+    web: 'http://localhost:5173' | 'https://vnphanquang.com';
     api: {
       index: 'http://localhost:3001' | 'https://api.vnphanquang.com';
       graphql: 'http://localhost:3001/graphql' | 'https://api.vnphanquang.com/graphql';
@@ -21,7 +21,7 @@ export interface AppConfigSchema {
 export const BaseConfig: AppConfigSchema = {
   mode: 'unknown',
   urls: {
-    web: 'http://localhost:3000',
+    web: 'http://localhost:5173',
     api: {
       index: 'http://localhost:3001',
       graphql: 'http://localhost:3001/graphql',
