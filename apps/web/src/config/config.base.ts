@@ -15,7 +15,7 @@ export interface AppConfigSchema {
     facebookAppId: string;
   };
   cookies: {
-    session: 'vnphanquang__session-dev' | 'vnphanquang__session';
+    session: 'vnphanquang__session-dev' | 'vnphanquang_session';
   };
 }
 export const BaseConfig: AppConfigSchema = {

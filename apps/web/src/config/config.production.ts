@@ -12,6 +12,6 @@ export const AppConfig: AppConfigSchema = {
     },
   },
   cookies: {
-    session: 'vnphanquang__session',
+    session: 'vnphanquang_session',
   },
 };
