@@ -39,7 +39,6 @@
     return acc;
   }, {} as Record<number, boolean>);
   const intersectedMap = {
-    header: false,
     timelineHeading: false,
     next: false,
     previous: false,
@@ -53,12 +52,7 @@
 
 <main class="grid place-items-center gap-y-14 py-20">
   <section
-    class="
-        grid place-items-center gap-y-6 px-4 text-center
-        {intersectedMap.header ? 'animate-fade-in-up' : 'opacity-0'}
-      "
-    use:intersect={{ threshold: 0.3, enabled: !intersectedMap.header }}
-    on:intersectonce={() => (intersectedMap.header = true)}
+    class="grid place-items-center gap-y-6 px-4 text-center"
   >
     <h1 class="font-quang text-5xl font-bold">Quang Phan</h1>
     <p class="font-quang text-2xl italic">Learner, Developer, Jack of Zero Trade</p>
