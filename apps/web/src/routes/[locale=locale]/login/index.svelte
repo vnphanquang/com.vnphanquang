@@ -73,7 +73,7 @@
   $: redirectUrl = $page.url.searchParams.get('redirectUrl') ?? '';
 
   function getOauthUrl(id: string) {
-    return `${AppConfig.urls.api.index}/oauth?provider=${id}${
+    return `${AppConfig.urls.api.index}/auth/oauth?provider=${id}${
       redirectUrl ? `&redirectUrl=${redirectUrl}` : ''
     }`;
   }
