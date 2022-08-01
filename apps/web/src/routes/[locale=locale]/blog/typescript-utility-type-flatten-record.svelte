@@ -1,4 +1,6 @@
 <script lang="ts" context="module">
+  import { toc } from '@svelte-put/toc';
+  import type { TocEventDetails, TocEventItemDetails } from '@svelte-put/toc';
   import { Highlight } from 'svelte-highlight';
   import typescript from 'svelte-highlight/languages/typescript';
   import gruvbox from 'svelte-highlight/styles/gruvbox-dark-soft';
@@ -288,13 +290,21 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   };
 
   const date = blogDate(post.locale?.updatedAt, $locale as Locale);
+
+  let tocItems: TocEventItemDetails[] = [];
+  function onToc(e: CustomEvent<TocEventDetails>) {
+    tocItems = e.detail.items;
+  }
 </script>
 
 <svelte:head>
   {@html gruvbox}
 </svelte:head>
 
-<main class="prose relative mx-auto w-full max-w-6xl py-20 px-6 sm:px-10 md:px-20">
+<main
+  class="prose relative mx-auto w-full max-w-6xl py-20 px-6 sm:px-10 md:px-20"
+  use:toc={{ indicator: false, stimulateHashNavigation: true }} on:toc={onToc}
+>
   <section class="text-center">
     <h1>{post.locale?.title}</h1>
     <p class="flex justify-center gap-x-2">
@@ -306,8 +316,8 @@ type FlattenExample = FlattenRecord<Example>; // inferred to never`,
   </section>
 
   <h2>Table of Contents</h2>
-  <TableOfContent float={false} />
-  <TableOfContent />
+  <TableOfContent float={false} items={tocItems} />
+  <TableOfContent items={tocItems} />
 
   <h2>Note</h2>
   <p>

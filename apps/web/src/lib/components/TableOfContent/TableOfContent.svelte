@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { toc } from '@svelte-put/toc';
-  import type { TocEventDetails, TocEventItemDetails } from '@svelte-put/toc';
+  import type { TocEventItemDetails } from '@svelte-put/toc';
   import classnames from 'classnames';
   import Icon from 'svelte-awesome/components/Icon.svelte';
   import server from 'svelte-awesome/icons/server';
@@ -9,6 +8,7 @@
   import { inputcache } from '$lib/actions/inputcache';
 
   export let float = true;
+  export let items: TocEventItemDetails[];
 
   const ID = 'table-of-content-trigger';
 
@@ -22,27 +22,7 @@
       open = false;
     }
   }
-
-  let items: TocEventItemDetails[];
-  function onToc(e: CustomEvent<TocEventDetails>) {
-    items = e.detail.items;
-
-    if (!float) {
-      const hash = location.hash?.substring(1);
-      let matched: HTMLElement | undefined;
-      for (const item of items) {
-        if (item.id === hash) {
-          matched = item.anchor ?? item.element;
-        }
-      }
-      if (matched) {
-        matched.click();
-      }
-    }
-  }
 </script>
-
-<svelte:body use:toc={{ indicator: false, stimulateHashNavigation: false }} on:toc={onToc} />
 
 <div
   class={classnames(
@@ -109,3 +89,4 @@
     margin-left: 7rem;
   }
 </style>
+
