@@ -11,8 +11,7 @@
   import { AppConfig } from '$config';
 
   $: locale = $page.params.locale;
-  $: pathnameWithoutLocale = $page.url.pathname.substring(3);
-  $: originalUrl = `${AppConfig.urls.web}${pathnameWithoutLocale}`;
+  $: originalUrl = $page.url.href;
 
   $: meta = $page.stuff.meta;
 
@@ -88,9 +87,9 @@
     <meta property="profile:username" content={username} />
   {/if}
 
-  <link rel="alternate" hreflang="x-default" href="{AppConfig.urls.web}/en{pathnameWithoutLocale}" />
+  <link rel="alternate" hreflang="x-default" href={locale === Locale.En ? originalUrl : originalUrl.replace(`/${locale}/`, '/en/')} />
   {#each langAlternatives.filter((le) => le !== locale) as l}
-    <link rel="alternate" hreflang={l} href="{AppConfig.urls.web}/{l}{pathnameWithoutLocale}" />
+    <link rel="alternate" hreflang={l} href={originalUrl.replace(`/${locale}/`, `/${l}/`)} />
   {/each}
 
   {#if gtagEnabled}
