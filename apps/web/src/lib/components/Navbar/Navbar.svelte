@@ -82,6 +82,10 @@
 
   $: currentUrl = `${AppConfig.urls.web}/${$page.url.pathname}`;
   $: logoutHref = `${AppConfig.urls.api.index}/auth/logout?redirectUrl=${encodeURIComponent(currentUrl)}`;
+  let loginHref = '';
+  $: if ($locale) {
+    loginHref = to(AppRoutes.login.index);
+  }
 
   onMount(() => {
     i18nCache = new I18NCache();
@@ -195,7 +199,7 @@
 
       {#if !$session.jwt}
         <li use:tooltip={{ content: $t('navbar.tooltip.login'), placement: 'bottom' }}>
-          <a href={to(AppRoutes.login.index)} class="hover:text-primary">
+          <a href={loginHref} class="hover:text-primary">
             <Icon data={signIn} scale={2} />
           </a>
         </li>

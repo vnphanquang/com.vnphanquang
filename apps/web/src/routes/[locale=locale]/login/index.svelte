@@ -16,7 +16,7 @@
   import { AppConfig } from '$config';
   import type { Load } from '.svelte-kit/types/src/routes/[locale=locale]/login/__types';
 
-  export const load: Load = ({ session, url }) => {
+  export const load: Load = ({ session }) => {
     if (session.jwt) {
       return {
         status: 302,
