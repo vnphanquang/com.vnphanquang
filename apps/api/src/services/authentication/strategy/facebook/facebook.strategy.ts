@@ -16,7 +16,7 @@ export class FacebookOAuthStrategy extends PassportStrategy(Strategy, 'facebook'
     const options: StrategyOption = {
       ...facebook,
       profileFields: ['id', 'name', 'emails', 'photos'],
-      callbackURL: `${api}${AppRoutes.oauth.facebook.redirect.$path({ separator: '/' })}`,
+      callbackURL: `${api}${AppRoutes.auth.oauth.facebook.redirect.$path({ separator: '/' })}`,
     };
     super({
       ...options,

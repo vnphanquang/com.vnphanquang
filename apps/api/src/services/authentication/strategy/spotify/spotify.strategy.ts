@@ -15,7 +15,7 @@ export class SpotifyOAuthStrategy extends PassportStrategy(Strategy, 'spotify') 
     } = config.get();
     const options: StrategyOptions = {
       ...spotify,
-      callbackURL: `${api}${AppRoutes.oauth.spotify.redirect.$path({ separator: '/' })}`,
+      callbackURL: `${api}${AppRoutes.auth.oauth.spotify.redirect.$path({ separator: '/' })}`,
     };
     super({
       ...options,

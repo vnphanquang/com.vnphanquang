@@ -22,6 +22,7 @@
   import { AppRoutes, to } from '$lib/services/navigation';
   import { notificationService } from '$lib/services/notification';
   import { theme } from '$lib/stores/theme';
+  import { AppConfig } from '$config';
 
   let navbarMenuOpen = false;
 
@@ -81,9 +82,8 @@
 
   $: isLightTheme = $theme === 'light';
 
-  function onSignOut() {
-    //
-  }
+  $: currentUrl = `${AppConfig.urls.web}/${$page.url.pathname}`;
+  $: logoutHref = `${AppConfig.urls.api.index}/auth/logout?redirectUrl=${encodeURIComponent(currentUrl)}`;
 
   onMount(() => {
     i18nCache = new I18NCache();
@@ -221,12 +221,12 @@
                 </a>
               </li>
               <li class="w-full py-2 px-4 hover:bg-primary">
-                <button on:click={onSignOut} class="flex items-center gap-x-4">
+                <a class="flex items-center gap-x-4" href={logoutHref} alt="logout">
                   <span>
                     <Icon data={signOut} scale={1.5} />
                   </span>
                   <span>{$t('navbar.userActions.logout')}</span>
-                </button>
+                </a>
               </li>
             </svelte:fragment>
           </Dropdown>

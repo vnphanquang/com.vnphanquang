@@ -1,5 +1,6 @@
-import { Controller, Get, HttpStatus, Query, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Post, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthProvider } from '@prisma/client';
+import { FastifyReply } from 'fastify';
 
 import { AppRoutes, ConfigService } from '$config/index';
 
@@ -10,7 +11,7 @@ import { GoogleOAuthGuard } from './strategy/google';
 import { JwtAuthService } from './strategy/jwt';
 import { SpotifyOAuthGuard } from './strategy/spotify';
 
-@Controller(AppRoutes.oauth.$key())
+@Controller(AppRoutes.auth.$key())
 export class AuthenticationController {
   private redirectUrl: string;
   constructor(private readonly config: ConfigService, private readonly jwtService: JwtAuthService) {
@@ -26,74 +27,85 @@ export class AuthenticationController {
     });
     const redirectUrl = this.redirectUrl;
     this.redirectUrl = this.config.get().urls.web;
-    res.redirect(302, redirectUrl);
+    return res.redirect(302, redirectUrl ?? this.redirectUrl);
   }
 
-  @Get('')
+  @Get(AppRoutes.auth.logout.$key())
+  async logout(@Query('redirectUrl') redirectUrl: string, @Res() res: FastifyReply) {
+    const { name } = this.config.get().cookies.session;
+    return res
+      .clearCookie(name, {
+        path: '/',
+      })
+      .status(200)
+      .redirect(302, redirectUrl ?? this.redirectUrl);
+  }
+
+  @Get(AppRoutes.auth.oauth.$key())
   oauth(
     @Query('redirectUrl') redirectUrl: string,
     @Query('provider') provider: AuthProvider = AuthProvider.google,
-    @Res() res,
+    @Res() res: FastifyReply,
   ) {
     this.redirectUrl = redirectUrl;
-    res.redirect(302, `${AppRoutes.oauth.$path({ separator: '/' })}/${provider}`);
+    res.redirect(302, `${AppRoutes.auth.oauth.$path({ separator: '/' })}/${provider}`);
   }
 
-  @Get(AppRoutes.oauth.google.$key())
+  @Get(AppRoutes.auth.oauth.google.$path({ depth: 1, separator: '/' }))
   @UseGuards(GoogleOAuthGuard)
   async google() {
     return HttpStatus.OK;
   }
 
-  @Get(AppRoutes.oauth.google.redirect.$path({ depth: 1, separator: '/' }))
+  @Get(AppRoutes.auth.oauth.google.redirect.$path({ depth: 2, separator: '/' }))
   @UseGuards(GoogleOAuthGuard)
   googleRedirect(@Req() req, @Res() res) {
     this.login(req, res);
   }
 
-  @Get(AppRoutes.oauth.facebook.$key())
+  @Get(AppRoutes.auth.oauth.facebook.$path({ depth: 1, separator: '/' }))
   @UseGuards(FacebookOAuthGuard)
   async facebook() {
     return HttpStatus.OK;
   }
 
-  @Get(AppRoutes.oauth.facebook.redirect.$path({ depth: 1, separator: '/' }))
+  @Get(AppRoutes.auth.oauth.facebook.redirect.$path({ depth: 2, separator: '/' }))
   @UseGuards(FacebookOAuthGuard)
   async facebookRedirect(@Req() req, @Res() res) {
     this.login(req, res);
   }
 
-  @Get(AppRoutes.oauth.github.$key())
+  @Get(AppRoutes.auth.oauth.github.$path({ depth: 1, separator: '/' }))
   @UseGuards(GithubOAuthGuard)
   async github() {
     return HttpStatus.OK;
   }
 
-  @Get(AppRoutes.oauth.github.redirect.$path({ depth: 1, separator: '/' }))
+  @Get(AppRoutes.auth.oauth.github.redirect.$path({ depth: 2, separator: '/' }))
   @UseGuards(GithubOAuthGuard)
   async githubRedirect(@Req() req, @Res() res) {
     this.login(req, res);
   }
 
-  @Get(AppRoutes.oauth.discord.$key())
+  @Get(AppRoutes.auth.oauth.discord.$path({ depth: 1, separator: '/' }))
   @UseGuards(DiscordOAuthGuard)
   async discord(@Res() res) {
     res.redirect(302, this.config.get().oauth.discord.generatedURL);
   }
 
-  @Get(AppRoutes.oauth.discord.redirect.$path({ depth: 1, separator: '/' }))
+  @Get(AppRoutes.auth.oauth.discord.redirect.$path({ depth: 2, separator: '/' }))
   @UseGuards(DiscordOAuthGuard)
   async discordRedirect(@Req() req, @Res() res) {
     this.login(req, res);
   }
 
-  @Get(AppRoutes.oauth.spotify.$key())
+  @Get(AppRoutes.auth.oauth.spotify.$path({ depth: 1, separator: '/' }))
   @UseGuards(SpotifyOAuthGuard)
   async spotify() {
     return HttpStatus.OK;
   }
 
-  @Get(AppRoutes.oauth.spotify.redirect.$path({ depth: 1, separator: '/' }))
+  @Get(AppRoutes.auth.oauth.spotify.redirect.$path({ depth: 2, separator: '/' }))
   @UseGuards(SpotifyOAuthGuard)
   async spotifyRedirect(@Req() req, @Res() res) {
     this.login(req, res);

@@ -15,7 +15,7 @@ export class GithubOAuthStrategy extends PassportStrategy(Strategy, 'github') {
     } = config.get();
     const options: StrategyOptions = {
       ...github,
-      callbackURL: `${api}${AppRoutes.oauth.github.redirect.$path({ separator: '/' })}`,
+      callbackURL: `${api}${AppRoutes.auth.oauth.github.redirect.$path({ separator: '/' })}`,
     };
     super({
       ...options,

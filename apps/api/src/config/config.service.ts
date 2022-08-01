@@ -56,52 +56,71 @@ export const AppRoutes = {
       $key: () => 'scrape',
     },
   },
-  oauth: {
-    $path: (params?: { separator?: string; depth?: number }) => '/oauth',
-    $key: () => 'oauth',
-    google: {
-      $path: (params?: { separator?: string; depth?: number }) => '/oauth/google',
-      $key: () => 'google',
-      redirect: {
-        $path: (params?: { separator?: string; depth?: number }) =>
-          params?.depth === undefined ? '/oauth/google/redirect' : '/google/redirect',
-        $key: () => 'redirect',
-      },
+  auth: {
+    $path: (params?: { separator?: string; depth?: number }) => '/auth',
+    $key: () => 'auth',
+    logout: {
+      $path: (params?: { separator?: string; depth?: number }) => '/auth/logout',
+      $key: () => 'logout',
     },
-    facebook: {
-      $path: (params?: { separator?: string; depth?: number }) => '/oauth/facebook',
-      $key: () => 'facebook',
-      redirect: {
+    oauth: {
+      $path: (params?: { separator?: string; depth?: number }) => '/auth/oauth',
+      $key: () => 'oauth',
+      google: {
         $path: (params?: { separator?: string; depth?: number }) =>
-          params?.depth === undefined ? '/oauth/facebook/redirect' : '/facebook/redirect',
-        $key: () => 'redirect',
+          params?.depth === undefined ? '/auth/oauth/google' : '/oauth/google',
+        $key: () => 'google',
+        redirect: {
+          $path: (params?: { separator?: string; depth?: number }) =>
+            params?.depth === undefined ? '/auth/oauth/google/redirect' : '/oauth/google/redirect',
+          $key: () => 'redirect',
+        },
       },
-    },
-    github: {
-      $path: (params?: { separator?: string; depth?: number }) => '/oauth/github',
-      $key: () => 'github',
-      redirect: {
+      facebook: {
         $path: (params?: { separator?: string; depth?: number }) =>
-          params?.depth === undefined ? '/oauth/github/redirect' : '/github/redirect',
-        $key: () => 'redirect',
+          params?.depth === undefined ? '/auth/oauth/facebook' : '/oauth/facebook',
+        $key: () => 'facebook',
+        redirect: {
+          $path: (params?: { separator?: string; depth?: number }) =>
+            params?.depth === undefined
+              ? '/auth/oauth/facebook/redirect'
+              : '/oauth/facebook/redirect',
+          $key: () => 'redirect',
+        },
       },
-    },
-    discord: {
-      $path: (params?: { separator?: string; depth?: number }) => '/oauth/discord',
-      $key: () => 'discord',
-      redirect: {
+      github: {
         $path: (params?: { separator?: string; depth?: number }) =>
-          params?.depth === undefined ? '/oauth/discord/redirect' : '/discord/redirect',
-        $key: () => 'redirect',
+          params?.depth === undefined ? '/auth/oauth/github' : '/oauth/github',
+        $key: () => 'github',
+        redirect: {
+          $path: (params?: { separator?: string; depth?: number }) =>
+            params?.depth === undefined ? '/auth/oauth/github/redirect' : '/oauth/github/redirect',
+          $key: () => 'redirect',
+        },
       },
-    },
-    spotify: {
-      $path: (params?: { separator?: string; depth?: number }) => '/oauth/spotify',
-      $key: () => 'spotify',
-      redirect: {
+      discord: {
         $path: (params?: { separator?: string; depth?: number }) =>
-          params?.depth === undefined ? '/oauth/spotify/redirect' : '/spotify/redirect',
-        $key: () => 'redirect',
+          params?.depth === undefined ? '/auth/oauth/discord' : '/oauth/discord',
+        $key: () => 'discord',
+        redirect: {
+          $path: (params?: { separator?: string; depth?: number }) =>
+            params?.depth === undefined
+              ? '/auth/oauth/discord/redirect'
+              : '/oauth/discord/redirect',
+          $key: () => 'redirect',
+        },
+      },
+      spotify: {
+        $path: (params?: { separator?: string; depth?: number }) =>
+          params?.depth === undefined ? '/auth/oauth/spotify' : '/oauth/spotify',
+        $key: () => 'spotify',
+        redirect: {
+          $path: (params?: { separator?: string; depth?: number }) =>
+            params?.depth === undefined
+              ? '/auth/oauth/spotify/redirect'
+              : '/oauth/spotify/redirect',
+          $key: () => 'redirect',
+        },
       },
     },
   },

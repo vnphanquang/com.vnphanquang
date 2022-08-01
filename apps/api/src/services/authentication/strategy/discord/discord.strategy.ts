@@ -15,7 +15,7 @@ export class DiscordOAuthStrategy extends PassportStrategy(Strategy, 'discord') 
     } = config.get();
     const options: StrategyOptions = {
       ...discord,
-      callbackURL: `${api}${AppRoutes.oauth.discord.redirect.$path({ separator: '/' })}`,
+      callbackURL: `${api}${AppRoutes.auth.oauth.discord.redirect.$path({ separator: '/' })}`,
     };
     super({
       ...options,
