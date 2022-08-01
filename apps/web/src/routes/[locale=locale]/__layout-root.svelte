@@ -11,8 +11,8 @@
   import { AppConfig } from '$config';
 
   $: locale = $page.params.locale;
-  $: pathname = $page.url.pathname.substring(3);
-  $: originalUrl = `${AppConfig.urls.web}${pathname}`;
+  $: pathnameWithoutLocale = $page.url.pathname.substring(3);
+  $: originalUrl = `${AppConfig.urls.web}${pathnameWithoutLocale}`;
 
   $: meta = $page.stuff.meta;
 
@@ -27,6 +27,8 @@
   $: twitterCard = meta?.twitter?.card ?? 'summary_large_image';
   $: twitterImageAlt = meta?.twitter?.imageAlt ?? 'vnphanquang website';
   $: twitterSite = meta?.twitter?.site ?? '@vnphanquang';
+
+  $: langAlternatives = meta?.langAlternatives ?? Object.values(Locale);
 
   $: facebookAppId = AppConfig.env.facebookAppId;
 
@@ -86,9 +88,9 @@
     <meta property="profile:username" content={username} />
   {/if}
 
-  <link rel="alternate" hreflang="x-default" href="{AppConfig.urls.web}/en{pathname}" />
-  {#each Object.values(Locale).filter((le) => le !== locale) as l}
-    <link rel="alternate" hreflang={l} href="{AppConfig.urls.web}/{l}{pathname}" />
+  <link rel="alternate" hreflang="x-default" href="{AppConfig.urls.web}/en{pathnameWithoutLocale}" />
+  {#each langAlternatives.filter((le) => le !== locale) as l}
+    <link rel="alternate" hreflang={l} href="{AppConfig.urls.web}/{l}{pathnameWithoutLocale}" />
   {/each}
 
   {#if gtagEnabled}

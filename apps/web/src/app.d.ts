@@ -46,6 +46,7 @@ declare namespace App {
         gender: 'male' | 'female';
         username: string;
       };
+      langAlternatives?: (import('./lib/services/i18n').Locale)[];
     };
   }
 }
