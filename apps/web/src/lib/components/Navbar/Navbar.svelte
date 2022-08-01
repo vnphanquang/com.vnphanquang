@@ -22,6 +22,7 @@
   import { AppRoutes, to } from '$lib/services/navigation';
   import { notificationService } from '$lib/services/notification';
   import { theme } from '$lib/stores/theme';
+
   import { AppConfig } from '$config';
 
   let navbarMenuOpen = false;
@@ -56,8 +57,6 @@
     },
   };
 
-  let showLocaleDropdown = false;
-
   let i18nCache: I18NCache;
 
   function toggleTheme() {
@@ -65,7 +64,6 @@
   }
 
   async function changeLocale(newLocale: Locale) {
-    showLocaleDropdown = false;
     if ($locale !== newLocale) {
       const path = `/${newLocale}/${location.pathname.substring(4)}`;
       $locale = newLocale;
