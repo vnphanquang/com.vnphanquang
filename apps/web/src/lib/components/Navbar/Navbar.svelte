@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { clickoutside } from '@svelte-put/clickoutside';
   import classnames from 'classnames';
   import { onMount } from 'svelte';
   import Icon from 'svelte-awesome/components/Icon.svelte';
@@ -7,13 +6,17 @@
   import lightbulb from 'svelte-awesome/icons/lightbulbO';
   import moon from 'svelte-awesome/icons/moonO';
   import signIn from 'svelte-awesome/icons/signIn';
+  import signOut from 'svelte-awesome/icons/signOut';
+  import user from 'svelte-awesome/icons/user';
   import { elasticInOut } from 'svelte/easing';
-  import { fade, fly, slide } from 'svelte/transition';
+  import { fade, fly } from 'svelte/transition';
 
   import { goto } from '$app/navigation';
-  import { page } from '$app/stores';
+  import { page, session } from '$app/stores';
   import { tooltip } from '$lib/actions/tooltip';
   import { I18NCache } from '$lib/cache/i18n.cache';
+  import { Avatar } from '$lib/components/Avatar';
+  import { Dropdown } from '$lib/components/Dropdown';
   import { HamburgerBtn } from '$lib/components/HamburgerBtn';
   import { Locale, locale, t } from '$lib/services/i18n';
   import { AppRoutes, to } from '$lib/services/navigation';
@@ -65,7 +68,9 @@
     if ($locale !== newLocale) {
       const path = `/${newLocale}/${location.pathname.substring(4)}`;
       $locale = newLocale;
-      await goto(path);
+      await goto(path, {
+        noscroll: true,
+      });
       if (!i18nCache.getUserSwitchedOnce()) {
         notificationService.warning($t('navbar.localeChangeNotice'), { duration: 10000 });
         i18nCache.setUserSwitchedOnce(true);
@@ -75,6 +80,10 @@
   }
 
   $: isLightTheme = $theme === 'light';
+
+  function onSignOut() {
+    //
+  }
 
   onMount(() => {
     i18nCache = new I18NCache();
@@ -136,25 +145,18 @@
     {/if}
 
     <ul class="flex flex-1 items-center justify-end gap-x-6">
-      <li
-        class="relative"
-        use:clickoutside={{ enabled: showLocaleDropdown }}
-        on:clickoutside={() => (showLocaleDropdown = false)}
-      >
-        <label
-          class="c-btn-icon"
-          for="locale-dropdown"
-          use:tooltip={{ content: $t('navbar.tooltip.locale') }}
-        >
-          <Icon data={language} scale={2} />
-        </label>
-        <input type="checkbox" id="locale-dropdown" hidden bind:checked={showLocaleDropdown} />
-        {#if showLocaleDropdown}
-          <ul
-            class="absolute top-full right-0 mt-2 w-max rounded bg-bg py-2 shadow-center-xl"
-            transition:slide={{ duration: 200 }}
+
+      <li>
+        <Dropdown id="locale-dropdown" items={Object.values(locales)}>
+          <span
+            class="c-btn-icon"
+            use:tooltip={{ content: $t('navbar.tooltip.locale') }}
           >
-            {#each Object.values(locales) as { id, icon, text, hint } (id)}
+            <Icon data={language} scale={2} />
+          </span>
+
+          <svelte:fragment slot="items">
+            {#each Object.values(locales) as { id, hint, text, icon } (id)}
               <li lang={id}>
                 <button
                   on:click={() => changeLocale(id)}
@@ -171,9 +173,10 @@
                 </button>
               </li>
             {/each}
-          </ul>
-        {/if}
+          </svelte:fragment>
+        </Dropdown>
       </li>
+
       <li use:tooltip={{ content: $t('navbar.tooltip.theme'), placement: 'bottom' }}>
         <input
           type="checkbox"
@@ -191,11 +194,45 @@
           </span>
         </label>
       </li>
-      <li use:tooltip={{ content: $t('navbar.tooltip.login'), placement: 'bottom' }}>
-        <a href={to(AppRoutes.login.index)} class="hover:text-primary">
-          <Icon data={signIn} scale={2} />
-        </a>
-      </li>
+
+      {#if !$session.jwt}
+        <li use:tooltip={{ content: $t('navbar.tooltip.login'), placement: 'bottom' }}>
+          <a href={to(AppRoutes.login.index)} class="hover:text-primary">
+            <Icon data={signIn} scale={2} />
+          </a>
+        </li>
+      {:else}
+        <li>
+          <Dropdown id="user-actions">
+            <span
+              class="c-btn-icon"
+              use:tooltip={{ content: $t('navbar.tooltip.user') }}
+            >
+              <Avatar user={$session.jwt} />
+            </span>
+
+            <svelte:fragment slot="items">
+              <li class="w-full py-2 px-4 hover:bg-primary">
+                <a class="flex items-center gap-x-4" href={to(AppRoutes.profile.index)} alt="to profile page">
+                  <span>
+                    <Icon data={user} scale={1.5} />
+                  </span>
+                  <span >{$t('navbar.userActions.profile')}</span>
+                </a>
+              </li>
+              <li class="w-full py-2 px-4 hover:bg-primary">
+                <button on:click={onSignOut} class="flex items-center gap-x-4">
+                  <span>
+                    <Icon data={signOut} scale={1.5} />
+                  </span>
+                  <span>{$t('navbar.userActions.logout')}</span>
+                </button>
+              </li>
+            </svelte:fragment>
+          </Dropdown>
+        </li>
+      {/if}
+
     </ul>
   </div>
 </nav>

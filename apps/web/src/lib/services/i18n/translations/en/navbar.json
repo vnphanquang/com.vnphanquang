@@ -2,7 +2,12 @@
   "tooltip": {
     "theme": "Toggle light",
     "locale": "Language",
-    "login": "Login"
+    "login": "Login",
+    "user": "User actions"
+  },
+  "userActions": {
+    "logout": "Log out",
+    "profile": "Profile"
   },
   "localeChangeNotice": "Some content is only available in one language or is being translated."
 }

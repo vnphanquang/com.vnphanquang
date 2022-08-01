@@ -50,6 +50,12 @@ declare namespace App {
   }
 }
 
+// interface PrivateEnv {
+// }
+
+// interface PublicEnv {
+// }
+
 interface ImportMetaEnv {
   VITE_GTAG_MEASUREMENT_ID: string;
   VITE_FACEBOOK_APP_ID: string;
@@ -80,7 +86,7 @@ declare namespace svelte.JSX {
     // on:intersect
     onintersect?: (event: CustomEvent<import('@svelte-put/intersect').IntersectDetail>) => void;
     onintersectonce?: (event: CustomEvent<import('@svelte-put/intersect').IntersectDetail>) => void;
-    ontoc?: (event: CustomEvent<import('./lib/actions/toc').TocEventDetails>) => void;
+    ontoc?: (event: CustomEvent<import('@svelte-put/toc').TocEventDetails>) => void;
   }
 }
 
