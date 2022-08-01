@@ -34,9 +34,7 @@ export class AuthenticationController {
   async logout(@Query('redirectUrl') redirectUrl: string, @Res() res: FastifyReply) {
     const { name } = this.config.get().cookies.session;
     return res
-      .clearCookie(name, {
-        path: '/',
-      })
+      .clearCookie(name)
       .status(200)
       .redirect(302, redirectUrl ?? this.redirectUrl);
   }
