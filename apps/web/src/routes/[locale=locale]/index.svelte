@@ -14,8 +14,6 @@
     ExperimentationSectors,
   } from './_components';
 
-  import { AppConfig } from '$config';
-
   export const load: Load = async ({ fetch }) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await getTestimonials({ fetch: fetch as any });
@@ -26,7 +24,7 @@
           description: `Quang Phan's personal website`,
           og: {
             title: 'vnphanquang',
-            type: 'webiste',
+            type: 'website',
             image: '/images/screenshots/index.png',
           },
           twitter: {
@@ -67,7 +65,7 @@
     <ScrollDownMouse class="mt-6" variant="button" on:click={scrollDownFromHero} />
   </section>
 
-  <section id="sectors" class="bg-bg-accent/30 px-6 pt-14 pb-28 sm:px-10 md:px-32">
+  <!-- <section id="sectors" class="bg-bg-accent/30 px-6 pt-14 pb-28 sm:px-10 md:px-32">
     <div
       class="grid w-full place-items-center {fadeIns.sectors ? 'animate-fade-in-up' : 'opacity-0'}"
       use:intersect={{ threshold: intersectionThreshold, enabled: !fadeIns.sectors }}
@@ -75,8 +73,8 @@
     >
       <ExperimentationSectors />
     </div>
-  </section>
-
+  </section> -->
+<!--
   <section id="testimonials" class="bg-bg/50 py-14 px-6 sm:px-10 md:px-32">
     <div
       class="grid w-full place-items-center {fadeIns.testimonials
@@ -87,7 +85,7 @@
     >
       <Testimonials data={$testimonials.testimonials} class="w-full max-w-5xl" />
     </div>
-  </section>
+  </section> -->
 
   <section id="never-asked-questions" class="bg-bg-accent/30 py-14 px-6 sm:px-10 md:px-32">
     <div

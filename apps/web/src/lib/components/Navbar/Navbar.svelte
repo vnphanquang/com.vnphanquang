@@ -102,17 +102,17 @@
   )}
 >
   <div class="flex h-20 w-full max-w-5xl items-center gap-x-6">
-    <HamburgerBtn
+    <!-- <HamburgerBtn
       id="navbar-menu"
       class="hover:text-primary md:hidden"
       variant="random"
       bind:open={navbarMenuOpen}
-    />
+    /> -->
     <p class="hidden font-quang text-xl font-bold text-primary hover:text-secondary md:block">
       <a href={to(AppRoutes.index)} on:click={() => (navbarMenuOpen = false)}>vnphanquang</a>
     </p>
 
-    <ul class="hidden grid-cols-[repeat(3,auto)] gap-x-4 font-quang text-lg font-bold md:grid">
+    <!-- <ul class="hidden grid-cols-[repeat(3,auto)] gap-x-4 font-quang text-lg font-bold md:grid">
       {#each Object.values(navlinks) as { href, text }}
         <li
           class="navlink relative px-2 hover:text-primary"
@@ -235,7 +235,7 @@
         </li>
       {/if}
 
-    </ul>
+    </ul> -->
   </div>
 </nav>
 
