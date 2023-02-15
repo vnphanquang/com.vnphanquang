@@ -33,7 +33,7 @@ export const COMMANDS: Record<Command['id'], Command> = {
   [COMMAND_ID_DICTIONARY.open.internal.resume]: {
     type: 'open',
     id: COMMAND_ID_DICTIONARY.open.internal.resume,
-    href: () => '/QuangPhan_Resume.pdf',
+    href: () => '/resume-quangphan.pdf',
     description: "Open Quang Phan's resume",
     scopes: ['global'],
     cacheable: true,

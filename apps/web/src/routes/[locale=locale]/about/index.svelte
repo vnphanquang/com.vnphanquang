@@ -65,7 +65,7 @@
       loading="lazy"
     />
     <button id="resume-download" type="button" class="c-btn-outline py-1 px-2 text-xs uppercase">
-      <a href="/QuangPhan_Resume.pdf" target="_blank"> Download PDF resume </a>
+      <a href="/resume-quangphan.pdf" target="_blank"> Download PDF resume </a>
     </button>
     <p class="text-primary">~ • ~</p>
   </section>
